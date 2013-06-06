@@ -1,0 +1,7 @@
+- data.projects.drop(2).each do |project|
+  %article{:id => project.slug,:style => "color:#{project.colors.foreground}; background:#{project.colors.background};", :data => {:title => project.project}}
+    %div.project
+      %h2= project.project
+      %p= project.description
+      - project.images.each do |img|
+        %img{:src => "images/#{project.slug}/#{img.placeholder}",:style => "background:#{project.colors.foreground}",:alt => "#{img.alt}",:data => {:mobile => "#{img.mobile}", :desktop => "#{img.desktop}"}}

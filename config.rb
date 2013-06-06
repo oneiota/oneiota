@@ -4,6 +4,8 @@ set :markdown_engine, :redcarpet
 #Livereload
 activate :livereload
 
+#prettyURL's
+activate :directory_indexes
 ### 
 # Compass
 ###
@@ -39,9 +41,16 @@ activate :livereload
 #   @which_fake_page = "Rendering a fake page with a variable"
 # end
 
+# Assumes the file source/about/template.html.erb exists
+data.projects.each do |project|
+  proxy "/#{project.slug}.html", "/project-template.html", :locals => {:project => project}, :ignore => true
+end
+
 ###
 # Helpers
 ###
+
+page "/articles.html", :layout => "articles-layout"
 
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes

@@ -1,10 +1,49 @@
-/**
-
+/*
 //HTML5 Boilerplate + Normalize
 *= require "_vendor/normalize.css"
 *= require "_vendor/html5bp.css"
 
 //Grid
 *= require "_layout/grid"
-
+*= require "nav"
 */
+
+@import '_mixins';
+
+body {
+  font-family:'gt_walsheim_trialregular', Futura, sans-serif;
+  font-size: 100%;
+  text-align: center;
+}
+
+a {
+  color: $link;
+  text-decoration: none;
+}
+
+img {
+  width:100%;
+  height: auto;
+  opacity: 0.1;
+}
+
+#{headings()}, p, li, a, img {
+  margin:0 0 1rem 0;
+}
+
+h1 {
+  @include font-size(6, large);
+}
+
+h2 {
+  @include font-size(4);
+}
+
+p {
+  @include font-size(1, medium);
+}
+
+li{
+  @include font-size(.8, small);
+}
+

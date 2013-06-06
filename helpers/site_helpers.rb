@@ -1,9 +1,11 @@
 module SiteHelpers
 
   def page_title
-    title = "Set your site title in /helpers/site_helpers.rb"
+    title = "Iota"
     if data.page.title
       title << " | " + data.page.title
+    elsif yield_content(:title)
+      title << " | " + yield_content(:title)
     end
     title
   end
@@ -11,10 +13,18 @@ module SiteHelpers
   def page_description
     if data.page.description
       description = data.page.description
+    elsif yield_content(:description)
+      description = yield_content(:description)
     else
-      description = "Set your site description in /helpers/site_helpers.rb"
+      description = "We are one iota; a Brisbane based independent design agency driven by passion and a love for good design. We are skilled in identity and brand development, digital design, print and interactive media."
     end
     description
   end
+
+  def get_projects
+    projects = []
+    projects = data.projects.drop(2).to_json
+    projects
+  end  
 
 end

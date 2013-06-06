@@ -1,0 +1,15 @@
+@import '_mixins';
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  ul,li,a {
+    @include font-size(4);
+  }
+}
+
+.icon-info:before {
+  @include ico-font();
+  content: "\e000";
+}

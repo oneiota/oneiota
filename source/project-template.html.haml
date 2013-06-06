@@ -1,0 +1,10 @@
+- project = locals[:project]
+- content_for(:title, project.project)
+- content_for(:description, project.description)
+
+%article{:data => [:title => project.project] :style => "color:#{project.colors.foreground}; background:#{project.colors.background};"}
+  %div.project
+    %h2= project.project
+    %p= project.description
+    - project.images.each do |img|
+      %img{:src => "images/#{project.slug}/#{img.placeholder}",:style => "background:#{project.colors.foreground}",:alt => "#{img.alt}",:data => {:mobile => "#{img.mobile}", :desktop => "#{img.desktop}"}}

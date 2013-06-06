@@ -7,7 +7,7 @@
 /*
  * Corrects `block` display not defined in IE 6/7/8/9 and Firefox 3.
  */
-
+ 
 article,
 aside,
 details,
@@ -123,7 +123,7 @@ a:hover {
  * and Chrome.
  */
 
-h1 {
+/*h1 {
     font-size: 2em;
     margin: 0.67em 0;
 }
@@ -151,7 +151,7 @@ h5 {
 h6 {
     font-size: 0.75em;
     margin: 2.33em 0;
-}
+}*/
 
 /*
  * Addresses styling not present in IE 7/8/9, Safari 5, and Chrome.
