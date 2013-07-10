@@ -1,11 +1,14 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 module SiteHelpers
 
   def page_title
     title = "Iota"
     if data.page.title
-      title << " | " + data.page.title
+      title << " — " + data.page.title
     elsif yield_content(:title)
-      title << " | " + yield_content(:title)
+      title << " — " + yield_content(:title)
     end
     title
   end

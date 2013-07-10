@@ -1,15 +1,286 @@
-@import '_mixins';
+@import "_mixins";
+@import "_layout/grid";
 
 nav {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  ul,li,a {
-    @include font-size(4);
+  .hud {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    position: fixed;
+    z-index: $hud;
+    ul {
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+      li {
+        position: relative;
+      }
+    }
+    li,a {
+      opacity: 0.9;
+      margin: 0;
+      padding: 0;
+      color: inherit;
+      @include font-size(1);
+    }
+  }
+  @include at-breakpoint($bigscreen)  {
+    .hud {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      display: block;
+      position: fixed;
+      z-index: $hud;
+      ul {
+        display: block;
+        margin: 0;
+        padding: 0;
+        line-height: 0;
+        li {
+          display: inline-block;
+          position: relative;
+        }
+      }
+      li,a {
+        opacity: 0.9;
+        margin: 0;
+        padding: 0;
+        @include font-size(1);
+      }
+    }
+  } 
+}
+nav { 
+  .top-hud {
+    display: table;
+    width: inherit;
+    right: 0.5em;
+    top: 3em;
+    @include at-breakpoint($tablet)  {
+      right: 1em;
+      top: 0em;
+    }
+    height: 100%;
+    .project-title {
+      display: none;
+    }
+    .mobile.project-title {
+      padding: 1.2em 0 0.8em 0;
+      margin:0;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      span {
+        display: block;
+      }
+
+    }
+    ul {
+      display: table-cell;
+      vertical-align: middle;
+      li { 
+        margin: 1.5em 0;
+        a {
+          opacity: 0.5;
+        }
+        a.icon-down-arrow-bare {
+          display: block;
+          margin-top: 1rem;
+        }
+        a.icon-up-arrow-bare {
+          display: none;
+          margin-bottom: 1rem;
+        }
+      }
+      li.active {
+        .project-title {
+          display: none;
+        }
+        a {
+          opacity: 1;
+          display: inline;
+        }
+        a.icon-down-arrow-bare, a.icon-up-arrow-bare {
+          display: block;
+        }
+      }
+      li.mobile-hide {
+        display: none;
+      }
+    }
+  }
+  .top-hud {
+    @include at-breakpoint($bigscreen)  {
+      display: block;
+      top: 4rem;
+      right:0;
+      width: 100%;
+      .mobile.project-title {
+        display: none;
+      }
+      .project-title {
+        display: none;
+        @include font-bold();
+        padding: 0.6rem 0.7rem 0.4rem 0.7rem;
+        margin: 0 1rem;
+      }
+      ul {
+        display: block;
+        li { 
+          margin: 0 0.5rem;
+          a {
+            opacity: 0.5;
+            &:hover {
+              opacity: 0.9;
+            }
+          }
+          a.icon-down-arrow-bare {
+            display: none;
+          }
+          a.icon-up-arrow-bare {
+            display: none;
+          }
+        }
+        li.active {
+          opacity: 0.9;
+          .project-title {
+            display: inline-block;
+          }
+          a {
+            display: none;
+          }
+        }
+        li.mobile-hide {
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .bottom-hud {
+    ul li {
+      display: inline-block;
+    }
   }
 }
 
-.icon-info:before {
-  @include ico-font();
-  content: "\e000";
+body {
+  .infoNav li a, .menuNav li a {
+    display: none;
+  }
+  .indexNav li a {
+    display: block;
+  }
+  .menu-title {
+    display: none;
+  }
+}
+
+// //Overlay Menu Styling
+
+body.menu {
+  .menu-title {
+    display: block;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 100%;
+    z-index: $hud;
+    span {
+      display: inline-block;
+      border: 0.20rem solid;
+      padding: 0.5rem 1rem 0.2rem 1rem;
+    }
+  }
+  .project-title {
+    display: none !important;
+  }
+  .top-hud {
+    display: none;
+  }
+  .bottom-hud {
+    .infoNav li a, .indexNav li a {
+      display: none;
+    }
+    .menuNav li a {
+      display: block;
+    }
+  }
+}
+
+body.menu.opencontact {
+  .bottom-hud {
+    .menuNav li a, .indexNav li a {
+      display: none;
+    }
+    .infoNav li a {
+      display: block;
+    }
+  }
+}
+
+body.singleProject nav .top-hud {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 1em;
+  left: 0;
+  @include at-breakpoint($bigscreen)  {
+    top: 3em;
+  }
+  .project-title {
+    position:relative;
+    @include at-breakpoint($bigscreen) {
+      display: block;
+    }
+    span {
+      @include box-title();
+    }
+  }
+}
+
+.bottom-hud {
+  bottom: 1rem;
+  @include at-breakpoint($tablet)  {
+    bottom: 2rem;
+  }
+}
+
+html.touch .arrow-tab {
+  position: absolute;
+  display: table;
+  z-index: $hud;
+  height: 40px;
+  top: -0.9rem;
+  right: 50px;
+  border-radius: 0.6rem;
+  padding: 0 1rem;
+  white-space: nowrap;
+  a {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: yellow;
+    position:relative;
+    top: 0.1rem;
+    opacity: 1;
+  }
+  span {
+    border-radius: 0.5rem;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid;
+    right: -14px;
+  }
+}
+
+html.touch .top-hud ul li:nth-child(9) .arrow-tab {
+  top: 2.2rem;
 }

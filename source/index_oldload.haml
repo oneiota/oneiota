@@ -1,0 +1,12 @@
+/Load in content for the first two projects
+- content_for(:title, data.projects[0].project)
+
+- data.projects.first(2).each do |project|
+  %article{:id => project.slug,:style => "color:#{project.colors.foreground}; background:#{project.colors.background};", :data => {:title => project.project}}
+    %div.project
+      - project.images.each_with_index do |img, index|
+        - if index == 1 
+          %p= project.description
+        %div{:class => "placeholder"}
+          %span= img.alt
+          %img{:src => "images/#{project.slug}/#{img.placeholder}",:style => "background:#{project.colors.foreground}",:alt => "#{img.alt}",:class => "notloaded",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}

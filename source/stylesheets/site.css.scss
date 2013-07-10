@@ -2,18 +2,34 @@
 //HTML5 Boilerplate + Normalize
 *= require "_vendor/normalize.css"
 *= require "_vendor/html5bp.css"
+*= require "article"
+*= require "info"
 
 //Grid
 *= require "_layout/grid"
 *= require "nav"
 */
 
-@import '_mixins';
+@import "_mixins";
+@import "_animations";
+@import "_layout/grid";
 
 body {
-  font-family:'gt_walsheim_trialregular', Futura, sans-serif;
+  font-family:'gt_walsheim_trialmedium', Futura, sans-serif;
   font-size: 100%;
   text-align: center;
+  height: 100%;
+}
+
+html.touch {
+  body.index {
+    article {
+      display: none;
+    }
+    article:first-child {
+      display: block;
+    }
+  }
 }
 
 a {
@@ -24,11 +40,23 @@ a {
 img {
   width:100%;
   height: auto;
-  opacity: 0.1;
 }
 
-#{headings()}, p, li, a, img {
+strong {
+  @include font-bold();
+}
+
+#{headings()}, p, li, a {
   margin:0 0 1rem 0;
+}
+
+menu, ol, ul {
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  z-index: 0;
 }
 
 h1 {
@@ -44,6 +72,14 @@ p {
 }
 
 li{
-  @include font-size(.8, small);
+  @include font-size(1, medium);
 }
 
+section, article {
+  #{headings()}, p, li, a {
+    @include font-size(1);
+    @include at-breakpoint($bigscreen)  {
+      @include font-size(1.5);
+    }
+  }
+}

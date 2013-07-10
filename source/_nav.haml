@@ -1,3 +1,60 @@
-%ul
-  %li
-    %a.icon-info.icon{:href=>"#"}
+.hud.top-hud.info-hud
+  %p.mobile.project-title
+    %span.scaleIn= data.projects[0].project
+  %ul
+    - data.projects.each_with_index do |project, index|
+      -if index == 0
+        %li.active.scaleIn
+          %span.project-title= project.project
+          %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project}
+      -elsif index == 7
+        %li.scaleIn
+          %span.project-title= project.project
+          %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project}
+          %a.icon-down-arrow-bare.icon{:href => '#', :title => 'More Projects'}
+      -elsif index == 8
+        %li.scaleIn.mobile-hide
+          %span.project-title= project.project
+          %a.icon-up-arrow-bare.icon{:href => '#', :title => 'Back'}
+          %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project}
+      -elsif index > 8 
+        %li.scaleIn.mobile-hide
+          %span.project-title= project.project
+          %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project}
+      -else
+        %li.scaleIn
+          %span.project-title= project.project
+          %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project} 
+
+.hud.bottom-hud 
+  %ul.indexNav
+    %li
+      %a.icon-info.icon{:href=>'#', :title => 'Information'}
+  %ul.menuNav
+    %li
+      %a.icon-close.icon{:href=>'#', :title => 'Close this'}
+    %li
+      %a.icon-contact.icon{:href=>'#', :title => 'Get in touch'}
+  %ul.infoNav
+    %li
+      %a.icon-left-arrow.icon{:href=>'#', :title => 'Back'}
+
+
+/Old Linear Nav Code
+/- projects_title = (data.projects.count.to_f / 2).ceil
+/- if index == projects_title - 1
+/%li{:class => 'project-title scaleIn'}= data.projects[0].project
+/%li.icon-circle.icon.scaleIn
+/%a{:href => '#', :title => project.project}
+/- elsif index == 0
+/%li.icon-circle.icon.active.scaleIn
+/%a{:href => '#', :title => project.project}
+/-else 
+/%li.icon-circle.icon.scaleIn
+/%a{:href => '#', :title => project.project}
+
+/Arrow Tab
+/ %div.arrow-tab 
+/   %a{:href => '#'}
+/     The Illustration Room
+/   %span

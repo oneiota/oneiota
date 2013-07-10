@@ -6,6 +6,10 @@ activate :livereload
 
 #prettyURL's
 activate :directory_indexes
+
+#bourbon
+activate :bourbon
+
 ### 
 # Compass
 ###
@@ -43,15 +47,13 @@ activate :directory_indexes
 
 # Assumes the file source/about/template.html.erb exists
 data.projects.each do |project|
-  proxy "/#{project.slug}.html", "/project-template.html", :locals => {:project => project}, :ignore => true
+  proxy "/#{project.slug}.html", "/project-template.html", :locals => {:project => project}, :ignore => true, :layout => "projects-layout"
 end
 
 ###
 # Helpers
 ###
-
-page "/articles.html", :layout => "articles-layout"
-
+page "/index.html", :layout => "layout"
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 

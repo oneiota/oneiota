@@ -8,17 +8,15 @@
     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   images:
     - 
-      placeholder: esplcoffeebrewers1.gif 
       mobile: esplcoffeebrewers1.jpg
       desktop: esplcoffeebrewers1_big.jpg
       alt: image alt
     - 
-      placeholder: esplcoffeebrewers2.gif
       mobile: esplcoffeebrewers2.jpg
       desktop: esplcoffeebrewers2_big.jpg
       alt: image alt
   colors:
-    foreground: "#040751"
+    foreground: "#0000ff"
     background: "#ffff00"
 
 - project: Sourced Grocer
@@ -30,12 +28,10 @@
     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   images:
     - 
-      placeholder: esplcoffeebrewers1.gif 
       mobile: esplcoffeebrewers1.jpg
       desktop: esplcoffeebrewers1_big.jpg
       alt: image alt
     - 
-      placeholder: esplcoffeebrewers2.gif
       mobile: esplcoffeebrewers2.jpg
       desktop: esplcoffeebrewers2_big.jpg
       alt: image alt
@@ -52,12 +48,42 @@
     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   images:
     - 
-      placeholder: esplcoffeebrewers1.gif 
       mobile: esplcoffeebrewers1.jpg
       desktop: esplcoffeebrewers1_big.jpg
+      alt: Branding Letterpress Identity
+    - 
+      mobile: esplcoffeebrewers2.jpg
+      desktop: esplcoffeebrewers2_big.jpg
       alt: image alt
     - 
-      placeholder: esplcoffeebrewers2.gif
+      mobile: esplcoffeebrewers1.jpg
+      desktop: esplcoffeebrewers1_big.jpg
+      alt: Branding Letterpress Identity
+    - 
+      mobile: esplcoffeebrewers2.jpg
+      desktop: esplcoffeebrewers2_big.jpg
+      alt: image alt
+    - 
+      mobile: esplcoffeebrewers1.jpg
+      desktop: esplcoffeebrewers1_big.jpg
+      alt: Branding Letterpress Identity
+    - 
+      mobile: esplcoffeebrewers2.jpg
+      desktop: esplcoffeebrewers2_big.jpg
+      alt: image alt
+    - 
+      mobile: esplcoffeebrewers1.jpg
+      desktop: esplcoffeebrewers1_big.jpg
+      alt: Branding Letterpress Identity
+    - 
+      mobile: esplcoffeebrewers2.jpg
+      desktop: esplcoffeebrewers2_big.jpg
+      alt: image alt
+    - 
+      mobile: esplcoffeebrewers1.jpg
+      desktop: esplcoffeebrewers1_big.jpg
+      alt: Branding Letterpress Identity
+    - 
       mobile: esplcoffeebrewers2.jpg
       desktop: esplcoffeebrewers2_big.jpg
       alt: image alt
@@ -74,37 +100,13 @@
     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   images:
     - 
-      placeholder: esplcoffeebrewers1.gif 
       mobile: esplcoffeebrewers1.jpg
       desktop: esplcoffeebrewers1_big.jpg
       alt: image alt
     - 
-      placeholder: esplcoffeebrewers2.gif
       mobile: esplcoffeebrewers2.jpg
       desktop: esplcoffeebrewers2_big.jpg
       alt: image alt
   colors:
     foreground: "#040751"
     background: "#ffff00"
-
-- project: Kerrie Hess
-  slug: kerriehess
-  description: > 
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  images:
-    - 
-      placeholder: esplcoffeebrewers1.gif 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: image alt
-    - 
-      placeholder: esplcoffeebrewers2.gif
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
-  colors:
-    foreground: "#000"
-    background: "#fff"

@@ -19,19 +19,16 @@
     -#Update favicon_base.png in /source and middleman-favicon-maker will generate all the versions you need on 'middleman build'
     -#OR, place favicon.ico and apple-touch-icon.png in /source and deactivate :favicon_maker in config.rb
     
-    
     = javascript_include_tag "vendor/modernizr-2.6.1.min"
     = stylesheet_link_tag "site"
     
     %style{:type => "text/css"}
-      body { background:#{yield_content(:background)}; }
-      nav { color:#{yield_content(:foreground)}; }
-      html.touch .mobile.project-title { background:#{yield_content(:background)}; }
+      nav * { color:#{yield_content(:foreground)}; }
 
-  %body.index
+  %body.singleProject
     /[if lt IE 7] <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
     %header
-      %nav= partial "nav"
+      %nav= partial "singlenav"
       .overlay= partial "menu"
     %div{:role => "main", :class => "main"}= yield
     %footer

@@ -1,0 +1,364 @@
+@import 'bourbon';
+
+.scaleOut, .scaleOutIn, .scaleOutFifty, .scaleInFifty {
+  @include animation-duration(0.3s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(1);
+  @include animation-fill-mode(forwards);
+}
+
+.scaleIn, .fadeIn, .slideIn, .mainmenu.opencontact, .contact.opencontact,.mainmenu.closecontact, .contact.closecontact, .overlay.openmenu, .fadeOut {
+  @include animation-duration(0.5s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(1);
+  @include animation-fill-mode(forwards);
+}
+
+.slideOutProject, .slideInProject {
+  @include animation-duration(1s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(1);
+  @include animation-fill-mode(forwards);
+}
+
+.no-csstransforms3d .slideOutProject {
+  @include animation-name(slideOutProject);
+}
+
+.csstransforms3d .slideOutProject {
+  @include animation-name(slideOutProject-3d);
+}
+
+html.touch body .fastAni {
+  @include animation-duration(0.2s);
+}
+
+html.touch .slideOutProject {
+  position: fixed !important;
+  width: 100% !important;
+}
+
+.slideInProject {
+  display: block !important;
+}
+
+.no-csstransforms3d .slideInProject {
+  @include animation-name(slideInProject);
+}
+
+.csstransforms3d .slideInProject {
+  @include animation-name(slideInProject-3d);
+}
+
+.scaleOut {
+  @include animation-name(scaleOut);
+}
+
+.scaleOutFifty {
+  display: block !important;
+  @include animation-name(scaleOutFifty);
+}
+
+.scaleOutIn {
+  @include animation-name(scaleOutIn);
+}
+
+.scaleIn {
+  @include animation-name(scaleIn);
+}
+
+.scaleInFifty {
+  display: block !important;
+  @include animation-name(scaleInFifty);
+}
+
+.fadeIn {
+  display: block;
+  @include animation-name(fadeIn);
+}
+
+.fadeOut {
+  @include animation-name(fadeOut);
+}
+
+.slideIn {
+  @include animation-name(slideIn);
+}
+
+// Open Contact
+
+.no-csstransforms3d .contact.opencontact {
+  @include animation-name(slidedown);
+}
+
+.csstransforms3d .contact.opencontact {
+  @include animation-name(slidedown-3d);
+}
+
+.no-csstransforms3d .mainmenu.opencontact, .no-csstransforms3d {
+  @include animation-name(slideup);
+}
+
+.csstransforms3d .mainmenu.opencontact, .csstransforms3d {
+  @include animation-name(slideup-3d);
+}
+
+.contact.opencontact {
+  position: absolute !important;
+  overflow-x: scroll;
+  @include at-breakpoint($tablet) {
+    overflow-x: visible;
+  }
+  top:0;
+}
+
+// Close Contact
+
+.no-csstransforms3d .contact.closecontact {
+  @include animation-name(slideup);
+}
+
+.csstransforms3d .contact.closecontact {
+  @include animation-name(slideup-3d);
+}
+
+.no-csstransforms3d .mainmenu.closecontact {
+  @include animation-name(slidedown);
+}
+
+.csstransforms3d .mainmenu.closecontact {
+  @include animation-name(slidedown-3d);
+}
+
+.mainmenu.closecontact, .contact.closecontact {
+  top:0;
+}
+
+// Open Menu
+
+.no-csstransforms3d .overlay.openmenu {
+  @include animation-name(slidedown);
+}
+
+.csstransforms3d .overlay.openmenu {
+  @include animation-name(slidedown-3d);
+}
+
+.overlay.openmenu {
+  top:0;
+}
+
+.no-csstransforms3d .main.openmenu {
+  @include animation-name(openmenu-main);
+}
+
+.csstransforms3d .main.openmenu {
+  @include animation-name(openmenu-main-3d);
+}
+
+.main.openmenu {
+  @include animation-duration(0.5s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(1);
+  // @include animation-fill-mode(forwards);
+}
+
+//Close Menu
+
+.no-csstransforms3d .overlay.closemenu {
+  @include animation-name(slideup);
+}
+
+.csstransforms3d .overlay.closemenu {
+  @include animation-name(slideup-3d);
+}
+
+.overlay.closemenu {
+  top:0;
+  @include animation-duration(0.75s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(1);
+  @include animation-fill-mode(forwards);
+}
+
+@include keyframes(slideInProject) {
+  from {
+     top: 100%;
+  }
+  to {
+     top: 0%;
+  }
+}
+
+@include keyframes(slideInProject-3d) {
+  from {
+     @include transform(translate3d(0px,200%,0px));
+  }
+  to {
+     @include transform(translate3d(0px,0%,0px));
+  }
+}
+
+@include keyframes(slideOutProject) {
+  from {
+     top: 0%;
+  }
+  to {
+     top: -100%;
+  }
+}
+
+@include keyframes(slideOutProject-3d) {
+  from {
+     @include transform(translate3d(0px,0%,0px));
+  }
+  to {
+     @include transform(translate3d(0px,-100%,0px));
+  }
+}
+
+@include keyframes(slidedown) {
+  from {
+     top: 200%;
+  }
+  to {
+     top: 0%;
+  }
+}
+
+@include keyframes(slidedown-3d) {
+  from {
+     @include transform(translate3d(0px,200%,0px));
+  }
+  to {
+     @include transform(translate3d(0px,0%,0px));
+  }
+}
+
+@include keyframes(openmenu-main) {
+  from {
+     top: 0;
+  }
+  to {
+     top: -100px;
+  }
+}
+
+@include keyframes(openmenu-main-3d) {
+  from {
+     @include transform(translate3d(0px,0px,0px));
+  }
+  to {
+     @include transform(translate3d(0px,-100px,0px));
+  }
+}
+
+@include keyframes(slideup) {
+  from {
+     top: 0%;
+  }
+  to {
+     top: 200%;
+  }
+}
+
+@include keyframes(slideup-3d) {
+  from {
+     @include transform(translate3d(0px,0%,0px));
+  }
+  to {
+     @include transform(translate3d(0px,200%,0px));
+  }
+}
+
+@include keyframes(slideIn) {
+  from {
+    right: 25px;
+  }
+  to {
+    right: 0px;
+  }
+}
+
+@include keyframes(fadeIn) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@include keyframes(fadeOut) {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@include keyframes(scaleOut) {
+  0% {
+    @include transform(scale(1));
+  }
+  30% {
+    @include transform(scale(1.50));
+  }
+  100% {
+    @include transform(scale(0));
+  }
+}
+
+@include keyframes(scaleOutFifty) {
+  0% {
+    @include transform(scale(1));
+  }
+  100% {
+    @include transform(scale(0.5));
+  }
+}
+
+@include keyframes(scaleInfoIn) {
+  from {
+    @include transform(scale(0.5));
+    // opacity: 1;
+  }
+  to {
+    @include transform(scale(1));
+  }
+}
+
+@include keyframes(scaleOutIn) {
+  0% {
+    @include transform(scale(0));
+    // opacity: 1;
+  }
+  50% {
+    @include transform(scale(1.15));
+  }
+  100% {
+    @include transform(scale(1));
+  }
+}
+
+@include keyframes(scaleIn) {
+  from {
+    @include transform(scale(0));
+  }
+  to {
+    @include transform(scale(1));
+  }
+}
+
+@include keyframes(scaleInFifty) {
+  0% {
+    @include transform(scale(0.5));
+  }
+  30% {
+    @include transform(scale(1.3));
+  }
+  100% {
+    @include transform(scale(1));
+  }
+}
