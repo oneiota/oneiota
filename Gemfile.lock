@@ -22,6 +22,7 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fastimage (1.4.0)
     favicon_maker (0.2.1)
       mini_magick (~> 3.5)
     fssm (0.2.10)
@@ -130,6 +131,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  fastimage
   middleman (~> 3.0.5)
   middleman-bourbon
   middleman-favicon-maker

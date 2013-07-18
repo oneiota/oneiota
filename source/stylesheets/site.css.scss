@@ -4,6 +4,7 @@
 *= require "_vendor/html5bp.css"
 *= require "article"
 *= require "info"
+*= require "blood"
 
 //Grid
 *= require "_layout/grid"
@@ -15,7 +16,7 @@
 @import "_layout/grid";
 
 body {
-  font-family:'gt_walsheim_trialmedium', Futura, sans-serif;
+  @include font-bold();
   font-size: 100%;
   text-align: center;
   height: 100%;
@@ -48,6 +49,7 @@ strong {
 
 #{headings()}, p, li, a {
   margin:0 0 1rem 0;
+  font-weight: normal;
 }
 
 menu, ol, ul {
@@ -59,12 +61,16 @@ menu, ol, ul {
   z-index: 0;
 }
 
+// .loaded {
+//   visibility: visible !important;
+// }
+
 h1 {
   @include font-size(6, large);
 }
 
 h2 {
-  @include font-size(4);
+  @include font-size(2.5);
 }
 
 p {
@@ -75,8 +81,15 @@ li{
   @include font-size(1, medium);
 }
 
+small {
+  @include font-size(0.75);
+  @include at-breakpoint($bigscreen)  {
+    @include font-size(1);
+  }
+}
+
 section, article {
-  #{headings()}, p, li, a {
+  p, li, a {
     @include font-size(1);
     @include at-breakpoint($bigscreen)  {
       @include font-size(1.5);

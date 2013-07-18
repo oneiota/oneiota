@@ -1,24 +1,17 @@
 @import "_mixins";
 
 .placeholder {
-	display: table;
   position: relative;
-  width: 100%;
   margin-bottom: 2rem;
-  span {
-    text-align: center;
-    position: absolute;
-    width:100%;
-    top:50%;
-    left: 0;
-  }
-  img.articleimage {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  img.placeimage {
-    opacity: 0.1;
+  .placeholder-bg {
     display: block;
+    width:100%;
+    opacity: 0.1;
+  }
+  .placeholder-alt {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
   }
 }

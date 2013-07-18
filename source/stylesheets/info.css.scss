@@ -45,49 +45,38 @@ body.menu {
       }
       position: relative;
       list-style: none;
-    }
-    > li:hover {
       a {
-        opacity: 1;
-      }
-    }
-    div {
-      position:relative;
-      display: inline;
-      @include font-regular(); 
-      a {
-        display: inline-block;
-      }
-    }
-    a {
-      @include font-size(2.5);
-      margin: 0;
-      @include at-breakpoint($tablet) {
-        @include font-size(3.5);
-        margin: 0 0 1rem 0;
-      }
-      @include at-breakpoint($bigscreen) {
-        @include font-size(5);
-      }
-      @include font-bold();
-      opacity: 0.2;
-      position: relative;
-      color: #ffffff;
-      span {
-        position: relative;
-        top: -0.8em;
-        display: block;
-        @include font-size(1);
+        @include font-size(2.5);
+        margin: 0;
         @include at-breakpoint($tablet) {
-          @include font-size(1.5);
+          @include font-size(3.5);
+          margin: 0 0 1rem 0;
         }
         @include at-breakpoint($bigscreen) {
+          @include font-size(5);
+        }
+        @include font-bold();
+        position: relative;
+        color: #ffffff;
+        span {
+          opacity: 0.2;
+        }
+        span.meaning {
           display: none;
         }
       }
-    }
-    a.active {
-      opacity: 1;
+      a:hover {
+        span {
+          opacity: 1;
+        }
+      }
+      a.active {
+        pointer-events: none;
+        cursor: default;
+        span {
+          opacity: 1;
+        }
+      }
     }
   }
   ol {
@@ -105,6 +94,29 @@ body.menu {
       list-style: numbers;
       list-style-position: inside;
       list-style-type: decimal;
+    }
+  }
+}
+
+html.touch .mainmenu ul li a {
+  span.meaning {
+    position: relative;
+    top: -0.8em;
+    display: block;
+    @include font-size(1);
+    @include at-breakpoint($tablet) {
+      @include font-size(1.5);
+    }
+  }
+}
+
+html.no-touch .mainmenu ul li a {
+  &:hover {
+    span.meaning {
+      display: block;
+    }
+    span.helper {
+      display: none;
     }
   }
 }
@@ -131,7 +143,7 @@ body.menu {
         list-style: none;
       }
       a {
-        border-bottom: 1px dashed;
+        @include link-style();
       }
       li, a, {
         color: #fff;
@@ -153,20 +165,6 @@ body.menu {
         }
       }
     }
-  }
-}
-
-.section-title {
-  @include font-bold();
-}
-
-section.info-crew-holder {
-  background: $infoBg;
-}
-
-.info-crew {
-  span {
-    @include font-size(12);
   }
 }
 

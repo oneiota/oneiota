@@ -1,35 +1,23 @@
 .mainmenu
   %p.menu-title 
-    %span one iota
+    %span one iota 
+
   %ul
     %li
-      %div{:class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#FF524A'}}
-        %a{:href => 'info'} blood <span>info</span>
-        %ol.definition
-          %strong def verb.
-          %li Fluid that circulates in the arteries and veins carrying oxygen to and carbon dioxide to tissues of the body.
-          %li A person or group regarded as a source of energy, vitality, or vigor.
-          %li 
-            %strong Get to know who we are and what we can do for you.
+      -if current_page.path == 'blood.html'
+        %a{:href => 'blood', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>blood</span> <span class='meaning'>info</span>
+      -else
+        %a{:href => 'blood', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>blood</span> <span class='meaning'>info</span>
     %li
-      %div{:class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#EABCAD'}}
-        %a{:href => '#', :class => 'active'} sweat <span>work</span>
-        %ol.definition
-          %strong def verb.
-          %li To excrete perspiration through the pores in the skin; perspire.
-          %li 
-            %strong Our portfolio of selected works.
-          %li To work long and hard.
+      -if current_page.path == 'index.html'
+        %a{:href => '/', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#EABCAD'}} <span class='helper'>sweat</span> <span class='meaning'>work</span>
+      -else
+        %a{:href => '/', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#EABCAD'}} <span class='helper'>sweat</span> <span class='meaning'>work</span>
     %li
-      %div{:class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#92C2CB'}}
-        %a{:href => '#'} tears <span>rejected</span>
-        %ol.definition
-          %strong def plural noun.
-          %li Clear salty solution secreted by the lacrimal glands to lubricate and cleanse the surface of the eyeball.
-          %li A profusion of this liquid as an expression of emotion.
-          %li 
-            %strong Labors of love that never saw the light of day.
-          %li A state of intense frustration (i.e. bored to tears).
+      -if current_page.path == 'tears.html'
+        %a{:href => 'tears', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>tears</span> <span class='meaning'>rejects</span>
+      -else
+        %a{:href => 'tears', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>tears</span> <span class='meaning'>rejects</span>
 
 .contact
   %p.menu-title
@@ -41,23 +29,6 @@
       %li or call us on <span><br/></span>+61 (0)7 3870 8167
       %li 6/887 Ann St<br/>Fortitude Valley Q 4006</br>Brisbane Australia
       %hr
-      %li
-        %ul
-          %li
-            %a.icon-twitter.icon{:href=>'twitter.com/ONEIOTA_', :title => '@oneiota_'}
-          %li
-            %a.icon-instagram.icon{:href=>'instagram.com/oneiota_/', :title => '@oneiota_'}
-          %li
-            %a.icon-facebook.icon{:href=>'facebook.com/pages/ONE-IOTA-STUDIO/103749066322532', :title => '@oneiotastudio'}
-          %li
-            %a.icon-pintrest.icon{:href=>'pinterest.com/oneiota/', :title => '@oneiota'}
-          %li
-            %a.icon-dribbble.icon{:href=>'#', :title => '@oneiota'}
-          %li
-            %a.icon-behance.icon{:href=>'#', :title => '@oneiota'}
-          %li
-            %a.icon-theloop.icon{:href=>'#', :title => '@oneiota'}
-          %li
-            %a.icon-github.icon{:href=>'#', :title => '@oneiota'}
+      %li= partial "social"
   #map-canvas
 

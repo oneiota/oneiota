@@ -1,0 +1,275 @@
+@import '_mixins';
+
+body.blood {
+  p {
+    @include font-regular();
+  }
+  section {
+    color: #fff;
+  }
+  .hud.top-hud .project-title {
+    display: none;
+  }
+  .container {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+    visibility: hidden;
+  }
+  .content {
+    position:relative;
+    z-index: 1;
+  }
+}
+
+.section-title {
+  @include font-size(1);
+  margin-bottom: 4rem;
+  span {
+    @include box-title();
+  }
+}
+
+section.info-crew {
+  color: #fff;
+  background: $bloodRed;
+  p {
+    margin-bottom: 4rem;
+  }
+  h2 {
+    margin-bottom: 1rem;
+  }
+  .bloodbg {
+    top: 0;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    overflow: hidden;
+    img {
+      height: 100%;
+      width: auto;
+      position: relative;
+      z-index: 0;
+      @include at-breakpoint(13)  {
+        height: auto;
+        width: 100%;
+        top: 0%;
+        left: 0;
+      }
+    }
+    span {
+      display: block;
+      background: $bloodRed;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+    }
+  }
+  ul.social-links {
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline;
+    }
+    a {
+      color: inherit;
+      border-bottom: none;
+    }
+  }
+}
+
+section.info-team, section.info-testimonials {
+  background: #E2E5CF;
+}
+
+section.info-team {
+  background: #303030;
+  .team-holder {
+    overflow: hidden;
+    position:relative;
+    max-width: 49%;
+    display: inline-block;
+    padding-bottom: 3rem;
+    @include at-breakpoint(6) {
+      max-width: 30%;
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+    @include at-breakpoint(12) {
+      max-width: 18.667%;
+      &:nth-child(2) {
+        display: inline-block;
+      }
+    }
+    p,a {
+      display: inline-block;
+      color: inherit;
+      margin:0;
+      @include font-size(1);
+    }
+    a {
+      position: relative;
+      margin: 0;
+      top: 0.3em;
+      left: 0.2em;
+    }
+    .no-linkdin {
+      margin-top: 0.5em;
+    }
+    .team-name-holder {
+      position: relative;
+      .team-name {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        .icon-linkdin {
+          &:hover {
+            color: #4F4F4F;
+          }
+        }
+      }
+    }
+    .team-instagram {
+      position:relative;
+      overflow: hidden;
+      background:#4F4F4F;
+      .instagram-mask {
+        position:relative;
+        width: 101%;
+        z-index: 1;
+      }
+      .instagram-pic {
+        position:absolute;
+        top:0;
+        left: 0;
+        height: 99%;
+        width: 99%;
+        z-index: 0;
+        @include black-and-white($value: 100%);
+      }
+      .offSetInsty {
+        left: 100%;
+      }
+    }
+    .instagram-link {
+      top: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      z-index: 2;
+      a {
+        height: 100%;
+        width: 100%;
+        display: table;
+        top: 0;
+        left: 0;
+        span {
+          display: table-cell;
+          vertical-align: middle;
+          padding-bottom: 3rem;
+        }
+      }
+    }
+    &:hover {
+      .instagram-pic {
+        @include black-and-white(0%);
+      }
+    }
+  }
+  .team-member {
+    // padding-bottom: 3rem;
+  }
+}
+
+section.info-services {
+  background: #878787;
+  img {
+    width:50%;
+    max-width: 19rem;
+  }
+}
+
+section.info-service-details {
+  background: #FF524A;
+  text-align: left;
+  .info-service-description {
+    @include span-columns(6,6);
+    &:nth-child(3n) {
+      @include omega;
+    }
+    @include at-breakpoint($smallscreen) {
+      @include span-columns(2,6);
+    }
+    p {
+      @include font-size(1);
+    }
+    hr {
+      width: 1rem;
+    }
+  }
+}
+
+section.info-testimonials {
+  background: #A73238;
+  a {
+    color:inherit;
+  }
+  .testimonial-holder {
+    display: table;
+    float:left;
+    width: 100%;
+    > div {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .testimonial {
+      position:relative;
+      overflow: hidden;
+      .client-testimonial {
+        position: absolute;
+        visibility: hidden;
+        top: 0;
+        left: 100%;
+        p {
+          @include at-breakpoint($smallscreen) {
+            padding: 0 2rem;
+          }
+        }
+      }
+      .current-testimonial {
+        position: relative;
+        top:0;
+        left:0;
+      }
+    }
+  }
+}
+section.info-testimonials {
+  .loaded {
+    .testimonial-holder {
+      .testimonial {
+        .current-testimonial {
+          visibility: visible
+        }
+      }
+    }
+  }
+}
+
+section.info-contact { 
+  background: #C03448;
+  h2 {
+    padding: 1rem 0 6rem 0;
+    margin: 0;
+  }
+  a {
+    font-size: inherit;
+    color: inherit;
+    @include link-style();
+  }
+}

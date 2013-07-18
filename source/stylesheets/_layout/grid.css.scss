@@ -41,6 +41,32 @@ article {
   }
 }
 
+section {
+  margin: 0;
+  padding: 0;
+  .content {
+    @include container(6);
+    padding:0 1rem !important; 
+    @include at-breakpoint(8)  {
+      padding:0 3rem !important;
+      @include container;
+    }
+    @include at-breakpoint(10)  {
+      @include container;
+    }
+    @include at-breakpoint(12)  {
+      @include container;
+    }
+    @include at-breakpoint(14)  {
+      @include container;
+    }
+    .section-title {
+      @include span-columns(6,6);
+      @include nth-omega(1n)
+    }
+  }
+}
+
 .contact {
   ul {
     @include container(6);  

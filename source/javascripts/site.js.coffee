@@ -1,5 +1,7 @@
 window.isTouch = if ($('html').hasClass('touch')) then true else false
 window.isIndex = if $('.index').length then true else false
+window.isBlood = if $('body').hasClass('blood') then true else false
+window.isRetina = if window.devicePixelRatio > 1 then true else false
 window.mapLoaded = false
 
 ## New Constructors
@@ -36,6 +38,7 @@ waypointCheck.updateColors = (foreground, background) ->
 ImageLoader = ->
   @loadArray = []
   @screenSize = if (screen.width > 880) then 'desktop' else 'mobile'
+  @loadTimer = null
 
 imageLoader = new ImageLoader()
 
@@ -100,44 +103,34 @@ loadGoogleMaps = () ->
   googleMaps.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAxUiFoRbIsNrZo-NW_QSbIQfE-R7QcB4k&sensor=false&callback=window.initialiseMaps"
   document.body.appendChild googleMaps
 
-mainMenu.updateColors = (foreground, background, thisIndex, direction) ->
-  menuTarget = $(".mainmenu ul > li").eq(thisIndex).find('a')
+mainMenu.updateColors = (foreground, background) ->
   $(".overlay").stop().animate({
     backgroundColor: background
-  }, 500 )
-  moveRight = Math.abs((($(window).width() / 2) - (menuTarget.width() / 2)) - $(window).width() / 2)
-  if (direction) 
-    $(menuTarget).stop().animate({
-      color: foreground,
-      right: moveRight
-    },500)
-  else 
-    $(menuTarget).stop().animate({
-      color: foreground,
-      right: 0
-    },500)
+  }, 300 )
 
 imageLoader.imageLoaded = (img) ->
-  $(img).addClass('articleimage fadeIn')
-  @.placeholder = $('img.notloaded').eq(0)
-  # Add loaded image after placeholder -> then remove notloaded class -> add loaded
-  @.placeholder.after($(img))
-  @.placeholder.addClass('loaded').removeClass('notloaded')
-  # $(img).addClass('')
+  targetArticle = $('article').eq(img.imgParent)
+  $(img).addClass('fadeIn')
+  targetPlaceholder = targetArticle.find('span.placeholder-bg').eq(0)
+  targetAlt = targetArticle.find('span.placeholder-alt').eq(0)
+  targetPlaceholder.after($(img))
+  targetPlaceholder.remove()
+  targetAlt.remove()
+  imageLoader.loadImage()
 
 imageLoader.loadImage = ->
-  if @.loadArray.length isnt 0
-    @.isLoading = true
-    imgItem = @.loadArray.shift()
+  if imageLoader.loadArray.length isnt 0
+
+    imgItem = imageLoader.loadArray.shift()
     img = new Image()
     timer = undefined
 
-    img.src = imgItem.imgSrc;
-    img.title = img.alt = imgItem.imgTitle;
+    img.src = imgItem.imgSrc
+    img.title = img.alt = imgItem.imgTitle
+    img.imgParent = imgItem.imgParent
 
     if img.complete or img.readyState is 4
-      @.imageLoaded img
-      #@.loadImage()  if imgItem.length isnt 0
+      imageLoader.imageLoaded(img)
     else
       # handle 404 using setTimeout set at 10 seconds, adjust as needed
       timer = setTimeout(->
@@ -147,24 +140,20 @@ imageLoader.loadImage = ->
       $(img).bind 'error load onreadystatechange', (e) ->
         clearTimeout timer
         if e.type isnt 'error'
-          imageLoader.imageLoaded img
-          imageLoader.loadImage()  if imgItem.length isnt 0
+          imageLoader.imageLoaded(img)
+        else
+          'put error handling code here!!!!!'
 
-imageLoader.addWaypoint = ->
-   $('.notloaded').waypoint
-     triggerOnce: true
-     offset: '100%'
-     handler: (direction) ->
-       imageLoader.loadImage()
-
-imageLoader.addImages = ->
-  $('img.notloaded').each (index) ->
+imageLoader.addImages = (articleIndex) ->
+  targetArticles = $('article').eq(articleIndex).find('span.placeholder-bg')
+  targetArticles.each (index) ->
     imgItem = {}
-    imgItem.imgSrc = $('img.notloaded').eq(index).data(imageLoader.screenSize)
-    imgItem.imgTitle = $('img.notloaded').eq(index).attr('alt')
+    imgItem.imgSrc = targetArticles.eq(index).data(imageLoader.screenSize)
+    imgItem.imgTitle = targetArticles.eq(index).attr('alt')
+    imgItem.imgParent = articleIndex
     imageLoader.loadArray.push(imgItem)
-
-  imageLoader.addWaypoint()
+    if index == targetArticles.length - 1
+      imageLoader.loadImage()
 
 #Index Specific
 
@@ -179,13 +168,15 @@ if window.isIndex
         triggerOnce: false
         offset: '100%'
         handler: (direction) ->
-          if direction is 'down'
-            waypointCheck.updateTitle(@id)
-          else
-            articleIndex = ($('article').index($('#' + @id)) - 1)
-            waypointCheck.updateTitle($('article').eq(articleIndex).attr('id'))
+          if !historyController.scrollingBack
+            articleIndex = ($('article').index($('#' + @id)))
+            imageLoader.addImages(articleIndex)
+            if direction is 'down'
+              waypointCheck.updateTitle(@id)
+            else
+              waypointCheck.updateTitle($('article').eq(articleIndex-1).attr('id'))
 
-    waypointCheck.updateTitle = (articleId) -> 
+    waypointCheck.updateTitle = (articleId, popped) -> 
       # Update page title
       if !historyController.scrollingBack
         currentArticle = $('#'+ articleId)
@@ -200,7 +191,10 @@ if window.isIndex
         $('.top-hud ul li').removeClass('active scaleIn slideIn')
         $('.top-hud ul li').eq(currentIndex-1).addClass('scaleIn')
         $('.top-hud ul li').eq(currentIndex).addClass('active slideIn')
-        history.pushState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
+        if not popped
+          history.pushState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
+        else
+          history.replaceState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
 
     #Index specific startup functions
     waypointCheck.assignArticleWaypoints()
@@ -233,10 +227,12 @@ if window.isIndex
       }, 500, ->
         $('p.project-title span').html(waypointCheck.projectTitle)
         $('p.project-title').stop().animate({backgroundColor: waypointCheck.ogbg},750)
-        $('body').stop().animate({
-          backgroundColor: waypointCheck.ogbg,
+        $('html, body').stop().animate({
           scrollTop: 0
+          backgroundColor: waypointCheck.ogbg
         }, 750, ->
+          if this.nodeName == "BODY"
+            return
           $('title').html(newTitle)
           $('p.project-title span').addClass('scaleIn')
           $('.top-hud ul li').eq(waypointCheck.nextProject).addClass('active')
@@ -248,6 +244,7 @@ if window.isIndex
           $.waypoints('refresh');
           removeSlide = setTimeout ->
             $('.main article').eq(waypointCheck.nextProject).removeClass('slideInProject')
+            imageLoader.addImages(waypointCheck.nextProject)
           , 1000
         )
       )
@@ -299,11 +296,195 @@ if window.isIndex
       
     
     $('p.mobile.project-title').bind 'click', (event) ->
-      $('body').stop().animate({
+      $('html, body').stop().animate({
         scrollTop: 0
       }, 500)
 
     waypointCheck.touchWaypoints()
+
+#Blood specific functions
+if window.isBlood
+  BloodLoader = ->
+    @bloogBG = 'images/blood.jpg'
+    @testimonialTimer
+    @lastClass
+    @allLoaded = 0
+    @instyCounter = 0
+    @groupTracker = true
+    @stateTracker = 0
+    @iotaPics = []
+    @iotaInstySpots = ['.iotaInsty1','.iotaInsty2','.iotaInsty2','.iotaInsty2','.iotaInsty3','.iotaInsty4','.iotaInsty4','.iotaInsty4','.iotaInsty5']
+    @iotaInsty = 'https://api.instagram.com/v1/users/12427052/media/recent/?access_token=12427052.4e63227.ed7622088af644ffb3146a3f15b50063&count=9'
+    
+  bloodLoader = new BloodLoader()
+
+  bloodLoader.loadInternals = (sectionIndex) ->
+    
+    targetContent = $('section').eq(sectionIndex).find('.content')
+    childArray = []
+
+    targetContent.children().each( (index) ->
+       childArray.push(index)
+    )
+
+    animateChildren = ->
+      if childArray.length isnt 0
+        currChild = childArray.shift()
+        targetContent.children().eq(currChild).addClass('fadeInSlide')
+        animateChildTimer = setTimeout ->
+          animateChildren()
+        , 50 
+    
+    animateChildren()  
+
+
+  bloodLoader.assignSectionWaypoints = () ->
+    $('section').waypoint
+      triggerOnce: true
+      offset: '80%'
+      handler: (direction) ->
+        $(this).find('.container').addClass('loaded')
+        bloodLoader.loadInternals($(this).index())
+
+  bloodLoader.instyAnimation = () ->
+
+    if bloodLoader.groupTracker 
+      targetGroup = '.iotaInsty2'
+      bloodLoader.groupTracker = false
+    else
+      targetGroup = '.iotaInsty4'
+      bloodLoader.groupTracker = true
+
+    switch bloodLoader.stateTracker
+      when 0
+        $(targetGroup + ' .instyAni0').removeClass('slideDown slideUp').addClass('slideDown')
+        $(targetGroup + ' .instyAni1').removeClass('slideLeft slideRight').addClass('slideRight')
+        $(targetGroup + ' .instyAni2').removeClass('slideLeft slideRight').addClass('slideRight')
+      when 1
+        $(targetGroup + ' .instyAni0').removeClass('slideDown slideUp').addClass('slideUp')
+        $(targetGroup + ' .instyAni2').removeClass('slideLeft slideRight').addClass('slideLeft')
+      else
+        $(targetGroup + ' .instyAni1').removeClass('slideLeft slideRight').addClass('slideLeft')
+        $(targetGroup + ' .instyAni2').removeClass('slideLeft slideRight').addClass('slideRight')
+
+    if bloodLoader.groupTracker
+      if bloodLoader.stateTracker < 2
+        bloodLoader.stateTracker++
+      else
+        bloodLoader.stateTracker = 0
+
+  bloodLoader.loadInstyImages = (feed) ->
+
+    instySpots = bloodLoader.iotaInstySpots
+    instyPics = bloodLoader.iotaPics
+
+    if instyPics.length isnt 0
+      
+      imgItem = instyPics.shift()
+      imgClass = instySpots.shift()
+      
+      if imgClass == bloodLoader.lastClass
+        bloodLoader.instyCounter++
+      else
+        bloodLoader.instyCounter = 0
+
+      bloodLoader.lastClass = imgClass
+
+      img = new Image()
+      timer = undefined
+
+      img.src = imgItem
+      img.title = img.alt = feed
+
+      if img.complete or img.readyState is 4
+        $(img).addClass('instagram-pic scaleIn instyAni' + bloodLoader.instyCounter)
+        $(img).appendTo(imgClass)
+        bloodLoader.loadInstyImages(feed)
+      else
+        # handle 404 using setTimeout set at 10 seconds, adjust as needed
+        timer = setTimeout(->
+          #bloodLoader.loadInstyImages()  if imgItem.length isnt 0
+          $(img).unbind 'error load onreadystate'
+        , 10000)
+        $(img).bind 'error load onreadystatechange', (e) ->
+          clearTimeout timer
+          if e.type isnt 'error'
+            #ADD IMAGE IN HERE
+            $(img).addClass('instagram-pic scaleIn instyAni' + bloodLoader.instyCounter)
+            $(img).appendTo(imgClass)
+            bloodLoader.loadInstyImages(feed)
+          else
+            bloodLoader.loadInstyImages(feed)
+    else
+      animationInit = setInterval( ->
+        bloodLoader.instyAnimation()
+      , 4000)
+
+  bloodLoader.getInsty = () ->
+    $.ajax
+      url: bloodLoader.iotaInsty
+      dataType: 'jsonp'
+      cache: false
+      success: (iotaImages) ->
+        $.each(iotaImages.data, (index) ->
+          bloodLoader.iotaPics.push(this.images.low_resolution.url)
+        )
+        bloodLoader.loadInstyImages('@oneiota_')
+      error: ->
+        console.log 'run backup pics'
+
+  bloodLoader.bloodPageLoaded = () ->
+    $(window).load(->
+      # $('.container').eq(0).addClass('loaded')
+      bloodLoader.assignSectionWaypoints()
+      bloodLoader.getInsty()
+    )
+
+  #Blood Binds
+
+  $('.icon-right-arrow-bare').bind('click', (event) ->
+    event.preventDefault()
+    clearInterval(bloodLoader.testimonialTimer)
+    if $('.current-testimonial').index() != ($('.client-testimonial').length - 1)
+      nextTest = $('.current-testimonial').next()
+    else 
+      nextTest = $('.client-testimonial').eq(0)
+
+    $('.current-testimonial').stop().animate({
+        left: '-100%'
+      }, 100, ->
+        $(this).toggleClass('current-testimonial')
+        nextTest.css({'left':'100%'}).toggleClass('current-testimonial').stop().animate({
+          left: '0%'
+        }, 100)
+      )
+    
+  )
+
+  $('.icon-left-arrow-bare').bind('click', (event) ->
+    event.preventDefault()
+    clearInterval(bloodLoader.testimonialTimer)
+    if $('.current-testimonial').index() != 0
+      nextTest = $('.current-testimonial').prev()
+    else 
+      nextTest = $('.client-testimonial').eq($('.client-testimonial').length - 1)
+
+    $('.current-testimonial').stop().animate({
+        left: '100%'
+      }, 100, ->
+        $(this).toggleClass('current-testimonial')
+        nextTest.css({'left':'-100%'}).toggleClass('current-testimonial').stop().animate({
+          left: '0%'
+        }, 100)
+      )
+  )
+
+  bloodLoader.testimonialTimer = setInterval ->
+    $('.icon-right-arrow-bare').trigger('click')
+  ,6000
+
+
+  bloodLoader.bloodPageLoaded()
 
 #Binds
 
@@ -343,11 +524,16 @@ historyController.bindPopstate = () ->
             else
               scrollTarget = 0
             historyController.scrollingBack = true
-            $('body').stop().animate({
+            $('html, body').stop().animate({
               scrollTop: scrollTarget
             }, 'slow', ->
+              if this.nodeName == "BODY"
+                return
               historyController.scrollingBack = false
-              waypointCheck.updateTitle(historyController.prevSlug)
+              if historyController.prevSlug == -1 || historyController.prevSlug == ''
+                waypointCheck.updateTitle($('article').eq(0).attr('id'), true)
+              else
+                waypointCheck.updateTitle(historyController.prevSlug, true)
             )
         else
           window.location.href = '/'
@@ -369,13 +555,15 @@ $('a.icon-circle').bind 'click', (event) ->
       targetIndex = $(this).parent().index()
       scrollTarget = $('#' + thisSlug).position().top
       historyController.scrollingBack = true
-      $('body').stop().animate({
+      $('html, body').stop().animate({
         scrollTop: scrollTarget
       }, 'slow', ->
+        if this.nodeName == "BODY"
+          return
         historyController.scrollingBack = false
-        history.pushState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
         articleID = $('article').eq(targetIndex).attr('id')
         waypointCheck.updateTitle(articleID)
+        imageLoader.addImages(targetIndex)
       )
 
 $('.icon-info').bind 'click', (event) ->
@@ -435,23 +623,16 @@ $('.icon-up-arrow-bare').bind 'click', (event) ->
   $('.top-hud ul li').toggleClass('mobile-hide').addClass('scaleIn')
 
 if !window.isTouch
-  $('.menuItem').hover (->
-    if $(window).width() > 880
-      thisIndex = $(this).parent().index()
-      foreground = $(this).data('foreground')
-      background = $(this).data('background')
-      direction = 'forward'
-      $('nav').hide()
-      $('.menuItem').not(this).stop(true,true).fadeTo(500,0)
-      $(this).find('ol').stop(true,true).delay(500).fadeIn('fast')
-      mainMenu.updateColors(foreground, background, thisIndex, direction)
+  $('.menuItem').not('.active').hover (->
+    foreground = $(this).data('foreground')
+    background = $(this).data('background')
+    $('.menuItem.active span').css('opacity','0.2')
+    mainMenu.updateColors(foreground, background)
+    $(this).find('.meaning').addClass('fadeIn')
   ), ->
-    thisIndex = $(this).parent().index()
-    $('.menuItem').stop(true,true).fadeTo(500,1)
-    $(this).find('ol').stop(true,true).fadeOut(100)
-    $('nav').show()
-    mainMenu.updateColors(mainMenu.ogfg, mainMenu.ogbg, thisIndex)
+    mainMenu.updateColors(mainMenu.ogfg, mainMenu.ogbg)
+    $('.menuItem.active span').css('opacity','1')
 
 #Site wide startup functions
-imageLoader.addImages()
+imageLoader.addImages(0)
 historyController.bindPopstate()

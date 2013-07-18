@@ -4,6 +4,8 @@
       - project.images.each_with_index do |img, index|
         - if index == 1 
           %p= project.description
+        - sizeArr = FastImage.size("http://localhost:4567/images/#{project.slug}/#{img.mobile}")
+        - spanRatio = (sizeArr[1].to_f/sizeArr[0].to_f)*100
         %div{:class => "placeholder"}
-          %span= img.alt
-          %img{:src => "images/#{project.slug}/#{img.placeholder}",:style => "background:#{project.colors.foreground}",:alt => "#{img.alt}",:class => "notloaded placeimage",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}
+          %span.placeholder-bg{:src => "images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}
+          %span.placeholder-alt= img.alt

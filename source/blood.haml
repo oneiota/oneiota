@@ -1,0 +1,158 @@
+- content_for(:title, 'blood')
+- content_for(:description, 'We’re a digital design &amp; development shop focused on user experience. We’re a small team of designers, thinkers, strategizers, do-ers &amp; storytellers packing a lot of experience across disciplines. Staying small keeps our hands dirty, our overhead lean, our turnarounds fast, and our clients happy.')
+- content_for(:foreground, '#fff')
+
+%section.info-crew
+
+  .container
+
+    .bloodbg.slowFadeIn
+      /%img{:src=>'images/blood.jpg'}
+    .content.delay
+      %p.section-title
+        %span= 'blood'
+      
+      %h2 We are one iota
+
+      %p Iota is a Brisbane-based studio of passionate and experienced cross-discipline designers & developers, focused on creating both brand & digital experiences that highlight, challenge and excite. Our skills and networks are flexible enough to take on clients of all different shapes and jobs of all different sizes, while keeping our team small means we’re always on our feet and clients can expect to have our undivided attention. 
+      
+      %h2 Connect with us
+
+      =partial "social"
+
+%section.info-team
+
+  .container
+
+    .content.delay
+      %p.section-title
+        %span= 'team'
+        .team-holder
+          .team-instagram.iotaInsty1
+            %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram'}
+              %span.icon.icon-instagram-bare
+        
+        .team-holder.davefTeam.team-member
+          .team-instagram
+            %img.instagram-mask{:src=>'images/team-mask.svg'}
+          .team-name-holder
+            .team-name
+              %p David Fontain
+              %a.icon.icon-linkdin{:href=>'#',:title=>'view Linkdin profile'}
+        
+        .team-holder
+          .team-instagram.iotaInsty2
+            %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram'}
+              %span.icon.icon-instagram-bare
+
+        .team-holder.davemTeam.team-member
+          .team-instagram
+            %img.instagram-mask{:src=>'images/team-mask.svg'}
+          .team-name-holder
+            .team-name
+              %p.no-linkdin David Muirhead
+
+        .team-holder
+          .team-instagram
+            %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
+          / .instagram-link
+          /   %a{:href=>'http://instagram.com/bvreb0ne',:title=>'@bvreb0ne on instagram'}
+          /     %span.icon.icon-instagram-bare
+
+        .team-holder
+          .team-instagram
+            %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
+          / .instagram-link
+          /   %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram'}
+          /     %span.icon.icon-instagram-bare
+        
+        .team-holder
+          .team-instagram.iotaInsty3
+            %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram'}
+              %span.icon.icon-instagram-bare
+
+        .team-holder.pamTeam.team-member
+          .team-instagram
+            %img.instagram-mask{:src=>'images/team-mask.svg'}
+          .team-name-holder
+            .team-name
+              %p Pam Rosel
+              %a.icon.icon-linkdin{:href=>'#',:title=>'view Linkdin profile'}
+
+        .team-holder
+          .team-instagram.iotaInsty4
+            %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram'}
+              %span.icon.icon-instagram-bare
+
+        .team-holder
+          .team-instagram.iotaInsty5
+            %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram'}
+              %span.icon.icon-instagram-bare
+
+%section.info-services
+
+  .container
+
+    .content.delay
+      %p.section-title
+        %span= 'services'
+
+      %h2 Strive for the original, not the derivative.
+
+
+%section.info-service-details
+  .container
+    .content.delay
+      .info-service-description
+        %h3 Identity
+        %p We build powerful, forward-thinking brands across a variety of media. At the heart of it is a determination to create solutions of real value for our clients, challenge traditional ideas and look to future technologies - asking what’s possible, without losing sight of what’s needed. 
+        %hr
+        %small brand strategy<br/>creative direction<br/>naming<br/>product development<br/>content strategy<br/>copywriting 
+
+      .info-service-description
+        %h3 Digital
+        %p Great ideas are adapting across a multitude of different devices, swimming through viral channels and social networks, connecting a global community of participating audiences who have the power to ultimately change the world. Our expertise in digital strategy and development sees that we are able to conceptualize, build, launch, and manage your digital venture to a standard that prizes creativity, best web practices and cutting-edge technology. 
+        %hr
+        %small digital strategy<br/>website design<br/>interface design and development<br/>mobile & tablet optimization<br/>content management systems<br/>e-commerce systems<br/>social strategy<br/>web and mobile applications
+      .info-service-description
+        %h3 Physical
+        %p Tangible experiences with printed matter, bespoke objects or the built environment leave a deep emotional footprint in the human brain unlike intangible experiences, i.e. video or web. Their physical properties enable audiences to savour the impact of texture, colour and smell. They find their way into peoples lives life through use, recycle and display, aiding in the positive reinforcement and memorability of your brand. 
+        %hr
+        %small brand strategy<br/>creative direction<br/>naming<br/>product development<br/>content strategy<br/>copywriting
+
+%section.info-testimonials
+  .container
+    .content.delay
+      %p.section-title
+        %span= 'kind words'
+
+      .testimonial-holder
+        .left-arrow
+          %a.icon-left-arrow-bare.icon{:href=>"#",:title=>"More kind words"}
+        .testimonial
+          - data.testimonials.each_with_index do |testimonial, index|
+            -if index == 0
+              .client-testimonial.current-testimonial
+                %p= testimonial.testimonial
+                %span= testimonial.client
+            -else
+              .client-testimonial
+                %p= testimonial.testimonial
+                %span= testimonial.client
+        .right-arrow
+          %a.icon-right-arrow-bare.icon{:href=>"#",:title=>"Back"}
+
+%section.info-contact
+  .container
+    .content.delay
+      %h2 Get in touch <a href='mailTo:hello@oneiota.com' title='Get in touch'>hello@oneiota.com</a>

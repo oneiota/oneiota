@@ -6,6 +6,7 @@ $hud: 3;
 $overlay: 2;
 $above: 1;
 $infoBg: #262626;
+$bloodRed: #FF524A;
 
 @mixin font-size( $decimal-size, $keyword: null ) {
   $base-font-multiplier: 1;
@@ -16,14 +17,22 @@ $infoBg: #262626;
 
 @mixin font-bold() {
   font-family: 'gt_walsheim_trialmedium';
-  font-weight: normal;
+  speak: none;
   font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 @mixin font-regular() {
   font-family: 'gt_walsheim_triallight';
-  font-weight: normal;
+  speak: none;
   font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 @mixin rotatingTriangle ($width, $color, $rotation) {
@@ -39,6 +48,11 @@ $infoBg: #262626;
   display: inline-block;
   border: 0.20em solid;
   padding: 0.5em 1em 0.2em 1em; 
+  @include font-bold();
+}
+
+@mixin link-style() {
+  border-bottom: 1px dashed;
 }
 
 // Using @old-ie as a variable to create separate stylesheets for <IE9
@@ -109,6 +123,30 @@ $infoBg: #262626;
   -webkit-font-smoothing: antialiased;
 }
 
+@mixin black-and-white($value: 100%) {
+
+  @if $value == 0% {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    filter: none; /* IE6-9 */
+    -webkit-filter: grayscale($value); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+    filter: grayscale($value); 
+    -webkit-filter: grayscale($value);
+    -moz-filter: grayscale($value);
+    -ms-filter: grayscale($value);
+    -o-filter: grayscale($value); 
+  } @else {
+  //   /* Firefox 10+, Firefox on Android — svg filter*/
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale($value); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+    filter: grayscale($value); 
+    -webkit-filter: grayscale($value);
+    -moz-filter: grayscale($value);
+    -ms-filter: grayscale($value);
+    -o-filter: grayscale($value); 
+  }
+}
+
 .icon {
   @include ico-font();
 }
@@ -176,6 +214,7 @@ $infoBg: #262626;
   content: "\e00d";
 }
 .icon-linkdin:before {
+  @include font-size(1.5);
   content: "\e00e";
 }
 .icon-behance:before {
@@ -184,7 +223,21 @@ $infoBg: #262626;
 .icon-dribbble:before {
   content: "\e010";
 }
+.icon-right-arrow-bare:before {
+  content: "\e011";
+}
+.icon-left-arrow-bare:before {
+  content: "\e012";
+}
 
+.icon-team:before {
+  content: "\e013";
+}
+
+.icon-instagram-bare:before {
+  @include font-size(4);
+  content: "\e014";
+}
 // .icon-diamond:before {
 //
 //   @include font-size(4.5);

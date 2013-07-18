@@ -47,13 +47,14 @@ activate :bourbon
 
 # Assumes the file source/about/template.html.erb exists
 data.projects.each do |project|
-  proxy "/#{project.slug}.html", "/project-template.html", :locals => {:project => project}, :ignore => true, :layout => "projects-layout"
+  proxy "/#{project.slug}.html", "/project-template.html", :locals => {:project => project}, :ignore => true, :layout => "single-layout"
 end
 
 ###
 # Helpers
 ###
 page "/index.html", :layout => "layout"
+page "/blood.html", :layout => "blood-layout"
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
