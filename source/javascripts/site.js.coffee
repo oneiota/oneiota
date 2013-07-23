@@ -21,6 +21,9 @@ WaypointCheck = ->
   @isLoading = false
   @currentProject = 0
   @nextProject
+  @hudTimer
+  @currentDirection
+  @lastDirection
   @projectSlug = $('article:eq(0)').attr('id')
   @projectTitle = $('article:eq(0)').data('title')
   @ogfg = $('article:eq(0)').data('foreground')
@@ -31,9 +34,12 @@ WaypointCheck = ->
 waypointCheck = new WaypointCheck()
 
 waypointCheck.updateColors = (foreground, background) ->
-  $("nav").stop().animate({
+  $('nav').stop().animate({
     color: foreground
   }, 500 )
+  $('.navCounters ul, p.project-title').stop().animate({
+    backgroundColor: background
+  }, 150 )
 
 ImageLoader = ->
   @loadArray = []
@@ -162,11 +168,38 @@ if window.isIndex
   #Non Touch Handlers
   if !window.isTouch
 
+    # waypointCheck.menuScroll = ->
+    #   $(window).scroll ->
+    #     $('.navCounters ul').removeClass('delay scaleUp scaleDown fadeIn fadeOut').addClass('scaleUp')
+    #     clearTimeout(waypointCheck.hudTimer)
+    #     waypointCheck.hudTimer = setTimeout ->
+    #       $('.navCounters ul').removeClass('delay scaleUp scaleDown').addClass('scaleDown')
+    #     , 250
+
+      # lastScrollTop = 0
+      # $(window).scroll (event) ->
+        # st = $(this).scrollTop()
+        # if st > 100
+        #   if st > lastScrollTop
+        #     waypointCheck.currentDirection = 'down'
+        #   else
+        #     waypointCheck.currentDirection = 'up'
+
+        #   lastScrollTop = st
+
+        #   if waypointCheck.currentDirection != waypointCheck.lastDirection
+        #     if waypointCheck.currentDirection == 'down'
+        #       $('.navCounters ul').removeClass('delay scaleUp scaleDown').addClass('scaleDown')
+        #     else 
+        #       $('.navCounters ul').removeClass('delay scaleUp scaleDown fadeIn fadeOut').addClass('scaleUp')
+
+        #   waypointCheck.lastDirection = waypointCheck.currentDirection
+
     ## Assign Waypoints
     waypointCheck.assignArticleWaypoints = ->
       $('article:gt(0)').waypoint
         triggerOnce: false
-        offset: '100%'
+        offset: '0%'
         handler: (direction) ->
           if !historyController.scrollingBack
             articleIndex = ($('article').index($('#' + @id)))
@@ -198,7 +231,7 @@ if window.isIndex
 
     #Index specific startup functions
     waypointCheck.assignArticleWaypoints()
-
+    #waypointCheck.menuScroll()
   #Touch Handlers
   else
 

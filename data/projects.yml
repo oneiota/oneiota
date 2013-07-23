@@ -1,23 +1,43 @@
 ---
-- project: Esplanade Coffee Brewers
-  slug: esplcoffeebrewers
+- project: The Illustration Room
+  slug: theillustrationroom
   description: >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    The Illustration room represents a range of respected talent from across the globe. They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.
+  link: illustrationroom.com
   images:
     - 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: image alt
+      mobile: mobile/theillustrationroom_heroshot.jpg
+      desktop: theillustrationroom_heroshot.jpg
+      alt: >
+        the illustration room front page
     - 
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
+      mobile: mobile/theillustrationroom_blog_lightbox.jpg
+      desktop: theillustrationroom_blog_lightbox.jpg
+      alt: >
+        the illustration room lightbox
   colors:
-    foreground: "#0000ff"
-    background: "#ffff00"
+    foreground: "#444"
+    background: "#f2f7fb"
+
+- project: The Illustration Room 2
+  slug: theillustrationroom2
+  description: >
+    The Illustration room represents a range of respected talent from across the globe. They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.
+  link: illustrationroom.com
+  images:
+    - 
+      mobile: mobile/theillustrationroom_heroshot.jpg
+      desktop: theillustrationroom_heroshot.jpg
+      alt: >
+        the illustration room front page
+    - 
+      mobile: mobile/theillustrationroom_blog_lightbox.jpg
+      desktop: theillustrationroom_blog_lightbox.jpg
+      alt: >
+        the illustration room lightbox
+  colors:
+    foreground: "#252B35"
+    background: "#7DFFAC"
 
 - project: Sourced Grocer
   slug: sourcedgrocer
@@ -37,76 +57,4 @@
       alt: image alt
   colors:
     foreground: "#000"
-    background: "#fff"
-
-- project: Taste
-  slug: tastefortheloveofcooking
-  description: > 
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  images:
-    - 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: Branding Letterpress Identity
-    - 
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
-    - 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: Branding Letterpress Identity
-    - 
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
-    - 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: Branding Letterpress Identity
-    - 
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
-    - 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: Branding Letterpress Identity
-    - 
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
-    - 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: Branding Letterpress Identity
-    - 
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
-  colors:
-    foreground: "#ef7051"
-    background: "#9aff9c"
-
-- project: Mirrool Creek Lamb
-  slug: miroolcreeklamb
-  description: >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  images:
-    - 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: image alt
-    - 
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
-  colors:
-    foreground: "#040751"
     background: "#ffff00"

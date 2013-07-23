@@ -111,10 +111,6 @@ nav .top-hud {
     }
   }
   @include at-breakpoint($bigscreen)  {
-    display: block;
-    top: 4rem;
-    right:0;
-    width: 100%;
     .mobile.project-title {
       display: none;
     }
@@ -124,34 +120,41 @@ nav .top-hud {
       padding: 0.6rem 0.7rem 0.4rem 0.7rem;
       margin: 0 1rem;
     }
-    ul {
+    .navCounters {
       display: block;
-      li { 
-        margin: 0 0.5rem;
-        a {
-          opacity: 0.5;
-          &:hover {
-            opacity: 0.9;
+      right:0;
+      width: 100%;
+      height: inherit;
+      ul {
+        display: block;
+        padding: 2.6rem 1.7rem 2.4rem 1.7rem;
+        li { 
+          margin: 0 0.5rem;
+          a {
+            opacity: 0.5;
+            &:hover {
+              opacity: 0.9;
+            }
+          }
+          a.icon-down-arrow-bare {
+            display: none;
+          }
+          a.icon-up-arrow-bare {
+            display: none;
           }
         }
-        a.icon-down-arrow-bare {
-          display: none;
+        li.active {
+          opacity: 0.9;
+          .project-title {
+            display: inline-block;
+          }
+          a {
+            display: none;
+          }
         }
-        a.icon-up-arrow-bare {
-          display: none;
-        }
-      }
-      li.active {
-        opacity: 0.9;
-        .project-title {
+        li.mobile-hide {
           display: inline-block;
         }
-        a {
-          display: none;
-        }
-      }
-      li.mobile-hide {
-        display: inline-block;
       }
     }
   }

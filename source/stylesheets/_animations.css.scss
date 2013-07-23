@@ -4,11 +4,19 @@
   @include animation-delay(1s);
 }
 
-.scaleOut, .scaleOutIn, .scaleOutFifty, .scaleInFifty, .slideUp, .slideDown, .slideRight, .slideLeft {
+.bigDelay {
+  @include animation-delay(3s);
+}
+
+.scaleOut, .scaleOutIn, .scaleOutFifty, .scaleInFifty, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown {
   @include animation-duration(0.3s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(1);
   @include animation-fill-mode(forwards);
+}
+
+.scaleUp {
+  @include animation-duration(0.2s)
 }
 
 .scaleIn, .fadeIn, .slideIn, .mainmenu.opencontact, .contact.opencontact,.mainmenu.closecontact, .contact.closecontact, .overlay.openmenu, .fadeOut {
@@ -117,6 +125,15 @@ html.touch .slideOutProject {
   @include animation-name(slideRight);
 }
 
+.scaleUp {
+  @include animation-name(scaleUp);
+  @include transform-origin(center top);
+}
+
+.scaleDown {
+  @include animation-name(scaleDown);
+  @include transform-origin(center top);
+}
 // Open Contact
 
 .no-csstransforms3d .contact.opencontact {
@@ -433,11 +450,29 @@ html.touch .slideOutProject {
 
 @include keyframes(fadeInSlide) {
   from {
-     @include transform(translate3d(0px,-50%,0px));
+     @include transform(translate3d(0px,50%,0px));
      opacity: 0;
   }
   to {
      @include transform(translate3d(0px,0%,0px));
      opacity: 1;
+  }
+}
+
+@include keyframes(scaleDown) {
+  from {
+    @include transform(scale(0.8));
+  }
+  to {
+    @include transform(scale(1.2));
+  }
+}
+
+@include keyframes(scaleUp) {
+  from {
+    @include transform(scale(1.2));
+  }
+  to {
+    @include transform(scale(0.8));
   }
 }

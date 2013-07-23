@@ -6,6 +6,6 @@
           %p= project.description
         - sizeArr = FastImage.size("http://localhost:4567/images/#{project.slug}/#{img.mobile}")
         - spanRatio = (sizeArr[1].to_f/sizeArr[0].to_f)*100
-        %div{:class => "placeholder"}
+        %div{:class => "placeholder #{img.grid}"}
           %span.placeholder-bg{:src => "images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}
           %span.placeholder-alt= img.alt

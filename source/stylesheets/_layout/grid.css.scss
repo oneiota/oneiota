@@ -39,6 +39,15 @@ article {
         //@include susy-grid-background;  
       }
   }
+  .project-details, .placeholder {
+    margin: 2rem 0;
+    clear: both;
+    @include span-columns(6);
+    @include at-breakpoint($bigscreen)  {
+      @include span-columns(8);
+      @include squish(1,1);
+    }
+  }
 }
 
 section {
@@ -65,6 +74,42 @@ section {
       @include nth-omega(1n)
     }
   }
+}
+
+.grid-half {
+  @include span-columns(3,6);
+  clear: both;
+}
+
+.grid-half-right {
+  @include span-columns(3,6);
+  @include pre(3);
+  clear: both;
+}
+
+.grid-third {
+  @include span-columns(2,6);
+  clear: both;
+}
+
+.grid-third-right {
+  @include span-columns(2,6);
+  @include nth-omega(6n);
+  @include pre(4);
+  clear: both;
+}
+
+.grid-quarter {
+  @include span-columns(1,4);
+  @include nth-omega(4n);
+  clear: both;
+}
+
+.grid-quarter-right {
+  @include span-columns(1,4);
+  @include nth-omega(4n);
+  @include pre(4);
+  clear: both;
 }
 
 .contact {

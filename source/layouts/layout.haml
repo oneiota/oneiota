@@ -26,8 +26,9 @@
     %style{:type => "text/css"}
       body { background:#{yield_content(:background)}; }
       nav { color:#{yield_content(:foreground)}; }
-      html.touch .mobile.project-title { background:#{yield_content(:background)}; }
-
+      html .mobile.project-title { background:#{yield_content(:background)}; }
+      html .mobile.project-title { background:#{yield_content(:background)}; }
+      html .navCounters ul { background:#{yield_content(:background)}; }
   %body.index
     /[if lt IE 7] <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
     %header

@@ -61,16 +61,15 @@ menu, ol, ul {
   z-index: 0;
 }
 
-// .loaded {
-//   visibility: visible !important;
-// }
-
 h1 {
   @include font-size(6, large);
 }
 
 h2 {
-  @include font-size(2.5);
+  @include font-size(1.5);
+  @include at-breakpoint($bigscreen)  {
+    @include font-size(2.5);
+  }
 }
 
 p {
@@ -93,6 +92,37 @@ section, article {
     @include font-size(1);
     @include at-breakpoint($bigscreen)  {
       @include font-size(1.5);
+    }
+  }
+}
+
+article {
+  div.project {
+    h2,p {
+      margin-bottom: 2rem;
+    }
+    p, a {
+     @include font-regular();
+    }
+    a.webLink {
+      display: inline-block;
+      margin-bottom: 2rem;
+      @include link-style();
+    }
+  }
+}
+
+html body {
+  ul.social-links {
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline;
+    }
+    a {
+      @include ico-font();
+      color: inherit;
+      border-bottom: none;
     }
   }
 }
