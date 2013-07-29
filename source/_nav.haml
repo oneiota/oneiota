@@ -1,31 +1,42 @@
 .hud.top-hud.info-hud
-  %p.mobile.project-title
-    %span.scaleIn= data.projects[0].project
   .navCounters
+    .navPanel
     %ul
       - data.projects.each_with_index do |project, index|
         -if index == 0
-          %li.active.scaleIn
+          %li.active
+            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+              %i.icon-circle.scaleOutSevenFive.icon
+              %i.icon-circle.scaleInSevenFive.icon
             %span.project-title= project.project
-            %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project}
         -elsif index == 7
-          %li.scaleIn
+          %li
+            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+              %i.icon-circle.scaleOutSevenFive.icon
+              %i.icon-circle.scaleInSevenFive.icon
+            %a{:href => '#', :title => 'More Projects'}
+              %i.icon-down-arrow-bare.icon
             %span.project-title= project.project
-            %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project}
-            %a.icon-down-arrow-bare.icon{:href => '#', :title => 'More Projects'}
         -elsif index == 8
-          %li.scaleIn.mobile-hide
+          %li.mobile-hide
+            %a{:href => '#', :title => 'Back'}
+              %i.icon-up-arrow-bare.icon
+            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+              %i.icon-circle.scaleOutSevenFive.icon
+              %i.icon-circle.scaleInSevenFive.icon
             %span.project-title= project.project
-            %a.icon-up-arrow-bare.icon{:href => '#', :title => 'Back'}
-            %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project}
         -elsif index > 8 
-          %li.scaleIn.mobile-hide
+          %li.mobile-hide
+            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+              %i.icon-circle.scaleOutSevenFive.icon
+              %i.icon-circle.scaleInSevenFive.icon
             %span.project-title= project.project
-            %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project}
         -else
-          %li.scaleIn
+          %li
+            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+              %i.icon-circle.scaleOutSevenFive.icon
+              %i.icon-circle.scaleInSevenFive.icon  
             %span.project-title= project.project
-            %a.icon-circle.icon{:href => '/'+project.slug, :title => project.project} 
 
 .hud.bottom-hud 
   %ul.indexNav

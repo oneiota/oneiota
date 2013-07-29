@@ -234,10 +234,23 @@ $bloodRed: #FF524A;
   content: "\e013";
 }
 
-.icon-instagram-bare:before {
-  @include font-size(4);
+.icon-phone:before {
   content: "\e014";
+  @include font-size(0.6);
+  @include at-breakpoint($tablet) {
+    @include font-size(1.4);
+  }
 }
+
+.icon-pin:before {
+  content: "\e015";
+  @include font-size(0.80);
+  @include at-breakpoint($tablet) {
+    @include font-size(1.70);
+  }
+}
+
+
 // .icon-diamond:before {
 //
 //   @include font-size(4.5);

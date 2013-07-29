@@ -8,7 +8,7 @@
   @include animation-delay(3s);
 }
 
-.scaleOut, .scaleOutIn, .scaleOutFifty, .scaleInFifty, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown {
+.scaleOut, .scaleOutIn, .scaleOutFifty, .scaleInFifty, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown, .scaleInSevenFive, .scaleOutSevenFive {
   @include animation-duration(0.3s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(1);
@@ -34,7 +34,7 @@
 }
 
 .fadeInSlide {
-  @include animation-duration(0.2s);
+  @include animation-duration(0.4s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(1);
   @include animation-name(fadeInSlide);
@@ -49,6 +49,14 @@
 
 .csstransforms3d .slideOutProject {
   @include animation-name(slideOutProject-3d);
+}
+
+.scaleInSevenFive {
+  @include animation-name(scaleInSevenFive);
+}
+
+.scaleOutSevenFive {
+  @include animation-name(scaleOutSevenFive);
 }
 
 html.touch body .fastAni {
@@ -230,6 +238,54 @@ html.touch .slideOutProject {
   @include animation-fill-mode(forwards);
 }
 
+html.no-touch {
+  .navCounters {
+    ul {
+      li {
+        a {
+          i.scaleOutSevenFive {
+            display: none;
+          }
+          i.scaleInSevenFive {
+            display: inline-block;
+          }
+        }
+        a:hover {
+          i.scaleOutSevenFive {
+            display: inline-block;
+          }
+          i.scaleInSevenFive {
+            display: none;
+          }
+          + span {
+            padding: 11px 32px 0 0;
+            white-space: nowrap;
+            position: absolute;
+            display: inline;
+            right: 100%;
+            top:0;
+            // @include animation-duration(0.3s);
+            // @include animation-timing-function(ease);
+            // @include animation-iteration-count(1);
+            // @include animation-fill-mode(forwards);
+            // @include animation-name(slideInRight);
+          }
+        }
+      }
+      li.active {
+        a:hover {
+          i.scaleOutSevenFive {
+            display: none;
+          }
+          i.scaleInSevenFive {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
 @include keyframes(slideInProject) {
   from {
      top: 100%;
@@ -329,6 +385,15 @@ html.touch .slideOutProject {
   }
 }
 
+@include keyframes(slideInRight) {
+  from {
+    right: -75%;
+  }
+  to {
+    right: 0%;
+  }
+}
+
 @include keyframes(fadeIn) {
   from {
     opacity: 0;
@@ -365,6 +430,24 @@ html.touch .slideOutProject {
   }
   100% {
     @include transform(scale(0.5));
+  }
+}
+
+@include keyframes(scaleOutSevenFive) {
+  0% {
+    @include transform(scale(1));
+  }
+  100% {
+    @include transform(scale(0.75));
+  }
+}
+
+@include keyframes(scaleInSevenFive) {
+  0% {
+    @include transform(scale(0.75));
+  }
+  100% {
+    @include transform(scale(1));
   }
 }
 

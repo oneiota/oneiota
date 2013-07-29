@@ -25,51 +25,9 @@ nav {
       @include font-size(1);
     }
   }
-  @include at-breakpoint($bigscreen)  {
-    .hud {
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
-      display: block;
-      position: fixed;
-      z-index: $hud;
-      ul {
-        display: block;
-        margin: 0;
-        padding: 0;
-        line-height: 0;
-        li {
-          display: inline-block;
-          position: relative;
-        }
-      }
-      li,a {
-        opacity: 0.9;
-        margin: 0;
-        padding: 0;
-        @include font-size(1);
-      }
-    }
-  } 
 }
+
 nav .top-hud {
-  display: block;
-  .project-title {
-    display: none;
-  }
-  .mobile.project-title {
-    padding: 1.2em 0 0.8em 0;
-    margin:0;
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    span {
-      display: block;
-    }
-  }
   .navCounters {
     height: 100%;
     position: fixed;
@@ -79,9 +37,11 @@ nav .top-hud {
     ul {
       display: table-cell;
       vertical-align: middle;
+      background: transparent;
       li { 
         margin: 1.5em 0;
         a {
+          display: inline-block;
           opacity: 0.5;
         }
         a.icon-down-arrow-bare {
@@ -92,14 +52,15 @@ nav .top-hud {
           display: none;
           margin-bottom: 1rem;
         }
-      }
-      li.active {
-        .project-title {
+        span.project-title {
           display: none;
         }
+      }
+      li.active {
         a {
           opacity: 1;
-          display: inline;
+          display: inline-block;
+          cursor: default;
         }
         a.icon-down-arrow-bare, a.icon-up-arrow-bare {
           display: block;
@@ -110,54 +71,7 @@ nav .top-hud {
       }
     }
   }
-  @include at-breakpoint($bigscreen)  {
-    .mobile.project-title {
-      display: none;
-    }
-    .project-title {
-      display: none;
-      @include font-bold();
-      padding: 0.6rem 0.7rem 0.4rem 0.7rem;
-      margin: 0 1rem;
-    }
-    .navCounters {
-      display: block;
-      right:0;
-      width: 100%;
-      height: inherit;
-      ul {
-        display: block;
-        padding: 2.6rem 1.7rem 2.4rem 1.7rem;
-        li { 
-          margin: 0 0.5rem;
-          a {
-            opacity: 0.5;
-            &:hover {
-              opacity: 0.9;
-            }
-          }
-          a.icon-down-arrow-bare {
-            display: none;
-          }
-          a.icon-up-arrow-bare {
-            display: none;
-          }
-        }
-        li.active {
-          opacity: 0.9;
-          .project-title {
-            display: inline-block;
-          }
-          a {
-            display: none;
-          }
-        }
-        li.mobile-hide {
-          display: inline-block;
-        }
-      }
-    }
-  }
+  
 }
 
 nav .bottom-hud {
@@ -197,9 +111,6 @@ body.menu {
     @include at-breakpoint($bigscreen) {
       top: 4rem;
     }
-  }
-  .project-title {
-    display: none !important;
   }
   .top-hud {
     display: none;
@@ -251,6 +162,24 @@ body.singleProject nav .top-hud {
     bottom: 2rem;
   }
 }
+
+// html.no-touch {
+//   .navCounters {
+//     ul {
+//       li:hover {
+//         .project-title {
+//           padding: 10px 12px 0 0;
+//           margin-right: 1em;
+//           white-space: nowrap;
+//           position: absolute;
+//           display: inline;
+//           right: 100%;
+//         }
+//       }
+//     }
+//   }
+// }
+
 
 html.touch .arrow-tab {
   position: absolute;

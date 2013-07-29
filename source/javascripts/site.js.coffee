@@ -1,5 +1,6 @@
 window.isTouch = if ($('html').hasClass('touch')) then true else false
-window.isIndex = if $('.index').length then true else false
+window.isIndex = if $('body').hasClass('index') then true else false
+window.isPortfolio = if $('body').hasClass('portfolio') then true else false
 window.isBlood = if $('body').hasClass('blood') then true else false
 window.isRetina = if window.devicePixelRatio > 1 then true else false
 window.mapLoaded = false
@@ -37,9 +38,9 @@ waypointCheck.updateColors = (foreground, background) ->
   $('nav').stop().animate({
     color: foreground
   }, 500 )
-  $('.navCounters ul, p.project-title').stop().animate({
+  $('.navCounters .navPanel').stop().animate({
     backgroundColor: background
-  }, 150 )
+  }, 500 )
 
 ImageLoader = ->
   @loadArray = []
@@ -53,6 +54,12 @@ MainMenu = ->
   @ogfg = '#ffffff'
 
 mainMenu = new MainMenu()
+
+ObjectLoader = ->
+  @objectTarget = if window.isBlood then 'section' else 'article'
+  @objectSubTarget = if window.isBlood then '.content' else '.project'
+
+objectLoader = new ObjectLoader()
 
 window.initialiseMaps = () ->
   
@@ -199,7 +206,7 @@ if window.isIndex
     waypointCheck.assignArticleWaypoints = ->
       $('article:gt(0)').waypoint
         triggerOnce: false
-        offset: '0%'
+        offset: '100%'
         handler: (direction) ->
           if !historyController.scrollingBack
             articleIndex = ($('article').index($('#' + @id)))
@@ -229,6 +236,12 @@ if window.isIndex
         else
           history.replaceState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
 
+    #Index specific binds
+    # $('.navCounters ul li').not('.active').hover (->
+    #   $(this).find('.project-title').show()
+    # ), ->
+      
+    
     #Index specific startup functions
     waypointCheck.assignArticleWaypoints()
     #waypointCheck.menuScroll()
@@ -251,15 +264,12 @@ if window.isIndex
       newTitle = 'Iota — ' + waypointCheck.projectTitle
       $('.main article').removeClass()
       $('.main article').eq(waypointCheck.currentProject).addClass('fadeOut')
-      $('.top-hud ul li, p.project-title span').removeClass('active scaleIn scaleOut')
+      $('.top-hud ul li').removeClass('active scaleIn scaleOut')
       $('.top-hud ul li a.icon-circle').removeClass('scaleInFifty scaleOutFifty')
-      $('p.project-title span').addClass('scaleOut')
       $('.top-hud ul li').eq(waypointCheck.nextProject).find('.icon-circle').addClass('scaleOutFifty')
       $("nav").delay(100).stop().animate({
         color: waypointCheck.ogfg
       }, 500, ->
-        $('p.project-title span').html(waypointCheck.projectTitle)
-        $('p.project-title').stop().animate({backgroundColor: waypointCheck.ogbg},750)
         $('html, body').stop().animate({
           scrollTop: 0
           backgroundColor: waypointCheck.ogbg
@@ -267,7 +277,6 @@ if window.isIndex
           if this.nodeName == "BODY"
             return
           $('title').html(newTitle)
-          $('p.project-title span').addClass('scaleIn')
           $('.top-hud ul li').eq(waypointCheck.nextProject).addClass('active')
           $('.top-hud ul li').eq(waypointCheck.nextProject).find('.icon-circle').addClass('scaleInFifty')
           $('.main article').eq(waypointCheck.currentProject).hide()
@@ -328,10 +337,10 @@ if window.isIndex
           , 500
       
     
-    $('p.mobile.project-title').bind 'click', (event) ->
-      $('html, body').stop().animate({
-        scrollTop: 0
-      }, 500)
+    # $('p.mobile.project-title').bind 'click', (event) ->
+    #   $('html, body').stop().animate({
+    #     scrollTop: 0
+    #   }, 500)
 
     waypointCheck.touchWaypoints()
 
@@ -341,7 +350,6 @@ if window.isBlood
     @bloogBG = 'images/blood.jpg'
     @testimonialTimer
     @lastClass
-    @allLoaded = 0
     @instyCounter = 0
     @groupTracker = true
     @stateTracker = 0
@@ -350,34 +358,6 @@ if window.isBlood
     @iotaInsty = 'https://api.instagram.com/v1/users/12427052/media/recent/?access_token=12427052.4e63227.ed7622088af644ffb3146a3f15b50063&count=9'
     
   bloodLoader = new BloodLoader()
-
-  bloodLoader.loadInternals = (sectionIndex) ->
-    
-    targetContent = $('section').eq(sectionIndex).find('.content')
-    childArray = []
-
-    targetContent.children().each( (index) ->
-       childArray.push(index)
-    )
-
-    animateChildren = ->
-      if childArray.length isnt 0
-        currChild = childArray.shift()
-        targetContent.children().eq(currChild).addClass('fadeInSlide')
-        animateChildTimer = setTimeout ->
-          animateChildren()
-        , 50 
-    
-    animateChildren()  
-
-
-  bloodLoader.assignSectionWaypoints = () ->
-    $('section').waypoint
-      triggerOnce: true
-      offset: '80%'
-      handler: (direction) ->
-        $(this).find('.container').addClass('loaded')
-        bloodLoader.loadInternals($(this).index())
 
   bloodLoader.instyAnimation = () ->
 
@@ -466,13 +446,6 @@ if window.isBlood
       error: ->
         console.log 'run backup pics'
 
-  bloodLoader.bloodPageLoaded = () ->
-    $(window).load(->
-      # $('.container').eq(0).addClass('loaded')
-      bloodLoader.assignSectionWaypoints()
-      bloodLoader.getInsty()
-    )
-
   #Blood Binds
 
   $('.icon-right-arrow-bare').bind('click', (event) ->
@@ -516,8 +489,63 @@ if window.isBlood
     $('.icon-right-arrow-bare').trigger('click')
   ,6000
 
+#Elegant page object animation
 
-  bloodLoader.bloodPageLoaded()
+objectLoader.assignAnimationWaypoints = () ->
+  
+  if window.isBlood
+    $(objectLoader.objectTarget).waypoint
+      triggerOnce: true
+      offset: '80%'
+      handler: (direction) ->
+        $(this).find(objectLoader.objectSubTarget).addClass('loaded')
+        objectLoader.loadInternals($(this).index())
+
+  else if window.isPortfolio
+    $(objectLoader.objectSubTarget).children().each(->
+      if $(this).hasClass('project-details')
+        $(this).waypoint
+          triggerOnce: true
+          offset: '50%'
+          handler: (direction) ->
+            $(this).addClass('loaded')
+            objectLoader.loadInternals($(this).parent().parent().index())
+      else
+        $(this).waypoint
+          triggerOnce: true
+          offset: '50%'
+          handler: (direction) ->
+            $(this).addClass('loaded fadeInSlide')
+    )
+
+objectLoader.loadInternals = (targetIndex) ->
+  if window.isBlood
+    targetContent = $(objectLoader.objectTarget).eq(targetIndex).find(objectLoader.objectSubTarget)
+  else if window.isPortfolio
+    targetContent = $(objectLoader.objectTarget).eq(targetIndex).find('.project-details')
+
+  childArray = []
+  targetContent.children().each( (index) ->
+     childArray.push(index)
+  )
+
+  animateChildren = ->
+    if childArray.length isnt 0
+      currChild = childArray.shift()
+      targetContent.children().eq(currChild).addClass('fadeInSlide')
+      animateChildTimer = setTimeout ->
+        animateChildren()
+      , 150 
+  
+  animateChildren()
+
+objectLoader.pageLoaded = () ->
+  $(window).load(->
+    # $(objectLoader.objectSubTarget).eq(0).addClass('loaded')
+    objectLoader.assignAnimationWaypoints()
+    if window.isBlood
+      bloodLoader.getInsty()
+  )
 
 #Binds
 
@@ -573,7 +601,7 @@ historyController.bindPopstate = () ->
 
     historyController.popped = true
 
-$('a.icon-circle').bind 'click', (event) ->
+$('a.nav-item').bind 'click', (event) ->
   event.preventDefault()
 
   if !$(this).parent().hasClass('active')
@@ -668,4 +696,5 @@ if !window.isTouch
 
 #Site wide startup functions
 imageLoader.addImages(0)
+objectLoader.pageLoaded()
 historyController.bindPopstate()

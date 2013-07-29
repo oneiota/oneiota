@@ -10,6 +10,14 @@ body.menu {
   .hud li, .hud a  {
     opacity: 1;
   }
+  .contact {
+    .menu-title {
+      display: none;
+      @include at-breakpoint($tablet) {
+        display: block;
+      }
+    }
+  }
 }
 
 .overlay {
@@ -130,7 +138,13 @@ html.no-touch .mainmenu ul li a {
     width: 100%;
     background: $infoBg;
     ul {
-      margin-top: 7rem;
+      margin-top: 2rem;
+      @include at-breakpoint($tablet) {
+        margin-top: 7rem;
+      }
+      @include at-breakpoint($bigscreen) {
+        margin-top: 9rem;
+      }
       li {
         @include font-size(1);
         @include at-breakpoint($tablet) {
@@ -140,7 +154,12 @@ html.no-touch .mainmenu ul li a {
           }
         }
         position: relative;
+        display: inline-block;
         list-style: none;
+        i {
+          position: absolute;
+          margin: -0.1em 0 0 -1em;
+        }
       }
       a {
         @include link-style();

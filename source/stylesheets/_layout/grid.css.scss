@@ -40,7 +40,6 @@ article {
       }
   }
   .project-details, .placeholder {
-    margin: 2rem 0;
     clear: both;
     @include span-columns(6);
     @include at-breakpoint($bigscreen)  {
@@ -76,40 +75,56 @@ section {
   }
 }
 
-.grid-half {
-  @include span-columns(3,6);
-  clear: both;
-}
+article {
+  div.project {
+    .grid-half {
+      @include span-columns(3,6);
+      clear: both;
+    }
 
-.grid-half-right {
-  @include span-columns(3,6);
-  @include pre(3);
-  clear: both;
-}
+    .grid-half-right {
+      @include span-columns(3,6);
+      @include pre(3);
+      clear: both;
+    }
 
-.grid-third {
-  @include span-columns(2,6);
-  clear: both;
-}
+    .grid-third {
+      @include span-columns(2,6);
+      clear: both;
+    }
 
-.grid-third-right {
-  @include span-columns(2,6);
-  @include nth-omega(6n);
-  @include pre(4);
-  clear: both;
-}
+    .grid-third-right {
+      @include span-columns(2,6);
+      @include nth-omega(6n);
+      @include pre(4);
+      clear: both;
+    }
 
-.grid-quarter {
-  @include span-columns(1,4);
-  @include nth-omega(4n);
-  clear: both;
-}
+    .grid-two-thirds {
+      @include span-columns(4,6);
+      clear: both;
+    }
+    
+    .grid-two-thirds-right {
+      @include span-columns(5,6);
+      @include nth-omega(6n);
+      @include pre(1);
+      clear: both;
+    }
 
-.grid-quarter-right {
-  @include span-columns(1,4);
-  @include nth-omega(4n);
-  @include pre(4);
-  clear: both;
+    .grid-quarter {
+      @include span-columns(1,4);
+      @include nth-omega(4n);
+      clear: both;
+    }
+
+    .grid-quarter-right {
+      @include span-columns(1,4);
+      @include nth-omega(4n);
+      @include pre(4);
+      clear: both;
+    }
+  }
 }
 
 .contact {
@@ -121,20 +136,6 @@ section {
       @include at-breakpoint(10)  {
         @include container;  
       }
-  }
-}
-
-.project {
-  padding-top: 5rem;
-  @include at-breakpoint($bigscreen)  {
-    padding-top: 10rem;
-  }
-}
-
-body.singleProject .project {
-  padding-top: 7rem;
-  @include at-breakpoint($bigscreen)  {
-    padding-top: 10rem;
   }
 }
 

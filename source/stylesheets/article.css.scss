@@ -2,7 +2,6 @@
 
 .placeholder {
   position: relative;
-  margin-bottom: 2rem;
   .placeholder-bg {
     display: block;
     width:100%;
@@ -11,7 +10,7 @@
   .placeholder-alt {
     position: absolute;
     width: 100%;
-    top: 50%;
+    top: 40%;
     left: 0;
   }
 }

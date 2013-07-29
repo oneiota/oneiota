@@ -94,23 +94,48 @@ section, article {
       @include font-size(1.5);
     }
   }
+  .container, .project {
+    position: relative;
+    overflow: hidden;
+    visibility: hidden;
+  }
+  .project-details {
+    h2,p,a {
+      margin-bottom: 4rem;
+    }
+    h2 {
+      @include font-size(2.5);
+      @include at-breakpoint($bigscreen)  {
+        @include font-size(4.5);
+      }
+    }
+  }
 }
 
 article {
+  padding: 5rem 0 0 0;
+  @include at-breakpoint($bigscreen)  {
+    padding: 10rem 0 0 0;
+  }
   div.project {
-    h2,p {
-      margin-bottom: 2rem;
-    }
     p, a {
      @include font-regular();
     }
     a.webLink {
       display: inline-block;
-      margin-bottom: 2rem;
+      color: inherit;
       @include link-style();
     }
   }
 }
+
+.project-details, .placeholder {
+  padding: 0 0 5rem 0;
+  @include at-breakpoint($bigscreen)  {
+    padding: 0 0 10rem 0;
+  }
+}
+
 
 html body {
   ul.social-links {
@@ -126,3 +151,4 @@ html body {
     }
   }
 }
+

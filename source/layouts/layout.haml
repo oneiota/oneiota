@@ -28,8 +28,8 @@
       nav { color:#{yield_content(:foreground)}; }
       html .mobile.project-title { background:#{yield_content(:background)}; }
       html .mobile.project-title { background:#{yield_content(:background)}; }
-      html .navCounters ul { background:#{yield_content(:background)}; }
-  %body.index
+      html .navCounters .navPanel { background:#{yield_content(:background)}; }
+  %body.index.portfolio
     /[if lt IE 7] <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
     %header
       %nav= partial "nav"

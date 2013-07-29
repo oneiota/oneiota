@@ -6,38 +6,73 @@
   link: illustrationroom.com
   images:
     - 
-      mobile: mobile/theillustrationroom_heroshot.jpg
-      desktop: theillustrationroom_heroshot.jpg
+      mobile: mobile/heroshot_artistPortfolio.png
+      desktop: heroshot_artistPortfolio.png
       alt: >
-        the illustration room front page
+        Ihe Illustration Room Responsive Website
     - 
-      mobile: mobile/theillustrationroom_blog_lightbox.jpg
-      desktop: theillustrationroom_blog_lightbox.jpg
+      mobile: mobile/blog_lightbox.png
+      desktop: blog_lightbox.png
       alt: >
-        the illustration room lightbox
+        The Illustration Room Lightbox
+    - 
+      mobile: mobile/theillustrationroom_iphone.png
+      desktop: theillustrationroom_iphone.png
+      alt: >
+        The Illustration Room iPhone
   colors:
     foreground: "#444"
-    background: "#f2f7fb"
+    background: "#f9f9f9"
 
-- project: The Illustration Room 2
-  slug: theillustrationroom2
+- project: Mirrool Creek Lamb
+  slug: mirroolcreeklamb
   description: >
-    The Illustration room represents a range of respected talent from across the globe. They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.
-  link: illustrationroom.com
+    A family company known for its premium quality lamb, Mirrool Creek commissioned One Iota to develop an entire brand identity, from the logo and marketing collateral through to an exciting new website. The site adopts a non-traditional web design, with all the content on a single page. Condiments such as salt, olive oil and rosemary appear to float in the background as the user travels down the site. This site also used our dynamic site design that optimises itself for a variety of screen sizes and resolutions. The client is also able to maintain the site through our streamlined content management system, which their brand manager uses regularly to provide tasty lamb recipes or manage stockists.
+  link: mirroolcreeklamb.com
   images:
     - 
-      mobile: mobile/theillustrationroom_heroshot.jpg
-      desktop: theillustrationroom_heroshot.jpg
+      mobile: mobile/TempWorkplace.png
+      desktop: TempWorkplace.png
       alt: >
-        the illustration room front page
+        Mirrool Creek Lamb Responsive Website
     - 
-      mobile: mobile/theillustrationroom_blog_lightbox.jpg
-      desktop: theillustrationroom_blog_lightbox.jpg
+      mobile: mobile/TempTwo-Panel.png
+      desktop: TempTwo-Panel.png
       alt: >
-        the illustration room lightbox
+        Mirrool Creek Lamb Responsive Website
+    - 
+      mobile: mobile/TempTote.png
+      desktop: TempTote.png
+      alt: >
+        Mirrool Creek Lamb Tote Bag
   colors:
-    foreground: "#252B35"
-    background: "#7DFFAC"
+    foreground: "#383868"
+    background: "#D0C0AC"
+
+- project: Mirrool Creek Lamb 2
+  slug: mirroolcreeklamb2
+  description: >
+    A family company known for its premium quality lamb, Mirrool Creek commissioned One Iota to develop an entire brand identity, from the logo and marketing collateral through to an exciting new website. The site adopts a non-traditional web design, with all the content on a single page. Condiments such as salt, olive oil and rosemary appear to float in the background as the user travels down the site. This site also used our dynamic site design that optimises itself for a variety of screen sizes and resolutions. The client is also able to maintain the site through our streamlined content management system, which their brand manager uses regularly to provide tasty lamb recipes or manage stockists.
+  link: mirroolcreeklamb.com
+  images:
+    - 
+      mobile: mobile/TempWorkplace.png
+      desktop: TempWorkplace.png
+      alt: >
+        Mirrool Creek Lamb Responsive Website
+    - 
+      mobile: mobile/TempTwo-Panel.png
+      desktop: TempTwo-Panel.png
+      alt: >
+        Mirrool Creek Lamb Responsive Website
+    - 
+      mobile: mobile/TempTote.png
+      desktop: TempTote.png
+      alt: >
+        Mirrool Creek Lamb Tote Bag
+  colors:
+    foreground: "#FCF2D6"
+    background: "#FF5A5A"
 
 - project: Sourced Grocer
   slug: sourcedgrocer
