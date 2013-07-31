@@ -67,12 +67,10 @@ section.info-crew {
   }
 }
 
-section.info-team, section.info-testimonials {
-  background: #E2E5CF;
-}
-
 section.info-team {
-  background: #303030;
+  clear: both;
+  background: #888888;
+  //background: #303030;
   .team-holder {
     overflow: hidden;
     position:relative;
@@ -265,8 +263,9 @@ section.info-testimonials {
   }
 }
 
-section.info-contact { 
+section.info-newsletter { 
   background: #C03448;
+  color: #fff;
   h2 {
     padding: 1rem 0 6rem 0;
     margin: 0;
@@ -277,3 +276,49 @@ section.info-contact {
     @include link-style();
   }
 }
+
+section.info-contact {
+  background:#303030;
+  color: #fff;
+  width: 100%;
+  float: left;
+  height: 380px;
+  overflow: hidden;
+  position:relative;
+  .info-map {
+    position:absolute;
+    top: 0;
+    right:0;
+    width: 50%;
+    height: 380px;
+    padding: 0;
+    visibility: visible;
+    z-index: 1;
+    #map-area {
+      height: 110%;
+    }
+  }
+  .contact-details {
+    @include span-columns(3,6);
+    ul {
+      padding-left: 3rem;
+      list-style: none;
+      text-align: left;
+      li {
+        position:relative;
+        @include font-size(1.5);
+        a {
+          font-size: inherit;
+          color: inherit;
+          @include link-style();
+        }
+          i {
+            position: absolute;
+            left: -3rem; 
+          }
+      }
+    }
+  }
+}
+
+

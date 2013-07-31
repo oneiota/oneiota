@@ -3,9 +3,7 @@
 - content_for(:foreground, '#fff')
 
 %section.info-crew
-
   .container
-
     .bloodbg.slowFadeIn
       /%img{:src=>'images/blood.jpg'}
     .content.delay
@@ -20,10 +18,23 @@
 
       =partial "social"
 
-%section.info-team
-
+%section.info-contact
   .container
+    .content.delay
+      .contact-details
+        %ul
+          %li
+            %i.icon.icon-mail
+            %a{:href => 'mailto:hello@oneiota.com', :title => 'email us'} hello@oneiota.com
+          %br
+          %li <i class="icon icon-phone"></i>+61 (0)7 3870 8167
+          %br
+          %li <i class="icon icon-pin"></i>6/887 Ann St<br/>Fortitude Valley Q 4006</br>Brisbane Australia
+  .container.info-map
+    #map-area
 
+%section.info-team
+  .container
     .content.delay
       %p.section-title
         %span= 'team'
@@ -124,7 +135,7 @@
           %li product development
           %li content strategy
           %li copywriting 
-          
+
       .info-service-description
         %h3 Apps &amp; Websites
         %p.service-description Great ideas are adapting across a multitude of different devices, swimming through viral channels and social networks, connecting a global community of participating audiences who have the power to ultimately change the world. Our expertise in digital strategy and development sees that we are able to conceptualize, build, launch, and manage your digital venture to a standard that prizes creativity, best web practices and cutting-edge technology. 
@@ -161,7 +172,7 @@
         .right-arrow
           %a.icon-right-arrow-bare.icon{:href=>"#",:title=>"Back"}
 
-%section.info-contact
+%section.info-newsletter
   .container
     .content.delay
       %h2 Get in touch <a href='mailTo:hello@oneiota.com' title='Get in touch'>hello@oneiota.com</a>

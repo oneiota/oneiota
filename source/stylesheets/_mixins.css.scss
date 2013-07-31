@@ -250,42 +250,15 @@ $bloodRed: #FF524A;
   }
 }
 
+.icon-instagram-bare:before {
+  content: "\e016";
+}
 
-// .icon-diamond:before {
-//
-//   @include font-size(4.5);
-//   content: "\e007";
-// }
+.icon-mail:before {
+  content: "\e017";
+  @include font-size(0.5);
+  @include at-breakpoint($tablet) {
+    @include font-size(1.1);
+  }
+}
 
-// @font-face {
-//     font-family: 'gt_walsheim_triallight';
-//     src: url('gt-walsheim-light-trial-webfont.eot');
-//     src: url('gt-walsheim-light-trial-webfont.eot?#iefix') format('embedded-opentype'),
-//          url('gt-walsheim-light-trial-webfont.woff') format('woff'),
-//          url('gt-walsheim-light-trial-webfont.ttf') format('truetype'),
-//          url('gt-walsheim-light-trial-webfont.svg#gt_walsheim_triallight') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
-// @font-face {
-//     font-family: 'gt_walsheim_trialregular';
-//     src: url('font/gt-walsheim-regular-trial-webfont.eot');
-//     src: url('font/gt-walsheim-regular-trial-webfont.eot?#iefix') format('embedded-opentype'),
-//          url('font/gt-walsheim-regular-trial-webfont.woff') format('woff'),
-//          url('font/gt-walsheim-regular-trial-webfont.ttf') format('truetype'),
-//          url('font/gt-walsheim-regular-trial-webfont.svg#gt_walsheim_trialregular') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
-// @font-face {
-//     font-family: 'gt_walsheim_trialbold';
-//     src: url('font/gt-walsheim-bold-trial-webfont.eot');
-//     src: url('font/gt-walsheim-bold-trial-webfont.eot?#iefix') format('embedded-opentype'),
-//          url('font/gt-walsheim-bold-trial-webfont.woff') format('woff'),
-//          url('font/gt-walsheim-bold-trial-webfont.ttf') format('truetype'),
-//          url('font/gt-walsheim-bold-trial-webfont.svg#gt_walsheim_trialbold') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }

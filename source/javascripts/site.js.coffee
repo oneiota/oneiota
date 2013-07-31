@@ -70,6 +70,11 @@ window.initialiseMaps = () ->
     center: new google.maps.LatLng(-27.45480, 153.03905)
     disableDefaultUI: true
     zoomControl: false
+    scrollwheel: false
+    navigationControl: false
+    mapTypeControl: false
+    scaleControl: false
+    draggable: true
     backgroundColor: '#262626'
     zoomControlOptions:
       style: google.maps.ZoomControlStyle.SMALL
@@ -91,7 +96,7 @@ window.initialiseMaps = () ->
     ]
   ]
 
-  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)
+  map = new google.maps.Map(document.getElementById("map-area"), mapOptions)
 
   iotaImage = '../images/iotaMarker.svg';
   iotaLatLng = new google.maps.LatLng(-27.45480, 153.03905);
@@ -446,6 +451,15 @@ if window.isBlood
       error: ->
         console.log 'run backup pics'
 
+  #Load google map
+
+  if !window.mapLoaded
+    loadMap = setTimeout ->
+      loadGoogleMaps()
+    , 1000
+  
+  window.mapLoaded = true
+
   #Blood Binds
 
   $('.icon-right-arrow-bare').bind('click', (event) ->
@@ -660,11 +674,11 @@ $('.icon-contact').bind 'click', (event) ->
   $('.contact, .mainmenu, body').addClass('opencontact')
   $('.bottom-hud ul').removeClass('scaleIn')
   $('.infoNav').addClass('scaleIn')
-  if !window.mapLoaded
-    loadMap = setTimeout ->
-      loadGoogleMaps()
-    , 1000
-  window.mapLoaded = true
+  # if !window.mapLoaded
+  #   loadMap = setTimeout ->
+  #     loadGoogleMaps()
+  #   , 1000
+  # window.mapLoaded = true
 
   $('.icon-left-arrow').bind 'click', (event) ->
     event.preventDefault()
