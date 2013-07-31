@@ -70,7 +70,6 @@ section.info-crew {
 section.info-team {
   clear: both;
   background: #888888;
-  //background: #303030;
   .team-holder {
     overflow: hidden;
     position:relative;
@@ -171,7 +170,7 @@ section.info-team {
 }
 
 section.info-services {
-  background: #878787;
+  background: #303030;
   img {
     width:50%;
     max-width: 19rem;
@@ -179,10 +178,12 @@ section.info-services {
 }
 
 section.info-service-details {
-  //background: #FF524A;
-  background: #878787;
-  text-align: left;
+  background: #303030;
+  h2 {
+    margin-bottom: 4rem;
+  }
   .info-service-description {
+    text-align: left;
     @include span-columns(6,6);
     &:nth-child(2n) {
       @include omega;
@@ -207,11 +208,44 @@ section.info-service-details {
       }
       ul li {
         @include font-size(1);
+        margin: 0 0 0.5em 0;
       }
     }
     hr {
-      width: 1rem;
-      margin: 2em 0;
+      margin: 0 0 2em 0;
+    }
+  }
+}
+
+section.info-service-details2 {
+  background: #303030;
+  h2 {
+    margin-bottom: 4rem;
+  }
+  .info-service-description {
+    @include span-columns(4,6);
+    @include pre(1);
+    margin-bottom: 6rem;
+    h3 {
+      @include font-size(1.5);
+      margin-bottom: 2rem;
+    }
+    p {
+      @include font-size(1.5);
+      margin-bottom: 1rem;
+    }
+    ul {
+      @include span-columns(3,6);
+      &:nth-child(2n) {
+        @include omega();
+      }
+      li {
+        @include font-size(1.5);
+        list-style: none;
+      }
+    }
+    hr {
+      margin: 0 0 2em 0;
     }
   }
 }
