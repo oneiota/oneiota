@@ -181,21 +181,39 @@ section.info-services {
 }
 
 section.info-service-details {
-  background: #FF524A;
+  //background: #FF524A;
+  background: #878787;
   text-align: left;
   .info-service-description {
     @include span-columns(6,6);
-    &:nth-child(3n) {
+    &:nth-child(2n) {
       @include omega;
     }
-    @include at-breakpoint($smallscreen) {
-      @include span-columns(2,6);
+    h3 {
+      @include font-size(1.5);
     }
     p {
       @include font-size(1);
+      margin-bottom: 1rem;
+      display: none;
+    }
+    ul li {
+      list-style: none;
+    }
+    @include at-breakpoint($smallscreen) {
+      @include span-columns(3,6);
+      padding-right: 2rem;
+      p {
+        display: block;
+        @include font-size(1.5);
+      }
+      ul li {
+        @include font-size(1);
+      }
     }
     hr {
       width: 1rem;
+      margin: 2em 0;
     }
   }
 }
