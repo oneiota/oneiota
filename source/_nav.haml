@@ -1,42 +1,65 @@
 .hud.top-hud.info-hud
+  %ul.filterMenu
+    %li.scaleIn
+      %a{:href => '#',:data => {:filter => 'digital'}} Website &amp; Apps
+    %li.scaleIn
+      %a{:href => '#',:data => {:filter => 'branding'}} Branding &amp; Design
+    %li.active.scaleIn
+      %a{:href => '#',:data => {:filter => 'all'}} All
+    %li
+      %a{:href => '#', :title => 'Get Picky'}
+        %i.icon.eye3.scaleOutSevenFive
+        %i.icon.eye3.scaleInSevenFive
+
   .navCounters
     .navPanel
     %ul
+      - textColor = data.projects[0].colors.background
       - data.projects.each_with_index do |project, index|
         -if index == 0
           %li.active
-            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+            %a.nav-item{:href => '/'+project.slug}
               %i.icon-circle.scaleOutSevenFive.icon
               %i.icon-circle.scaleInSevenFive.icon
-            %span.project-title= project.project
+            %span.arrow-tab.hideArrow.scaleIn{:style => "color:#{textColor};"}
+              %span.arrow-title
+                =project.project
         -elsif index == 7
           %li
-            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+            %a.nav-item{:href => '/'+project.slug}
               %i.icon-circle.scaleOutSevenFive.icon
               %i.icon-circle.scaleInSevenFive.icon
-            %a{:href => '#', :title => 'More Projects'}
-              %i.icon-down-arrow-bare.icon
-            %span.project-title= project.project
+              %a{:href => '#', :title => 'More Projects'}
+                %i.icon-down-arrow-bare.icon
+              %span.arrow-tab.hideArrow.scaleIn{:style => "color:#{textColor};"}
+                %span.arrow-title
+                  =project.project
         -elsif index == 8
           %li.mobile-hide
             %a{:href => '#', :title => 'Back'}
               %i.icon-up-arrow-bare.icon
-            %a.nav-item{:href => '/'+project.slug, :title => project.project}
-              %i.icon-circle.scaleOutSevenFive.icon
-              %i.icon-circle.scaleInSevenFive.icon
-            %span.project-title= project.project
+              %a.nav-item{:href => '/'+project.slug}
+                %i.icon-circle.scaleOutSevenFive.icon
+                %i.icon-circle.scaleInSevenFive.icon
+              %span.arrow-tab.hideArrow.scaleIn{:style => "color:#{textColor};"}
+                %span.arrow-title
+                  =project.project
         -elsif index > 8 
           %li.mobile-hide
-            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+            %a.nav-item{:href => '/'+project.slug}
               %i.icon-circle.scaleOutSevenFive.icon
               %i.icon-circle.scaleInSevenFive.icon
-            %span.project-title= project.project
+            %span.arrow-tab.hideArrow.scaleIn{:style => "color:#{textColor};"}
+              %span.arrow-title
+                =project.project
         -else
           %li
-            %a.nav-item{:href => '/'+project.slug, :title => project.project}
+            %a.nav-item{:href => '/'+project.slug}
               %i.icon-circle.scaleOutSevenFive.icon
-              %i.icon-circle.scaleInSevenFive.icon  
-            %span.project-title= project.project
+              %i.icon-circle.scaleInSevenFive.icon
+            %span.arrow-tab.hideArrow.scaleIn{:style => "color:#{textColor};"}
+              %span.arrow-title
+                =project.project
 
 .hud.bottom-hud 
   %ul.indexNav
@@ -45,28 +68,8 @@
   %ul.menuNav
     %li
       %a.icon-close.icon{:href=>'#', :title => 'Close this'}
-    %li
-      %a.icon-contact.icon{:href=>'#', :title => 'Get in touch'}
+    / %li
+    /   %a.icon-contact.icon{:href=>'#', :title => 'Get in touch'}
   %ul.infoNav
     %li
       %a.icon-left-arrow.icon{:href=>'#', :title => 'Back'}
-
-
-/Old Linear Nav Code
-/- projects_title = (data.projects.count.to_f / 2).ceil
-/- if index == projects_title - 1
-/%li{:class => 'project-title scaleIn'}= data.projects[0].project
-/%li.icon-circle.icon.scaleIn
-/%a{:href => '#', :title => project.project}
-/- elsif index == 0
-/%li.icon-circle.icon.active.scaleIn
-/%a{:href => '#', :title => project.project}
-/-else 
-/%li.icon-circle.icon.scaleIn
-/%a{:href => '#', :title => project.project}
-
-/Arrow Tab
-/ %div.arrow-tab 
-/   %a{:href => '#'}
-/     The Illustration Room
-/   %span

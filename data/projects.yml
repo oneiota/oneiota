@@ -6,23 +6,31 @@
   link: illustrationroom.com
   images:
     - 
-      mobile: mobile/heroshot_artistPortfolio.png
-      desktop: heroshot_artistPortfolio.png
+      mobile: mobile/illustrationroom_home.jpg
+      desktop: illustrationroom_home.jpg
       alt: >
         Ihe Illustration Room Responsive Website
     - 
-      mobile: mobile/blog_lightbox.png
-      desktop: blog_lightbox.png
+      mobile: mobile/illustrationroom_home2.jpg
+      desktop: illustrationroom_home2.jpg
       alt: >
-        The Illustration Room Lightbox
+        The Illustration Room Homepage
     - 
-      mobile: mobile/theillustrationroom_iphone.png
-      desktop: theillustrationroom_iphone.png
+      mobile: mobile/illustrationroom_blog_lightbox.jpg
+      desktop: illustrationroom_blog_lightbox.jpg
       alt: >
-        The Illustration Room iPhone
+        The Illustration Room Lightbox &amp; Blog
+    -
+      mobile: mobile/illustrationroom_mobile_view.jpg
+      desktop: illustrationroom_mobile_view.jpg
+      alt: >
+        The Illustration Room Mobile Views
   colors:
-    foreground: "#444"
-    background: "#f9f9f9"
+    foreground: "#000077"
+    background: "#a3dcd3"
+  tags: [Website Development, Brand Development, Brand Collateral]
+  digital:
+  branding: "true"
 
 - project: Mirrool Creek Lamb
   slug: mirroolcreeklamb
@@ -48,6 +56,9 @@
   colors:
     foreground: "#383868"
     background: "#D0C0AC"
+  tags: [Website Development, Brand Development, Brand Collateral, Copywriting]
+  digital: "true"
+  branding:
 
 - project: Mirrool Creek Lamb 2
   slug: mirroolcreeklamb2
@@ -73,6 +84,9 @@
   colors:
     foreground: "#FCF2D6"
     background: "#FF5A5A"
+  tags: [Website Development, Brand Development, Brand Collateral, Copywriting]
+  digital:
+  branding: "true"
 
 - project: Sourced Grocer
   slug: sourcedgrocer
@@ -93,3 +107,6 @@
   colors:
     foreground: "#000"
     background: "#ffff00"
+  tags: [Website Development, Brand Development, Brand Collateral, Copywriting]
+  digital: "true"
+  branding: "true"

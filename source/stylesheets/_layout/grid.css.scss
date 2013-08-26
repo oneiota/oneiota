@@ -39,12 +39,20 @@ article {
         //@include susy-grid-background;  
       }
   }
-  .project-details, .placeholder {
+  .placeholder {
     clear: both;
     @include span-columns(6);
     @include at-breakpoint($bigscreen)  {
       @include span-columns(8);
       @include squish(1,1);
+    }
+  }
+  .project-details {
+    clear: both;
+    @include span-columns(6);
+    @include at-breakpoint($bigscreen)  {
+      @include span-columns(6,10);
+      @include squish(2,2);
     }
   }
 }

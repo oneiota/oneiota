@@ -47,6 +47,19 @@ strong {
   @include font-bold();
 }
 
+input {
+  //stop iOS border rounding
+  -webkit-appearance: none;
+  border-radius: 0;
+  @include placeholder {
+    color: inherit;
+  }
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
 #{headings()}, p, li, a {
   margin:0 0 1rem 0;
   font-weight: normal;
@@ -100,13 +113,27 @@ section, article {
     visibility: hidden;
   }
   .project-details {
-    h2,p,a {
-      margin-bottom: 4rem;
+    h2,p,a,ul {
+      margin-bottom: 2rem;
+      @include at-breakpoint($bigscreen)  {
+        margin-bottom: 3rem;
+      }
     }
     h2 {
       @include font-size(2.5);
+      line-height: 1em;
       @include at-breakpoint($bigscreen)  {
-        @include font-size(4.5);
+        @include font-size(3.5);
+      }
+    }
+    ul li.tag {
+      list-style: none;
+      display: inline;
+      margin-right: 1rem;
+      @include font-size(0.75);
+      @include at-breakpoint($bigscreen)  {
+        @include font-size(1);
+        margin-right: 2rem;
       }
     }
   }

@@ -80,7 +80,7 @@ html.touch .slideOutProject {
   @include animation-name(slideInProject-3d);
 }
 
-.scaleOut {
+.scaleOut{
   @include animation-name(scaleOut);
 }
 
@@ -217,7 +217,6 @@ html.touch .slideOutProject {
   @include animation-duration(0.5s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(1);
-  // @include animation-fill-mode(forwards);
 }
 
 //Close Menu
@@ -238,18 +237,52 @@ html.touch .slideOutProject {
   @include animation-fill-mode(forwards);
 }
 
-html.no-touch {
+html {
   .navCounters {
     ul {
       li {
         a {
           i.scaleOutSevenFive {
-            display: none;
+            display: none ;
           }
           i.scaleInSevenFive {
             display: inline-block;
           }
+          + span.showArrow {
+            display: table !important;
+          }
+          + span.hideArrow {
+            display: none;
+          }
         }
+      } 
+    }
+  }
+}
+
+html {
+  .filterMenu {
+    i.scaleOutSevenFive {
+      display: none ;
+    }
+    i.scaleInSevenFive {
+      display: inline-block;
+    }
+    &:hover {
+      i.scaleOutSevenFive {
+      display: inline-block;
+      }
+      i.scaleInSevenFive {
+        display: none;
+      }
+    }
+  }
+}
+
+html.no-touch {
+  .navCounters {
+    ul {
+      li {
         a:hover {
           i.scaleOutSevenFive {
             display: inline-block;
@@ -257,18 +290,8 @@ html.no-touch {
           i.scaleInSevenFive {
             display: none;
           }
-          + span {
-            padding: 11px 32px 0 0;
-            white-space: nowrap;
-            position: absolute;
-            display: inline;
-            right: 100%;
-            top:0;
-            // @include animation-duration(0.3s);
-            // @include animation-timing-function(ease);
-            // @include animation-iteration-count(1);
-            // @include animation-fill-mode(forwards);
-            // @include animation-name(slideInRight);
+          + span.hideArrow {
+            display: table !important;
           }
         }
       }
@@ -279,6 +302,9 @@ html.no-touch {
           }
           i.scaleInSevenFive {
             display: inline-block;
+          }
+          + span.arrow-tab {
+            display: none !important;
           }
         }
       }

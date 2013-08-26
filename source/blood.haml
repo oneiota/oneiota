@@ -12,7 +12,7 @@
       
       %h2 We are one iota
 
-      %p One Iota is a Brisbane-based studio of young, passionate and experienced cross-discipline designers & developers. Specializing across branding and digital, our skills and networks are flexible enough to take on clients of all different shapes and jobs of all different sizes. Together, we seek to create experiences that highlight, challenge and excite.
+      %p One Iota is a Brisbane-based studio of young, passionate and experienced cross-discipline designers & developers. Specializing across branding, design and digital mediums, our skills and networks are flexible enough to take on clients of all different shapes and jobs of all different sizes. Together, we seek to create experiences that highlight, challenge and excite.
 
       %h2 Connect with us
 
@@ -21,17 +21,21 @@
 %section.info-contact
   .container
     .content.delay
+      %p.section-title
+        %span= 'get in touch'
       .contact-details
         %ul
           %li
-            %i.icon.icon-mail
-            %a{:href => 'mailto:hello@oneiota.com', :title => 'email us'} hello@oneiota.com
+            %h2 &nbsp;<a href='mailTo:hello@oneiota.com' title='Get in touch'>hello@oneiota.com</a>
           %br
-          %li <i class="icon icon-phone"></i>+61 (0)7 3870 8167
+          %li
+            %h2 &nbsp;<i class="icon icon-phone"></i> +61 (0)7 3870 8167
           %br
-          %li <i class="icon icon-pin"></i>6/887 Ann St<br/>Fortitude Valley Q 4006</br>Brisbane Australia
-  .container.info-map
-    #map-area
+          %li
+            %h2 &nbsp;<i class="icon icon-pin"></i> 6/887 Ann St<br/>Fortitude Valley Q 4006</br>Brisbane Australia
+
+%section.info-map
+  #map-area
 
 %section.info-team
   .container
@@ -67,14 +71,14 @@
             .team-name
               %p.no-linkdin David Muirhead
 
-        .team-holder
+        .team-holder.smallfry
           .team-instagram
             %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
           / .instagram-link
           /   %a{:href=>'http://instagram.com/bvreb0ne',:title=>'@bvreb0ne on instagram'}
           /     %span.icon.icon-instagram-bare
 
-        .team-holder
+        .team-holder.smallfry
           .team-instagram
             %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
           / .instagram-link
@@ -96,14 +100,14 @@
               %p Pam Rosel
               %a.icon.icon-linkdin{:href=>'#',:title=>'view Linkdin profile'}
 
-        .team-holder
+        .team-holder.smallfry
           .team-instagram.iotaInsty4
             %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
           .instagram-link
             %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram'}
               %span.icon.icon-instagram-bare
 
-        .team-holder
+        .team-holder.smallfry
           .team-instagram.iotaInsty5
             %img.instagram-mask.insty{:src=>'images/team-mask.svg'}
           .instagram-link
@@ -116,17 +120,12 @@
       %p.section-title
         %span= 'services'
 
-      %h2 People ignore design that ignores people.
+      %h2 We devise, powerful forward-thinking ideas across a variety of media.
 
       .info-service-description
         %h3 Branding &amp; Design
-        %p.service-description We build powerful, forward-thinking brands across a variety of media. At the heart of it is a determination to create solutions of real value for our clients, challenge traditional ideas and look to future technologies - asking what’s possible, without losing sight of what’s needed. Experiences with printed matter, bespoke objects or the built environment leave a deep emotional footprint in the human brain, enabling audiences to savour textures, colours and smells. Through use, recycle and display, tangible media find their way into peoples lives, aiding in the positive reinforcement and memorability of your brand. 
+        %p.service-description  At the heart of our process is a determination to create solutions of real value for our clients, challenge traditional ideas and look to future technologies - asking what’s possible, without losing sight of what’s needed. Experiences with printed matter, bespoke objects or the built environment leave a deep emotional footprint in the human brain, enabling audiences to savour textures, colours and smells. Through use, recycle and display, tangible media find their way into peoples lives, aiding in the positive reinforcement and memorability of your brand. 
 
-      .info-service-description
-        %h3 Apps &amp; Websites
-        %p.service-description Great ideas are adapting across a multitude of different devices, swimming through viral channels and social networks, connecting a global community of participating audiences who have the power to ultimately change the world. Our expertise in digital strategy and development sees that we are able to conceptualize, build, launch, and manage your digital venture to a standard that prizes creativity, best web practices and cutting-edge technology. 
-      
-      .info-service-description  
         %hr
         %ul 
           %li brand strategy
@@ -141,52 +140,15 @@
           %li built environment
 
       .info-service-description
-        %hr
-        %ul
-          %li user interface
-          %li user experience
-          %li web development
-          %li web and mobile applications
-          %li content management systems
-          %li e-commerce systems
-          %li web optimization for mobile devices
-          %li social strategy
-
-%section.info-service-details2
-  .container
-    .content.delay
-      %p.section-title
-        %span= 'services'
-
-      %h2 People ignore design that ignores people.
-
-      .info-service-description
-        %h3 Branding &amp; Design
-        %p.service-description We build powerful, forward-thinking brands across a variety of media. At the heart of it is a determination to create solutions of real value for our clients, challenge traditional ideas and look to future technologies - asking what’s possible, without losing sight of what’s needed. Experiences with printed matter, bespoke objects or the built environment leave a deep emotional footprint in the human brain, enabling audiences to savour textures, colours and smells. Through use, recycle and display, tangible media find their way into peoples lives, aiding in the positive reinforcement and memorability of your brand. 
-        %hr
-        %ul 
-          %li brand strategy
-          %li product development
-          %li creative direction
-          %li logo & identity design
-          %li print collateral
-        %ul
-          %li packaging
-          %li campaign material
-          %li editorial
-          %li signage & wayfinding
-          %li built environment
-
-      .info-service-description
         %h3 Apps &amp; Websites
         %p.service-description Great ideas are adapting across a multitude of different devices, swimming through viral channels and social networks, connecting a global community of participating audiences who have the power to ultimately change the world. Our expertise in digital strategy and development sees that we are able to conceptualize, build, launch, and manage your digital venture to a standard that prizes creativity, best web practices and cutting-edge technology. 
+
         %hr
         %ul
           %li user interface
           %li user experience
           %li web development
           %li web and mobile applications
-        %ul  
           %li content management systems
           %li e-commerce systems
           %li web optimization for mobile devices
@@ -217,4 +179,8 @@
 %section.info-newsletter
   .container
     .content.delay
-      %h2 Get in touch <a href='mailTo:hello@oneiota.com' title='Get in touch'>hello@oneiota.com</a>
+      %form{:action=>"http://studiooneiota.us2.list-manage.com/subscribe/post-json?u=dfd58ec7f11fcaa31e6f92dde&amp;id=32735f28a0&c=?",:method=>"get",:id=>"newsletter-subscribe",:name=>"newsletter-subscribe",:class=>"validate"}
+        %label{:for=>"newsletter-subscribe-email"} Stay in touch
+        %input{:type=>"email",:value=>"", :name=>"EMAIL", :class=>"input-email",:id=>"newsletter-subscribe-email",:placeholder=>"email@domain + return"}
+        %input{:type=>"submit",:value=>"Subscribe",:name=>"subscribe",:id=>"mc-embedded-subscribe",:class=>"button"}
+

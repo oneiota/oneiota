@@ -1,4 +1,5 @@
 window.isTouch = if ($('html').hasClass('touch')) then true else false
+window.isCanvas = if ($('html').hasClass('canvas')) then true else false
 window.isIndex = if $('body').hasClass('index') then true else false
 window.isPortfolio = if $('body').hasClass('portfolio') then true else false
 window.isBlood = if $('body').hasClass('blood') then true else false
@@ -18,29 +19,25 @@ HistoryController = ->
 historyController = new HistoryController()
 
 WaypointCheck = ->
+  @filteredItems = []
   @articesLoaded = false
   @isLoading = false
   @currentProject = 0
   @nextProject
   @hudTimer
   @currentDirection
-  @lastDirection
   @projectSlug = $('article:eq(0)').attr('id')
   @projectTitle = $('article:eq(0)').data('title')
   @ogfg = $('article:eq(0)').data('foreground')
   @ogbg = $('article:eq(0)').data('background')
   @projects
+  @showArrow
+  @hideArrow
+  @resetArrow
+  @lastIndex = 0
   @arrowTab = '<div class="arrow-tab"><a href="#"></a><span>'
 
 waypointCheck = new WaypointCheck()
-
-waypointCheck.updateColors = (foreground, background) ->
-  $('nav').stop().animate({
-    color: foreground
-  }, 500 )
-  $('.navCounters .navPanel').stop().animate({
-    backgroundColor: background
-  }, 500 )
 
 ImageLoader = ->
   @loadArray = []
@@ -61,6 +58,60 @@ ObjectLoader = ->
 
 objectLoader = new ObjectLoader()
 
+CanvasArrow = (location, arrowWidth) ->
+  element = document.createElement('canvas')
+  $(element) 
+    .attr('width', arrowWidth + 40).attr('height', '40')
+
+  if arrowWidth >= 160
+    arrowWidth = Math.abs(arrowWidth - 160)
+  else
+    arrowWidth = Math.abs(arrowWidth - 160) * -1
+
+  context = element.getContext("2d")
+  context.fillStyle = waypointCheck.ogfg
+  context.bezierCurveTo((179.965+arrowWidth),0.945,(177.65+arrowWidth),0,(176+arrowWidth),0)
+  context.lineTo((171+arrowWidth),0)
+  context.lineTo(7,0)
+  context.bezierCurveTo(3.15,0,0,3.15,0,7)
+  context.lineTo(0,33)
+  context.bezierCurveTo(0,36.85,3.15,40,7,40)
+  context.lineTo((171+arrowWidth),40)
+  context.lineTo((176+arrowWidth),40)
+  context.bezierCurveTo((177.65+arrowWidth),40,(179.965+arrowWidth),39.055,(181.143+arrowWidth),37.9)
+  context.lineTo((197.269+arrowWidth),22.1)
+  context.bezierCurveTo((198.447+arrowWidth),20.945,(198.447+arrowWidth),19.055,(197.269+arrowWidth),17.9)
+  context.closePath()
+  context.fill()
+
+  return element
+
+waypointCheck.updateColors = (foreground, background) ->
+  $('nav').stop().animate({
+    color: foreground
+  }, 500 )
+  $('.navCounters .navPanel').stop().animate({
+    backgroundColor: background
+  }, 500 )
+  if window.isCanvas
+    waypointCheck.updateCanvas()
+
+waypointCheck.makeCanvas = ->
+  $('.navCounters ul li .arrow-tab').each(-> 
+    liWidth = $(this).width()
+    liIndex = $(this).parent().index()
+    canvasArrow = new CanvasArrow(liIndex, liWidth)
+    $(canvasArrow)
+      .addClass('canvasArrow')
+      .text('unsupported browser')
+      .appendTo($(this))
+  )
+
+waypointCheck.updateCanvas = ->
+  $('.arrow-tab').css({'color':waypointCheck.ogbg})
+  $('.canvasArrow').remove()
+  waypointCheck.makeCanvas()
+
 window.initialiseMaps = () ->
   
   MY_MAPTYPE_ID = 'custom_style';
@@ -74,7 +125,7 @@ window.initialiseMaps = () ->
     navigationControl: false
     mapTypeControl: false
     scaleControl: false
-    draggable: true
+    draggable: if window.isTouch and imageLoader.screenSize is 'mobile' then false else true
     backgroundColor: '#262626'
     zoomControlOptions:
       style: google.maps.ZoomControlStyle.SMALL
@@ -175,37 +226,58 @@ imageLoader.addImages = (articleIndex) ->
 
 #Index Specific
 
-if window.isIndex 
+if window.isIndex
+
+  $('.filterMenu a').bind 'click', (event) ->
+    event.preventDefault()
+
+    #start with all figuring out what was hit. then scroll? then cut/add items accordingly?
+
+    tarFilter = $(this).data('filter')
+
+    if waypointCheck.filteredItems.length isnt 0
+      $.each waypointCheck.filteredItems, (i) ->
+        tarLi = waypointCheck.filteredItems[i].filteredLi
+        tarArt = waypointCheck.filteredItems[i].filteredArticle
+        tarID = waypointCheck.filteredItems[i].lastID
+        if !tarID
+          $(".navCounters ul li").eq(0).before(tarLi)
+          $('article').eq(0).before(tarArt)
+        else
+          $('a[href="/' + tarID + '"]').parent().after(tarLi)
+          $('article[id="' + tarID + '"]').after(tarArt)
+      waypointCheck.filteredItems  = []
+      $.waypoints('enable')
+      $.waypoints('refresh')
+      objectLoader.assignAnimationWaypoints()
+
+    if tarFilter isnt 'all'
+      $('html, body').stop().animate({
+        scrollTop: 0
+      }, 'fast', ->
+        if this.nodeName == "BODY"
+          return
+        historyController.scrollingBack = true
+        $('article').each( ->
+          if !$(this).attr('data-'+ tarFilter)
+            $(this).waypoint('disable')
+            tarFilterIndex = $(this).index()
+            tarLastId = $(this).prev().attr('id')
+            filteredItem =
+              lastID: tarLastId
+              filteredArticle: $(this).detach()
+              filteredLi: $(".navCounters ul li").eq(tarFilterIndex).removeClass('active').detach()
+            waypointCheck.filteredItems.push(filteredItem)
+        )
+        historyController.scrollingBack = false
+        $.waypoints('refresh')
+      )
+
+  if window.isCanvas
+    waypointCheck.makeCanvas()
 
   #Non Touch Handlers
   if !window.isTouch
-
-    # waypointCheck.menuScroll = ->
-    #   $(window).scroll ->
-    #     $('.navCounters ul').removeClass('delay scaleUp scaleDown fadeIn fadeOut').addClass('scaleUp')
-    #     clearTimeout(waypointCheck.hudTimer)
-    #     waypointCheck.hudTimer = setTimeout ->
-    #       $('.navCounters ul').removeClass('delay scaleUp scaleDown').addClass('scaleDown')
-    #     , 250
-
-      # lastScrollTop = 0
-      # $(window).scroll (event) ->
-        # st = $(this).scrollTop()
-        # if st > 100
-        #   if st > lastScrollTop
-        #     waypointCheck.currentDirection = 'down'
-        #   else
-        #     waypointCheck.currentDirection = 'up'
-
-        #   lastScrollTop = st
-
-        #   if waypointCheck.currentDirection != waypointCheck.lastDirection
-        #     if waypointCheck.currentDirection == 'down'
-        #       $('.navCounters ul').removeClass('delay scaleUp scaleDown').addClass('scaleDown')
-        #     else 
-        #       $('.navCounters ul').removeClass('delay scaleUp scaleDown fadeIn fadeOut').addClass('scaleUp')
-
-        #   waypointCheck.lastDirection = waypointCheck.currentDirection
 
     ## Assign Waypoints
     waypointCheck.assignArticleWaypoints = ->
@@ -221,7 +293,7 @@ if window.isIndex
             else
               waypointCheck.updateTitle($('article').eq(articleIndex-1).attr('id'))
 
-    waypointCheck.updateTitle = (articleId, popped) -> 
+    waypointCheck.updateTitle = (articleId, popped, navLiHit) -> 
       # Update page title
       if !historyController.scrollingBack
         currentArticle = $('#'+ articleId)
@@ -233,23 +305,37 @@ if window.isIndex
         waypointCheck.updateColors(@.ogfg, @.ogbg)
         newTitle = 'Iota — ' + waypointCheck.projectTitle
         $('title').html(newTitle)
-        $('.top-hud ul li').removeClass('active scaleIn slideIn')
-        $('.top-hud ul li').eq(currentIndex-1).addClass('scaleIn')
-        $('.top-hud ul li').eq(currentIndex).addClass('active slideIn')
+        $('.navCounters ul li').removeClass('active scaleIn slideIn')
+        if waypointCheck.lastIndex != currentIndex
+          $('.navCounters ul li').eq(waypointCheck.lastIndex).addClass('scaleIn')
+          $('.navCounters ul li').eq(currentIndex).addClass('active slideIn')
+        else
+          $('.navCounters ul li').eq(currentIndex).addClass('active slideIn')
+        if !navLiHit
+          clearTimeout(waypointCheck.showArrow)
+          clearTimeout(waypointCheck.hideArrow)
+          clearTimeout(waypointCheck.resetArrow)
+          targetArrow = $('.navCounters ul li').eq(currentIndex).find('.arrow-tab')
+          $('.arrow-tab').css('visibility','hidden')
+          targetArrow.css('visibility','visible')
+          waypointCheck.showArrow = setTimeout(->
+            targetArrow.removeClass('hideArrow').addClass('showArrow scaleIn')
+            waypointCheck.hideArrow = setTimeout(->
+              targetArrow.removeClass('scaleIn').addClass('scaleOut')
+              waypointCheck.resetArrow = setTimeout(->
+                $('.arrow-tab').removeClass('scaleOut showArrow').addClass('scaleIn hideArrow').css('visibility','visible')
+              ,500)
+            ,2000)
+          ,1000)
         if not popped
           history.pushState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
         else
           history.replaceState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
-
-    #Index specific binds
-    # $('.navCounters ul li').not('.active').hover (->
-    #   $(this).find('.project-title').show()
-    # ), ->
-      
+        waypointCheck.lastIndex = currentIndex
     
     #Index specific startup functions
     waypointCheck.assignArticleWaypoints()
-    #waypointCheck.menuScroll()
+
   #Touch Handlers
   else
 
@@ -264,14 +350,14 @@ if window.isIndex
     waypointCheck.traverseProject = (goingBack) ->
       waypointCheck.projectSlug = $('.main article').eq(@.nextProject).attr('id')
       waypointCheck.projectTitle = $('.main article').eq(@.nextProject).data('title')
-      @.ogfg = $('.main article').eq(@.nextProject).data('foreground')
-      @.ogbg = $('.main article').eq(@.nextProject).data('background')
+      waypointCheck.ogfg = $('.main article').eq(@.nextProject).data('foreground')
+      waypointCheck.ogbg = $('.main article').eq(@.nextProject).data('background')
       newTitle = 'Iota — ' + waypointCheck.projectTitle
       $('.main article').removeClass()
       $('.main article').eq(waypointCheck.currentProject).addClass('fadeOut')
-      $('.top-hud ul li').removeClass('active scaleIn scaleOut')
-      $('.top-hud ul li a.icon-circle').removeClass('scaleInFifty scaleOutFifty')
-      $('.top-hud ul li').eq(waypointCheck.nextProject).find('.icon-circle').addClass('scaleOutFifty')
+      $('.navCounters ul li').removeClass('active scaleIn slideIn')
+      $('.navCounters ul li').eq(waypointCheck.currentProject).addClass('scaleIn')
+      $('.navCounters ul li').eq(waypointCheck.nextProject).addClass('active slideIn')
       $("nav").delay(100).stop().animate({
         color: waypointCheck.ogfg
       }, 500, ->
@@ -282,10 +368,9 @@ if window.isIndex
           if this.nodeName == "BODY"
             return
           $('title').html(newTitle)
-          $('.top-hud ul li').eq(waypointCheck.nextProject).addClass('active')
-          $('.top-hud ul li').eq(waypointCheck.nextProject).find('.icon-circle').addClass('scaleInFifty')
           $('.main article').eq(waypointCheck.currentProject).hide()
           $('.main article').eq(waypointCheck.nextProject).show().addClass('slideInProject')
+          waypointCheck.updateCanvas()
           if !goingBack
             history.pushState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
           $.waypoints('refresh');
@@ -302,50 +387,36 @@ if window.isIndex
         offset: 'bottom-in-view'
         handler: (direction) ->
           if direction is 'down'
-            if !$('.arrow-tab').length
-              targetLi = $('li.active').next()
-              targetLiTitle = targetLi.find('.project-title').text()
-              targetLi.append(waypointCheck.arrowTab)
-              $('.arrow-tab').css('background',waypointCheck.ogfg)
-              $('.arrow-tab span').css('border-left-color',waypointCheck.ogfg)
-              $('.arrow-tab a').text(targetLiTitle).css('color', waypointCheck.ogbg)
-              $('.arrow-tab').addClass('scaleOutIn')
-              removeAni = setTimeout ->
-                waypointCheck.killArrowHelper(true)
-                $('.arrow-tab').addClass('arrow-tab-show')
-                $('.arrow-tab a').bind 'click', (event) ->
-                  event.preventDefault()
-                  waypointCheck.currentProject = $('li.active').index()
-                  waypointCheck.nextProject = $(this).parent().parent().index()
-                  waypointCheck.traverseProject()
-                  if $('.arrow-tab-show').length
-                    $('.arrow-tab').remove()
-              , 500
+            targetLi = $('.navCounters li.active').next()
+            targetLi.find('.arrow-tab').removeClass('hideArrow').addClass('0')
+            clearTimeout(removeAni)
+            removeAni = setTimeout ->
+              waypointCheck.killArrowHelper(true)
+              $('.arrow-tab').unbind('click')
+              $('.arrow-tab').bind 'click', (event) ->
+                event.preventDefault()
+                waypointCheck.currentProject = $('.navCounters li.active').index()
+                waypointCheck.nextProject = $(this).parent().index()
+                waypointCheck.traverseProject()
+                $('.arrow-tab').removeClass('showArrow').addClass('hideArrow')
+            , 500
 
-          # else if direction is 'up'
-          #   waypointCheck.killArrowHelper(false)
+          else if direction is 'up'
+            waypointCheck.killArrowHelper(false)
 
     waypointCheck.killArrowHelper = (timer) ->
       if timer
         killArrow = setTimeout ->
-          if $('.arrow-tab-show').length
-            $('.arrow-tab').removeClass('scaleOutIn arrow-tab-show').addClass('scaleOut')
-            removeInt = setTimeout ->
-              $('.arrow-tab').remove()
-            , 500
+          $('.arrow-tab').removeClass('scaleIn').addClass('scaleOut')
+          removeInt = setTimeout ->
+            $('.arrow-tab').removeClass('showArrow').addClass('scaleIn hideArrow')
+          , 500
         , 3000
       else
-        if $('.arrow-tab-show').length
-          $('.arrow-tab').removeClass('scaleOutIn arrow-tab-show').addClass('scaleOut')
-          removeInt = setTimeout ->
-            $('.arrow-tab').remove()
-          , 500
-      
-    
-    # $('p.mobile.project-title').bind 'click', (event) ->
-    #   $('html, body').stop().animate({
-    #     scrollTop: 0
-    #   }, 500)
+        $('.arrow-tab').removeClass('scaleIn').addClass('scaleOut')
+        removeInt = setTimeout ->
+          $('.arrow-tab').removeClass('showArrow scaleOut').addClass('scaleIn hideArrow')
+        , 500
 
     waypointCheck.touchWaypoints()
 
@@ -361,7 +432,7 @@ if window.isBlood
     @iotaPics = []
     @iotaInstySpots = ['.iotaInsty1','.iotaInsty2','.iotaInsty2','.iotaInsty2','.iotaInsty3','.iotaInsty4','.iotaInsty4','.iotaInsty4','.iotaInsty5']
     @iotaInsty = 'https://api.instagram.com/v1/users/12427052/media/recent/?access_token=12427052.4e63227.ed7622088af644ffb3146a3f15b50063&count=9'
-    
+
   bloodLoader = new BloodLoader()
 
   bloodLoader.instyAnimation = () ->
@@ -451,6 +522,30 @@ if window.isBlood
       error: ->
         console.log 'run backup pics'
 
+  bloodLoader.newsletterSignup = () ->
+    $.ajax
+      type: $('#newsletter-subscribe').attr('method')
+      url: $('#newsletter-subscribe').attr('action')
+      dataType: 'jsonp'
+      data: $('#newsletter-subscribe').serialize()
+      cache: false
+      contentType: "application/json; charset=utf-8"
+      error: (err) ->
+        $('#newsletter-subscribe-email').attr("value","") 
+        $('#newsletter-subscribe-email').attr("placeholder","*Sorry, please try again")
+      success: (data) ->
+        unless data.result is "success"
+          $('#newsletter-subscribe-email').attr("value","") 
+          $('#newsletter-subscribe-email').attr("placeholder",data.msg)
+        else
+          $('#newsletter-subscribe-email').attr("value","") 
+          $('#newsletter-subscribe-email').attr("placeholder","Thanks, stay tuned!")
+
+  bloodLoader.isValidEmailAddress = () ->
+    emailAddress = $('#newsletter-subscribe-email').attr('value')
+    pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i)
+    pattern.test emailAddress
+
   #Load google map
 
   if !window.mapLoaded
@@ -499,9 +594,23 @@ if window.isBlood
       )
   )
 
+  $("form input[type='email']").keypress (event) ->
+      if event.which is 13
+        $("form input[type='submit']").trigger('click')
+        return false
+
+  $("form input[type='submit']").bind('click', (event) ->
+    event.preventDefault()  if event
+    if bloodLoader.isValidEmailAddress() 
+      bloodLoader.newsletterSignup()
+    else
+      $('#newsletter-subscribe-email').attr("value","") 
+      $('#newsletter-subscribe-email').attr("placeholder","*Sorry, give it another go")
+  )
+
   bloodLoader.testimonialTimer = setInterval ->
     $('.icon-right-arrow-bare').trigger('click')
-  ,6000
+  , 6000
 
 #Elegant page object animation
 
@@ -522,6 +631,7 @@ objectLoader.assignAnimationWaypoints = () ->
           triggerOnce: true
           offset: '50%'
           handler: (direction) ->
+            console.log 'hit'
             $(this).addClass('loaded')
             objectLoader.loadInternals($(this).parent().parent().index())
       else
@@ -591,7 +701,7 @@ historyController.bindPopstate = () ->
               waypointCheck.nextProject = 0
             else  
               waypointCheck.nextProject = $.inArray(historyController.prevSlug,historyController.slugArray)
-              waypointCheck.currentProject = $('li.active').index()
+              waypointCheck.currentProject = $('.navCounters li.active').index()
             waypointCheck.traverseProject(true)
           else
             if historyController.prevSlug != ''
@@ -620,25 +730,26 @@ $('a.nav-item').bind 'click', (event) ->
 
   if !$(this).parent().hasClass('active')
     if window.isTouch
-      waypointCheck.currentProject = $('li.active').index()
+      waypointCheck.currentProject = $('.navCounters li.active').index()
       waypointCheck.nextProject = $(this).parent().index()
       waypointCheck.traverseProject()
-      if $('.arrow-tab-show').length
-        $('.arrow-tab').remove()
+      $('.arrow-tab').addClass('hideArrow')
     else
       thisSlug = $(this).attr('href').slice(1)
       targetIndex = $(this).parent().index()
       scrollTarget = $('#' + thisSlug).position().top
+      articleID = $('article').eq(targetIndex).attr('id')
       historyController.scrollingBack = true
+      $('.arrow-tab').removeClass('showArrow').addClass('hideArrow').css('visibility','hidden')
       $('html, body').stop().animate({
         scrollTop: scrollTarget
       }, 'slow', ->
         if this.nodeName == "BODY"
           return
         historyController.scrollingBack = false
-        articleID = $('article').eq(targetIndex).attr('id')
-        waypointCheck.updateTitle(articleID)
         imageLoader.addImages(targetIndex)
+        waypointCheck.updateTitle(articleID, false, true)
+        $('.arrow-tab').css('visibility','visible')
       )
 
 $('.icon-info').bind 'click', (event) ->
@@ -690,12 +801,12 @@ $('.icon-contact').bind 'click', (event) ->
 
 $('.icon-down-arrow-bare').bind 'click', (event) ->
   event.preventDefault()
-  $('.top-hud ul li').toggleClass('mobile-hide').addClass('scaleIn')
+  $('.navCounters ul li').toggleClass('mobile-hide').addClass('scaleIn')
   $('.icon-up-arrow-bare').css('display','block')
 
 $('.icon-up-arrow-bare').bind 'click', (event) ->
   event.preventDefault()
-  $('.top-hud ul li').toggleClass('mobile-hide').addClass('scaleIn')
+  $('.navCounters ul li').toggleClass('mobile-hide').addClass('scaleIn')
 
 if !window.isTouch
   $('.menuItem').not('.active').hover (->

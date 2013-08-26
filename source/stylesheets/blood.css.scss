@@ -4,6 +4,33 @@ body.blood {
   p {
     @include font-regular();
   }
+  p, a {
+    @include font-size(1);
+  }
+  h2, h3 {
+    @include font-size(1.5);
+    a {
+      @include font-bold();
+      @include font-size(1.5);
+    }
+  }
+  input, label {
+    line-height: 1;
+    @include font-size(1.5);
+    @include font-bold();
+    color: #fff;
+  }
+  @include at-breakpoint($bigscreen) {
+    p, a {
+      @include font-size(1.5);
+    }
+    h2, input, label {
+      @include font-size(2.5);
+      a {
+        @include font-size(2.5);
+      }
+    }
+  }
   section {
     color: #fff;
   }
@@ -17,13 +44,18 @@ body.blood {
     position:relative;
     z-index: 1;
   }
-}
-
-.section-title {
-  @include font-size(1);
-  margin-bottom: 4rem;
-  span {
-    @include box-title();
+  .section-title {
+    @include font-size(1);
+    margin-bottom: 4rem;
+    span {
+      @include box-title();
+    }
+  }
+  .team-name {
+    p {
+      @include font-size(1);
+      @include font-bold();
+    }
   }
 }
 
@@ -92,7 +124,6 @@ section.info-team {
       display: inline-block;
       color: inherit;
       margin:0;
-      @include font-size(1);
     }
     a {
       position: relative;
@@ -164,8 +195,11 @@ section.info-team {
       }
     }
   }
-  .team-member {
-    // padding-bottom: 3rem;
+  .smallfry {
+    display: none;
+    @include at-breakpoint($tablet) {
+      display: inline-block;
+    }
   }
 }
 
@@ -188,64 +222,31 @@ section.info-service-details {
     &:nth-child(2n) {
       @include omega;
     }
-    h3 {
-      @include font-size(1.5);
-    }
     p {
-      @include font-size(1);
       margin-bottom: 1rem;
       display: none;
+    }
+    ul {
+      margin-bottom: 4rem;
     }
     ul li {
       list-style: none;
     }
-    @include at-breakpoint($smallscreen) {
-      @include span-columns(3,6);
-      padding-right: 2rem;
+    hr {
+      margin: 0 0 2em 0;
+    }
+    @include at-breakpoint($tablet) {
       p {
         display: block;
-        @include font-size(1.5);
       }
+    }
+    @include at-breakpoint($bigscreen) {
+      @include span-columns(3,6);
+      padding-right: 2rem;
       ul li {
         @include font-size(1);
         margin: 0 0 0.5em 0;
       }
-    }
-    hr {
-      margin: 0 0 2em 0;
-    }
-  }
-}
-
-section.info-service-details2 {
-  background: #303030;
-  h2 {
-    margin-bottom: 4rem;
-  }
-  .info-service-description {
-    @include span-columns(4,6);
-    @include pre(1);
-    margin-bottom: 6rem;
-    h3 {
-      @include font-size(1.5);
-      margin-bottom: 2rem;
-    }
-    p {
-      @include font-size(1.5);
-      margin-bottom: 1rem;
-    }
-    ul {
-      @include span-columns(3,6);
-      &:nth-child(2n) {
-        @include omega();
-      }
-      li {
-        @include font-size(1.5);
-        list-style: none;
-      }
-    }
-    hr {
-      margin: 0 0 2em 0;
     }
   }
 }
@@ -290,7 +291,7 @@ section.info-testimonials {
     .testimonial-holder {
       .testimonial {
         .current-testimonial {
-          visibility: visible
+          visibility: inherit;
         }
       }
     }
@@ -309,50 +310,63 @@ section.info-newsletter {
     color: inherit;
     @include link-style();
   }
+  form {
+    margin-bottom: 4rem;
+    @include at-breakpoint($tablet) {
+      margin-bottom: 6rem;
+    }
+  }
+  #newsletter-subscribe-email {
+    display: block;
+    text-align: center;
+    padding: 0 0 0.1em 0;
+    font-family: inherit;
+    border: none;
+    background: inherit;
+    margin: 1rem auto 0 auto;
+    border-bottom: 1px solid;
+    width: 290px;
+    @include at-breakpoint($tablet) {
+      width: 465px;
+    }
+  }
+  #mc-embedded-subscribe {
+    display: none;
+  }
 }
 
 section.info-contact {
   background:#303030;
   color: #fff;
-  width: 100%;
-  float: left;
-  height: 380px;
-  overflow: hidden;
-  position:relative;
-  .info-map {
-    position:absolute;
-    top: 0;
-    right:0;
-    width: 50%;
-    height: 380px;
-    padding: 0;
-    visibility: visible;
-    z-index: 1;
-    #map-area {
-      height: 110%;
-    }
+  a {
+    color: inherit;
+    @include link-style();
   }
-  .contact-details {
-    @include span-columns(3,6);
-    ul {
-      padding-left: 3rem;
-      list-style: none;
-      text-align: left;
-      li {
-        position:relative;
-        @include font-size(1.5);
-        a {
-          font-size: inherit;
-          color: inherit;
-          @include link-style();
-        }
-          i {
-            position: absolute;
-            left: -3rem; 
-          }
+  li {
+    position: relative;
+    display: inline-block;
+    list-style: none;
+    margin: 2rem 0 0 0;
+    &:first-child {
+      margin: 0;
+    }
+    @include at-breakpoint($tablet) {
+      span {
+        display: none;
       }
     }
+    i {
+      position: absolute;
+      margin: -0.1em 0 0 -1em;
+    }
+  }
+}  
+
+section.info-map {
+  background: #000;
+  overflow: hidden;
+  #map-area {
+    height: 380px;
+    margin-bottom: -25px;
   }
 }
-
-
