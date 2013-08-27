@@ -102,7 +102,6 @@ body.menu {
     left: 0;
     width: 100%;
     z-index: $hud;
-    @include font-size(1);
     @include font-bold();
     span {
       display: inline-block;
@@ -202,31 +201,34 @@ html {
     ul.filterMenu {
       text-align: right;
       position: fixed;
-      display: block;
+      display: none;
+      @include at-breakpoint($tablet) {
+        display: block;
+      }
       top: 1rem;
       right: 1rem;
       z-index: 1;
       li {
         display: none;
-        margin-right: 1.5rem;
-        padding-bottom: 0.4rem;
+        position:relative;
+        right: 0.3rem;
+        padding: 0 0 2rem 0;
         opacity: 0.5;
-        &:last-child {
-          display: inline-block;
-          margin-right: 0;
-          padding-bottom: 0;
-          opacity: 1;
-          a {
-            cursor: default;
-          }
-        }
         &:hover {
           opacity: 1;
         }
+        span {
+          position: relative;
+        }
       }
-      &:hover {
-        li {
-          display: inline-block;
+      li.eyeButton {
+        display: block;
+        position:static;
+        margin: 0;
+        padding: 0 0 1.2rem 0;
+        opacity: 1;
+        a {
+          cursor: default;
         }
       }
       .active {
@@ -234,6 +236,28 @@ html {
         a {
           cursor: default;
         }
+      }
+    }
+  }
+}
+
+html.no-touch {
+  body.index {
+    ul.filterMenu {
+      &:hover {
+        li {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+html.touch {
+  body.index {
+    ul.filterMenu {
+      .scaleInSevenFive {
+        display: none;
       }
     }
   }

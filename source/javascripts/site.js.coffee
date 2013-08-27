@@ -228,50 +228,70 @@ imageLoader.addImages = (articleIndex) ->
 
 if window.isIndex
 
+  waypointCheck.resetFilter = () ->
+    $.each waypointCheck.filteredItems, (i) ->
+      tarLi = waypointCheck.filteredItems[i].filteredLi
+      tarArt = waypointCheck.filteredItems[i].filteredArticle
+      tarID = waypointCheck.filteredItems[i].lastID
+      if !tarID
+        $(".navCounters ul li").eq(0).before(tarLi)
+        $('article').eq(0).before(tarArt)
+      else
+        $('a[href="/' + tarID + '"]').parent().after(tarLi)
+        $('article[id="' + tarID + '"]').after(tarArt)
+    waypointCheck.filteredItems  = []
+    $.waypoints('enable')
+    $.waypoints('refresh')
+    objectLoader.assignAnimationWaypoints()
+
   $('.filterMenu a').bind 'click', (event) ->
     event.preventDefault()
 
-    #start with all figuring out what was hit. then scroll? then cut/add items accordingly?
+    if not $(this).parent().hasClass("eyeButton")
+      if not $(this).parent().hasClass("active")
+        $('.filterMenu li').removeClass('active')
+        $(this).parent().addClass('active')
 
-    tarFilter = $(this).data('filter')
+        tarFilter = $(this).data('filter')
 
-    if waypointCheck.filteredItems.length isnt 0
-      $.each waypointCheck.filteredItems, (i) ->
-        tarLi = waypointCheck.filteredItems[i].filteredLi
-        tarArt = waypointCheck.filteredItems[i].filteredArticle
-        tarID = waypointCheck.filteredItems[i].lastID
-        if !tarID
-          $(".navCounters ul li").eq(0).before(tarLi)
-          $('article').eq(0).before(tarArt)
-        else
-          $('a[href="/' + tarID + '"]').parent().after(tarLi)
-          $('article[id="' + tarID + '"]').after(tarArt)
-      waypointCheck.filteredItems  = []
-      $.waypoints('enable')
-      $.waypoints('refresh')
-      objectLoader.assignAnimationWaypoints()
+        $('.navCounters').css('visibility','hidden')
 
-    if tarFilter isnt 'all'
-      $('html, body').stop().animate({
-        scrollTop: 0
-      }, 'fast', ->
-        if this.nodeName == "BODY"
-          return
-        historyController.scrollingBack = true
-        $('article').each( ->
-          if !$(this).attr('data-'+ tarFilter)
-            $(this).waypoint('disable')
-            tarFilterIndex = $(this).index()
-            tarLastId = $(this).prev().attr('id')
-            filteredItem =
-              lastID: tarLastId
-              filteredArticle: $(this).detach()
-              filteredLi: $(".navCounters ul li").eq(tarFilterIndex).removeClass('active').detach()
-            waypointCheck.filteredItems.push(filteredItem)
-        )
-        historyController.scrollingBack = false
-        $.waypoints('refresh')
-      )
+        if waypointCheck.filteredItems.length isnt 0
+          if tarFilter == 'all'
+            $('html, body').stop().animate({
+              scrollTop: 0
+            }, 750, ->
+              if this.nodeName == "BODY"
+                return
+              waypointCheck.resetFilter()
+              $.waypoints('refresh')
+              $('.navCounters').css('visibility','visible')
+            )
+          else
+            waypointCheck.resetFilter()
+
+        if tarFilter isnt 'all'
+          $('html, body').stop().animate({
+            scrollTop: 0
+          }, 750, ->
+            if this.nodeName == "BODY"
+              return
+            historyController.scrollingBack = true
+            $('article').each( ->
+              if !$(this).attr('data-'+ tarFilter)
+                $(this).waypoint('disable')
+                tarFilterIndex = $(this).index()
+                tarLastId = $(this).prev().attr('id')
+                filteredItem =
+                  lastID: tarLastId
+                  filteredArticle: $(this).detach()
+                  filteredLi: $(".navCounters ul li").eq(tarFilterIndex).removeClass('active').detach()
+                waypointCheck.filteredItems.push(filteredItem)
+            )
+            historyController.scrollingBack = false
+            $.waypoints('refresh')
+            $('.navCounters').css('visibility','visible')
+          )
 
   if window.isCanvas
     waypointCheck.makeCanvas()
@@ -417,6 +437,10 @@ if window.isIndex
         removeInt = setTimeout ->
           $('.arrow-tab').removeClass('showArrow scaleOut').addClass('scaleIn hideArrow')
         , 500
+
+    $('.eyeButton').bind 'click', (event) ->
+      $('li.eyeButton i.scaleInSevenFive').toggle()
+      $('ul.filterMenu li.scaleInMenu').toggle()
 
     waypointCheck.touchWaypoints()
 
@@ -631,7 +655,6 @@ objectLoader.assignAnimationWaypoints = () ->
           triggerOnce: true
           offset: '50%'
           handler: (direction) ->
-            console.log 'hit'
             $(this).addClass('loaded')
             objectLoader.loadInternals($(this).parent().parent().index())
       else

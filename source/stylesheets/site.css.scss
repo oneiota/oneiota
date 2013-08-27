@@ -128,7 +128,7 @@ section, article {
     }
     ul li.tag {
       list-style: none;
-      display: inline;
+      display: inline-block;
       margin-right: 1rem;
       @include font-size(0.75);
       @include at-breakpoint($bigscreen)  {

@@ -4,12 +4,23 @@
   @include animation-delay(1s);
 }
 
-.bigDelay {
-  @include animation-delay(3s);
+.delay-one {
+  @include animation-delay(0.1s);
 }
 
-.scaleOut, .scaleOutIn, .scaleOutFifty, .scaleInFifty, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown, .scaleInSevenFive, .scaleOutSevenFive {
+.delay-two {
+  @include animation-delay(0.2s);
+}
+
+.scaleInMenu, .scaleOut, .scaleOutIn, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown, .scaleInSevenFive, .scaleOutSevenFive {
   @include animation-duration(0.3s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(1);
+  @include animation-fill-mode(forwards);
+}
+
+.scaleInMenu {
+  @include animation-duration(0.2s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(1);
   @include animation-fill-mode(forwards);
@@ -59,6 +70,16 @@
   @include animation-name(scaleOutSevenFive);
 }
 
+.eyeButton {
+   .scaleInSevenFive, .scaleInSevenFive {
+    @include transform-origin(center center);
+   }
+}
+
+span.scaleInSevenFive, span.scaleOutSevenFive {
+  @include transform-origin(right top);
+}
+
 html.touch body .fastAni {
   @include animation-duration(0.2s);
 }
@@ -84,23 +105,17 @@ html.touch .slideOutProject {
   @include animation-name(scaleOut);
 }
 
-.scaleOutFifty {
-  display: block !important;
-  @include animation-name(scaleOutFifty);
-}
-
 .scaleOutIn {
   @include animation-name(scaleOutIn);
 }
 
-.scaleIn {
+.scaleIn, .scaleInMenu {
   @include transform(scale(0));
   @include animation-name(scaleIn);
 }
 
-.scaleInFifty {
-  display: block !important;
-  @include animation-name(scaleInFifty);
+.scaleInMenu {
+  @include transform-origin(right top);
 }
 
 .fadeIn, .slowFadeIn {
@@ -142,6 +157,7 @@ html.touch .slideOutProject {
   @include animation-name(scaleDown);
   @include transform-origin(center top);
 }
+
 // Open Contact
 
 .no-csstransforms3d .contact.opencontact {
@@ -260,7 +276,7 @@ html {
   }
 }
 
-html {
+html.no-touch {
   .filterMenu {
     i.scaleOutSevenFive {
       display: none ;
@@ -306,6 +322,36 @@ html.no-touch {
           + span.arrow-tab {
             display: none !important;
           }
+        }
+      }
+    }
+  }
+  ul.filterMenu {
+    li {
+      a {
+        span.scaleOutSevenFive {
+          display: none;
+        }
+        span.scaleInSevenFive {
+          display: block;
+        }
+      }
+      a:hover {
+        span.scaleOutSevenFive {
+          display: block;
+        }
+        span.scaleInSevenFive {
+          display: none;
+        }
+      }
+    }
+    li.active {
+      a:hover {
+        span.scaleOutSevenFive {
+          display: none;
+        }
+        span.scaleInSevenFive {
+          display: block;
         }
       }
     }
@@ -450,15 +496,6 @@ html.no-touch {
   }
 }
 
-@include keyframes(scaleOutFifty) {
-  0% {
-    @include transform(scale(1));
-  }
-  100% {
-    @include transform(scale(0.5));
-  }
-}
-
 @include keyframes(scaleOutSevenFive) {
   0% {
     @include transform(scale(1));
@@ -509,17 +546,6 @@ html.no-touch {
   }
 }
 
-@include keyframes(scaleInFifty) {
-  0% {
-    @include transform(scale(0.5));
-  }
-  30% {
-    @include transform(scale(1.3));
-  }
-  100% {
-    @include transform(scale(1));
-  }
-}
 
 @include keyframes(slideUp) {
   from {

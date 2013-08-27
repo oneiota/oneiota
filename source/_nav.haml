@@ -1,15 +1,21 @@
 .hud.top-hud.info-hud
   %ul.filterMenu
-    %li.scaleIn
-      %a{:href => '#',:data => {:filter => 'digital'}} Website &amp; Apps
-    %li.scaleIn
-      %a{:href => '#',:data => {:filter => 'branding'}} Branding &amp; Design
-    %li.active.scaleIn
-      %a{:href => '#',:data => {:filter => 'all'}} All
-    %li
+    %li.eyeButton
       %a{:href => '#', :title => 'Get Picky'}
         %i.icon.eye3.scaleOutSevenFive
         %i.icon.eye3.scaleInSevenFive
+    %li.active.scaleInMenu
+      %a{:href => '#',:data => {:filter => 'all'}}
+        %span.scaleOutSevenFive All
+        %span.scaleInSevenFive All
+    %li.scaleInMenu.delay-one
+      %a{:href => '#',:data => {:filter => 'branding'}}
+        %span.scaleOutSevenFive Branding &amp; Design
+        %span.scaleInSevenFive Branding &amp; Design
+    %li.scaleInMenu.delay-two
+      %a{:href => '#',:data => {:filter => 'digital'}}
+        %span.scaleOutSevenFive Websites &amp; Apps
+        %span.scaleInSevenFive Websites &amp; Apps
 
   .navCounters
     .navPanel
