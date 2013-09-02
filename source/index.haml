@@ -4,7 +4,7 @@
 - content_for(:background, data.projects[0].colors.background)
 
 - data.projects.each_with_index do |project, index|
-  %article{:id => project.slug,:class => "#{index == 0 ? 'first-article' : ''}", :style => "color:#{project.colors.foreground}; background:#{project.colors.background};", :data => {:title => project.project, :foreground => project.colors.foreground, :background => project.colors.background, :digital => project.digital, :branding => project.branding}}
+  %article{:id => project.slug, :style => "#{index == 0 ? 'display:block;' : ''} color:#{project.colors.foreground}; background:#{project.colors.background};", :data => {:title => project.project, :foreground => project.colors.foreground, :background => project.colors.background, :digital => project.digital, :branding => project.branding}}
     %div.project
       - project.images.each_with_index do |img, index2|
         - if index2 == 1

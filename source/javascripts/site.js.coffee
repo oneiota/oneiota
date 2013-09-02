@@ -230,134 +230,77 @@ imageLoader.addImages = (articleIndex) ->
 
 if window.isIndex
 
-  waypointCheck.resetFilter = () ->
-    $(".navCounters ul li").each( ->
-      $(this).removeClass('scaleHide').addClass('scaleIn')
-    )
-    # $.each waypointCheck.filteredItems, (i) ->
-    #   tarLi = waypointCheck.filteredItems[i].filteredLi
-    #   tarArt = waypointCheck.filteredItems[i].filteredArticle
-    #   tarID = waypointCheck.filteredItems[i].lastID
-      
-    #   if !tarID
-    #     $(".navCounters ul li").eq(0).before(tarLi)
-    #     $('article').eq(0).before(tarArt)
-      
-    #   else
-    #     $('a[href="/' + tarID + '"]').parent().after(tarLi)
-    #     $('article[id="' + tarID + '"]').after(tarArt)
-
-    # waypointCheck.filteredItems  = []
-    # $.waypoints('enable')
-    # $.waypoints('refresh')
-    # objectLoader.assignAnimationWaypoints()
-
-  waypointCheck.cutnextitem
-
-  $('.filterMenu a').bind 'click', (event) ->
-    event.preventDefault()
-
-    if not $(this).parent().hasClass("eyeButton")
-      if not $(this).parent().hasClass("active")
-        $('.filterMenu li').removeClass('active')
-        $(this).parent().addClass('active')
-
-        tarFilter = $(this).data('filter')
-        currentProject = $('.navCounters li.active').index()
-        nextProject = $('article[data-' + tarFilter + '="true"]').first().index()
-
-        # CHANGE FOR TOUCH DEBUG
-        if !window.isTouch
-          if tarFilter == 'all'
-            waypointCheck.resetFilter()
-          else
-            #Hide li
-            $('article').each( ->
-              tarRemoveIndex = $(this).index()
-              tarRemoveLi = $(".navCounters ul li").eq(tarRemoveIndex)
-              if !$(this).attr('data-'+ tarFilter)
-                tarRemoveLi.removeClass('active scaleIn slideIn').addClass('scaleHide')
-              else
-                tarRemoveLi.removeClass('active slideIn scaleHide').addClass('scaleIn')
-            )
-
-            if !$('article').eq(currentProject).attr('data-'+ tarFilter)
-              waypointCheck.currentProject = currentProject
-              waypointCheck.nextProject = nextProject
-              waypointCheck.traverseProject(false,true)
-              $('.arrow-tab').addClass('hideArrow')
-
-        #FOR MOBILE -> CHECK IF BEING VIEWED -> IF SO DON'T DO ANYTHINH
-        #IF NOT TRAVERSE PROJECT
-          # waypointCheck.currentProject = $('.navCounters li.active').index()
-          # waypointCheck.nextProject = $(this).parent().index()
-          # waypointCheck.traverseProject()
-          # $('.arrow-tab').addClass('hideArrow')
-
-        # CHANGE FOR TOUCH DEBUG
-        # if tarFilter == 'all'
-        #   #NO NEED TO TRAVERSE HERE
-        #   # $('html, body').stop().animate({
-        #   #     scrollTop: 0
-        #   #   }, 750, ->
-        #   #     if this.nodeName == "BODY"
-        #   #       return
-        #   waypointCheck.resetFilter()
-        #   $.waypoints('refresh')
-        #     # )
-        # else
-        #   # ON MOBILE
-        #   # Traverse then reset
-          
-        #   #What is current project -> is it in the filtered list?
-        #   currentArticleIndex = $('.navCounters li.active').index()
-
-        #   if waypointCheck.filteredItems.length isnt 0
-        #     waypointCheck.resetFilter()
-        #   # $('html, body').stop().animate({
-        #   #   scrollTop: 0
-        #   # }, 750, ->
-        #   #   if this.nodeName == "BODY"
-        #   #     return
-        #   #   historyController.scrollingBack = true
-        #   filteredCounter = 0
-        #   notInFilterLength = $('article:not([data-' + tarFilter + '="true"])').length
-
-        #   $('article').each( ->
-        #     if !$(this).attr('data-'+ tarFilter)
-        #       tarRemoveIndex = $(this).index()
-        #       tarRemoveArticle = $('article').eq(tarRemoveIndex)
-        #       tarRemoveLi = $(".navCounters ul li").eq(tarRemoveIndex)
-        #       tarId = $(this).attr('id')
-        #       tarRemoveArticle.waypoint('disable')
-        #       tarRemoveLi.removeClass('active').addClass('scaleOut')
-        #       setTimeout ->
-        #         filteredCounter++
-        #         tarRemoveLi.removeClass('scaleOut')
-        #         filteredItem =
-        #         lastID: tarId
-        #         filteredArticle: tarRemoveArticle.detach()
-        #         filteredLi: tarRemoveLi.detach()
-        #         waypointCheck.filteredItems.push(filteredItem)
-        #         if filteredCounter == notInFilterLength
-        #           waypointCheck.currentProject = 0
-        #           waypointCheck.nextProject = 0
-        #           console.log waypointCheck.nextProject
-        #           waypointCheck.traverseProject()
-        #           $('.arrow-tab').addClass('hideArrow')
-        #       , 300
-        #   )
-
-        #     # historyController.scrollingBack = false
-        #   $.waypoints('refresh')
-        #   # )
-
   if window.isCanvas
     waypointCheck.makeCanvas()
 
   #Non Touch Handlers
   # CHANGE FOR TOUCH DEBUG
   if window.isTouch
+
+    waypointCheck.resetFilter = () ->
+      $.each waypointCheck.filteredItems, (i) ->
+        tarLi = waypointCheck.filteredItems[i].filteredLi
+        tarArt = waypointCheck.filteredItems[i].filteredArticle
+        tarID = waypointCheck.filteredItems[i].lastID
+        if !tarID
+          $(".navCounters ul li").eq(0).before(tarLi)
+          $('article').eq(0).before(tarArt)
+        else
+          $('a[href="/' + tarID + '"]').parent().after(tarLi)
+          $('article[id="' + tarID + '"]').after(tarArt)
+      waypointCheck.filteredItems  = []
+      $.waypoints('enable')
+      $.waypoints('refresh')
+      objectLoader.assignAnimationWaypoints()
+
+    $('.filterMenu a').bind 'click', (event) ->
+      event.preventDefault()
+
+      if not $(this).parent().hasClass("eyeButton")
+        if not $(this).parent().hasClass("active")
+          $('.filterMenu li').removeClass('active')
+          $(this).parent().addClass('active')
+
+          tarFilter = $(this).data('filter')
+
+          $('.navCounters').css('visibility','hidden')
+
+          if waypointCheck.filteredItems.length isnt 0
+            if tarFilter == 'all'
+              $('html, body').stop().animate({
+                scrollTop: 0
+              }, 750, ->
+                if this.nodeName == "BODY"
+                  return
+                waypointCheck.resetFilter()
+                $.waypoints('refresh')
+                $('.navCounters').css('visibility','visible')
+              )
+            else
+              waypointCheck.resetFilter()
+
+          if tarFilter isnt 'all'
+            $('html, body').stop().animate({
+              scrollTop: 0
+            }, 750, ->
+              if this.nodeName == "BODY"
+                return
+              historyController.scrollingBack = true
+              $('article').each( ->
+                if !$(this).attr('data-'+ tarFilter)
+                  $(this).waypoint('disable')
+                  tarFilterIndex = $(this).index()
+                  tarLastId = $(this).prev().attr('id')
+                  filteredItem =
+                    lastID: tarLastId
+                    filteredArticle: $(this).detach()
+                    filteredLi: $(".navCounters ul li").eq(tarFilterIndex).removeClass('active').detach()
+                  waypointCheck.filteredItems.push(filteredItem)
+              )
+              historyController.scrollingBack = false
+              $.waypoints('refresh')
+              $('.navCounters').css('visibility','visible')
+            )
 
     ## Assign Waypoints
     waypointCheck.assignArticleWaypoints = ->
@@ -427,6 +370,42 @@ if window.isIndex
       setTimeout ->
         window.scrollTo(0, 1)
       , 0
+
+    waypointCheck.resetFilter = () ->
+      $(".navCounters ul li").each( ->
+        $(this).removeClass('scaleHide').addClass('scaleIn')
+      )
+
+    $('.filterMenu a').bind 'click', (event) ->
+      event.preventDefault()
+
+      if not $(this).parent().hasClass("eyeButton")
+        if not $(this).parent().hasClass("active")
+          $('.filterMenu li').removeClass('active')
+          $(this).parent().addClass('active')
+
+          tarFilter = $(this).data('filter')
+          currentProject = $('.navCounters li.active').index()
+          nextProject = $('article[data-' + tarFilter + '="true"]').first().index()
+
+          if tarFilter == 'all'
+            waypointCheck.resetFilter()
+          else
+            #Hide li
+            $('article').each( ->
+              tarRemoveIndex = $(this).index()
+              tarRemoveLi = $(".navCounters ul li").eq(tarRemoveIndex)
+              if !$(this).attr('data-'+ tarFilter)
+                tarRemoveLi.removeClass('active scaleIn slideIn').addClass('scaleHide')
+              else
+                tarRemoveLi.removeClass('active slideIn scaleHide').addClass('scaleIn')
+            )
+
+            if !$('article').eq(currentProject).attr('data-'+ tarFilter)
+              waypointCheck.currentProject = currentProject
+              waypointCheck.nextProject = nextProject
+              waypointCheck.traverseProject(false,true)
+              $('.arrow-tab').addClass('hideArrow')
 
     waypointCheck.traverseProject = (goingBack, filterHit) ->
       waypointCheck.projectSlug = $('.main article').eq(@.nextProject).attr('id')
@@ -787,30 +766,34 @@ historyController.bindPopstate = () ->
         if historyController.inMenu == true
           $('.icon-close').trigger('click')
         else if window.isIndex
-          if window.isTouch #touch traversing
+          #CHANGE FOR TOUCH DEBUG
+          if !window.isTouch
             if historyController.prevSlug == -1 || historyController.prevSlug == ''
               waypointCheck.nextProject = 0
             else  
               waypointCheck.nextProject = $.inArray(historyController.prevSlug,historyController.slugArray)
-              waypointCheck.currentProject = $('.navCounters li.active').index()
+            waypointCheck.currentProject = $('.navCounters li.active').index()
             waypointCheck.traverseProject(true)
           else
-            if historyController.prevSlug != ''
-              scrollTarget = $('#' + historyController.prevSlug).position().top
-            else
-              scrollTarget = 0
-            historyController.scrollingBack = true
-            $('html, body').stop().animate({
-              scrollTop: scrollTarget
-            }, 'slow', ->
-              if this.nodeName == "BODY"
-                return
-              historyController.scrollingBack = false
-              if historyController.prevSlug == -1 || historyController.prevSlug == ''
-                waypointCheck.updateTitle($('article').eq(0).attr('id'), true)
+            if $('#' + historyController.prevSlug).length || historyController.prevSlug == ''
+              if historyController.prevSlug != ''
+                scrollTarget = $('#' + historyController.prevSlug).position().top
               else
-                waypointCheck.updateTitle(historyController.prevSlug, true)
-            )
+                scrollTarget = 0
+              historyController.scrollingBack = true
+              $('html, body').stop().animate({
+                scrollTop: scrollTarget
+              }, 'slow', ->
+                if this.nodeName == "BODY"
+                  return
+                historyController.scrollingBack = false
+                if historyController.prevSlug == -1 || historyController.prevSlug == ''
+                  waypointCheck.updateTitle($('article').eq(0).attr('id'), true)
+                else
+                  waypointCheck.updateTitle(historyController.prevSlug, true)
+              )
+            else
+              window.location.href = '/' + historyController.prevSlug
         else
           window.location.href = '/'
 
