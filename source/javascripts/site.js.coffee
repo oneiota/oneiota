@@ -727,22 +727,26 @@ historyController.bindPopstate = () ->
               waypointCheck.currentProject = $('.navCounters li.active').index()
             waypointCheck.traverseProject(true)
           else
-            if historyController.prevSlug != ''
-              scrollTarget = $('#' + historyController.prevSlug).position().top
-            else
-              scrollTarget = 0
-            historyController.scrollingBack = true
-            $('html, body').stop().animate({
-              scrollTop: scrollTarget
-            }, 'slow', ->
-              if this.nodeName == "BODY"
-                return
-              historyController.scrollingBack = false
-              if historyController.prevSlug == -1 || historyController.prevSlug == ''
-                waypointCheck.updateTitle($('article').eq(0).attr('id'), true)
+            if $('#' + historyController.prevSlug).length || historyController.prevSlug == ''
+
+              if historyController.prevSlug != ''
+                scrollTarget = $('#' + historyController.prevSlug).position().top
               else
-                waypointCheck.updateTitle(historyController.prevSlug, true)
-            )
+                scrollTarget = 0
+              historyController.scrollingBack = true
+              $('html, body').stop().animate({
+                scrollTop: scrollTarget
+              }, 'slow', ->
+                if this.nodeName == "BODY"
+                  return
+                historyController.scrollingBack = false
+                if historyController.prevSlug == -1 || historyController.prevSlug == ''
+                  waypointCheck.updateTitle($('article').eq(0).attr('id'), true)
+                else
+                  waypointCheck.updateTitle(historyController.prevSlug, true)
+              )
+            else
+              window.location.href = '/' + historyController.prevSlug
         else
           window.location.href = '/'
 
