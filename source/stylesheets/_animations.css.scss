@@ -12,6 +12,10 @@
   @include animation-delay(0.2s);
 }
 
+.scaleHide {
+  display: none !important;
+}
+
 .scaleInMenu, .scaleOut, .scaleOutIn, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown, .scaleInSevenFive, .scaleOutSevenFive {
   @include animation-duration(0.3s);
   @include animation-timing-function(ease);
@@ -276,7 +280,8 @@ html {
   }
 }
 
-html.no-touch {
+// CHANGE FOR TOUCH DEBUG
+html.touch {
   .filterMenu {
     i.scaleOutSevenFive {
       display: none ;
@@ -295,7 +300,20 @@ html.no-touch {
   }
 }
 
+// CHANGE FOR TOUCH DEBUG
 html.no-touch {
+  .filterMenu {
+    i.scaleOutSevenFive {
+      display: none ;
+    }
+    i.scaleInSevenFive {
+      display: inline-block;
+    }
+  }
+}
+
+// CHANGE FOR TOUCH DEBUG
+html.touch {
   .navCounters {
     ul {
       li {
@@ -342,6 +360,32 @@ html.no-touch {
         }
         span.scaleInSevenFive {
           display: none;
+        }
+      }
+    }
+    li.active {
+      a:hover {
+        span.scaleOutSevenFive {
+          display: none;
+        }
+        span.scaleInSevenFive {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// CHANGE FOR TOUCH DEBUG
+html.no-touch {
+  ul.filterMenu {
+    li {
+      a {
+        span.scaleOutSevenFive {
+          display: none;
+        }
+        span.scaleInSevenFive {
+          display: block;
         }
       }
     }

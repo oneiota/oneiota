@@ -267,18 +267,33 @@ $bloodRed: #FF524A;
   }
 }
 
-.eye1:before {
-  content: "\e018";
-  @include font-size(0.8);
-}
-
-.eye2:before {
-  content: "\e019";
-  @include font-size(0.8);
-}
-
-.eye3:before {
+.icon-eye:before {
   content: "\e01a";
   @include font-size(1.5);
+}
+
+.icon-behance-full:before {
+  content: "\e018";
+}
+.icon-dribbble-full:before {
+  content: "\e019";
+}
+.icon-facebook-full:before {
+  content: "\e01b";
+}
+.icon-github-full:before {
+  content: "\e01c";
+}
+.icon-instagram-full:before {
+  content: "\e01d";
+}
+.icon-pintrest-full:before {
+  content: "\e01e";
+}
+.icon-theloop-full:before {
+  content: "\e01f";
+}
+.icon-twitter-full:before {
+  content: "\e020";
 }
 

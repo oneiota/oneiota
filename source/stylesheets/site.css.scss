@@ -22,12 +22,13 @@ body {
   height: 100%;
 }
 
-html.touch {
+// CHANGE FOR TOUCH DEBUG
+html.no-touch {
   body.index {
     article {
       display: none;
     }
-    article:first-child {
+    article.first-article {
       display: block;
     }
   }
@@ -163,19 +164,28 @@ article {
   }
 }
 
-
 html body {
   ul.social-links {
     margin: 0;
     padding: 0;
     li {
-      display: inline;
+      display: inline-block;
+      position:relative;
     }
     a {
-      @include ico-font();
       color: inherit;
       border-bottom: none;
+      i.icon-inverted {
+        display: none;
+      }
+    }
+    a:hover {
+      i {
+        display: none;
+      }
+      i.icon-inverted {
+        display: block !important;
+      }
     }
   }
 }
-

@@ -18,11 +18,17 @@
             %a{:href => "http://#{project.link}",:title => "#{project.project}",:target => "_blank",:class => "webLink"}= project.link
           %ul.social-links
             %li
-              %a.icon-twitter.icon{:href=>'twitter.com/ONEIOTA_', :title => '@oneiota_'}
+              %a{:href=>'twitter.com/ONEIOTA_', :title => '@oneiota_'}
+                %i.icon-twitter.icon
+                %i.icon-twitter-full.icon-inverted.icon
             %li
-              %a.icon-facebook.icon{:href=>'facebook.com/pages/ONE-IOTA-STUDIO/103749066322532', :title => '@oneiotastudio'}
+              %a{:href=>'facebook.com/pages/ONE-IOTA-STUDIO/103749066322532', :title => '@oneiotastudio'}
+                %i.icon-facebook.icon
+                %i.icon-facebook-full.icon-inverted.icon
             %li
-              %a.icon-pintrest.icon{:href=>'pinterest.com/oneiota/', :title => '@oneiota'}
+              %a{:href=>'pinterest.com/oneiota/', :title => '@oneiota'}
+                %i.icon-pintrest.icon
+                %i.icon-pintrest-full.icon-inverted.icon
       - sizeArr = FastImage.size("http://localhost:4567/images/#{project.slug}/#{img.mobile}")
       - spanRatio = (sizeArr[1].to_f/sizeArr[0].to_f)*100
       %div{:class => "placeholder #{img.grid}"}

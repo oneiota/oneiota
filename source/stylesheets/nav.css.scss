@@ -241,7 +241,8 @@ html {
   }
 }
 
-html.no-touch {
+// CHANGE FOR TOUCH DEBUG
+html.touch {
   body.index {
     ul.filterMenu {
       &:hover {
@@ -253,12 +254,11 @@ html.no-touch {
   }
 }
 
-html.touch {
+// CHANGE FOR TOUCH DEBUG
+html.no-touch {
   body.index {
     ul.filterMenu {
-      .scaleInSevenFive {
-        display: none;
-      }
+      
     }
   }
 }
