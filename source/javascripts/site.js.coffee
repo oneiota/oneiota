@@ -371,9 +371,13 @@ if window.isIndex
         window.scrollTo(0, 1)
       , 0
 
-    waypointCheck.resetFilter = () ->
+    waypointCheck.resetFilter = (isAll) ->
+      if isAll
+        $('.filterMenu li').removeClass('active')
+        $('.filterMenu li').eq(1).addClass('active')
+
       $(".navCounters ul li").each( ->
-        $(this).removeClass('scaleHide').addClass('scaleIn')
+        $(this).removeClass('scaleHide slideIn').addClass('scaleIn')
       )
 
     $('.filterMenu a').bind 'click', (event) ->
@@ -392,16 +396,22 @@ if window.isIndex
             waypointCheck.resetFilter()
           else
             #Hide li
-            $('article').each( ->
+            isCurrentActive = $('article').eq(currentProject).attr('data-'+ tarFilter)
+
+            $('article').each( () ->
               tarRemoveIndex = $(this).index()
               tarRemoveLi = $(".navCounters ul li").eq(tarRemoveIndex)
               if !$(this).attr('data-'+ tarFilter)
                 tarRemoveLi.removeClass('active scaleIn slideIn').addClass('scaleHide')
               else
-                tarRemoveLi.removeClass('active slideIn scaleHide').addClass('scaleIn')
+                if isCurrentActive and tarRemoveIndex is currentProject
+                  tarRemoveLi.removeClass('slideIn scaleHide').addClass('scaleIn')
+                else
+                  tarRemoveLi.removeClass('active slideIn scaleHide').addClass('scaleIn')
             )
 
-            if !$('article').eq(currentProject).attr('data-'+ tarFilter)
+            #Is the current article being viewed in the filter? -> if not traverse
+            if !isCurrentActive
               waypointCheck.currentProject = currentProject
               waypointCheck.nextProject = nextProject
               waypointCheck.traverseProject(false,true)
@@ -772,6 +782,7 @@ historyController.bindPopstate = () ->
               waypointCheck.nextProject = 0
             else  
               waypointCheck.nextProject = $.inArray(historyController.prevSlug,historyController.slugArray)
+            waypointCheck.resetFilter(true)
             waypointCheck.currentProject = $('.navCounters li.active').index()
             waypointCheck.traverseProject(true)
           else
