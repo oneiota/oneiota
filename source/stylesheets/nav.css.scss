@@ -241,8 +241,8 @@ html {
   }
 }
 
-// CHANGE FOR TOUCH DEBUG
-html.touch {
+// CHANGE FOR TOUCH DEBUG - DONE
+html.no-touch {
   body.index {
     ul.filterMenu {
       &:hover {
@@ -254,8 +254,8 @@ html.touch {
   }
 }
 
-// CHANGE FOR TOUCH DEBUG
-html.no-touch {
+// CHANGE FOR TOUCH DEBUG - DONE
+html.touch {
   body.index {
     ul.filterMenu {
       

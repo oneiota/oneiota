@@ -22,8 +22,8 @@ body {
   height: 100%;
 }
 
-// CHANGE FOR TOUCH DEBUG
-html.no-touch {
+// CHANGE FOR TOUCH DEBUG - DONE
+html.touch {
   body.index {
     article {
       display: none;
@@ -122,16 +122,6 @@ section, article {
       line-height: 1em;
       @include at-breakpoint($bigscreen)  {
         @include font-size(3.5);
-      }
-    }
-    ul li.tag {
-      list-style: none;
-      display: inline-block;
-      margin-right: 1rem;
-      @include font-size(0.75);
-      @include at-breakpoint($bigscreen)  {
-        @include font-size(1);
-        margin-right: 2rem;
       }
     }
   }

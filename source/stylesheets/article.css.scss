@@ -14,3 +14,61 @@
     left: 0;
   }
 }
+.project-details {
+  ul li.tag {
+    list-style: none;
+    display: none;
+    margin-right: 1rem;
+    @include font-size(0.75);
+    @include at-breakpoint($tablet) {
+      display: inline-block;
+    }
+    @include at-breakpoint($bigscreen)  {
+      @include font-size(1);
+      margin-right: 2rem;
+    }
+  }
+  .description {
+    &:after {
+      display: block;
+      content: "↓";
+      line-height: 2.5rem;
+      @include font-size(1);
+    }
+    span {
+      font-size:0; display: inline; line-height:0;
+    }
+    span:before {
+      display:inline;
+      content: "..";
+      @include font-size(1);
+      line-height:1rem;
+    }
+    @include at-breakpoint($tablet) {
+      &:after {
+        content: none;
+      }
+      span {
+        display: inline;
+        font-size: inherit;
+        line-height: inherit;
+        &:before {
+          content: none;
+        }
+      }
+    }
+  }
+  .description.expand {
+    &:after {
+      display: none;
+      content: none;
+    }
+    span {
+      font-size: inherit; 
+      line-height:inherit;
+      &:before {
+        content: none;
+      }
+    }
+  }
+}

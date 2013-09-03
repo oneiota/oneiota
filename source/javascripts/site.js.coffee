@@ -234,8 +234,8 @@ if window.isIndex
     waypointCheck.makeCanvas()
 
   #Non Touch Handlers
-  # CHANGE FOR TOUCH DEBUG
-  if window.isTouch
+  # CHANGE FOR TOUCH DEBUG - DONE
+  if !window.isTouch
 
     waypointCheck.resetFilter = () ->
       $.each waypointCheck.filteredItems, (i) ->
@@ -776,8 +776,8 @@ historyController.bindPopstate = () ->
         if historyController.inMenu == true
           $('.icon-close').trigger('click')
         else if window.isIndex
-          #CHANGE FOR TOUCH DEBUG
-          if !window.isTouch
+          #CHANGE FOR TOUCH DEBUG - DONE
+          if window.isTouch
             if historyController.prevSlug == -1 || historyController.prevSlug == ''
               waypointCheck.nextProject = 0
             else  
@@ -814,8 +814,8 @@ $('a.nav-item').bind 'click', (event) ->
   event.preventDefault()
 
   if !$(this).parent().hasClass('active')
-    # CHANGE FOR TOUCH DEBUG
-    if !window.isTouch
+    # CHANGE FOR TOUCH DEBUG - DONE
+    if window.isTouch
       waypointCheck.currentProject = $('.navCounters li.active').index()
       waypointCheck.nextProject = $(this).parent().index()
       waypointCheck.traverseProject()
@@ -837,6 +837,9 @@ $('a.nav-item').bind 'click', (event) ->
         waypointCheck.updateTitle(articleID, false, true)
         $('.arrow-tab').css('visibility','visible')
       )
+
+$('.description').one 'click', (event) ->
+  $(this).toggleClass('expand')
 
 $('.icon-info').bind 'click', (event) ->
   event.preventDefault()

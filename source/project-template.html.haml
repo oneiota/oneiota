@@ -13,7 +13,7 @@
           %ul
             - project.tags.each do |tag|
               %li.tag= tag
-          %p= project.description
+          %p.description= project.description
           - if project.link
             %a{:href => "http://#{project.link}",:title => "#{project.project}",:target => "_blank",:class => "webLink"}= project.link
           %ul.social-links
