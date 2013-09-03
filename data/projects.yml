@@ -1,4 +1,57 @@
 ---
+- project: Esplanade Brewers
+  slug: espl
+  description: >
+    The Illustration room represents a range of respected talent from across the globe.<span>They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.</span>
+  link: esplbrewers.co
+  images:
+    - 
+      mobile: mobile/ESPL_heroshot.jpg
+      desktop: ESPL_heroshot.jpg
+      alt: >
+        ESPL. Brewers Cooper Press Foiled Card
+    - 
+      mobile: mobile/ESPL_copperstand.jpg
+      desktop: ESPL_copperstand.jpg
+      alt: >
+        ESPL. Brewers copper foil sticked and business card
+    - 
+      mobile: mobile/ESPL_menuboard.png
+      desktop: ESPL_menuboard.png
+      alt: >
+        ESPL. Brewers custom fabricated display board
+    -
+      mobile: mobile/ESPL_iphone.png
+      desktop: ESPL_iphone.png
+      alt: >
+        ESPL. Brewers simple responsive website design
+    -
+      mobile: mobile/ESPL_cup.png
+      desktop: ESPL_cup.png
+      alt: >
+        ESPL. Brewers printed coffee cup
+    -
+      mobile: mobile/ESPL_interiorphotos.png
+      desktop: ESPL_interiorphotos.png
+      alt: >
+        ESPL. Brewers sign box and team
+    -
+      mobile: mobile/ESPL_patternfloor.png
+      desktop: ESPL_patternfloor.png
+      alt: >
+        ESPL. Brewers interior
+    -
+      mobile: mobile/ESPL_web.png
+      desktop: ESPL_web.png
+      alt: >
+        ESPL. Brewers responsive web design
+  colors:
+    foreground: "#f49a74"
+    background: "#716f70"
+  tags: [Brand Development, Brand Collateral]
+  digital:
+  branding: "true"
+
 - project: The Illustration Room
   slug: theillustrationroom
   description: >
@@ -34,7 +87,7 @@
     foreground: "#000077"
     background: "#a3dcd3"
   tags: [Website Development, Brand Development, Brand Collateral]
-  digital:
+  digital: "true"
   branding: "true"
 
 - project: Mirrool Creek Lamb

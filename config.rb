@@ -4,11 +4,16 @@ set :markdown_engine, :redcarpet
 #Livereload
 activate :livereload
 
-#prettyURL's
-activate :directory_indexes
-
 #bourbon
 activate :bourbon
+
+activate :blog do |blog|
+  blog.prefix = "feed"
+  Time.zone = "Brisbane"
+end
+
+#prettyURL's
+activate :directory_indexes
 
 ### 
 # Compass
