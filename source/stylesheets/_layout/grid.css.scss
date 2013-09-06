@@ -11,7 +11,7 @@ $tablet : 6;
 $bigscreen : 10; //9.6 columns w/ gutters fit in 768px - ipad 1 horizontal - this is the choosen break width for 'mobile' viewing
 
 article {
-  div.project {
+  div.project, div.post {
       @include container(6);
       //@include susy-grid-background;  
       @include at-breakpoint(8)  {

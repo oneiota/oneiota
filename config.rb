@@ -9,11 +9,24 @@ activate :bourbon
 
 activate :blog do |blog|
   blog.prefix = "feed"
+  blog.permalink = "blog/:year/:title.html"
+  blog.paginate = true
   Time.zone = "Brisbane"
 end
 
 #prettyURL's
 activate :directory_indexes
+
+# require 'imageresizer'
+# activate :image_resizer do |i|
+#   i.input_folders = ['images/test_resize']
+#   i.size = '100x100'
+#   i.resize_method = :resize_to_fit
+#   i.name_prefix = 'marekmaurizio.com_'
+#   i.name_extension = '_thumb'
+#   i.retina = false
+#   i.styles = [:blur, :sketch, :sepia, :desaturate]
+# end
 
 ### 
 # Compass
@@ -60,6 +73,7 @@ end
 ###
 page "/index.html", :layout => "layout"
 page "/blood.html", :layout => "blood-layout"
+page "/feed/index.html", :layout => "blog-layout"
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 

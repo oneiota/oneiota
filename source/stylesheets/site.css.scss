@@ -5,6 +5,7 @@
 *= require "article"
 *= require "info"
 *= require "blood"
+*= require "feed"
 
 //Grid
 *= require "_layout/grid"
@@ -32,7 +33,7 @@ html.touch {
 }
 
 a {
-  color: $link;
+  color: inherit;
   text-decoration: none;
 }
 

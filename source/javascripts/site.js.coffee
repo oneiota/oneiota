@@ -1,6 +1,9 @@
+#= require feed
+
 window.isTouch = if ($('html').hasClass('touch')) then true else false
 window.isCanvas = if ($('html').hasClass('canvas')) then true else false
 window.isIndex = if $('body').hasClass('index') then true else false
+window.isFeed = if $('body').hasClass('feed') then true else false
 window.isPortfolio = if $('body').hasClass('portfolio') then true else false
 window.isBlood = if $('body').hasClass('blood') then true else false
 window.isRetina = if window.devicePixelRatio > 1 then true else false
@@ -693,6 +696,7 @@ if window.isBlood
     $('.icon-right-arrow-bare').trigger('click')
   , 6000
 
+
 #Elegant page object animation
 
 objectLoader.assignAnimationWaypoints = () ->
@@ -810,105 +814,103 @@ historyController.bindPopstate = () ->
 
     historyController.popped = true
 
-$('a.nav-item').bind 'click', (event) ->
-  event.preventDefault()
+#Doc deady
+$ ->
 
-  if !$(this).parent().hasClass('active')
-    # CHANGE FOR TOUCH DEBUG - DONE
-    if window.isTouch
-      waypointCheck.currentProject = $('.navCounters li.active').index()
-      waypointCheck.nextProject = $(this).parent().index()
-      waypointCheck.traverseProject()
-      $('.arrow-tab').addClass('hideArrow')
-    else
-      thisSlug = $(this).attr('href').slice(1)
-      targetIndex = $(this).parent().index()
-      scrollTarget = $('#' + thisSlug).position().top
-      articleID = $('article').eq(targetIndex).attr('id')
-      historyController.scrollingBack = true
-      $('.arrow-tab').removeClass('showArrow').addClass('hideArrow').css('visibility','hidden')
-      $('html, body').stop().animate({
-        scrollTop: scrollTarget
-      }, 'slow', ->
-        if this.nodeName == "BODY"
-          return
-        historyController.scrollingBack = false
-        imageLoader.addImages(targetIndex)
-        waypointCheck.updateTitle(articleID, false, true)
-        $('.arrow-tab').css('visibility','visible')
-      )
-
-$('.description').one 'click', (event) ->
-  $(this).toggleClass('expand')
-
-$('.icon-info').bind 'click', (event) ->
-  event.preventDefault()
-  historyController.inMenu = true
-  history.pushState(null, 'iota &#8212; blood,sweat,tears', '')
-  $('.main').addClass('openmenu')
-  $('body').addClass('menu')
-  $('.bottom-hud ul').removeClass('scaleIn')
-  $('.menuNav').addClass('scaleIn')
-  $('.overlay').removeClass('closemenu').addClass('openmenu')
-  waypointCheck.updateColors('#ffffff','#262626')
-  if window.isTouch
-    hideMain = setTimeout ->
-      $('.main').hide()
-    , 500
-
-$('.icon-close').bind 'click', (event) ->
-  event.preventDefault()
-  historyController.inMenu = false
-  history.replaceState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
-  $('.main').show().removeClass('openmenu')
-  $('body').removeClass('menu')
-  $('.bottom-hud ul').removeClass('scaleIn')
-  $('.indexNav').addClass('scaleIn')
-  $('.overlay').removeClass('openmenu').addClass('closemenu')
-  waypointCheck.updateColors(waypointCheck.ogfg,waypointCheck.ogbg)
-
-$('.icon-contact').bind 'click', (event) ->
-  event.preventDefault()
-  history.pushState(null, 'iota &#8212; contact', '')
-  $('.contact, .mainmenu, body').removeClass('closecontact')
-  $('.contact, .mainmenu, body').addClass('opencontact')
-  $('.bottom-hud ul').removeClass('scaleIn')
-  $('.infoNav').addClass('scaleIn')
-  # if !window.mapLoaded
-  #   loadMap = setTimeout ->
-  #     loadGoogleMaps()
-  #   , 1000
-  # window.mapLoaded = true
-
-  $('.icon-left-arrow').bind 'click', (event) ->
+  $('a.nav-item').bind 'click', (event) ->
     event.preventDefault()
-    history.replaceState(null, 'iota &#8212; blood,sweat,tears', '')
-    $('.contact, .mainmenu, body').removeClass('opencontact')
-    $('.contact, .mainmenu, body').addClass('closecontact')
+
+    if !$(this).parent().hasClass('active')
+      # CHANGE FOR TOUCH DEBUG - DONE
+      if window.isTouch
+        waypointCheck.currentProject = $('.navCounters li.active').index()
+        waypointCheck.nextProject = $(this).parent().index()
+        waypointCheck.traverseProject()
+        $('.arrow-tab').addClass('hideArrow')
+      else
+        thisSlug = $(this).attr('href').slice(1)
+        targetIndex = $(this).parent().index()
+        scrollTarget = $('#' + thisSlug).position().top
+        articleID = $('article').eq(targetIndex).attr('id')
+        historyController.scrollingBack = true
+        $('.arrow-tab').removeClass('showArrow').addClass('hideArrow').css('visibility','hidden')
+        $('html, body').stop().animate({
+          scrollTop: scrollTarget
+        }, 'slow', ->
+          if this.nodeName == "BODY"
+            return
+          historyController.scrollingBack = false
+          imageLoader.addImages(targetIndex)
+          waypointCheck.updateTitle(articleID, false, true)
+          $('.arrow-tab').css('visibility','visible')
+        )
+
+  $('.description').one 'click', (event) ->
+    $(this).toggleClass('expand')
+
+  $('.icon-info').bind 'click', (event) ->
+    event.preventDefault()
+    historyController.inMenu = true
+    history.pushState(null, 'iota &#8212; blood,sweat,tears', '')
+    $('.main').addClass('openmenu')
+    $('body').addClass('menu')
     $('.bottom-hud ul').removeClass('scaleIn')
     $('.menuNav').addClass('scaleIn')
+    $('.overlay').removeClass('closemenu').addClass('openmenu')
+    waypointCheck.updateColors('#ffffff','#262626')
+    if window.isTouch
+      hideMain = setTimeout ->
+        $('.main').hide()
+      , 500
 
-$('.icon-down-arrow-bare').bind 'click', (event) ->
-  event.preventDefault()
-  $('.navCounters ul li').toggleClass('mobile-hide').addClass('scaleIn')
-  $('.icon-up-arrow-bare').css('display','block')
+  $('.icon-close').bind 'click', (event) ->
+    event.preventDefault()
+    historyController.inMenu = false
+    history.replaceState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
+    $('.main').show().removeClass('openmenu')
+    $('body').removeClass('menu')
+    $('.bottom-hud ul').removeClass('scaleIn')
+    $('.indexNav').addClass('scaleIn')
+    $('.overlay').removeClass('openmenu').addClass('closemenu')
+    waypointCheck.updateColors(waypointCheck.ogfg,waypointCheck.ogbg)
 
-$('.icon-up-arrow-bare').bind 'click', (event) ->
-  event.preventDefault()
-  $('.navCounters ul li').toggleClass('mobile-hide').addClass('scaleIn')
+  $('.icon-contact').bind 'click', (event) ->
+    event.preventDefault()
+    history.pushState(null, 'iota &#8212; contact', '')
+    $('.contact, .mainmenu, body').removeClass('closecontact')
+    $('.contact, .mainmenu, body').addClass('opencontact')
+    $('.bottom-hud ul').removeClass('scaleIn')
+    $('.infoNav').addClass('scaleIn')
 
-if !window.isTouch
-  $('.menuItem').not('.active').hover (->
-    foreground = $(this).data('foreground')
-    background = $(this).data('background')
-    $('.menuItem.active span').css('opacity','0.2')
-    mainMenu.updateColors(foreground, background)
-    $(this).find('.meaning').addClass('fadeIn')
-  ), ->
-    mainMenu.updateColors(mainMenu.ogfg, mainMenu.ogbg)
-    $('.menuItem.active span').css('opacity','1')
+    $('.icon-left-arrow').bind 'click', (event) ->
+      event.preventDefault()
+      history.replaceState(null, 'iota &#8212; blood,sweat,tears', '')
+      $('.contact, .mainmenu, body').removeClass('opencontact')
+      $('.contact, .mainmenu, body').addClass('closecontact')
+      $('.bottom-hud ul').removeClass('scaleIn')
+      $('.menuNav').addClass('scaleIn')
 
-#Site wide startup functions
-imageLoader.addImages(0)
-objectLoader.pageLoaded()
-historyController.bindPopstate()
+  $('.icon-down-arrow-bare').bind 'click', (event) ->
+    event.preventDefault()
+    $('.navCounters ul li').toggleClass('mobile-hide').addClass('scaleIn')
+    $('.icon-up-arrow-bare').css('display','block')
+
+  $('.icon-up-arrow-bare').bind 'click', (event) ->
+    event.preventDefault()
+    $('.navCounters ul li').toggleClass('mobile-hide').addClass('scaleIn')
+
+  if !window.isTouch
+    $('.menuItem').not('.active').hover (->
+      foreground = $(this).data('foreground')
+      background = $(this).data('background')
+      $('.menuItem.active span').css('opacity','0.2')
+      mainMenu.updateColors(foreground, background)
+      $(this).find('.meaning').addClass('fadeIn')
+    ), ->
+      mainMenu.updateColors(mainMenu.ogfg, mainMenu.ogbg)
+      $('.menuItem.active span').css('opacity','1')
+
+  #Site wide startup functions
+  imageLoader.addImages(0)
+  objectLoader.pageLoaded()
+  historyController.bindPopstate()
