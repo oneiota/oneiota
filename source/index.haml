@@ -1,17 +1,16 @@
-/Load in content for the first two projects
 - content_for(:title, data.projects[0].project)
 - content_for(:foreground, data.projects[0].colors.foreground)
 - content_for(:background, data.projects[0].colors.background)
 
-- data.projects.each_with_index do |project, index|
+- data.projects.each_with_index do | project, index |
   %article{:id => project.slug, :style => "#{index == 0 ? 'display:block;' : ''} color:#{project.colors.foreground}; background:#{project.colors.background};", :data => {:title => project.project, :foreground => project.colors.foreground, :background => project.colors.background, :digital => project.digital, :branding => project.branding}}
     %div.project
-      - project.images.each_with_index do |img, index2|
+      - project.images.each_with_index do | img, index2 |
         - if index2 == 1
           .project-details
             %h2= project.project
             %ul
-              - project.tags.each do |tag|
+              - project.tags.each do | tag |
                 %li.tag= tag
             %p.description= project.description
             - if project.link
@@ -29,7 +28,7 @@
                 %a{:href=>'pinterest.com/oneiota/', :title => '@oneiota'}
                   %i.icon-pintrest.icon
                   %i.icon-pintrest-full.icon-inverted.icon
-        - sizeArr = FastImage.size("http://localhost:4567/images/#{project.slug}/#{img.mobile}")
+        - sizeArr = FastImage.size("source/images/#{project.slug}/#{img.mobile}")
         - spanRatio = (sizeArr[1].to_f/sizeArr[0].to_f)*100
         %div{:class => "placeholder #{img.grid}"}
           %span.placeholder-bg{:src => "images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}

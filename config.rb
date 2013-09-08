@@ -17,17 +17,6 @@ end
 #prettyURL's
 activate :directory_indexes
 
-# require 'imageresizer'
-# activate :image_resizer do |i|
-#   i.input_folders = ['images/test_resize']
-#   i.size = '100x100'
-#   i.resize_method = :resize_to_fit
-#   i.name_prefix = 'marekmaurizio.com_'
-#   i.name_extension = '_thumb'
-#   i.retina = false
-#   i.styles = [:blur, :sketch, :sepia, :desaturate]
-# end
-
 ### 
 # Compass
 ###
@@ -98,9 +87,24 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
   
+  require 'imageresizer'
+  activate :image_resizer do |i|
+    i.input_folders = ['/feed']
+    i.size = '250x250'
+    i.resize_method = :resize_to_fit
+    i.name_prefix = 'thumb'
+    i.name_extension = ''
+    i.retina = false
+    i.styles = []
+  end
+
   # Create favicon/touch icon set from source/favicon_base.png
-  activate :favicon_maker
-  
+  # activate :favicon_maker
+
+  # Ignores
+  ignore '/feed/calendar.html'
+  ignore '/feed/tag.html'
+
   # Enable cache buster
   # activate :cache_buster
   

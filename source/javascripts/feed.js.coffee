@@ -1,18 +1,28 @@
 $ ->
   if window.isFeed
 
+    FeedAPIHandler = ->
+      @twitterUser = 'oneiota_'
+
+    feedAPIHandler = new FeedAPIHandler()
+
     FeedImageLoader = ->
       @loadArray = []
       @loadTimer = null
 
     feedImageLoader = new FeedImageLoader()
 
+    FeedDateKeeper = ->
+      @cats
+
+    feedDateKeeper = new FeedDateKeeper()
+
     feedImageLoader.imageLoaded = (img) ->
       targetArticle = $('article').eq(img.imgParent)
       $(img).addClass('fadeIn')
-      targetPlaceholder = targetArticle.find('span.feed-img').eq(0)
-      targetPlaceholder.after($(img))
-      targetPlaceholder.remove()
+      targetPlaceholder = targetArticle.find('span.feed-img').eq(img.imgSpan)
+      $(img).appendTo(targetPlaceholder)
+      # targetPlaceholder.remove()
       feedImageLoader.loadImage()
 
     feedImageLoader.loadImage = ->
@@ -25,6 +35,7 @@ $ ->
         img.src = imgItem.imgSrc
         img.title = img.alt = imgItem.imgTitle
         img.imgParent = imgItem.imgParent
+        img.imgSpan = imgItem.imgSpan
 
         if img.complete or img.readyState is 4
           feedImageLoader.imageLoaded(img)
@@ -49,10 +60,30 @@ $ ->
           imgItem.imgSrc = targetArticles.eq(index).data('img')
           imgItem.imgTitle = targetArticles.eq(index).data('alt')
           imgItem.imgParent = articleIndex
+          imgItem.imgSpan = index
           feedImageLoader.loadArray.push(imgItem)
-          console.log feedImageLoader.loadArray[index]
           if index == targetArticles.length - 1
             feedImageLoader.loadImage()
       $('article').eq(articleIndex).addClass('loaded')
 
+    feedDateKeeper.loadDates = () ->
+      $('.published').each () ->
+        timeFromNow = moment($(this).data('published'), "YYYY-MM-DD HH:mm").fromNow()
+        $(this).parent().append('<span>' + timeFromNow)
+
+    feedAPIHandler.getTweets = () ->
+      console.log 'getting tweets'
+
+    $('article:gt(0)').waypoint
+        triggerOnce: false
+        offset: '100%'
+        handler: (direction) ->
+          articleIndex = ($('article').index($('#' + @id)))
+          if direction is 'down'
+            feedImageLoader.addImages(articleIndex)
+          else
+            feedImageLoader.addImages(articleIndex-1)
+
+    feedAPIHandler.getTweets()
     feedImageLoader.addImages(0)
+    feedDateKeeper.loadDates()

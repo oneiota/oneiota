@@ -24,9 +24,7 @@
     
     %style{:type => "text/css"}
       nav * { color:#{yield_content(:foreground)};}
-      body.feed { color:#{yield_content(:foreground)};}
-      article {background:#{yield_content(:background)};}
-
+      body.feed { color:#{yield_content(:foreground)}; background:#{yield_content(:background)};}
 
   %body.feed
     /[if lt IE 7] <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
@@ -40,6 +38,7 @@
     :javascript
       window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.10.2.min.js"><\/script>')
     = javascript_include_tag "vendor/waypoints2.0.2.min.js"
+    = javascript_include_tag "vendor/moment.js"
     = javascript_include_tag "vendor/jquery.color-2.1.2.min.js"
     = javascript_include_tag "site"
     

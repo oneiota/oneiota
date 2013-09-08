@@ -1,12 +1,62 @@
-body.feed article span.feed-img {
-  display: inline-block;
-  width: 250px;
-  height: 250px;
-  background-position: center;
-  background-size: auto 135%;
-  background-color:#666;
-}
+@import "_mixins";
 
 .paginate {
   display:none;
+}
+
+body.feed article {
+  .post {
+    h2 {
+      margin-top: 1rem;
+      a {
+        @include font-size(1.5);
+        @include at-breakpoint($bigscreen) {
+          @include font-size(2.5);
+        }
+      }
+    }
+    p {
+      @include font-regular();
+      margin: 2rem 0;
+    }
+  }
+  .post-image-containter {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    .post-images {
+      position: absolute;
+      width: 10000px;
+    }
+  }
+  .post-date {
+    span.published {
+      display: none;
+    }
+  }
+  span.feed-img {
+    display: inline-block;
+    float: left;
+    width: 250px;
+    height: 250px;
+    opacity: 0.3;
+  }
+  span.active {
+    opacity: 1 !important;
+  }
+  img {
+    cursor: pointer;
+  }
+  hr {
+    margin: 0;
+  }
+  i {
+    float: left;
+  }
+}
+
+body.feed article:first-child {
+  hr {
+    display: none;
+  }
 }

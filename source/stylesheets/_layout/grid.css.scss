@@ -11,7 +11,7 @@ $tablet : 6;
 $bigscreen : 10; //9.6 columns w/ gutters fit in 768px - ipad 1 horizontal - this is the choosen break width for 'mobile' viewing
 
 article {
-  div.project, div.post {
+  div.project {
       @include container(6);
       //@include susy-grid-background;  
       @include at-breakpoint(8)  {
@@ -57,6 +57,50 @@ article {
   }
 }
 
+article.feed {
+  @include container(6);
+  //@include susy-grid-background;  
+  @include at-breakpoint(8)  {
+    @include container;
+    //@include susy-grid-background;  
+  }
+  @include at-breakpoint(10)  {
+    @include container;
+    //@include susy-grid-background;  
+  }
+  @include at-breakpoint(12)  {
+    @include container;
+    //@include susy-grid-background;  
+  }
+  @include at-breakpoint(14)  {
+    @include container;
+    //@include susy-grid-background;  
+  }
+  .post-container {
+    display: table;
+    .post-type {
+      display: table-cell;
+      width: 15%;
+      vertical-align: middle;
+      //@include span-columns(1,6);
+    }
+    .post {
+      display: table-cell;
+      width: 70%;
+      //@include span-columns(4,6);
+    }
+    .post-date {
+      display: table-cell;
+      width: 15%;
+      vertical-align: middle;
+      //@include span-columns(1 omega,6);
+    }
+  }
+  hr {
+    @include span-columns(6,6);
+  }
+}
+
 section {
   margin: 0;
   padding: 0;
@@ -78,7 +122,7 @@ section {
     }
     .section-title {
       @include span-columns(6,6);
-      @include nth-omega(1n)
+      @include nth-omega(1n);
     }
   }
 }

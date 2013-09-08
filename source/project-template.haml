@@ -29,7 +29,7 @@
               %a{:href=>'pinterest.com/oneiota/', :title => '@oneiota'}
                 %i.icon-pintrest.icon
                 %i.icon-pintrest-full.icon-inverted.icon
-      - sizeArr = FastImage.size("http://localhost:4567/images/#{project.slug}/#{img.mobile}")
+      - sizeArr = FastImage.size("source/images/#{project.slug}/#{img.mobile}")
       - spanRatio = (sizeArr[1].to_f/sizeArr[0].to_f)*100
       %div{:class => "placeholder #{img.grid}"}
         %span.placeholder-bg{:src => "images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}

@@ -79,7 +79,7 @@ module ImageResizer
 						end
 
 						# Save Computed Image and notify the system
-						resized_image_name = "#{build_dir}/#{folder}/#{options.name_prefix}#{name}#{options.name_extension}_#{i+1}#{extname.downcase}"
+						resized_image_name = "#{build_dir}/#{folder}/#{filename}#{extname.downcase}"
 						resized_image.write resized_image_name
 						builder.say_status :generated, "#{resized_image_name} - #{width}x#{height} #{options.resize_method} - #{options.styles}"
 						if options.retina
@@ -89,7 +89,7 @@ module ImageResizer
 						end
 
 						# remove original image from the build dir
-						builder.remove_file File.join(build_dir, folder, filename + extname)
+						# builder.remove_file File.join(build_dir, folder, filename + extname)
 					end
 				end
 			end
