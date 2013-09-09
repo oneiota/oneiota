@@ -87,16 +87,16 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
   
-  require 'imageresizer'
-  activate :image_resizer do |i|
-    i.input_folders = ['/feed']
-    i.size = '250x250'
-    i.resize_method = :resize_to_fit
-    i.name_prefix = 'thumb'
-    i.name_extension = ''
-    i.retina = false
-    i.styles = []
-  end
+  # require 'imageresizer'
+  # activate :image_resizer do |i|
+  #   i.input_folders = ['/feed']
+  #   i.size = '250x250'
+  #   i.resize_method = :resize_to_fit
+  #   i.name_prefix = 'thumb'
+  #   i.name_extension = ''
+  #   i.retina = false
+  #   i.styles = []
+  # end
 
   # Create favicon/touch icon set from source/favicon_base.png
   # activate :favicon_maker
