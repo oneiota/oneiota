@@ -53,6 +53,7 @@ $ ->
               'put error handling code here!!!!!'
     
     feedImageLoader.addImages = (articleIndex) ->
+      console.log articleIndex
       if !$('article').eq(articleIndex).hasClass('loaded')
         targetArticles = $('article').eq(articleIndex).find('span.feed-img')
         targetArticles.each (index) ->
@@ -75,15 +76,16 @@ $ ->
       console.log 'getting tweets'
 
     $('article:gt(0)').waypoint
-        triggerOnce: false
+        triggerOnce: true
         offset: '100%'
         handler: (direction) ->
-          articleIndex = ($('article').index($('#' + @id)))
+          articleIndex = $(@).index()
           if direction is 'down'
             feedImageLoader.addImages(articleIndex)
-          else
-            feedImageLoader.addImages(articleIndex-1)
+          # else
+          #   feedImageLoader.addImages(articleIndex-1)
 
     feedAPIHandler.getTweets()
     feedImageLoader.addImages(0)
     feedDateKeeper.loadDates()
+    # feedImageLoader.assignArticleWaypoints()
