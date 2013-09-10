@@ -8,6 +8,60 @@ per_page: 10
 - content_for(:foreground, '#fff')
 - content_for(:background, '#222')
 
+- if recent_pins
+  %article.feed
+    %hr
+    .post-container
+      .post-type
+        %i.icon.icon-pintrest
+      .post
+        - recent_pins['body'].first(8).each do | pin |
+          %span{:class => 'active feed-img', :data => {:href => 'http://pinterest.com/oneiota/pins/', :img => pin['src'], :alt => pin['desc']}}
+          /%img{:src => pin['src'], :alt => pin['desc'], :title => pin['desc']}
+        %p
+          %a{:href => 'http://pinterest.com/oneiota/pins/',:target=>'_blank',:title => '@oneiota on Pintrest'} Latests pins @oneiota
+
+- if behances
+  - behances.each do | behance |
+    %article.feed
+      %hr
+      .post-container
+        .post-type
+          %i.icon.icon-behance
+        .post
+          %img{:src => behance['covers']['404']}
+          /%span{:class => 'active feed-img', :data => {:href => dribbble['url'], :img => dribbble['image_url'], :alt => dribbble['player']['username']}}
+          %p
+            %a{:href => behance['url'],:target=>'_blank',:title => behance['name']} New project #{behance['name']} added to our behance
+        .post-date
+          %span{:class => 'published', :data => {:published => clean_date(behance['created_on'])}}
+
+- if dribbbles
+  - dribbbles.each do | dribbble |
+    %article.feed
+      %hr
+      .post-container
+        .post-type
+          %i.icon.icon-dribbble
+        .post
+          %span{:class => 'active feed-img', :data => {:href => dribbble['url'], :img => dribbble['image_url'], :alt => dribbble['player']['username']}}
+          %p
+            %a{:href => dribbble['short_url'],:target=>'_blank',:title => dribbble['player']['username']} Posted #{dribbble['title']} to our dribbble
+        .post-date
+          %span{:class => 'published', :data => {:published => dribbble['created_at']}}
+
+-if tweets
+  - tweets.each do | tweet |
+    %article.feed
+      %hr
+      .post-container
+        .post-type
+          %i.icon.icon-twitter
+        .post
+          %p=clean_tweet(tweet.text)
+        .post-date
+          %span{:class => 'published', :data => {:published => tweet.created_at}}
+
 - blog.articles.each_with_index do |article, i|
   - if article.data.type == 'post'
     %article.feed
@@ -27,8 +81,6 @@ per_page: 10
                     %span{:class => 'active feed-img', :href => '#',:data => {:img => imgsrc, :alt => imgtitle}}
                   - else
                     %span{:class => 'feed-img', :href => '#',:data => {:img => imgsrc, :alt => imgtitle}}
-                  /%a{:class => 'feed-image', :href => '#',:style => "background-image:url(#{imgsrc});", :title => imgtitle}
-              / use article.summary(250) if you have Nokogiri available to show justthe first 250 characters
           = article.body
         .post-date
           %span{:class => 'published', :data => {:published => article.date}}
