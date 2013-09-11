@@ -48,7 +48,7 @@ module SiteHelpers
         false
       end
     rescue Exception
-      puts e.message, e.backtrace
+      puts $!, $@
     end 
   end
 
@@ -62,7 +62,7 @@ module SiteHelpers
       end
 
     rescue Exception
-      puts e.message, e.backtrace
+      puts $!, $@
     end 
   end
 
@@ -77,7 +77,7 @@ module SiteHelpers
       end
 
     rescue Exception
-      puts e.message, e.backtrace
+      puts $!, $@
     end 
 
   end
@@ -93,7 +93,7 @@ module SiteHelpers
       end
 
     rescue Exception
-      puts e.message, e.backtrace
+      puts $!, $@
     end 
   end
 
@@ -105,13 +105,13 @@ module SiteHelpers
 
     #replace @usernames with links to that user
     while tweet =~ user
-        tweet.sub! "@#{$1}", "<a href='http://twitter.com/#{$1}' >&#64#{$1}</a>"
+        tweet.sub! "@#{$1}", "<a target='_blank' href='http://twitter.com/#{$1}' >&#64#{$1}</a>"
     end
 
     #replace urls with links
     while tweet =~ url
         name = $2
-        tweet.sub! /( |^)http:\/\/#{name}( |$)/, " <a href='http://#{name}' >#{name}</a> "
+        tweet.sub! /( |^)http:\/\/#{name}( |$)/, " <a target='_blank' href='http://#{name}' >#{name}</a> "
     end
 
     tweet

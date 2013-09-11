@@ -9,44 +9,47 @@ per_page: 10
 - content_for(:background, '#222')
 
 - if recent_pins
-  %article.feed
+  %article.feed.gallery
     %hr
     .post-container
       .post-type
         %i.icon.icon-pintrest
       .post
         - recent_pins['body'].first(8).each do | pin |
-          %span{:class => 'active feed-img', :data => {:href => 'http://pinterest.com/oneiota/pins/', :img => pin['src'], :alt => pin['desc']}}
-          /%img{:src => pin['src'], :alt => pin['desc'], :title => pin['desc']}
+          .feed-img-holder
+            %a{:class => 'feed-img', :href => 'http://pinterest.com' + pin['href'], :target => '_blank', :title => pin['desc'] + ' @oneiota on Pintrest',:data => {:img => pin['src'], :alt => pin['desc']}}
         %p
-          %a{:href => 'http://pinterest.com/oneiota/pins/',:target=>'_blank',:title => '@oneiota on Pintrest'} Latests pins @oneiota
+          %a{:href => 'http://pinterest.com/oneiota/pins/',:target=>'_blank',:title => '@oneiota on Pintrest'} some of our lastest pins
+      .latest-pins
+        %a{:href => 'http://pinterest.com/oneiota/pins/',:target=>'_blank',:title => '@oneiota on Pintrest'} @oneiota
 
 - if behances
   - behances.each do | behance |
-    %article.feed
+    %article.feed.single
       %hr
       .post-container
         .post-type
           %i.icon.icon-behance
         .post
-          %img{:src => behance['covers']['404']}
-          /%span{:class => 'active feed-img', :data => {:href => dribbble['url'], :img => dribbble['image_url'], :alt => dribbble['player']['username']}}
+          .feed-img-holder
+            %a{:class => 'feed-img', :title => behance['name'] + ' @oneiota on Behance', :href => behance['url'], :target => '_blank', :data => {:img => behance['covers']['404'], :alt => behance['name'] + ' @oneiota on Behance'}}
           %p
-            %a{:href => behance['url'],:target=>'_blank',:title => behance['name']} New project #{behance['name']} added to our behance
+            %a{:href => behance['url'],:target=>'_blank',:title => behance['name'] + ' @oneiota on Behance'} New project #{behance['name']} added to our behance
         .post-date
           %span{:class => 'published', :data => {:published => clean_date(behance['created_on'])}}
 
 - if dribbbles
   - dribbbles.each do | dribbble |
-    %article.feed
+    %article.feed.single
       %hr
       .post-container
         .post-type
           %i.icon.icon-dribbble
         .post
-          %span{:class => 'active feed-img', :data => {:href => dribbble['url'], :img => dribbble['image_url'], :alt => dribbble['player']['username']}}
+          .feed-img-holder
+            %a{:href => dribbble['short_url'], :target => '_blank', :class => 'feed-img', :title => dribbble['title'] + ' @oneiota on Dribbble', :data => {:href => dribbble['url'], :img => dribbble['image_url'], :alt => dribbble['title'] + ' @oneiota on Dribbble'}}
           %p
-            %a{:href => dribbble['short_url'],:target=>'_blank',:title => dribbble['player']['username']} Posted #{dribbble['title']} to our dribbble
+            %a{:href => dribbble['short_url'],:target=>'_blank',:title => dribbble['title'] + ' @oneiota on Dribbble'} Posted #{dribbble['title']} to our dribbble
         .post-date
           %span{:class => 'published', :data => {:published => dribbble['created_at']}}
 
@@ -63,27 +66,33 @@ per_page: 10
           %span{:class => 'published', :data => {:published => tweet.created_at}}
 
 - blog.articles.each_with_index do |article, i|
-  - if article.data.type == 'post'
-    %article.feed
-      %hr
-      .post-container
-        .post-type
-          %i.icon.icon-post
-        .post
-          %h2= link_to article.title, article
-          - if article.data.images
-            .post-image-containter
-              .post-images
-                - article.data.images.each_with_index do |img, index|
-                  - imgsrc = 'feed/' + img.keys.first
-                  - imgtitle = img.values.first
-                  - if index == 0
-                    %span{:class => 'active feed-img', :href => '#',:data => {:img => imgsrc, :alt => imgtitle}}
-                  - else
-                    %span{:class => 'feed-img', :href => '#',:data => {:img => imgsrc, :alt => imgtitle}}
-          = article.body
-        .post-date
-          %span{:class => 'published', :data => {:published => article.date}}
+  %article.feed.post
+    %hr
+    .post-container
+      .post-type
+        %i.icon.icon-post
+      .post
+        %h2= link_to article.title, article
+        - if article.data.images
+          .post
+            - firstImg = article.data.images.first
+            - imgsrc = 'feed/' + firstImg.keys.first
+            - imgtitle = firstImg.values.first
+            .feed-img-holder
+              %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
+            %a{:href => '#', :class => 'post-more-btn', :title => 'read more'}=article.body[0..120].gsub(/\s\w+\s*$/, ' . . . ') + '<i class="icon-expand-arrow icon"></i>'
+            .post-more
+              %p= article.body
+              - article.data.images.drop(1).each do |img|
+                - imgsrc = 'feed/' + img.keys.first
+                - imgtitle = img.values.first
+                .feed-img-holder
+                  %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
+        - else
+          .post
+            %p= article.body
+      .post-date
+        %span{:class => 'published', :data => {:published => article.date}}
 
 - if paginate
   .paginate

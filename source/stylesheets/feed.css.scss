@@ -1,10 +1,44 @@
 @import "_mixins";
 
-.paginate {
-  display:none;
+body.feed {
+  .paginate {
+    display:none;
+  }
+
+  img.landscape-image {
+    position: absolute;
+    width: auto;
+    height: 100%;
+    top:0;
+  }
+
+  img.portrait-image {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    left:0;
+  }
+
+  a {
+    @include link-style();
+  }
+
 }
 
 body.feed article {
+  padding: 0;
+  .feed-img-holder {
+    display: block;
+    margin: 0 auto;
+    .feed-img {
+      margin: 0;
+      display: inline-block;
+      position: relative;
+      width:100%;
+      padding-bottom: 100%;
+      overflow: hidden;
+    }
+  }
   .post {
     h2 {
       margin-top: 1rem;
@@ -17,16 +51,9 @@ body.feed article {
     }
     p {
       @include font-regular();
-      margin: 2rem 0;
-    }
-  }
-  .post-image-containter {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-    .post-images {
-      position: absolute;
-      width: 10000px;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
     }
   }
   .post-date {
@@ -34,28 +61,60 @@ body.feed article {
       display: none;
     }
   }
-  span.feed-img {
-    display: inline-block;
-    float: left;
-    width: 250px;
-    height: 250px;
-    opacity: 0.3;
-  }
-  span.active {
-    opacity: 1 !important;
-  }
-  img {
-    cursor: pointer;
-  }
   hr {
-    margin: 0;
+    margin: 8rem 0 0 0;
+    padding: 0 0 8rem 0;
   }
   i {
     float: left;
   }
+  i.icon-expand-arrow {
+    float: none;
+    display: block;
+  }
+}
+
+body.feed article.gallery {
+  p {
+    margin: 2rem 0 0 0;
+  }
+  .feed-img-holder {
+    width: 25%;
+    display: inline-block;
+    float: left;
+    line-height: 0;
+    padding: 0.25rem;
+    box-sizing: border-box;
+  }
+  .latest-pins {
+    a {
+      @include font-size(1);
+    }
+  }
+}
+
+body.feed article.single {
+  p {
+    margin: 2rem 0 0 0;
+  }
+  .feed-img-holder {
+    width: 50%;
+    max-width: 400px;
+  }
+}
+
+body.feed article.post {
+  .feed-img-holder {
+    width: 75%;
+    display: block;
+  }
+  .post-more {
+    display: none;
+  }
 }
 
 body.feed article:first-child {
+  padding: 10rem 0 0 0;
   hr {
     display: none;
   }

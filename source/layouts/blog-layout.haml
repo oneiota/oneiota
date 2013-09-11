@@ -25,6 +25,7 @@
     %style{:type => "text/css"}
       nav * { color:#{yield_content(:foreground)};}
       body.feed { color:#{yield_content(:foreground)}; background:#{yield_content(:background)};}
+      a.feed-img, span.feed-img {background:rgba(255,255,255,0.1);}
 
   %body.feed
     /[if lt IE 7] <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>

@@ -19,10 +19,24 @@ $ ->
 
     feedImageLoader.imageLoaded = (img) ->
       targetArticle = $('article').eq(img.imgParent)
-      $(img).addClass('fadeIn')
-      targetPlaceholder = targetArticle.find('span.feed-img').eq(img.imgSpan)
+      
+      targetPlaceholder = targetArticle.find('.feed-img').eq(img.imgSpan)
       $(img).appendTo(targetPlaceholder)
-      # targetPlaceholder.remove()
+      imgHeight = parseInt($(img).css('height'))
+      imgWidth = parseInt($(img).css('width'))
+      if imgWidth > imgHeight
+        imgDiff = (imgWidth - imgHeight) / 2
+        imgRatio = (imgDiff / imgHeight) * 100
+        imgStyle = '-' + imgRatio + '%'
+        $(img).addClass('landscape-image')
+        $(img).css('left',imgStyle)
+      else
+        imgDiff = (imgHeight - imgWidth) / 2
+        imgRatio = (imgDiff / imgWidth) * 100
+        imgStyle = '-' + imgRatio + '%'
+        $(img).addClass('portrait-image')
+        $(img).css('top',imgStyle)
+      $(img).addClass('fadeIn')
       feedImageLoader.loadImage()
 
     feedImageLoader.loadImage = ->
@@ -53,9 +67,8 @@ $ ->
               'put error handling code here!!!!!'
     
     feedImageLoader.addImages = (articleIndex) ->
-      console.log articleIndex
       if !$('article').eq(articleIndex).hasClass('loaded')
-        targetArticles = $('article').eq(articleIndex).find('span.feed-img')
+        targetArticles = $('article').eq(articleIndex).find('.feed-img')
         targetArticles.each (index) ->
           imgItem = {}
           imgItem.imgSrc = targetArticles.eq(index).data('img')
@@ -72,9 +85,6 @@ $ ->
         timeFromNow = moment($(this).data('published'), "YYYY-MM-DD HH:mm").fromNow()
         $(this).parent().append('<span>' + timeFromNow)
 
-    feedAPIHandler.getTweets = () ->
-      console.log 'getting tweets'
-
     $('article:gt(0)').waypoint
         triggerOnce: true
         offset: '100%'
@@ -85,7 +95,10 @@ $ ->
           # else
           #   feedImageLoader.addImages(articleIndex-1)
 
-    feedAPIHandler.getTweets()
+    $('.post-more-btn').bind 'click', (event) ->
+      event.preventDefault()
+      $(this).hide()
+      $('.post-more').slideDown('slow')
+
     feedImageLoader.addImages(0)
     feedDateKeeper.loadDates()
-    # feedImageLoader.assignArticleWaypoints()

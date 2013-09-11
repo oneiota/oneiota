@@ -78,6 +78,7 @@ article.feed {
   }
   .post-container {
     display: table;
+    width: 100%;
     .post-type {
       display: table-cell;
       width: 15%;
@@ -89,7 +90,7 @@ article.feed {
       width: 70%;
       //@include span-columns(4,6);
     }
-    .post-date {
+    .post-date, .latest-pins {
       display: table-cell;
       width: 15%;
       vertical-align: middle;
