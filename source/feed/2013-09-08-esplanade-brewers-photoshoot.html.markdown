@@ -15,5 +15,4 @@ images:
   - 9.jpg: Picture of a troll
 ---
 
-
 This is an example article 2. You probably want to delete it and write your own articles!

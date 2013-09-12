@@ -95,10 +95,12 @@ $ ->
           # else
           #   feedImageLoader.addImages(articleIndex-1)
 
-    $('.post-more-btn').bind 'click', (event) ->
-      event.preventDefault()
+    $('.icon-expand-arrow').bind 'click', () ->
       $(this).hide()
-      $('.post-more').slideDown('slow')
+      parentArticle = $(this).parent('article')
+      if parentArticle.find('.more-text').length
+        parentArticle.find('.article-text').hide()
+      parentArticle.find('.more-content').slideDown('slow')
 
     feedImageLoader.addImages(0)
     feedDateKeeper.loadDates()

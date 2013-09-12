@@ -20,16 +20,23 @@ body.feed {
   }
 
   a {
-    @include link-style();
+    // @include link-style();
   }
 
 }
 
 body.feed article {
   padding: 0;
+  p {
+    @include font-regular();
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
   .feed-img-holder {
     display: block;
     margin: 0 auto;
+    line-height: 0;
     .feed-img {
       margin: 0;
       display: inline-block;
@@ -40,20 +47,15 @@ body.feed article {
     }
   }
   .post {
+    vertical-align: middle;
     h2 {
-      margin-top: 1rem;
+      margin: 0 0 4rem 0;
       a {
         @include font-size(1.5);
         @include at-breakpoint($bigscreen) {
           @include font-size(2.5);
         }
       }
-    }
-    p {
-      @include font-regular();
-      display: inline-block;
-      margin: 0;
-      padding: 0;
     }
   }
   .post-date {
@@ -71,6 +73,7 @@ body.feed article {
   i.icon-expand-arrow {
     float: none;
     display: block;
+    cursor: pointer;
   }
 }
 
@@ -104,12 +107,22 @@ body.feed article.single {
 }
 
 body.feed article.post {
+  p {
+    display: inline;
+  }
+  .more-text, .article-text {
+    padding: 4rem 0;
+  }
   .feed-img-holder {
     width: 75%;
     display: block;
+    .feed-img {
+      margin-bottom: 0.5rem;
+    }
   }
-  .post-more {
+  .more-content {
     display: none;
+    margin: 0 15%;
   }
 }
 
@@ -118,4 +131,8 @@ body.feed article:first-child {
   hr {
     display: none;
   }
+}
+
+body.feed {
+  padding: 0 0 10rem 0;
 }

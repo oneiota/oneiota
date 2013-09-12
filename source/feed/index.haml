@@ -66,6 +66,7 @@ per_page: 10
           %span{:class => 'published', :data => {:published => tweet.created_at}}
 
 - blog.articles.each_with_index do |article, i|
+  - dropdown = false
   %article.feed.post
     %hr
     .post-container
@@ -74,25 +75,33 @@ per_page: 10
       .post
         %h2= link_to article.title, article
         - if article.data.images
-          .post
-            - firstImg = article.data.images.first
-            - imgsrc = 'feed/' + firstImg.keys.first
-            - imgtitle = firstImg.values.first
-            .feed-img-holder
-              %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
-            %a{:href => '#', :class => 'post-more-btn', :title => 'read more'}=article.body[0..120].gsub(/\s\w+\s*$/, ' . . . ') + '<i class="icon-expand-arrow icon"></i>'
-            .post-more
-              %p= article.body
-              - article.data.images.drop(1).each do |img|
-                - imgsrc = 'feed/' + img.keys.first
-                - imgtitle = img.values.first
-                .feed-img-holder
-                  %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
-        - else
-          .post
-            %p= article.body
+          - firstImg = article.data.images.first
+          - imgsrc = 'feed/' + firstImg.keys.first
+          - imgtitle = firstImg.values.first
+          .feed-img-holder
+            %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
+        -if article.body.scan("\n").size <= 1
+          %div.article-text= article.body
+        -else
+          - summary = article.body.lines.first + '<span>. .</span>'
+          %div.article-text= summary
       .post-date
         %span{:class => 'published', :data => {:published => article.date}}
+    
+    - if article.body.scan("\n").size > 1
+      - dropdown = true
+      %i.icon-expand-arrow.icon
+      .more-content
+        %div.more-text= article.body
+    - if article.data.images and article.data.images.size > 1
+      -if !dropdown
+        %i.icon-expand-arrow.icon
+      .more-content
+        - article.data.images.drop(1).each do |img|
+          - imgsrc = 'feed/' + img.keys.first
+          - imgtitle = img.values.first
+          .feed-img-holder
+            %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
 
 - if paginate
   .paginate
