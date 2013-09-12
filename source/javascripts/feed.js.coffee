@@ -100,7 +100,7 @@ $ ->
       parentArticle = $(this).parent('article')
       if parentArticle.find('.more-text').length
         parentArticle.find('.article-text').hide()
-      parentArticle.find('.more-content').slideDown('slow')
+      parentArticle.find('.more-content > *').show()
 
     feedImageLoader.addImages(0)
     feedDateKeeper.loadDates()

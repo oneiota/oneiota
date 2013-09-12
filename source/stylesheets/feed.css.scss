@@ -19,8 +19,8 @@ body.feed {
     left:0;
   }
 
-  a {
-    // @include link-style();
+  p a {
+    @include link-style();
   }
 
 }
@@ -121,8 +121,10 @@ body.feed article.post {
     }
   }
   .more-content {
-    display: none;
     margin: 0 15%;
+    > * {
+      display: none;
+    }
   }
 }
 
