@@ -2,7 +2,8 @@ $ ->
   if window.isFeed
 
     FeedAPIHandler = ->
-      @twitterUser = 'oneiota_'
+      @apiArray = []
+      @jerbals
 
     feedAPIHandler = new FeedAPIHandler()
 
@@ -16,6 +17,16 @@ $ ->
       @cats
 
     feedDateKeeper = new FeedDateKeeper()
+
+    # Detach all non post articles and push into array
+    feedAPIHandler.collectArticles = () ->
+      $('.api').each((index)->
+        apiArrayItem =
+          item: $(this).detach()
+          published: $(this).find('.post-date span').data('published')
+        console.log apiArrayItem.published
+        feedAPIHandler.apiArray.push(apiArrayItem)
+      )
 
     feedImageLoader.imageLoaded = (img) ->
       targetArticle = $('article').eq(img.imgParent)
@@ -84,16 +95,14 @@ $ ->
       $('.published').each () ->
         timeFromNow = moment($(this).data('published'), "YYYY-MM-DD HH:mm").fromNow()
         $(this).parent().append('<span>' + timeFromNow)
-
-    $('article:gt(0)').waypoint
-        triggerOnce: true
-        offset: '100%'
-        handler: (direction) ->
-          articleIndex = $(@).index()
-          if direction is 'down'
-            feedImageLoader.addImages(articleIndex)
-          # else
-          #   feedImageLoader.addImages(articleIndex-1)
+      feedAPIHandler.collectArticles()
+    # $('article:gt(0)').waypoint
+    #     triggerOnce: true
+    #     offset: '100%'
+    #     handler: (direction) ->
+    #       articleIndex = $(@).index()
+    #       if direction is 'down'
+    #         feedImageLoader.addImages(articleIndex)
 
     $('.icon-expand-arrow').bind 'click', () ->
       $(this).hide()
@@ -102,5 +111,5 @@ $ ->
         parentArticle.find('.article-text').hide()
       parentArticle.find('.more-content > *').show()
 
-    feedImageLoader.addImages(0)
+    # feedImageLoader.addImages(0)
     feedDateKeeper.loadDates()
