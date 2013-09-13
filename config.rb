@@ -8,9 +8,10 @@ activate :livereload
 activate :bourbon
 
 activate :blog do |blog|
+  blog.paginate = true
+  blog.per_page = 10
   blog.prefix = "feed"
   blog.permalink = "blog/:year/:title.html"
-  blog.paginate = true
   Time.zone = "Brisbane"
 end
 

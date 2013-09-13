@@ -120,7 +120,11 @@ module SiteHelpers
 
   def clean_date date_created
     date_created = Time.at(date_created)
-    date_created
+  end
+
+  def clean_dribble_date dribbble_date
+    lalala = "2013/06/24 11:58:30 -0400".gsub(/[\/]/, /[\-]/)
+    puts lalala
   end
 
 end

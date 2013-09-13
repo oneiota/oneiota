@@ -3,7 +3,8 @@ $ ->
 
     FeedAPIHandler = ->
       @apiArray = []
-      @jerbals
+      @blacklist = []
+      @montez
 
     feedAPIHandler = new FeedAPIHandler()
 
@@ -18,15 +19,44 @@ $ ->
 
     feedDateKeeper = new FeedDateKeeper()
 
-    # Detach all non post articles and push into array
+    feedDateKeeper.loadDates = () ->
+      $('.published').each () ->
+          timeFromNow = moment($(this).data('published'), "YYYY-MM-DD HH:mm").fromNow()
+        $(this).parent().append('<span>' + timeFromNow)
+
+    feedAPIHandler.appendArticles = () ->
+
+      $('article.post').each( ->
+        postDate = $(this).find('.post-date span').data('published')
+        postIndex = $(this).index()
+        $.each feedAPIHandler.apiArray, (i) ->
+          if moment(feedAPIHandler.apiArray[i].published).isAfter(postDate)
+            if $.inArray(i, feedAPIHandler.blacklist) == -1
+               feedAPIHandler.blacklist.push(i)
+               $('article.post').eq(postIndex).before(feedAPIHandler.apiArray[i].item)
+        )
+      feedDateKeeper.loadDates()
+
+    feedAPIHandler.sortArticles = () ->
+      sortByDate = (date1, date2) ->
+        if date1.published > date2.published
+          return 1
+        if date1.published < date2.published
+          return -1
+        return 0
+
+      feedAPIHandler.apiArray.sort(sortByDate)
+
+      feedAPIHandler.appendArticles()
+
     feedAPIHandler.collectArticles = () ->
-      $('.api').each((index)->
+      $('article.api').each((index)->
         apiArrayItem =
           item: $(this).detach()
           published: $(this).find('.post-date span').data('published')
-        console.log apiArrayItem.published
         feedAPIHandler.apiArray.push(apiArrayItem)
       )
+      feedAPIHandler.sortArticles()
 
     feedImageLoader.imageLoaded = (img) ->
       targetArticle = $('article').eq(img.imgParent)
@@ -91,11 +121,6 @@ $ ->
             feedImageLoader.loadImage()
       $('article').eq(articleIndex).addClass('loaded')
 
-    feedDateKeeper.loadDates = () ->
-      $('.published').each () ->
-        timeFromNow = moment($(this).data('published'), "YYYY-MM-DD HH:mm").fromNow()
-        $(this).parent().append('<span>' + timeFromNow)
-      feedAPIHandler.collectArticles()
     # $('article:gt(0)').waypoint
     #     triggerOnce: true
     #     offset: '100%'
@@ -111,5 +136,6 @@ $ ->
         parentArticle.find('.article-text').hide()
       parentArticle.find('.more-content > *').show()
 
+    feedAPIHandler.collectArticles()
     # feedImageLoader.addImages(0)
-    feedDateKeeper.loadDates()
+    #feedDateKeeper.loadDates()
