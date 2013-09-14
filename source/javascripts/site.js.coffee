@@ -452,7 +452,7 @@ if window.isIndex
           waypointCheck.updateCanvas()
           if !goingBack
             history.pushState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
-          $.waypoints('refresh');
+          $.waypoints('refresh')
           removeSlide = setTimeout ->
             $('.main article').eq(waypointCheck.nextProject).removeClass('slideInProject')
             imageLoader.addImages(waypointCheck.nextProject)

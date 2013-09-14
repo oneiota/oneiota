@@ -2,7 +2,20 @@
 
 body.feed {
   .paginate {
-    display:none;
+    visibility: hidden;
+    .icon-circle {
+      display: inline-block;
+    }
+    .icon-circle:before {
+      @include font-size(3);
+    }
+    .pages {
+      display:none;
+    }
+  }
+
+  .endoftheline {
+    display: none;
   }
 
   img.landscape-image {

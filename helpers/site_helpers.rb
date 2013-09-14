@@ -123,8 +123,8 @@ module SiteHelpers
   end
 
   def clean_dribble_date dribbble_date
-    lalala = "2013/06/24 11:58:30 -0400".gsub(/[\/]/, /[\-]/)
-    puts lalala
+    dribbble_date = dribbble_date.gsub(/\//, "-")
+    dribbble_date
   end
 
 end
