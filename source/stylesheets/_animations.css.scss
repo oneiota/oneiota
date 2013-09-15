@@ -16,6 +16,10 @@
   display: none !important;
 }
 
+.twinkle {
+    @include animation(twinkly 1s alternate infinite);
+}
+
 .scaleInMenu, .scaleOut, .scaleOutIn, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown, .scaleInSevenFive, .scaleOutSevenFive {
   @include animation-duration(0.3s);
   @include animation-timing-function(ease);
@@ -400,6 +404,11 @@ html.touch {
       }
     }
   }
+}
+
+@include keyframes(twinkly) {
+  0%   { opacity: 0.3; }
+  100% { opacity: 1; }
 }
 
 @include keyframes(slideInProject) {

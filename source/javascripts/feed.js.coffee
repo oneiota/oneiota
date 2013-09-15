@@ -15,6 +15,7 @@ $ ->
     feedImageLoader = new FeedImageLoader()
 
     FeedDateKeeper = ->
+      @firstRun = true
 
     feedDateKeeper = new FeedDateKeeper()
 
@@ -25,77 +26,13 @@ $ ->
     feedWaypoints = new FeedWaypoints()
 
     feedWaypoints.addImageWaypoints = ->
-      $('article:gt(0)').waypoint
+      $('article').waypoint
         triggerOnce: true
         offset: '100%'
         handler: (direction) ->
           articleIndex = $(@).index()
           if direction is 'down'
             feedImageLoader.addImages(articleIndex)
-
-    feedWaypoints.addEndPageWaypoint = ->
-      $('body').waypoint
-        triggerOnce: false
-        offset: 'bottom-in-view'
-        handler: (direction) ->
-          console.log feedWaypoints.currentPage + ' ' + $('.maxpages').data('maxpages') + ' ' + !feedWaypoints.gettingContent
-          if feedWaypoints.currentPage < $('.maxpages').data('maxpages') and !feedWaypoints.gettingContent
-            $('.paginate').css('visibility','visible')
-            feedWaypoints.gettingContent = true
-            nextPage = feedWaypoints.currentPage + 1
-            $.get 'feed/page/'+nextPage+'/', (data) ->
-              $('.paginate').before($(data).find('article.post'))
-              feedWaypoints.currentPage++
-              feedWaypoints.gettingContent = false
-              $('.paginate').css('visibility', 'hidden')
-              $.waypoints('refresh')
-          else if feedWaypoints.currentPage >= $('.maxpages').data('maxpages') and !feedWaypoints.gettingContent
-            $('.endoftheline').show()
-
-    feedDateKeeper.loadDates = () ->
-      $('.published').each (index) ->
-        timeFromNow = moment($(this).data('published'), "YYYY-MM-DD HH:mm").fromNow()
-        $(this).parent().append('<span>' + timeFromNow)
-      feedWaypoints.addEndPageWaypoint()
-
-    feedAPIHandler.appendArticles = () ->
-
-      $('article').each( ->
-        if $(this).hasClass 'post'
-          postDate = $(this).find('.post-date span').data('published')
-          articlePost = $(this)
-          $.each feedAPIHandler.apiArray, (i) ->
-            if moment(feedAPIHandler.apiArray[i].published).isAfter(postDate)
-              if $.inArray(i, feedAPIHandler.blacklist) == -1
-                  postIndex = articlePost.index()
-                  feedAPIHandler.blacklist.push(i)
-                  $('article').eq(postIndex).before(feedAPIHandler.apiArray[i].item)
-        )
-      feedDateKeeper.loadDates()
-
-    feedAPIHandler.sortArticles = () ->
-      sortByDate = (date1, date2) ->
-        if date1.published < date2.published
-          return 1
-        if date1.published > date2.published
-          return -1
-        return 0
-
-      feedAPIHandler.apiArray.sort(sortByDate)
-
-      # $.each feedAPIHandler.apiArray, (i) ->
-      #   console.log feedAPIHandler.apiArray[i].published
-
-      feedAPIHandler.appendArticles()
-
-    feedAPIHandler.collectArticles = () ->
-      $('article.api').each((index)->
-        apiArrayItem =
-          item: $(this).detach()
-          published: $(this).find('.post-date span').data('published')
-        feedAPIHandler.apiArray.push(apiArrayItem)
-      )
-      feedAPIHandler.sortArticles()
 
     feedImageLoader.imageLoaded = (img) ->
       targetArticle = $('article').eq(img.imgParent)
@@ -160,7 +97,78 @@ $ ->
             feedImageLoader.loadImage()
       $('article').eq(articleIndex).addClass('loaded')
 
-    
+    feedWaypoints.addEndPageWaypoint = ->
+      $('body').waypoint
+        triggerOnce: false
+        offset: 'bottom-in-view'
+        handler: (direction) ->
+          if feedWaypoints.currentPage < $('.maxpages').data('maxpages') and !feedWaypoints.gettingContent
+            $('.paginate').show()
+            $('.paginate .post h2').addClass('twinkle')
+            feedWaypoints.gettingContent = true
+            nextPage = feedWaypoints.currentPage + 1
+            $.get 'feed/page/'+nextPage+'/', (data) ->
+              $('.paginate').before($(data).find('article.post'))
+              feedWaypoints.currentPage++
+              feedWaypoints.gettingContent = false
+              $('.paginate').hide()
+              feedAPIHandler.appendArticles()
+              $.waypoints('refresh')
+          else if feedWaypoints.currentPage >= $('.maxpages').data('maxpages') and !feedWaypoints.gettingContent
+            $('.paginate').show()
+            $('.paginate .post h2').text('End of the line')
+            $('.paginate .post i').hide()
+            killTwinkle = setTimeout(->
+              $('.paginate .post h2').removeClass('twinkle')
+            ,6000)
+
+    feedDateKeeper.loadDates = () ->
+      $('.published').each (index) ->
+        if !$(this).parent().find('.timefromnow').length
+          timeFromNow = moment($(this).data('published'), "YYYY-MM-DD HH:mm").fromNow()
+          $(this).parent().append('<span class="timefromnow">' + timeFromNow)
+      if feedDateKeeper.firstRun
+        feedWaypoints.addEndPageWaypoint()
+        feedWaypoints.addImageWaypoints()
+        feedDateKeeper.firstRun = false
+
+    feedAPIHandler.appendArticles = () ->
+      $('article').each( ->
+        if $(this).hasClass 'post'
+          postDate = $(this).find('.post-date span').data('published')
+          articlePost = $(this)
+          $.each feedAPIHandler.apiArray, (i) ->
+            if moment(feedAPIHandler.apiArray[i].published).isAfter(postDate)
+              if $.inArray(i, feedAPIHandler.blacklist) == -1
+                  postIndex = articlePost.index()
+                  feedAPIHandler.blacklist.push(i)
+                  $('article').eq(postIndex).before(feedAPIHandler.apiArray[i].item)
+        )
+      feedDateKeeper.loadDates()
+
+    feedAPIHandler.sortArticles = () ->
+      sortByDate = (date1, date2) ->
+        if date1.published < date2.published
+          return 1
+        if date1.published > date2.published
+          return -1
+        return 0
+
+      feedAPIHandler.apiArray.sort(sortByDate)
+
+      # $.each feedAPIHandler.apiArray, (i) ->
+      #   console.log feedAPIHandler.apiArray[i].published
+
+      feedAPIHandler.appendArticles()
+
+    feedAPIHandler.collectArticles = () ->
+      $('article.api').each((index)->
+        apiArrayItem =
+          item: $(this).detach()
+          published: $(this).find('.post-date span').data('published')
+        feedAPIHandler.apiArray.push(apiArrayItem)
+      )
+      feedAPIHandler.sortArticles()
 
     $('.icon-expand-arrow').bind 'click', () ->
       $(this).hide()

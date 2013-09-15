@@ -1,15 +1,19 @@
 @import "_mixins";
 
 body.feed {
+  // article > * {
+  //   visibility: hidden;
+  // }
+
   .paginate {
-    visibility: hidden;
-    .icon-circle {
+    display: none;
+    .icon-circle, h2 {
       display: inline-block;
     }
     .icon-circle:before {
       @include font-size(3);
     }
-    .pages {
+    .maxpages {
       display:none;
     }
   }

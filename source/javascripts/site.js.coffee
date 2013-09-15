@@ -56,8 +56,15 @@ MainMenu = ->
 mainMenu = new MainMenu()
 
 ObjectLoader = ->
-  @objectTarget = if window.isBlood then 'section' else 'article'
-  @objectSubTarget = if window.isBlood then '.content' else '.project'
+  if window.isBlood
+    @objectTarget = 'section'
+    @objectSubTarget = '.content'
+  else if window.isFeed
+    @objectTarget = 'article'
+    @objectSubTarget = '.post-container'
+  else
+    @objectTarget = 'article'
+    @objectSubTarget = '.project'
 
 objectLoader = new ObjectLoader()
 
@@ -725,6 +732,9 @@ objectLoader.assignAnimationWaypoints = () ->
           handler: (direction) ->
             $(this).addClass('loaded fadeInSlide')
     )
+
+  else if window.isFeed
+    console.log 'is feed'
 
 objectLoader.loadInternals = (targetIndex) ->
   if window.isBlood
