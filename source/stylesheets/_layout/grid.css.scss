@@ -14,27 +14,27 @@ article {
   div.project {
       @include container(6);
       //@include susy-grid-background;  
-      @include at-breakpoint(8)  {
+      @include at-breakpoint(8) {
         @include container;
         //@include susy-grid-background;  
       }
-      @include at-breakpoint(10)  {
+      @include at-breakpoint(10) {
         @include container;
         //@include susy-grid-background;  
       }
-      @include at-breakpoint(12)  {
+      @include at-breakpoint(12) {
         @include container;
         //@include susy-grid-background;  
       }
-      @include at-breakpoint(14)  {
+      @include at-breakpoint(14) {
         @include container;
         //@include susy-grid-background;  
       }
-      @include at-breakpoint(16)  {
+      @include at-breakpoint(16) {
         @include container;
         //@include susy-grid-background;  
       }
-      @include at-breakpoint(18)  {
+      @include at-breakpoint(18) {
         @include container;
         //@include susy-grid-background;  
       }
@@ -42,7 +42,7 @@ article {
   .placeholder {
     clear: both;
     @include span-columns(6);
-    @include at-breakpoint($bigscreen)  {
+    @include at-breakpoint($bigscreen) {
       @include span-columns(8);
       @include squish(1,1);
     }
@@ -50,7 +50,7 @@ article {
   .project-details {
     clear: both;
     @include span-columns(6);
-    @include at-breakpoint($bigscreen)  {
+    @include at-breakpoint($bigscreen) {
       @include span-columns(6,10);
       @include squish(2,2);
     }
@@ -59,20 +59,29 @@ article {
 
 article.feed {
   @include container(6);
-  //@include susy-grid-background;  
-  @include at-breakpoint(8)  {
+  padding:0 1rem !important;
+  &:first-child {
+    padding:6rem 1rem 0 1rem !important;
+  }
+  @include at-breakpoint(8) {
+    padding:0 3rem !important;
+    &:first-child {
+      padding:6rem 3rem 0 3rem !important;
+    }
+    @include container;
+  }
+  @include at-breakpoint(10) {
+    @include container;
+    &:first-child {
+      padding:10rem 3rem 0 3rem !important;
+    }
+    //@include susy-grid-background;  
+  }
+  @include at-breakpoint(12) {
     @include container;
     //@include susy-grid-background;  
   }
-  @include at-breakpoint(10)  {
-    @include container;
-    //@include susy-grid-background;  
-  }
-  @include at-breakpoint(12)  {
-    @include container;
-    //@include susy-grid-background;  
-  }
-  @include at-breakpoint(14)  {
+  @include at-breakpoint(14) {
     @include container;
     //@include susy-grid-background;  
   }
@@ -80,25 +89,46 @@ article.feed {
     display: table;
     width: 100%;
     .post-type {
-      display: table-cell;
-      width: 15%;
-      vertical-align: middle;
+      width: 100%;
+      @include at-breakpoint($bigscreen) {
+        display: table-cell;
+        width: 15%;
+        vertical-align: middle;
+      }
       //@include span-columns(1,6);
     }
-    .post {
-      display: table-cell;
-      width: 70%;
-      //@include span-columns(4,6);
+    .post-content {
+      width: 100%;
+      @include at-breakpoint($bigscreen) {
+        display: table-cell;
+        width: 70%;
+      } 
     }
     .post-date, .latest-pins {
-      display: table-cell;
-      width: 15%;
-      vertical-align: middle;
-      //@include span-columns(1 omega,6);
+      width: 100%;
+      @include at-breakpoint($bigscreen) {
+        width: 15%;
+        vertical-align: middle;
+      }
     }
-  }
-  hr {
-    @include span-columns(6,6);
+    .latest-pins {
+      @include at-breakpoint($bigscreen) {
+        display: table-cell;
+      }
+    }
+    .post-date {
+      display: none;
+      @include at-breakpoint($bigscreen) {
+        display: table-cell;
+      }
+    }
+    .post-date.mobile {
+      display: block;
+      margin-bottom: 2rem;
+      @include at-breakpoint($bigscreen) {
+        display: none;
+      }
+    }
   }
 }
 
@@ -108,17 +138,17 @@ section {
   .content {
     @include container(6);
     padding:0 1rem !important; 
-    @include at-breakpoint(8)  {
+    @include at-breakpoint(8) {
       padding:0 3rem !important;
       @include container;
     }
-    @include at-breakpoint(10)  {
+    @include at-breakpoint(10) {
       @include container;
     }
-    @include at-breakpoint(12)  {
+    @include at-breakpoint(12) {
       @include container;
     }
-    @include at-breakpoint(14)  {
+    @include at-breakpoint(14) {
       @include container;
     }
     .section-title {
@@ -182,12 +212,12 @@ article {
 
 .contact {
   ul {
-    @include container(6);  
-      @include at-breakpoint(8)  {
+    @include container(6);
+      @include at-breakpoint(8) {
         @include container;
       }
-      @include at-breakpoint(10)  {
-        @include container;  
+      @include at-breakpoint(10) {
+        @include container;
       }
   }
 }

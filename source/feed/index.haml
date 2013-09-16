@@ -10,12 +10,14 @@ per_page: 10
 
 - if behances
   - behances.each do | behance |
-    %article.feed.single.api.scaleIn
+    %article.feed.single.api
       %hr
       .post-container
         .post-type
           %a{:href => 'http://behance.net/oneiota/',:target => '_blank',:title => '@oneiota on Behance'} <i class='icon icon-behance'></i>
-        .post
+        .post-date.mobile
+          %span{:class => 'published', :data => {:published => clean_date(behance['created_on'])}}
+        .post-content
           .feed-img-holder
             %a{:class => 'feed-img', :title => behance['name'] + ' @oneiota on Behance', :href => behance['url'], :target => '_blank', :data => {:img => behance['covers']['404'], :alt => behance['name'] + ' @oneiota on Behance'}}
           %p Just posted <a href='#{behance['url']}' target='_blank' title='#{behance['name']} @oneiota on Behance'>#{behance['name']}</a> on Behance
@@ -24,12 +26,14 @@ per_page: 10
 
 - if dribbbles
   - dribbbles.each do | dribbble |
-    %article.feed.single.api.scaleIn
+    %article.feed.single.api
       %hr
       .post-container
         .post-type
           %a{:href => 'http://dribbble.com/oneiota/',:target => '_blank',:title => '@oneiota on Dribbble'} <i class='icon icon-dribbble'></i>
-        .post
+        .post-date.mobile
+          %span{:class => 'published', :data => {:published => clean_dribble_date(dribbble['created_at'])}}
+        .post-content
           .feed-img-holder
             %a{:href => dribbble['short_url'], :target => '_blank', :class => 'feed-img', :title => dribbble['title'] + ' @oneiota on Dribbble', :data => {:href => dribbble['url'], :img => dribbble['image_url'], :alt => dribbble['title'] + ' @oneiota on Dribbble'}}
           %p Just posted <a href='#{dribbble['short_url']}' target='_blank' title='#{dribbble['title']} @oneiota on Dribbble'>#{dribbble['title']}</a> on Dribbble
@@ -38,12 +42,14 @@ per_page: 10
 
 -if tweets
   - tweets.each do | tweet |
-    %article.feed.api.scaleIn
+    %article.feed.api
       %hr
       .post-container
         .post-type
           %a{:href => 'http://twitter.com/oneiota_/',:target => '_blank',:title => '@oneiota_ on Twitter'} <i class='icon icon-twitter'></i>
-        .post
+        .post-date.mobile
+          %span{:class => 'published', :data => {:published => tweet.created_at}}
+        .post-content
           %p=clean_tweet(tweet.text)
         .post-date
           %span{:class => 'published', :data => {:published => tweet.created_at}}
@@ -52,12 +58,12 @@ per_page: 10
   - dropdown = false
   - if i == 2
     - if recent_pins
-      %article.feed.gallery.pintrest.scaleIn
+      %article.feed.gallery.pintrest
         %hr
         .post-container
           .post-type
             %a{:href => 'http://pinterest.com/oneiota/',:target => '_blank',:title => '@oneiota on Pintrest'} <i class='icon icon-pintrest'></i>
-          .post
+          .post-content
             - recent_pins['body'].first(8).each do | pin |
               .feed-img-holder
                 - newURL = 'http://pinterest.com' + pin['href']
@@ -66,46 +72,48 @@ per_page: 10
             %p some of our lastest pins
           .latest-pins
             %a{:href => 'http://pinterest.com/oneiota/pins/',:target=>'_blank',:title => '@oneiota on Pintrest'} @oneiota
-  %article.feed.post.scaleIn
+  %article.feed.post
     %hr
     .post-container
       .post-type
         %i.icon.icon-post
-      .post
+      .post-date.mobile
+        %span{:class => 'published', :data => {:published => article.date}}
+      .post-content
         %h2= link_to article.title, article
         - if article.data.images
           - firstImg = article.data.images.first
-          - imgsrc = 'feed/' + firstImg.keys.first
+          - imgsrc = firstImg.keys.first
           - imgtitle = firstImg.values.first
-          .feed-img-holder
+          .feed-img-holder.feature-image
             %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
         -if article.body.scan("\n").size <= 1
           %div.article-text= article.body
         -else
-          - summary = article.body.lines.first + '<span>. .</span>'
+          - summary = article.body.lines.first + '<span>. . .</span>'
           %div.article-text= summary
       .post-date
         %span{:class => 'published', :data => {:published => article.date}}
     
     - if article.body.scan("\n").size > 1
       - dropdown = true
-      %i.icon-expand-arrow.icon
+      %span.down-arrow &darr;
       .more-content
         %div.more-text= article.body
     - if article.data.images and article.data.images.size > 1
       -if !dropdown
-        %i.icon-expand-arrow.icon
+        %span.down-arrow &darr;
       .more-content
         - article.data.images.drop(1).each do |img|
-          - imgsrc = 'feed/' + img.keys.first
+          - imgsrc = img.keys.first
           - imgtitle = img.values.first
           .feed-img-holder
             %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
 
 - if paginate
-  %article.feed.paginate.scaleIn
+  %article.feed.paginate
     %hr
     .post-container
-      .post
+      .post-content
         %h2 Hold up...
     .maxpages{:data => {:maxpages => num_pages}}

@@ -1,10 +1,16 @@
+@import "compass/css3/gradient";
 @import "_mixins";
 
 body.feed {
-  // article > * {
-  //   visibility: hidden;
-  // }
-
+  @include linear-gradient(color-stops(white, black));
+  article {
+    hr, span.down-arrow {
+      visibility: hidden
+    }
+  }
+  .post-container {
+    visibility: hidden;
+  }
   .paginate {
     display: none;
     .icon-circle, h2 {
@@ -63,10 +69,10 @@ body.feed article {
       overflow: hidden;
     }
   }
-  .post {
+  .post-content {
     vertical-align: middle;
     h2 {
-      margin: 0 0 4rem 0;
+      margin: 0 0 2rem 0;
       a {
         @include font-size(1.5);
         @include at-breakpoint($bigscreen) {
@@ -76,21 +82,41 @@ body.feed article {
     }
   }
   .post-date {
+    @include at-breakpoint($bigscreen) {
+      text-align: right;
+    }
     span.published {
       display: none;
     }
   }
+  .post-type {
+    margin-bottom: 2rem;
+    @include at-breakpoint($bigscreen) {
+      margin-bottom: 0rem;
+    }
+  }
   hr {
-    margin: 8rem 0 0 0;
-    padding: 0 0 8rem 0;
+    margin: 4rem 0 0 0;
+    padding: 0 0 4rem 0;
+    @include at-breakpoint($bigscreen) {
+      margin: 8rem 0 0 0;
+      padding: 0 0 8rem 0;
+    }
   }
   i {
-    float: left;
+    @include at-breakpoint($bigscreen) {
+      float: left;
+    }
   }
-  i.icon-expand-arrow {
+  i.icon-expand-arrow, span.down-arrow {
     float: none;
     display: block;
     cursor: pointer;
+    font-size: 1rem;
+    margin-top: 2rem;
+    @include at-breakpoint($tablet) {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -110,6 +136,9 @@ body.feed article.gallery {
     a {
       @include font-size(1);
     }
+    @include at-breakpoint($bigscreen) {
+      text-align: right;
+    }
   }
 }
 
@@ -127,26 +156,33 @@ body.feed article.post {
   p {
     display: inline;
   }
-  .more-text, .article-text {
-    padding: 4rem 0;
-  }
   .feed-img-holder {
-    width: 75%;
-    display: block;
+    margin: 0 auto;
+    width: 50%;
+    max-width: 400px;
     .feed-img {
       margin-bottom: 0.5rem;
     }
   }
+  .feature-image {
+    margin-bottom: 2rem;
+  }
   .more-content {
-    margin: 0 15%;
+    .more-text {
+      @include at-breakpoint($bigscreen) {
+        margin: 0 15%;
+      }
+    }
     > * {
       display: none;
+    }
+    .feed-img-holder:first-child {
+      margin-top: 2rem;
     }
   }
 }
 
 body.feed article:first-child {
-  padding: 10rem 0 0 0;
   hr {
     display: none;
   }

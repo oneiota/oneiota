@@ -59,9 +59,6 @@ ObjectLoader = ->
   if window.isBlood
     @objectTarget = 'section'
     @objectSubTarget = '.content'
-  else if window.isFeed
-    @objectTarget = 'article'
-    @objectSubTarget = '.post-container'
   else
     @objectTarget = 'article'
     @objectSubTarget = '.project'
@@ -733,9 +730,6 @@ objectLoader.assignAnimationWaypoints = () ->
             $(this).addClass('loaded fadeInSlide')
     )
 
-  else if window.isFeed
-    console.log 'is feed'
-
 objectLoader.loadInternals = (targetIndex) ->
   if window.isBlood
     targetContent = $(objectLoader.objectTarget).eq(targetIndex).find(objectLoader.objectSubTarget)
@@ -759,7 +753,6 @@ objectLoader.loadInternals = (targetIndex) ->
 
 objectLoader.pageLoaded = () ->
   $(window).load(->
-    # $(objectLoader.objectSubTarget).eq(0).addClass('loaded')
     objectLoader.assignAnimationWaypoints()
     if window.isBlood
       bloodLoader.getInsty()

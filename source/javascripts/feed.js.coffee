@@ -25,6 +25,31 @@ $ ->
 
     feedWaypoints = new FeedWaypoints()
 
+    feedWaypoints.loadInternals = (targetIndex) ->
+      targetContent = $('article').eq(targetIndex).find('.post-container')
+      childArray = []
+      targetContent.children().each( (index) ->
+        childArray.push(index)
+      )
+      animateChildren = ->
+        if childArray.length isnt 0
+          currChild = childArray.shift()
+          targetContent.children().eq(currChild).addClass('fadeInSlide')
+          animateChildTimer = setTimeout ->
+            animateChildren()
+          , 150
+      animateChildren()
+
+    feedWaypoints.assignAnimationWaypoints = () ->
+      $('article').waypoint
+        triggerOnce: true
+        offset: '80%'
+        handler: (direction) ->
+          $(this).find('.post-container').addClass('loaded')
+          $(this).find('hr').css('visibility','visible')
+          $(this).find('span.down-arrow').css('visibility','visible')
+          feedWaypoints.loadInternals($(this).index())
+
     feedWaypoints.addImageWaypoints = ->
       $('article').waypoint
         triggerOnce: true
@@ -73,6 +98,7 @@ $ ->
         else
           # handle 404 using setTimeout set at 10 seconds, adjust as needed
           timer = setTimeout(->
+            'somthing up with the time out'
             feedImageLoader.loadImage()  if imgItem.length isnt 0
             $(img).unbind 'error load onreadystate'
           , 10000)
@@ -104,23 +130,20 @@ $ ->
         handler: (direction) ->
           if feedWaypoints.currentPage < $('.maxpages').data('maxpages') and !feedWaypoints.gettingContent
             $('.paginate').show()
-            $('.paginate .post h2').addClass('twinkle')
+            $('.paginate .post-content h2').addClass('twinkle')
             feedWaypoints.gettingContent = true
             nextPage = feedWaypoints.currentPage + 1
-            $.get 'feed/page/'+nextPage+'/', (data) ->
+            $.get window.location.href + '/page/'+nextPage+'/', (data) ->
               $('.paginate').before($(data).find('article.post'))
               feedWaypoints.currentPage++
               feedWaypoints.gettingContent = false
               $('.paginate').hide()
               feedAPIHandler.appendArticles()
+              feedWaypoints.assignAnimationWaypoints()
               $.waypoints('refresh')
           else if feedWaypoints.currentPage >= $('.maxpages').data('maxpages') and !feedWaypoints.gettingContent
             $('.paginate').show()
-            $('.paginate .post h2').text('End of the line')
-            $('.paginate .post i').hide()
-            killTwinkle = setTimeout(->
-              $('.paginate .post h2').removeClass('twinkle')
-            ,6000)
+            $('.paginate .post-content h2').removeClass('twinkle').text('End of the line')
 
     feedDateKeeper.loadDates = () ->
       $('.published').each (index) ->
@@ -130,6 +153,7 @@ $ ->
       if feedDateKeeper.firstRun
         feedWaypoints.addEndPageWaypoint()
         feedWaypoints.addImageWaypoints()
+        feedWaypoints.assignAnimationWaypoints()
         feedDateKeeper.firstRun = false
 
     feedAPIHandler.appendArticles = () ->
@@ -170,13 +194,14 @@ $ ->
       )
       feedAPIHandler.sortArticles()
 
-    $('.icon-expand-arrow').bind 'click', () ->
+    $('span.down-arrow').bind 'click', () ->
       $(this).hide()
       parentArticle = $(this).parent('article')
       if parentArticle.find('.more-text').length
-        parentArticle.find('.article-text').hide()
-      parentArticle.find('.more-content > *').show()
+        parentArticle.find('.article-text').css('visibility','hidden')
+        $('.more-text').css({'position':'relative','top':'-2rem'})
+      parentArticle.find('.more-content > *').show(0,->
+        $.waypoints('refresh')
+      )
 
     feedAPIHandler.collectArticles()
-    # feedImageLoader.addImages(0)
-    #feedDateKeeper.loadDates()
