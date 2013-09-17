@@ -74,6 +74,7 @@ end
 ###
 page "/index.html", :layout => "layout"
 page "/blood.html", :layout => "blood-layout"
+page "/feed/*", :layout => "blog-single-layout"
 page "/feed/index.html", :layout => "blog-layout"
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes

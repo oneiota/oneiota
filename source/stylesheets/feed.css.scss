@@ -1,8 +1,9 @@
-@import "compass/css3/gradient";
+@import "compass/css3/images";
 @import "_mixins";
 
 body.feed {
-  @include linear-gradient(color-stops(white, black));
+  // $experimental-support-for-svg: true;
+  @include background-image(linear-gradient(#222222 5%, #2ac363, #cd8c14, #9c4cc2));
   article {
     hr, span.down-arrow {
       visibility: hidden
@@ -60,6 +61,8 @@ body.feed article {
     display: block;
     margin: 0 auto;
     line-height: 0;
+    max-width: 400px;
+    width: 100%;
     .feed-img {
       margin: 0;
       display: inline-block;
@@ -69,10 +72,13 @@ body.feed article {
       overflow: hidden;
     }
   }
+  .feed-img-holder.moreimages {
+    margin-top: $verticleMargin;
+  }
   .post-content {
     vertical-align: middle;
     h2 {
-      margin: 0 0 2rem 0;
+      margin: 0 0 $verticleMargin 0;
       a {
         @include font-size(1.5);
         @include at-breakpoint($bigscreen) {
@@ -89,15 +95,18 @@ body.feed article {
       display: none;
     }
   }
+  .post-date.mobile {
+    margin-bottom: $verticleMargin;
+  }
   .post-type {
-    margin-bottom: 2rem;
+    margin-bottom: $verticleMargin;
     @include at-breakpoint($bigscreen) {
       margin-bottom: 0rem;
     }
   }
   hr {
-    margin: 4rem 0 0 0;
-    padding: 0 0 4rem 0;
+    margin: 3rem 0 0 0;
+    padding: 0 0 3rem 0;
     @include at-breakpoint($bigscreen) {
       margin: 8rem 0 0 0;
       padding: 0 0 8rem 0;
@@ -112,17 +121,14 @@ body.feed article {
     float: none;
     display: block;
     cursor: pointer;
-    font-size: 1rem;
-    margin-top: 2rem;
-    @include at-breakpoint($tablet) {
-      font-size: 1.5rem;
-    }
+    font-size: 1.5rem;
+    margin-top: $verticleMargin;
   }
 }
 
 body.feed article.gallery {
   p {
-    margin: 2rem 0 0 0;
+    margin: $verticleMargin  0 0 0;
   }
   .feed-img-holder {
     width: 25%;
@@ -144,11 +150,7 @@ body.feed article.gallery {
 
 body.feed article.single {
   p {
-    margin: 2rem 0 0 0;
-  }
-  .feed-img-holder {
-    width: 50%;
-    max-width: 400px;
+    margin: $verticleMargin  0 0 0;
   }
 }
 
@@ -156,16 +158,11 @@ body.feed article.post {
   p {
     display: inline;
   }
-  .feed-img-holder {
-    margin: 0 auto;
-    width: 50%;
-    max-width: 400px;
-    .feed-img {
-      margin-bottom: 0.5rem;
-    }
+  .feed-img {
+    margin-bottom: 0.5rem;
   }
   .feature-image {
-    margin-bottom: 2rem;
+    margin-bottom: $verticleMargin ;
   }
   .more-content {
     .more-text {
@@ -177,7 +174,7 @@ body.feed article.post {
       display: none;
     }
     .feed-img-holder:first-child {
-      margin-top: 2rem;
+      margin-top: $verticleMargin ;
     }
   }
 }

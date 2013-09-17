@@ -124,7 +124,6 @@ article.feed {
     }
     .post-date.mobile {
       display: block;
-      margin-bottom: 2rem;
       @include at-breakpoint($bigscreen) {
         display: none;
       }

@@ -88,7 +88,8 @@ $ ->
         img = new Image()
         timer = undefined
 
-        img.src = imgItem.imgSrc
+        # img.src = imgItem.imgSrc
+        img.src = window.location.protocol+"//"+window.location.host + '/feed/' + imgItem.imgSrc
         img.title = img.alt = imgItem.imgTitle
         img.imgParent = imgItem.imgParent
         img.imgSpan = imgItem.imgSpan
@@ -205,3 +206,5 @@ $ ->
       )
 
     feedAPIHandler.collectArticles()
+    if $('body').hasClass('singlepost')
+      feedImageLoader.addImages(0)
