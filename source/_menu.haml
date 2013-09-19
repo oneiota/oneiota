@@ -5,9 +5,9 @@
   %ul
     %li
       -if current_page.path == 'blood.html'
-        %a{:href => 'blood', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>info</span> <span class='meaning'>blood</span>
+        %a{:href => '/blood', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>info</span> <span class='meaning'>blood</span>
       -else
-        %a{:href => 'blood', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>info</span> <span class='meaning'>blood</span>
+        %a{:href => '/blood', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>info</span> <span class='meaning'>blood</span>
     %li
       -if current_page.path == 'index.html'
         %a{:href => '/', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#EABCAD'}} <span class='helper'>work</span> <span class='meaning'>sweat</span>

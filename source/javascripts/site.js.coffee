@@ -1,4 +1,5 @@
 #= require feed
+#= require intro
 
 window.isTouch = if ($('html').hasClass('touch')) then true else false
 window.isCanvas = if ($('html').hasClass('canvas')) then true else false
@@ -363,9 +364,6 @@ if window.isIndex
         else
           history.replaceState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
         waypointCheck.lastIndex = currentIndex
-    
-    #Index specific startup functions
-    waypointCheck.assignArticleWaypoints()
 
   #Touch Handlers
   else
@@ -913,7 +911,12 @@ $ ->
       mainMenu.updateColors(mainMenu.ogfg, mainMenu.ogbg)
       $('.menuItem.active span').css('opacity','1')
 
-  #Site wide startup functions
-  imageLoader.addImages(0)
-  objectLoader.pageLoaded()
-  historyController.bindPopstate()
+
+  ##Index specific startup functions
+  #if window.isPortfolio
+    #waypointCheck.assignArticleWaypoints()
+  
+  ##Site wide startup functions
+  #imageLoader.addImages(0)
+  #objectLoader.pageLoaded()
+  #historyController.bindPopstate()

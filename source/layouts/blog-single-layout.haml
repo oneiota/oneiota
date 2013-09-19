@@ -49,11 +49,12 @@
             %span{:class => 'published', :data => {:published => current_article.date}}
         - if current_article.data.images
           -if current_article.data.images.size > 1
-            - current_article.data.images.drop(1).each do |img|
-              - imgsrc = img.keys.first
-              - imgtitle = img.values.first
-              .feed-img-holder.moreimages
-                %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
+            .moreimages.fadeIn.delay
+              - current_article.data.images.drop(1).each do |img|
+                - imgsrc = img.keys.first
+                - imgtitle = img.values.first
+                .feed-img-holder
+                  %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
 
     %footer
 

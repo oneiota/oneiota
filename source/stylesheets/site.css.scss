@@ -6,6 +6,7 @@
 *= require "info"
 *= require "blood"
 *= require "feed"
+*= require "intro"
 
 //Grid
 *= require "_layout/grid"
@@ -15,6 +16,10 @@
 @import "_mixins";
 @import "_animations";
 @import "_layout/grid";
+
+nav {
+  display: none !important;
+}
 
 body {
   @include font-bold();

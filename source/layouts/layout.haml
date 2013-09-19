@@ -34,6 +34,7 @@
     %header
       %nav= partial "nav"
       .overlay= partial "menu"
+      .intro{:style => "color:#{yield_content(:foreground)}; background:#{yield_content(:background)};"}
     %div{:role => "main", :class => "main"}= yield
     %footer
 
@@ -41,6 +42,7 @@
     :javascript
       window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.10.2.min.js"><\/script>')
     = javascript_include_tag "vendor/waypoints2.0.2.min.js"
+    = javascript_include_tag "vendor/jquery-ui-1.9.2.custom.js"
     = javascript_include_tag "vendor/jquery.color-2.1.2.min.js"
     = javascript_include_tag "site"
     
