@@ -29,7 +29,7 @@
     display: block;
     width:100%;
     position: fixed;
-    bottom: 3rem;
+    bottom: 7rem;
   }
   .bin {
     display: inline-block;
@@ -51,6 +51,26 @@
     }
     .icon-trash {
       visibility: hidden;
+    }
+  }
+  .hangman {
+    position: fixed;
+    bottom: 2rem;
+    display: block;
+    width:100%;
+    li {
+      width: 1.5rem;
+      display: inline-block;
+      font-size: 1.5rem;
+      line-height: 1em;
+      border-bottom: 1px solid;
+      margin-right: 1rem;
+      .hidden {
+        // text-indent: -9999px;
+      }
+    }
+    li:nth-child(3) {
+      margin-right: 2rem;
     }
   }
 }
