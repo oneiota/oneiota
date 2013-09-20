@@ -1,11 +1,56 @@
+@import "_mixins";
+
 .intro {
   display: block;
   position: relative;
   height: 100%;
   width: 100%;
+}
+
+.trashGame {
   h1 {
-    font-size: 25em;
+    display: block;
+    position: fixed;
+    font-size: 6em;
+    @include at-breakpoint($tablet) {
+      font-size: 13em;
+    }
+    @include at-breakpoint($bigscreen) {
+      font-size: 20em;
+    }
     line-height: 1em;
     color: inherit;
+    cursor:move;
   } 
+  .icon-trash-open {
+    visibility: hidden;
+  }
+  .bin-container{
+    display: block;
+    width:100%;
+    position: fixed;
+    bottom: 3rem;
+  }
+  .bin {
+    display: inline-block;
+    i:before {
+      font-size: 5rem;
+    }
+    .icon-trash-open {
+      display: block;
+      position:absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .bin.active {
+    .icon-trash-open {
+      visibility: visible;
+    }
+    .icon-trash {
+      visibility: hidden;
+    }
+  }
 }

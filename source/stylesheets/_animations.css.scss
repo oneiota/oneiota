@@ -20,7 +20,7 @@
     @include animation(twinkly 1s alternate infinite);
 }
 
-.scaleInMenu, .scaleOut, .scaleOutIn, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown, .scaleInSevenFive, .scaleOutSevenFive {
+.scaleBig, .scaleInMenu, .scaleOut, .scaleOutIn, .slideUp, .slideDown, .slideRight, .slideLeft, .scaleUp, .scaleDown, .scaleInSevenFive, .scaleOutSevenFive {
   @include animation-duration(0.3s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(1);
@@ -107,6 +107,10 @@ html.touch .slideOutProject {
 
 .csstransforms3d .slideInProject {
   @include animation-name(slideInProject-3d);
+}
+
+.scaleBig {
+  @include animation-name(scaleBig);
 }
 
 .scaleOut{
@@ -662,5 +666,14 @@ html.touch {
   }
   to {
     @include transform(scale(0.8));
+  }
+}
+
+@include keyframes(scaleBig) {
+  from {
+    @include transform(scale(1));
+  }
+  to {
+    @include transform(scale(1.4));
   }
 }
