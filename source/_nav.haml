@@ -1,6 +1,6 @@
 .hud.top-hud.info-hud
   %ul.filterMenu
-    %li.eyeButton
+    %li.eyeButton.scaleIn
       %a{:href => '#', :title => 'Get Picky'}
         %i.icon.icon-eye.scaleOutSevenFive
         %i.icon.icon-eye.scaleInSevenFive
@@ -23,7 +23,7 @@
       - textColor = data.projects[0].colors.background
       - data.projects.each_with_index do |project, index|
         -if index == 0
-          %li.active
+          %li.active.scaleIn
             %a.nav-item{:href => '/'+project.slug}
               %i.icon-circle.scaleOutSevenFive.icon
               %i.icon-circle.scaleInSevenFive.icon
@@ -31,7 +31,7 @@
               %span.arrow-title
                 =project.project
         -elsif index == 7
-          %li
+          %li.scaleIn
             %a.nav-item{:href => '/'+project.slug}
               %i.icon-circle.scaleOutSevenFive.icon
               %i.icon-circle.scaleInSevenFive.icon
@@ -41,7 +41,7 @@
                 %span.arrow-title
                   =project.project
         -elsif index == 8
-          %li.mobile-hide
+          %li.mobile-hide.scaleIn
             %a{:href => '#', :title => 'Back'}
               %i.icon-up-arrow-bare.icon
               %a.nav-item{:href => '/'+project.slug}
@@ -51,7 +51,7 @@
                 %span.arrow-title
                   =project.project
         -elsif index > 8 
-          %li.mobile-hide
+          %li.mobile-hide.scaleIn
             %a.nav-item{:href => '/'+project.slug}
               %i.icon-circle.scaleOutSevenFive.icon
               %i.icon-circle.scaleInSevenFive.icon
@@ -59,7 +59,7 @@
               %span.arrow-title
                 =project.project
         -else
-          %li
+          %li.scaleIn
             %a.nav-item{:href => '/'+project.slug}
               %i.icon-circle.scaleOutSevenFive.icon
               %i.icon-circle.scaleInSevenFive.icon
@@ -69,13 +69,13 @@
 
 .hud.bottom-hud 
   %ul.indexNav
-    %li
+    %li.scaleIn
       %a.icon-info.icon{:href=>'#', :title => 'Information'}
   %ul.menuNav
-    %li
+    %li.scaleIn
       %a.icon-close.icon{:href=>'#', :title => 'Close this'}
     / %li
     /   %a.icon-contact.icon{:href=>'#', :title => 'Get in touch'}
   %ul.infoNav
-    %li
+    %li.scaleIn
       %a.icon-left-arrow.icon{:href=>'#', :title => 'Back'}

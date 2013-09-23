@@ -24,6 +24,12 @@ module SiteHelpers
     description
   end
 
+  def intro_colors
+    colorArray = [['#8DF5BB','#FFEEDF'],['#000000','#FFFFFF']]
+    pickedColors = colorArray.sample
+    pickedColors
+  end
+
   def get_projects
     projects = []
     projects = data.projects.drop(2).to_json

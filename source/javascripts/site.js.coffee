@@ -238,8 +238,8 @@ imageLoader.addImages = (articleIndex) ->
 
 if window.isIndex
 
-  if window.isCanvas
-    waypointCheck.makeCanvas()
+  # if window.isCanvas
+  #   waypointCheck.makeCanvas()
 
   #Non Touch Handlers
   # CHANGE FOR TOUCH DEBUG - DONE
@@ -370,7 +370,6 @@ if window.isIndex
 
     $('.main article').css('background','transparent')
 
-    #Could be good to add a loaded listener to whole site. show everything at once.
     window.addEventListener 'load', ->
       setTimeout ->
         window.scrollTo(0, 1)
@@ -750,11 +749,22 @@ objectLoader.loadInternals = (targetIndex) ->
   animateChildren()
 
 objectLoader.pageLoaded = () ->
-  $(window).load(->
-    objectLoader.assignAnimationWaypoints()
-    if window.isBlood
-      bloodLoader.getInsty()
-  )
+  objectLoader.assignAnimationWaypoints()
+  if window.isBlood
+    bloodLoader.getInsty()
+    $('nav').show()
+  if window.isPortfolio
+    # showMain = setTimeout ->
+    waypointCheck.makeCanvas()
+    $('.intro').hide()
+    # $('.intro').removeClass('fadeIn').addClass('introOut')
+    $('.main').addClass('scaleInBig')
+    showNav = setTimeout ->
+      $('nav').show()
+      $('.intro').remove()
+    , 1200
+    # , 500
+
 
 #Binds
 
@@ -911,12 +921,15 @@ $ ->
       mainMenu.updateColors(mainMenu.ogfg, mainMenu.ogbg)
       $('.menuItem.active span').css('opacity','1')
 
+  window.getItStarted = () ->
+    ##Index specific startup functions
+    if window.isPortfolio and !window.isTouch
+      waypointCheck.assignArticleWaypoints()
 
-  ##Index specific startup functions
-  #if window.isPortfolio
-    #waypointCheck.assignArticleWaypoints()
-  
-  ##Site wide startup functions
-  #imageLoader.addImages(0)
-  #objectLoader.pageLoaded()
-  #historyController.bindPopstate()
+    ##Site wide startup functions
+    # imageLoader.addImages(0)
+    objectLoader.pageLoaded()
+    historyController.bindPopstate()
+
+  if !window.isPortfolio
+    window.getItStarted()

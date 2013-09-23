@@ -22,19 +22,21 @@
     
     = javascript_include_tag "vendor/modernizr-2.6.1.min"
     = stylesheet_link_tag "site"
-    
+
     %style{:type => "text/css"}
       body { background:#{yield_content(:background)}; }
+      div.intro { background:#{intro_colors.first}; color:#{intro_colors.last};}
       nav { color:#{yield_content(:foreground)}; }
       html .mobile.project-title { background:#{yield_content(:background)}; }
       html .mobile.project-title { background:#{yield_content(:background)}; }
       html .navCounters .navPanel { background:#{yield_content(:background)}; }
+
   %body.index.portfolio
     /[if lt IE 7] <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
     %header
       %nav= partial "nav"
       .overlay= partial "menu"
-      .intro{:style => "color:#{yield_content(:foreground)}; background:#{yield_content(:background)};"}
+      .intro.fadeIn
     %div{:role => "main", :class => "main"}= yield
     %footer
 
@@ -43,6 +45,7 @@
       window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.10.2.min.js"><\/script>')
     = javascript_include_tag "vendor/waypoints2.0.2.min.js"
     = javascript_include_tag "vendor/jquery-ui-1.9.2.custom.js"
+    = javascript_include_tag "vendor/jquery.ui.touch-punch.min.js"
     = javascript_include_tag "vendor/jquery.color-2.1.2.min.js"
     = javascript_include_tag "site"
     

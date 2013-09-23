@@ -2,12 +2,15 @@
 
 .intro {
   display: block;
-  position: relative;
+  position: fixed;
   height: 100%;
   width: 100%;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .trashGame {
+  visibility: hidden;
   h1 {
     display: block;
     position: fixed;
@@ -22,6 +25,9 @@
     color: inherit;
     cursor:move;
   } 
+  .scaleIn,.rotated {
+    visibility: visible;
+  }
   .icon-trash-open {
     visibility: hidden;
   }
@@ -29,12 +35,12 @@
     display: block;
     width:100%;
     position: fixed;
-    bottom: 7rem;
+    bottom: 5rem;
   }
   .bin {
     display: inline-block;
     i:before {
-      font-size: 5rem;
+      font-size: 9rem;
     }
     .icon-trash-open {
       display: block;
@@ -61,9 +67,9 @@
     li {
       width: 1.5rem;
       display: inline-block;
-      font-size: 1.5rem;
+      font-size: 2rem;
       line-height: 1em;
-      border-bottom: 1px solid;
+      border-bottom: 2px solid;
       margin-right: 1rem;
       .hidden {
         // text-indent: -9999px;
