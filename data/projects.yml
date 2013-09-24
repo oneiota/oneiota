@@ -52,6 +52,98 @@
   digital:
   branding: "true"
 
+- project: Mirrool Creek Lamb
+  slug: mirroolcreeklamb
+  description: >
+    A family company known for its premium quality lamb, Mirrool Creek commissioned One Iota to develop an entire brand identity, from the logo and marketing collateral through to an exciting new website. The site adopts a non-traditional web design, with all the content on a single page. Condiments such as salt, olive oil and rosemary appear to float in the background as the user travels down the site. This site also used our dynamic site design that optimises itself for a variety of screen sizes and resolutions. The client is also able to maintain the site through our streamlined content management system, which their brand manager uses regularly to provide tasty lamb recipes or manage stockists.
+  link: mirroolcreeklamb.com
+  images:
+    - 
+      mobile: mobile/MiroolCreek_heroshot.png
+      desktop: MiroolCreek_heroshot.png
+      alt: >
+        Mirrool Creek Lamb meat vacuum packaging
+    - 
+      mobile: mobile/MiroolCreek_afterText.jpg
+      desktop: MiroolCreek_afterText.jpg
+      alt: >
+        Mirrool Creek Lamb promotion design
+    - 
+      mobile: mobile/MiroolCreek_iphone.png
+      desktop: MiroolCreek_iphone.png
+      alt: >
+        Mirrool Creek Lamb responsive view
+    - 
+      mobile: mobile/MiroolCreek_web.png
+      desktop: MiroolCreek_web.png
+      alt: >
+        Mirrool Creek Lamb interactive web layout
+    - 
+      mobile: mobile/MiroolCreek_businessCards.png
+      desktop: MiroolCreek_businessCards.png
+      alt: >
+        Mirrool Creek Lamb calling cards
+    - 
+      mobile: mobile/MiroolCreek_bagMeat.png
+      desktop: MiroolCreek_bagMeat.png
+      alt: >
+        Mirrool Creek Lamb packaging design
+    - 
+      mobile: mobile/MiroolCreek_collateral.png
+      desktop: MiroolCreek_collateral.png
+      alt: >
+        Mirrool Creek Lamb brand collateral
+  colors:
+    foreground: "#FF0000"
+    background: "#F2D6C7"
+  tags: [Website Development, Brand Development, Brand Collateral, Package Design, Copywriting]
+  digital: "true"
+  branding: "true"
+
+- project: Blackboard Coffee
+  slug: bbcoffee
+  description: >
+    The Illustration room represents a range of respected talent from across the globe.<span>They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.</span>
+  link: blackboardcoffee.com
+  images:
+    - 
+      mobile: mobile/BBheroshot.png
+      desktop: BBheroshot.png
+      alt: >
+        Blackboard Coffee Branding
+    - 
+      mobile: mobile/BBaftertext.png
+      desktop: BBaftertext.png
+      alt: >
+        Blackboard Coffee letterpress business card and exterior signage
+    - 
+      mobile: mobile/BBwindowDisplay.jpg
+      desktop: BBwindowDisplay.jpg
+      alt: >
+        Blackboard Coffee window display
+    -
+      mobile: mobile/BBweb.png
+      desktop: BBweb.png
+      alt: >
+        Blackboard Coffee responsive website
+    -
+      mobile: mobile/BBicedcoffee.png
+      desktop: BBicedcoffee.png
+      alt: >
+        Blackboard Coffee iced coffee bottle design
+    -
+      mobile: mobile/BBLGimages.png
+      desktop: BBLGimages.png
+      alt: >
+        Blackboard Coffee brand collateral
+  colors:
+    foreground: "#232323"
+    background: "#F9E5DC"
+  tags: [Brand Development, Brand Collateral, Web Development, Copywriting, Built Environment]
+  digital: "true"
+  branding: "true"
+
+
 - project: The Illustration Room
   slug: theillustrationroom
   description: >
@@ -72,7 +164,7 @@
       mobile: mobile/illustrationroom_blog_lightbox.jpg
       desktop: illustrationroom_blog_lightbox.jpg
       alt: >
-        The Illustration Room Lightbox &amp; Blog
+        The Illustration Room Lightbox and Blog
     -
       mobile: mobile/illustrationroom_mobile_view.jpg
       desktop: illustrationroom_mobile_view.jpg
@@ -87,84 +179,5 @@
     foreground: "#000077"
     background: "#a3dcd3"
   tags: [Website Development, Brand Development, Brand Collateral]
-  digital: "true"
-  branding: "true"
-
-- project: Mirrool Creek Lamb
-  slug: mirroolcreeklamb
-  description: >
-    A family company known for its premium quality lamb, Mirrool Creek commissioned One Iota to develop an entire brand identity, from the logo and marketing collateral through to an exciting new website. The site adopts a non-traditional web design, with all the content on a single page. Condiments such as salt, olive oil and rosemary appear to float in the background as the user travels down the site. This site also used our dynamic site design that optimises itself for a variety of screen sizes and resolutions. The client is also able to maintain the site through our streamlined content management system, which their brand manager uses regularly to provide tasty lamb recipes or manage stockists.
-  link: mirroolcreeklamb.com
-  images:
-    - 
-      mobile: mobile/TempWorkplace.png
-      desktop: TempWorkplace.png
-      alt: >
-        Mirrool Creek Lamb Responsive Website
-    - 
-      mobile: mobile/TempTwo-Panel.png
-      desktop: TempTwo-Panel.png
-      alt: >
-        Mirrool Creek Lamb Responsive Website
-    - 
-      mobile: mobile/TempTote.png
-      desktop: TempTote.png
-      alt: >
-        Mirrool Creek Lamb Tote Bag
-  colors:
-    foreground: "#383868"
-    background: "#D0C0AC"
-  tags: [Website Development, Brand Development, Brand Collateral, Copywriting]
-  digital: "true"
-  branding:
-
-- project: Mirrool Creek Lamb 2
-  slug: mirroolcreeklamb2
-  description: >
-    A family company known for its premium quality lamb, Mirrool Creek commissioned One Iota to develop an entire brand identity, from the logo and marketing collateral through to an exciting new website. The site adopts a non-traditional web design, with all the content on a single page. Condiments such as salt, olive oil and rosemary appear to float in the background as the user travels down the site. This site also used our dynamic site design that optimises itself for a variety of screen sizes and resolutions. The client is also able to maintain the site through our streamlined content management system, which their brand manager uses regularly to provide tasty lamb recipes or manage stockists.
-  link: mirroolcreeklamb.com
-  images:
-    - 
-      mobile: mobile/TempWorkplace.png
-      desktop: TempWorkplace.png
-      alt: >
-        Mirrool Creek Lamb Responsive Website
-    - 
-      mobile: mobile/TempTwo-Panel.png
-      desktop: TempTwo-Panel.png
-      alt: >
-        Mirrool Creek Lamb Responsive Website
-    - 
-      mobile: mobile/TempTote.png
-      desktop: TempTote.png
-      alt: >
-        Mirrool Creek Lamb Tote Bag
-  colors:
-    foreground: "#FCF2D6"
-    background: "#FF5A5A"
-  tags: [Website Development, Brand Development, Brand Collateral, Copywriting]
-  digital:
-  branding: "true"
-
-- project: Sourced Grocer
-  slug: sourcedgrocer
-  description: > 
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  images:
-    - 
-      mobile: esplcoffeebrewers1.jpg
-      desktop: esplcoffeebrewers1_big.jpg
-      alt: image alt
-    - 
-      mobile: esplcoffeebrewers2.jpg
-      desktop: esplcoffeebrewers2_big.jpg
-      alt: image alt
-  colors:
-    foreground: "#000"
-    background: "#ffff00"
-  tags: [Website Development, Brand Development, Brand Collateral, Copywriting]
   digital: "true"
   branding: "true"

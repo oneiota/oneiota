@@ -756,8 +756,7 @@ objectLoader.pageLoaded = () ->
   if window.isPortfolio
     # showMain = setTimeout ->
     waypointCheck.makeCanvas()
-    $('.intro').hide()
-    # $('.intro').removeClass('fadeIn').addClass('introOut')
+    $('.intro').removeClass('fadeIn').addClass('introOut')
     $('.main').addClass('scaleInBig')
     showNav = setTimeout ->
       $('nav').show()
@@ -927,7 +926,7 @@ $ ->
       waypointCheck.assignArticleWaypoints()
 
     ##Site wide startup functions
-    # imageLoader.addImages(0)
+    imageLoader.addImages(0)
     objectLoader.pageLoaded()
     historyController.bindPopstate()
 

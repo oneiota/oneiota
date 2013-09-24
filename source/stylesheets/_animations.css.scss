@@ -24,6 +24,10 @@
   @include animation(shakey 0.15s linear alternate 5);
 }
 
+.shakeinfinte {
+  @include animation(shakey 0.50s linear alternate infinite);
+}
+
 .jump {
   @include animation(jump 0.3s linear alternate 1);
 }
@@ -34,13 +38,19 @@
 }
 
 .scaleInBig {
-  z-index: 999 !important;
+  z-index: 1 !important;
   @include transform-origin(center top);
-  @include animation(scaleInBig 0.7s linear forwards 1);
+  @include transform(scale(3));
+  @include animation(scaleInBig 0.7s ease forwards 1);
+}
+
+.scaleDown {
+  @include animation(scaleBig 0.3s ease reverse 1);
 }
 
 .worldsend {
   @include transform-origin(right bottom);
+  @include perspective(300px);
   @include animation(worldsend 1s ease forwards 1);
 }
 
@@ -490,8 +500,8 @@ html.touch {
 
 @include keyframes(jump) {
   0%   { @include transform(translate3d(0px,0%,0px)); }
-  33%   { @include transform(translate3d(0px,8%,0px)); }
-  66%   { @include transform(translate3d(0px,-8%,0px)); }
+  33%   { @include transform(translate3d(0px,5%,0px)); }
+  66%   { @include transform(translate3d(0px,-5%,0px)); }
   100% { @include transform(translate3d(0px,0%,0px)); }
 }
 
@@ -643,7 +653,7 @@ html.touch {
     @include transform(scale(1));
   }
   100% {
-    @include transform(scale(0.3));
+    @include transform(scale(0.5));
   }
 }
 
@@ -711,12 +721,20 @@ html.touch {
 
 @include keyframes(scaleInBig) {
   0% {
-    @include transform(scale3d(3,3,1));
+    opacity: 0;
+    @include transform(scale(3));
   }
   100% {
-    @include transform(scale3d(1,1,1));
+    opacity: 1;
+    @include transform(scale(1));
   }
 }
+
+// 0% {
+//     @include transform(scale3d(3,3,1));
+//   }
+//   100% {
+//     @include transform(scale3d(1,3,1));
 
 @include keyframes(slideUp) {
   from {
