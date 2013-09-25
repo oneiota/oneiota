@@ -57,6 +57,8 @@ MainMenu = ->
 mainMenu = new MainMenu()
 
 ObjectLoader = ->
+  @fadeArray = ['fadeInSlide','fadeInSlideR','fadeInSlideL']
+  @lastFade
   if window.isBlood
     @objectTarget = 'section'
     @objectSubTarget = '.content'
@@ -700,6 +702,16 @@ if window.isBlood
 
 #Elegant page object animation
 
+objectLoader.randomFade = () ->
+  getRandomFade = () ->
+    randomFade = objectLoader.fadeArray[Math.floor(Math.random() * objectLoader.fadeArray.length)]
+    if randomFade != objectLoader.lastFade
+      objectLoader.lastFade = randomFade
+      randomFade
+    else
+      getRandomFade()
+  getRandomFade()
+
 objectLoader.assignAnimationWaypoints = () ->
   
   if window.isBlood
@@ -724,7 +736,9 @@ objectLoader.assignAnimationWaypoints = () ->
           triggerOnce: true
           offset: '50%'
           handler: (direction) ->
-            $(this).addClass('loaded fadeInSlide')
+            fadeInEffect = objectLoader.randomFade()
+            console.log fadeInEffect
+            $(this).addClass('loaded ' + fadeInEffect)
     )
 
 objectLoader.loadInternals = (targetIndex) ->

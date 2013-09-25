@@ -1,15 +1,18 @@
 TrashGame = ->
   @rotateArray = ['rotatefive','rotatenegfive','rotateonefive','rotateonenegfive','rotatefourfive','rotatenegfourfive','rotateninezero','rotatenegninezero']
   @hangmansList = 0
+  @totalTrashObjs = 0
   @screenW = $(window).width()
   @screenH = $(window).height()
+  @gamehelpTimer
 
 trashGame = new TrashGame()
 
 DragGame = ->
   @letterCount = 0
   @hangmansList = 0
-  @lalalala
+  @lastX = false
+  @lastY = false
 
 dragGame = new DragGame()
 
@@ -69,65 +72,90 @@ $ ->
       $('.hangman li').each(->
         if $(this).hasClass(matchedLetter)
           $(this).removeClass(matchedLetter).html(matchedLetter)
-          trashGame.hangmansList++
+          trashGame.totalTrashObjs++
           return false
       )
-      if trashGame.hangmansList == 7
+      if trashGame.hangmansList == trashGame.totalTrashObjs
         $('.bin').removeClass('jump').addClass('jump')
         introGame.gameOver()
       else
         $('.bin').removeClass('jump').addClass('jump')
 
+    trashGame.newletter = (liIndex) ->
+      trashGame.hangmansList++
+      gameObject = $('<h1/>',
+        id: liIndex
+        className: 'trashObject'
+        html: introGame.oneiota[liIndex]
+      )
+      rotateObject = Math.random() < .5
+      if rotateObject
+        randomRotate = trashGame.rotateArray[Math.floor(Math.random() * trashGame.rotateArray.length)]
+        gameObject.addClass('rotated')
+        gameObject.data('rotate',randomRotate)
+
+      $('.trashGame').append(gameObject)
+      dropX = Math.random() * (80 - 15) + 15
+      dropY = Math.random() * (50 - 15) + 15
+      gameObject.css({'top':dropY + '%','left':dropX + '%'})
+      gameObject.draggable()
+      $('.hangman').append('<li class="'+introGame.oneiota[liIndex]+'">&nbsp;')
+
+
     trashGame.init = () ->
-      $('.intro').append('<div class="trashGame"><div class="bin-container"><div class="bin"><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
+      $('.intro').append('<div class="trashGame"><div class="bin-container"><div class="bin"><i class="icon hide-arrow icon-down-arrow-bare"/><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
       $('.trashGame').append('<ul class="hangman">')
 
       $.each introGame.oneiota, (i) ->
-        fiftyfiftychance = Math.random() < .5
-        if fiftyfiftychance && trashGame.hangmansList < 4
-          trashGame.hangmansList++
-          $('.hangman').append('<li>'+ introGame.oneiota[i])
+        if trashGame.hangmansList < 3
+          if i == introGame.oneiota.length
+            trashGame.newletter(i)
+          else
+            randomLetter = Math.random() < .5
+            if randomLetter
+              trashGame.newletter(i)
+            else
+              $('.hangman').append('<li>'+ introGame.oneiota[i])
         else
-          gameObject = $('<h1/>',
-            id: i
-            className: 'trashObject'
-            html: introGame.oneiota[i]
-          )
-          rotateObject = Math.random() < .5
-          if rotateObject
-            randomRotate = trashGame.rotateArray[Math.floor(Math.random() * trashGame.rotateArray.length)]
-            gameObject.addClass('rotated')
-            gameObject.data('rotate',randomRotate)
-
-          $('.trashGame').append(gameObject)
-          dropX = Math.random() * (80 - 15) + 15
-          dropY = Math.random() * (50 - 15) + 15
-          gameObject.css({'top':dropY + '%','left':dropX + '%'})
-          gameObject.draggable()
-          $('.hangman').append('<li class="'+introGame.oneiota[i]+'">&nbsp;')
+           $('.hangman').append('<li>'+ introGame.oneiota[i])
 
       $('.bin').droppable
         activeClass: 'active'
         hoverClass: 'scaleBig'
         drop: (event, ui) ->
+          clearTimeout(trashGame.gamehelpTimer)
+          $('.icon-down-arrow-bare').remove()
           dropedLetter = $(ui.draggable).html()
           trashGame.matchLetter(dropedLetter)
           $(ui.draggable).removeClass().css('visibility','visible').addClass('scaleOut')
+
+      trashGame.gamehelpTimer = setTimeout ->
+        $('.icon-down-arrow-bare').removeClass('hide-arrow').addClass('jumpy')
+      , 10000
 
       introGame.animateIn('.trashGame')
 
     dragGame.randomLocation = () ->
       randomX = Math.random() < .5
       randomY = Math.random() < .5
-      if randomX
-        dropX = Math.random() * (20 - 15) + 15
+      if randomX and !dragGame.lastX
+        dragGame.lastX = true
+        dropX = Math.random() * (20 - 5) + 5
       else
-        dropX = Math.random() * (80 - 70) + 70
-      if randomY
-        dropY = Math.random() * (20 - 15) + 15
+        dragGame.lastX = false
+        dropX = Math.random() * (80 - 75) + 75
+      if randomY and !dragGame.lastY
+        dragGame.lastY = true
+        dropY = Math.random() * (20 - 5) + 5
       else
-        dropY = Math.random() * (80 - 70) + 70
+        dragGame.lastY = false
+        dropY = Math.random() * (80 - 75) + 75
       return[dropX, dropY]
+
+    dragGame.addShake = (shakeIndex) ->
+      setTimeout ->
+        $('.dragObject').eq(shakeIndex).removeClass('scaleDown').addClass('shakeinfinte')
+      ,301
 
     dragGame.newletter = (liIndex) ->
       gameObject = $('<h1/>',
@@ -136,13 +164,9 @@ $ ->
       )
       gameObject.draggable
         start: () ->
-          $(this).removeClass('shakeinfinte scaleDown').addClass('scaleBig dragToggle')
+          $(this).removeClass('shakeinfinte scaleSmall').addClass('scaleBig dragToggle')
         stop: () ->
-          $(this).removeClass('scaleBig dragToggle').addClass('scaleDown')
-          addShake = setTimeout ->
-            $(this).addClass('shakeinfinte')
-          ,301
-
+          $(this).removeClass('scaleBig dragToggle').addClass('scaleSmall')
         revert: 'invalid' 
         snap: ('.'+introGame.oneiota[liIndex])
         snapMode:'inner'
@@ -157,18 +181,12 @@ $ ->
       emptyLetter.droppable
         accept: '.'+introGame.oneiota[liIndex]
         drop: (event, ui) ->
+          $(ui.draggable).remove()
           dragGame.hangmansList++
-          $(this).droppable( 'disable' )
-          $(ui.draggable).removeClass('scaleIn').css('visibility','visible').addClass('scaleOut')
-          scaleOutTimer = setTimeout ->
-            $(ui.draggable).remove()
-            $(event.target).removeClass('hideLetter')
-            if dragGame.hangmansList == dragGame.letterCount
-              introGame.gameOver()
-            else
-              $(event.target).find('h1').addClass('scaleIn')
-            
-          , 700
+          $(this).droppable( 'disable')
+          $(event.target).removeClass('hideLetter')
+          if dragGame.hangmansList == dragGame.letterCount
+            introGame.gameOver()
       $('.drag-container ul').append(emptyLetter)
 
     dragGame.init = () ->
@@ -192,8 +210,7 @@ $ ->
       introGame.animateIn('.drag-container ul')
 
     introGame.init = () ->
-      #whichInteraction = introGame.interactionArray[Math.floor(Math.random() * introGame.interactionArray.length)]
-      #trashGame.init()
-      dragGame.init()
+      whichInteraction = introGame.interactionArray[Math.floor(Math.random() * introGame.interactionArray.length)]
+      whichInteraction.init()
 
     introGame.init()

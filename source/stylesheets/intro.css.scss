@@ -16,7 +16,7 @@
   width: 100%;
   height: 100%;
   visibility: hidden;
-  .scaleIn, .shakeinfinte, .dragToggle {
+  .scaleIn, .shakeinfinte, .dragToggle, .scaleSmall, .scaleOut {
     visibility: visible;
   }
   .drag-container {
@@ -45,10 +45,9 @@
       font-size: 13em;
     }
     @include at-breakpoint($bigscreen) {
-      font-size: 28em;
-      line-height: 0.5em;
+      font-size: 18em;
     }
-    line-height: 1em;
+    line-height: 0.5em;
     color: inherit;
   }
   ul {
@@ -56,15 +55,29 @@
     vertical-align: middle;
     li {
       display: inline-block;
-      margin: 0 1em;
       list-style: none;
-      height: 250px;
-      width: 255px;
+      height: 50px;
+      width: 50px;
+      margin: 0 0.2em;
+      @include at-breakpoint($tablet) {
+        height: 110px;
+        width: 110px;
+      }
+      @include at-breakpoint($bigscreen) {
+        height: 155px;
+        width: 155px;
+      }
     }
   }
   hr {
     border: none;
-    margin: 6rem 0;
+    margin: 1.5em 0;
+    @include at-breakpoint($tablet) {
+      margin: 2.5em 0;
+    }
+    @include at-breakpoint($bigscreen) {
+      margin: 3.5em 0;
+    }
   }
 }
 
@@ -97,6 +110,7 @@
     bottom: 5rem;
   }
   .bin {
+    position:relative;
     display: inline-block;
     i:before {
       font-size: 9rem;
@@ -109,8 +123,23 @@
       width: 100%;
       height: 100%;
     }
+    .hide-arrow {
+      visibility: hidden;
+    }
+    .icon-down-arrow-bare {
+      width: 100%;
+      z-index: -1;
+      display: block;
+      position: absolute;
+      &:before {
+        font-size:3rem !important;
+      }
+    }
   }
   .bin.active {
+    .icon-down-arrow-bare {
+      visibility: hidden;
+    }
     .icon-trash-open {
       visibility: visible;
     }

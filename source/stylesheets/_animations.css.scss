@@ -32,6 +32,11 @@
   @include animation(jump 0.3s linear alternate 1);
 }
 
+.jumpy {
+  visibility: visible;
+  @include animation(jumpy 0.5s linear alternate 3);
+}
+
 .introOut {
   // z-index: -1;
   @include animation(introOut 0.2s linear forwards 1);
@@ -44,8 +49,8 @@
   @include animation(scaleInBig 0.7s ease forwards 1);
 }
 
-.scaleDown {
-  @include animation(scaleBig 0.3s ease reverse 1);
+.scaleSmall {
+  @include animation(scaleSmall 0.3s ease forwards 1);
 }
 
 .worldsend {
@@ -94,14 +99,29 @@
   @include animation-fill-mode(forwards);
 }
 
-.fadeInSlide {
+.fadeInSlide, .fadeInSlideT, .fadeInSlideR, .fadeInSlideL {
   @include animation-duration(0.4s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(1);
-  @include animation-name(fadeInSlide);
   @include animation-fill-mode(forwards);
   opacity: 0;
   visibility: visible;
+}
+
+.fadeInSlideL {
+  @include animation-name(fadeInSlideL);
+}
+
+.fadeInSlideR {
+  @include animation-name(fadeInSlideR);
+}
+
+.fadeInSlideT {
+  @include animation-name(fadeInSlideT);
+}
+
+.fadeInSlide {
+  @include animation-name(fadeInSlide);
 }
 
 .no-csstransforms3d .slideOutProject {
@@ -505,6 +525,12 @@ html.touch {
   100% { @include transform(translate3d(0px,0%,0px)); }
 }
 
+@include keyframes(jumpy) {
+  0%   { @include transform(translate3d(0px,0%,0px)); }
+  50% { @include transform(translate3d(0px,-10%,0px)); }
+  100% { @include transform(translate3d(0px,0%,0px)); }
+}
+
 @include keyframes(worldsend) {
   0%   { @include transform(rotate3d(1,0,0,0deg)); }
   100% { @include transform(rotate3d(1,0,0,90deg)); }
@@ -783,6 +809,39 @@ html.touch {
   }
 }
 
+@include keyframes(fadeInSlideR) {
+  from {
+     @include transform(translate3d(50%,0px,0px));
+     opacity: 0;
+  }
+  to {
+     @include transform(translate3d(0%,0px,0px));
+     opacity: 1;
+  }
+}
+
+@include keyframes(fadeInSlideL) {
+  from {
+     @include transform(translate3d(-50%,0px,0px));
+     opacity: 0;
+  }
+  to {
+     @include transform(translate3d(0%,0px,0px));
+     opacity: 1;
+  }
+}
+
+@include keyframes(fadeInSlideT) {
+  from {
+     @include transform(translate3d(0px,-50%,0px));
+     opacity: 0;
+  }
+  to {
+     @include transform(translate3d(0px,0%,0px));
+     opacity: 1;
+  }
+}
+
 @include keyframes(scaleDown) {
   from {
     @include transform(scale(0.8));
@@ -807,6 +866,15 @@ html.touch {
   }
   to {
     @include transform(scale(1.4));
+  }
+}
+
+@include keyframes(scaleSmall) {
+  from {
+    @include transform(scale(1.4));
+  }
+  to {
+    @include transform(scale(1));
   }
 }
 
