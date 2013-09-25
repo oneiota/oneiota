@@ -11,6 +11,7 @@ $ ->
     FeedImageLoader = ->
       @loadArray = []
       @loadTimer = null
+      @retryLoad = false
 
     feedImageLoader = new FeedImageLoader()
 
@@ -86,10 +87,10 @@ $ ->
 
         imgItem = feedImageLoader.loadArray.shift()
         img = new Image()
-        timer = undefined
+        imgTimer = undefined
 
-        # img.src = imgItem.imgSrc
-        img.src = window.location.protocol+"//"+window.location.host + '/feed/' + imgItem.imgSrc
+        img.src = imgItem.imgSrc
+        #img.src = window.location.protocol+"//"+window.location.host + '/feed/' + imgItem.imgSrc
         img.title = img.alt = imgItem.imgTitle
         img.imgParent = imgItem.imgParent
         img.imgSpan = imgItem.imgSpan
@@ -98,17 +99,22 @@ $ ->
           feedImageLoader.imageLoaded(img)
         else
           # handle 404 using setTimeout set at 10 seconds, adjust as needed
-          timer = setTimeout(->
-            'somthing up with the time out'
-            feedImageLoader.loadImage()  if imgItem.length isnt 0
-            $(img).unbind 'error load onreadystate'
-          , 10000)
+          imgTimer = setTimeout ->
+            if !feedImageLoader.retryLoad
+              feedImageLoader.retryLoad = true
+              feedImageLoader.loadArray.unshift(imgItem)
+              feedImageLoader.loadImage()
+            else
+              feedImageLoader.retryLoad = false
+              $(img).unbind 'error load onreadystate'
+              feedImageLoader.loadImage()  if imgItem.length isnt 0
+          , 15000
           $(img).bind 'error load onreadystatechange', (e) ->
-            clearTimeout timer
+            clearTimeout imgTimer
             if e.type isnt 'error'
               feedImageLoader.imageLoaded(img)
             else
-              'put error handling code here!!!!!'
+              feedImageLoader.loadImage()
     
     feedImageLoader.addImages = (articleIndex) ->
       if !$('article').eq(articleIndex).hasClass('loaded')

@@ -47,6 +47,7 @@ ImageLoader = ->
   @loadArray = []
   @screenSize = if (screen.width > 880) then 'desktop' else 'mobile'
   @loadTimer = null
+  @retryLoad = false
 
 imageLoader = new ImageLoader()
 
@@ -202,7 +203,7 @@ imageLoader.loadImage = ->
 
     imgItem = imageLoader.loadArray.shift()
     img = new Image()
-    timer = undefined
+    imgTimer = undefined
 
     img.src = imgItem.imgSrc
     img.title = img.alt = imgItem.imgTitle
@@ -211,17 +212,22 @@ imageLoader.loadImage = ->
     if img.complete or img.readyState is 4
       imageLoader.imageLoaded(img)
     else
-      # handle 404 using setTimeout set at 10 seconds, adjust as needed
-      timer = setTimeout(->
-        imageLoader.loadImage()  if imgItem.length isnt 0
-        $(img).unbind 'error load onreadystate'
-      , 10000)
+      imgTimer = setTimeout ->
+        if !imageLoader.retryLoad
+          imageLoader.retryLoad = true
+          imageLoader.loadArray.unshift(imgItem)
+          imageLoader.loadImage()
+        else
+          imageLoader.retryLoad = false
+          $(img).unbind 'error load onreadystate'
+          imageLoader.loadImage()  if imgItem.length isnt 0
+      , 15000
       $(img).bind 'error load onreadystatechange', (e) ->
-        clearTimeout timer
+        clearTimeout imgTimer
         if e.type isnt 'error'
           imageLoader.imageLoaded(img)
         else
-          'put error handling code here!!!!!'
+          imageLoader.loadImage()
 
 imageLoader.addImages = (articleIndex) ->
   if !$('article').eq(articleIndex).hasClass('loaded')
@@ -736,9 +742,11 @@ objectLoader.assignAnimationWaypoints = () ->
           triggerOnce: true
           offset: '50%'
           handler: (direction) ->
-            fadeInEffect = objectLoader.randomFade()
-            console.log fadeInEffect
-            $(this).addClass('loaded ' + fadeInEffect)
+            if $(this).index() == 0
+              $(this).addClass('loaded fadeInSlide')
+            else
+              fadeInEffect = objectLoader.randomFade()
+              $(this).addClass('loaded ' + fadeInEffect)
     )
 
 objectLoader.loadInternals = (targetIndex) ->
@@ -764,10 +772,9 @@ objectLoader.loadInternals = (targetIndex) ->
 
 objectLoader.pageLoaded = () ->
   objectLoader.assignAnimationWaypoints()
-  if window.isBlood
-    bloodLoader.getInsty()
+  if !window.isPortfolio
     $('nav').show()
-  if window.isPortfolio
+  else
     # showMain = setTimeout ->
     waypointCheck.makeCanvas()
     $('.intro').removeClass('fadeIn').addClass('introOut')
@@ -777,7 +784,8 @@ objectLoader.pageLoaded = () ->
       $('.intro').remove()
     , 1200
     # , 500
-
+  if window.isBlood
+    bloodLoader.getInsty()
 
 #Binds
 

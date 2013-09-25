@@ -37,18 +37,14 @@ module SiteHelpers
   end  
 
   def recent_pins
-    begin 
-      getpins = Faraday.new(:url => 'https://ismaelc-pinterest.p.mashape.com') do |faraday|
-        faraday.request  :url_encoded             # form-encode POST params
-        faraday.response :logger                  # log requests to STDOUT
-        faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-      end
-      recent_pins = getpins.get do |req|
-        req.url '/pins', :u => 'oneiota'
-        req.headers['X-Mashape-Authorization'] = 'jGAjGHCTdlhTdzTM8COm8BQ1ButErG0b'
-      end
-      if recent_pins
-        recent_pins = JSON.parse(recent_pins.body)
+    begin
+      getpins = Unirest::get("https://ismaelc-pinterest.p.mashape.com/oneiota/pins", 
+        {
+          "X-Mashape-Authorization" => "jGAjGHCTdlhTdzTM8COm8BQ1ButErG0b"
+        }
+      )
+      if getpins
+        recent_pins = JSON.parse(getpins.body.to_json)
         recent_pins
       else
         false
@@ -66,10 +62,9 @@ module SiteHelpers
       else
         tweets
       end
-
     rescue Exception
       puts $!, $@
-    end 
+    end
   end
 
   def dribbbles
