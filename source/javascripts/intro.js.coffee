@@ -25,7 +25,7 @@ introGame = new IntroGame()
 
 #Doc deady
 $ ->
-  if window.isPortfolio
+  if window.isPortfolio and !window.isSingle
     introGame.gameOver = () ->
       endGame = setTimeout ->
         #$('.intro').removeClass('fadeIn').addClass('scaleOutRotate')

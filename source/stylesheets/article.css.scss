@@ -28,6 +28,9 @@
       margin-right: 2rem;
     }
   }
+  .scaleIn {
+    visibility: visible;
+  }
   .description {
     &:after {
       display: block;
@@ -71,4 +74,20 @@
       }
     }
   }
+}
+
+.checkout-feed {
+  padding: 8rem 0 11rem 0;
+  a {
+    border-bottom: 0.4rem dashed;
+    font-size: 4rem;
+  }
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+html.touch .checkout-feed {
+  display: none;
 }

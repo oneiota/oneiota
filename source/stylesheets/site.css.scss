@@ -162,6 +162,13 @@ article:first-child {
   }
 }
 
+body.singleProject article {
+  padding: 8rem 0 3rem 0;
+  @include at-breakpoint($bigscreen)  {
+    padding: 9rem 0 5rem 0;
+  }
+}
+
 .project-details, .placeholder {
   padding: 0 0 5rem 0;
   @include at-breakpoint($bigscreen)  {

@@ -7,6 +7,7 @@ window.isIndex = if $('body').hasClass('index') then true else false
 window.isFeed = if $('body').hasClass('feed') then true else false
 window.isPortfolio = if $('body').hasClass('portfolio') then true else false
 window.isBlood = if $('body').hasClass('blood') then true else false
+window.isSingle = if $('body').hasClass('singleProject') then true else false
 window.isRetina = if window.devicePixelRatio > 1 then true else false
 window.mapLoaded = false
 
@@ -34,6 +35,7 @@ WaypointCheck = ->
   @projectTitle = $('article:eq(0)').data('title')
   @ogfg = $('article:eq(0)').data('foreground')
   @ogbg = $('article:eq(0)').data('background')
+  @lastFg
   @projects
   @showArrow
   @hideArrow
@@ -98,6 +100,7 @@ CanvasArrow = (location, arrowWidth) ->
   return element
 
 waypointCheck.updateColors = (foreground, background) ->
+  waypointCheck.lastFg = foreground
   $('nav').stop().animate({
     color: foreground
   }, 500 )
@@ -106,6 +109,11 @@ waypointCheck.updateColors = (foreground, background) ->
   }, 500 )
   if window.isCanvas
     waypointCheck.updateCanvas()
+
+waypointCheck.endofline = (foreground) ->
+  $('.indexNav .icon-info').stop().animate({
+    color: foreground
+  }, 500 )
 
 waypointCheck.makeCanvas = ->
   $('.navCounters ul li .arrow-tab').each(-> 
@@ -332,6 +340,15 @@ if window.isIndex
             else
               waypointCheck.updateTitle($('article').eq(articleIndex-1).attr('id'))
               imageLoader.addImages(articleIndex-1)
+      $('.checkout-feed').waypoint
+        triggerOnce: false
+        offset: '100%'
+        handler: (direction) ->
+          if direction is 'down'
+            fgColor = $(this).data('fgcolor')
+            waypointCheck.endofline(fgColor)
+          else
+            waypointCheck.endofline(waypointCheck.lastFg)
 
     waypointCheck.updateTitle = (articleId, popped, navLiHit) -> 
       # Update page title
@@ -517,6 +534,7 @@ if window.isIndex
 if window.isBlood
   BloodLoader = ->
     @bloogBG = 'images/blood.jpg'
+    @teamShotz = []
     @testimonialTimer
     @lastClass
     @instyCounter = 0
@@ -602,6 +620,71 @@ if window.isBlood
         bloodLoader.instyAnimation()
       , 4000)
 
+  bloodLoader.loadTeamShotz = () ->
+    if bloodLoader.teamShotz.length isnt 0
+      teamImg = bloodLoader.teamShotz.shift()
+      img = new Image()
+      teamTimer = undefined
+      
+      img.src = teamImg
+      img.title =
+      img.parentz = 
+
+      if img.complete or img.readyState is 4
+        bloodLoader.imageLoaded(img)
+      else
+
+
+
+
+
+
+if imageLoader.loadArray.length isnt 0
+
+    imgItem = imageLoader.loadArray.shift()
+    img = new Image()
+    imgTimer = undefined
+
+    img.src = imgItem.imgSrc
+    img.title = 'oneiota team'
+    img.imgParent = imgItem.imgParent
+
+    if img.complete or img.readyState is 4
+      imageLoader.imageLoaded(img)
+    else
+      imgTimer = setTimeout ->
+        if !imageLoader.retryLoad
+          imageLoader.retryLoad = true
+          imageLoader.loadArray.unshift(imgItem)
+          imageLoader.loadImage()
+        else
+          imageLoader.retryLoad = false
+          $(img).unbind 'error load onreadystate'
+          imageLoader.loadImage()  if imgItem.length isnt 0
+      , 15000
+      $(img).bind 'error load onreadystatechange', (e) ->
+        clearTimeout imgTimer
+        if e.type isnt 'error'
+          imageLoader.imageLoaded(img)
+        else
+          imageLoader.loadImage()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   bloodLoader.getInsty = () ->
     $.ajax
       url: bloodLoader.iotaInsty
@@ -614,6 +697,14 @@ if window.isBlood
         bloodLoader.loadInstyImages('@oneiota_')
       error: ->
         console.log 'run backup pics'
+
+  bloodLoader.getTeamShotz = () ->
+    $('.team-member').each( ->
+      shotOne = $(this).data('shot1')
+      shotTwo = $(this).data('shot2')
+      bloodLoader.teamShotz.push(shotOne,shotTwo)
+    )
+    bloodLoader.loadTeamShotz()
 
   bloodLoader.newsletterSignup = () ->
     $.ajax
@@ -763,16 +854,33 @@ objectLoader.loadInternals = (targetIndex) ->
   animateChildren = ->
     if childArray.length isnt 0
       currChild = childArray.shift()
-      targetContent.children().eq(currChild).addClass('fadeInSlide')
-      animateChildTimer = setTimeout ->
-        animateChildren()
-      , 150 
+      if targetContent.children().eq(currChild).get(0).tagName == 'UL'
+        subChildArray = []
+        parentTarget = targetContent.children().eq(currChild)
+        parentTarget.children().each( (index) ->
+          subChildArray.push(index)
+        )
+        animateSubChildren = ->
+          if subChildArray.length isnt 0
+            currSubChild = subChildArray.shift()
+            parentTarget.children().eq(currSubChild).addClass('scaleIn')
+            animateSubChildTimer = setTimeout ->
+              animateSubChildren()
+            , 150
+          else
+            animateChildren()
+        animateSubChildren()
+      else
+        targetContent.children().eq(currChild).addClass('fadeInSlide')
+        animateChildTimer = setTimeout ->
+          animateChildren()
+        , 150 
   
   animateChildren()
 
 objectLoader.pageLoaded = () ->
   objectLoader.assignAnimationWaypoints()
-  if !window.isPortfolio
+  if !window.isPortfolio or window.isSingle
     $('nav').show()
   else
     # showMain = setTimeout ->
@@ -944,7 +1052,7 @@ $ ->
 
   window.getItStarted = () ->
     ##Index specific startup functions
-    if window.isPortfolio and !window.isTouch
+    if window.isPortfolio and !window.isTouch and !window.isSingle
       waypointCheck.assignArticleWaypoints()
 
     ##Site wide startup functions
@@ -952,5 +1060,5 @@ $ ->
     objectLoader.pageLoaded()
     historyController.bindPopstate()
 
-  if !window.isPortfolio
+  if !window.isPortfolio or window.isSingle
     window.getItStarted()

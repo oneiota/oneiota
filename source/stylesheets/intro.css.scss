@@ -57,15 +57,12 @@
       display: inline-block;
       list-style: none;
       height: 50px;
-      width: 50px;
       margin: 0 0.2em;
       @include at-breakpoint($tablet) {
         height: 110px;
-        width: 110px;
       }
       @include at-breakpoint($bigscreen) {
         height: 155px;
-        width: 155px;
       }
     }
   }
