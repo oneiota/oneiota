@@ -73,6 +73,7 @@ end
 # Helpers
 ###
 page "/index.html", :layout => "layout"
+page "/404.html", :layout => "404-layout"
 page "/blood.html", :layout => "blood-layout"
 page "/feed/*", :layout => "blog-single-layout"
 page "/feed/index.html", :layout => "blog-layout"

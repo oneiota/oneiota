@@ -35,11 +35,13 @@ WaypointCheck = ->
   @projectTitle = $('article:eq(0)').data('title')
   @ogfg = $('article:eq(0)').data('foreground')
   @ogbg = $('article:eq(0)').data('background')
+  @lastProject = $('article').length - 1
   @lastFg
   @projects
   @showArrow
   @hideArrow
   @resetArrow
+  @footerOpen = false
   @lastIndex = 0
   @arrowTab = '<div class="arrow-tab"><a href="#"></a><span>'
 
@@ -101,8 +103,15 @@ CanvasArrow = (location, arrowWidth) ->
 
 waypointCheck.updateColors = (foreground, background) ->
   waypointCheck.lastFg = foreground
+  if waypointCheck.footerOpen
+    closeColor = background
+  else
+    closeColor = foreground
   $('nav').stop().animate({
     color: foreground
+  }, 500 )
+  $('.indexNav .icon-info').stop().animate({
+    color: closeColor
   }, 500 )
   $('.navCounters .navPanel').stop().animate({
     backgroundColor: background
@@ -254,8 +263,29 @@ imageLoader.addImages = (articleIndex) ->
 
 if window.isIndex
 
-  # if window.isCanvas
-  #   waypointCheck.makeCanvas()
+  waypointCheck.footerWaypoint = ->
+    $('body').waypoint
+      triggerOnce: false
+      offset: 'bottom-in-view'
+      handler: (direction) ->
+        fgColor = $('.checkout-feed').data('fgcolor')
+        if direction is 'down'
+          if window.isTouch && waypointCheck.nextProject != waypointCheck.lastProject
+            return false
+          else
+            waypointCheck.endofline(fgColor)
+            if !waypointCheck.footerOpen
+              $('.checkout-feed').removeClass('slideUpFooter slideDownFooter').addClass('slideUpFooter')
+              addFade = setTimeout ->
+                $('.checkout-feed h3').addClass('fadeIn')
+              , 200
+              waypointCheck.footerOpen = true
+        else
+          waypointCheck.endofline(waypointCheck.lastFg)
+          if waypointCheck.footerOpen
+            $('.checkout-feed').removeClass('slideUpFooter slideDownFooter').addClass('slideDownFooter')
+            $('.checkout-feed h3').removeClass('fadeIn')
+            waypointCheck.footerOpen = false
 
   #Non Touch Handlers
   # CHANGE FOR TOUCH DEBUG - DONE
@@ -328,6 +358,7 @@ if window.isIndex
 
     ## Assign Waypoints
     waypointCheck.assignArticleWaypoints = ->
+
       $('article:gt(0)').waypoint
         triggerOnce: false
         offset: '100%'
@@ -340,15 +371,6 @@ if window.isIndex
             else
               waypointCheck.updateTitle($('article').eq(articleIndex-1).attr('id'))
               imageLoader.addImages(articleIndex-1)
-      $('.checkout-feed').waypoint
-        triggerOnce: false
-        offset: '100%'
-        handler: (direction) ->
-          if direction is 'down'
-            fgColor = $(this).data('fgcolor')
-            waypointCheck.endofline(fgColor)
-          else
-            waypointCheck.endofline(waypointCheck.lastFg)
 
     waypointCheck.updateTitle = (articleId, popped, navLiHit) -> 
       # Update page title
@@ -463,9 +485,10 @@ if window.isIndex
         $('.navCounters ul li').eq(waypointCheck.currentProject).addClass('scaleIn')
         $('.navCounters ul li').eq(waypointCheck.nextProject).addClass('active slideIn')
 
-      $("nav").delay(100).stop().animate({
+      $("nav, .indexNav .icon-info").delay(100).stop().animate({
         color: waypointCheck.ogfg
       }, 500, ->
+        waypointCheck.lastFg = waypointCheck.ogfg
         $('html, body').stop().animate({
           scrollTop: 0
           backgroundColor: waypointCheck.ogbg
@@ -485,6 +508,20 @@ if window.isIndex
           , 1000
         )
       )
+
+    waypointCheck.killArrowHelper = (timer) ->
+      if timer
+        killArrow = setTimeout ->
+          $('.arrow-tab').removeClass('scaleIn').addClass('scaleOut')
+          removeInt = setTimeout ->
+            $('.arrow-tab').removeClass('showArrow').addClass('scaleIn hideArrow')
+          , 500
+        , 3000
+      else
+        $('.arrow-tab').removeClass('scaleIn').addClass('scaleOut')
+        removeInt = setTimeout ->
+          $('.arrow-tab').removeClass('showArrow scaleOut').addClass('scaleIn hideArrow')
+        , 500
 
     waypointCheck.touchWaypoints = ->
       $('body').waypoint
@@ -509,20 +546,6 @@ if window.isIndex
           else if direction is 'up'
             waypointCheck.killArrowHelper(false)
 
-    waypointCheck.killArrowHelper = (timer) ->
-      if timer
-        killArrow = setTimeout ->
-          $('.arrow-tab').removeClass('scaleIn').addClass('scaleOut')
-          removeInt = setTimeout ->
-            $('.arrow-tab').removeClass('showArrow').addClass('scaleIn hideArrow')
-          , 500
-        , 3000
-      else
-        $('.arrow-tab').removeClass('scaleIn').addClass('scaleOut')
-        removeInt = setTimeout ->
-          $('.arrow-tab').removeClass('showArrow scaleOut').addClass('scaleIn hideArrow')
-        , 500
-
     $('ul.filterMenu li a').bind 'click', (event) ->
       #use toggle class
       $('li.eyeButton i.scaleInSevenFive').toggleClass('scaleOutSevenFive')
@@ -538,21 +561,24 @@ if window.isBlood
     @testimonialTimer
     @lastClass
     @instyCounter = 0
+    @teamCounter = 0
     @groupTracker = true
     @stateTracker = 0
     @iotaPics = []
+    @retryLoad = false
     @iotaInstySpots = ['.iotaInsty1','.iotaInsty2','.iotaInsty2','.iotaInsty2','.iotaInsty3','.iotaInsty4','.iotaInsty4','.iotaInsty4','.iotaInsty5']
     @iotaInsty = 'https://api.instagram.com/v1/users/12427052/media/recent/?access_token=12427052.4e63227.ed7622088af644ffb3146a3f15b50063&count=9'
 
   bloodLoader = new BloodLoader()
 
   bloodLoader.instyAnimation = () ->
-
-    if bloodLoader.groupTracker 
+    if bloodLoader.groupTracker
       targetGroup = '.iotaInsty2'
+      targetTeam = '.iotaTeam1'
       bloodLoader.groupTracker = false
     else
       targetGroup = '.iotaInsty4'
+      targetTeam = '.iotaTeam2'
       bloodLoader.groupTracker = true
 
     switch bloodLoader.stateTracker
@@ -560,12 +586,26 @@ if window.isBlood
         $(targetGroup + ' .instyAni0').removeClass('slideDown slideUp').addClass('slideDown')
         $(targetGroup + ' .instyAni1').removeClass('slideLeft slideRight').addClass('slideRight')
         $(targetGroup + ' .instyAni2').removeClass('slideLeft slideRight').addClass('slideRight')
+        $(targetTeam + ' .instyAni0').removeClass('slideDown slideUp').addClass('slideUp')
+        teamTimeout1 = setTimeout ->
+          $(targetTeam + ' .instyAni0').removeClass('slideDown slideUp').addClass('slideDown')
+        ,1000
+        teamTimeout2 = setTimeout ->
+          $(targetTeam + ' .instyAni1').removeClass('slideLeft slideRight').addClass('slideRight')
+        ,1000
       when 1
         $(targetGroup + ' .instyAni0').removeClass('slideDown slideUp').addClass('slideUp')
         $(targetGroup + ' .instyAni2').removeClass('slideLeft slideRight').addClass('slideLeft')
+        teamTimeout1 = setTimeout ->
+          $(targetTeam + ' .instyAni0').removeClass('slideDown slideUp').addClass('slideUp')
+        ,1000
+        teamTimeout2 = setTimeout ->
+          $(targetTeam + ' .instyAni1').removeClass('slideLeft slideRight').addClass('slideLeft')
+        ,1000
       else
         $(targetGroup + ' .instyAni1').removeClass('slideLeft slideRight').addClass('slideLeft')
         $(targetGroup + ' .instyAni2').removeClass('slideLeft slideRight').addClass('slideRight')
+
 
     if bloodLoader.groupTracker
       if bloodLoader.stateTracker < 2
@@ -625,65 +665,36 @@ if window.isBlood
       teamImg = bloodLoader.teamShotz.shift()
       img = new Image()
       teamTimer = undefined
-      
-      img.src = teamImg
-      img.title =
-      img.parentz = 
+          
+      img.src = teamImg.src
+      img.title = img.alt = teamImg.title
+      img.parentz = teamImg.parentz
 
       if img.complete or img.readyState is 4
-        bloodLoader.imageLoaded(img)
+        $(''+img.parentz+'').find('.team-instagram').append(img)
+        $(img).addClass('instagram-pic team-pic scaleIn instyAni' + bloodLoader.teamCounter)
+        (if bloodLoader.teamCounter is 0 then bloodLoader.teamCounter++ else bloodLoader.teamCounter = 0)
+        bloodLoader.loadTeamShotz()
       else
-
-
-
-
-
-
-if imageLoader.loadArray.length isnt 0
-
-    imgItem = imageLoader.loadArray.shift()
-    img = new Image()
-    imgTimer = undefined
-
-    img.src = imgItem.imgSrc
-    img.title = 'oneiota team'
-    img.imgParent = imgItem.imgParent
-
-    if img.complete or img.readyState is 4
-      imageLoader.imageLoaded(img)
-    else
-      imgTimer = setTimeout ->
-        if !imageLoader.retryLoad
-          imageLoader.retryLoad = true
-          imageLoader.loadArray.unshift(imgItem)
-          imageLoader.loadImage()
-        else
-          imageLoader.retryLoad = false
-          $(img).unbind 'error load onreadystate'
-          imageLoader.loadImage()  if imgItem.length isnt 0
-      , 15000
-      $(img).bind 'error load onreadystatechange', (e) ->
-        clearTimeout imgTimer
-        if e.type isnt 'error'
-          imageLoader.imageLoaded(img)
-        else
-          imageLoader.loadImage()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        teamTimer = setTimeout ->
+          if !bloodLoader.retryLoad
+            bloodLoader.retryLoad = true
+            bloodLoader.teamShotz.unshift(teamImg)
+            bloodLoader.loadTeamShotz()
+          else
+            bloodLoader.retryLoad = false
+            $(img).unbind 'error load onreadystate'
+            bloodLoader.loadTeamShotz()  if teamImg.length isnt 0
+        , 15000
+        $(img).bind 'error load onreadystatechange', (e) ->
+          clearTimeout teamTimer
+          if e.type isnt 'error'
+            $(''+img.parentz+'').find('.team-instagram').append(img)
+            $(img).addClass('instagram-pic team-pic scaleIn instyAni' + bloodLoader.teamCounter)
+            (if bloodLoader.teamCounter is 0 then bloodLoader.teamCounter++ else bloodLoader.teamCounter = 0)
+            bloodLoader.loadTeamShotz()
+          else
+            bloodLoader.loadTeamShotz()
 
   bloodLoader.getInsty = () ->
     $.ajax
@@ -700,8 +711,8 @@ if imageLoader.loadArray.length isnt 0
 
   bloodLoader.getTeamShotz = () ->
     $('.team-member').each( ->
-      shotOne = $(this).data('shot1')
-      shotTwo = $(this).data('shot2')
+      shotOne = {src : $(this).data('shot1'), title : $(this).data('imgalt'), parentz : $(this).data('parent')}
+      shotTwo = {src : $(this).data('shot2'), title : $(this).data('imgalt'), parentz : $(this).data('parent')}
       bloodLoader.teamShotz.push(shotOne,shotTwo)
     )
     bloodLoader.loadTeamShotz()
@@ -884,16 +895,18 @@ objectLoader.pageLoaded = () ->
     $('nav').show()
   else
     # showMain = setTimeout ->
-    waypointCheck.makeCanvas()
     $('.intro').removeClass('fadeIn').addClass('introOut')
     $('.main').addClass('scaleInBig')
     showNav = setTimeout ->
       $('nav').show()
       $('.intro').remove()
+      $('.main').removeClass('scaleInBig')
+      $('.checkout-feed').show()
+      waypointCheck.makeCanvas()
     , 1200
-    # , 500
   if window.isBlood
     bloodLoader.getInsty()
+    bloodLoader.getTeamShotz()
 
 #Binds
 
@@ -1054,6 +1067,9 @@ $ ->
     ##Index specific startup functions
     if window.isPortfolio and !window.isTouch and !window.isSingle
       waypointCheck.assignArticleWaypoints()
+
+    if window.isIndex
+      waypointCheck.footerWaypoint()
 
     ##Site wide startup functions
     imageLoader.addImages(0)

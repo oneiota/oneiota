@@ -42,6 +42,14 @@
   @include animation(introOut 0.2s linear forwards 1);
 }
 
+.slideUpFooter {
+  @include animation(slideUpFooter 0.3s ease forwards 1);
+}
+
+.slideDownFooter {
+  @include animation(slideDownFooter 0.3s ease forwards 1);
+}
+
 .scaleInBig {
   z-index: 1 !important;
   @include transform-origin(center top);
@@ -623,6 +631,24 @@ html.touch {
   }
   to {
      @include transform(translate3d(0px,200%,0px));
+  }
+}
+
+@include keyframes(slideUpFooter) {
+  from {
+     @include transform(translate3d(0px,100%,0px));
+  }
+  to {
+     @include transform(translate3d(0px,0%,0px));
+  }
+}
+
+@include keyframes(slideDownFooter) {
+  from {
+     @include transform(translate3d(0px,0%,0px));
+  }
+  to {
+     @include transform(translate3d(0px,100%,0px));
   }
 }
 

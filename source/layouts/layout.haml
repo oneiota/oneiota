@@ -38,7 +38,9 @@
       .overlay= partial "menu"
       .intro.fadeIn
     %div{:role => "main", :class => "main"}= yield
-    %footer
+    %footer.checkout-feed{:style => "color:#{yield_content(:lastbg)}; background:#{yield_content(:lastfg)};",:data => {:fgColor => yield_content(:lastbg)}}
+      %h3
+        %a{:href=>'/feed'}Check out our feed
 
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
     :javascript

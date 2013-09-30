@@ -103,6 +103,19 @@ body.feed article {
     @include at-breakpoint($bigscreen) {
       margin-bottom: 0rem;
     }
+    a {
+      .icon-inverted {
+        display: none;
+      }
+    }
+    a:hover {
+      i.icon {
+        display: none;
+      }
+      i.icon-inverted {
+        display: inline-block !important;
+      }
+    }
   }
   hr {
     margin: 3rem 0 0 0;

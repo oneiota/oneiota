@@ -1,9 +1,11 @@
 - content_for(:title, data.projects[0].project)
 - content_for(:foreground, data.projects[0].colors.foreground)
 - content_for(:background, data.projects[0].colors.background)
+- content_for(:lastbg, data.projects.last.colors.background)
+- content_for(:lastfg, data.projects.last.colors.foreground)
 
 - data.projects.each_with_index do | project, index |
-  %article{:id => project.slug, :style => "#{index == 0 ? 'display:block;' : ''} color:#{project.colors.foreground}; background:#{project.colors.background};", :data => {:title => project.project, :foreground => project.colors.foreground, :background => project.colors.background, :digital => project.digital, :branding => project.branding}}
+  %article{:id => project.slug, :class =>"#{index == data.projects.size-1 ? 'last-article' : ''}", :style => "#{index == 0 ? 'display:block;' : ''} color:#{project.colors.foreground}; background:#{project.colors.background};", :data => {:title => project.project, :foreground => project.colors.foreground, :background => project.colors.background, :digital => project.digital, :branding => project.branding}}
     %div.project
       - project.images.each_with_index do | img, index2 |
         - if index2 == 1
@@ -33,8 +35,4 @@
         %div{:class => "placeholder #{img.grid}"}
           %span.placeholder-bg{:src => "images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}
           %span.placeholder-alt= img.alt
-  -if index == (data.projects.length - 1)
-    %section.checkout-feed{:style => "color:#{project.colors.background}; background:#{project.colors.foreground};",:data => {:fgColor => project.colors.background}}
-      %h3
-        %a{:href=>'/feed'}Check out our feed
 .device

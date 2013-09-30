@@ -14,7 +14,7 @@ per_page: 10
       %hr
       .post-container
         .post-type
-          %a{:href => 'http://behance.net/oneiota/',:target => '_blank',:title => '@oneiota on Behance'} <i class='icon icon-behance'></i>
+          %a{:href => 'http://behance.net/oneiota/',:target => '_blank',:title => '@oneiota on Behance'} <i class='icon icon-behance'></i><i class='icon icon-behance-full icon-inverted'></i>
         .post-date.mobile
           %span{:class => 'published', :data => {:published => clean_date(behance['created_on'])}}
         .post-content
@@ -30,7 +30,7 @@ per_page: 10
       %hr
       .post-container
         .post-type
-          %a{:href => 'http://dribbble.com/oneiota/',:target => '_blank',:title => '@oneiota on Dribbble'} <i class='icon icon-dribbble'></i>
+          %a{:href => 'http://dribbble.com/oneiota/',:target => '_blank',:title => '@oneiota on Dribbble'} <i class='icon icon-dribbble'></i><i class='icon icon-dribbble-full icon-inverted'></i>
         .post-date.mobile
           %span{:class => 'published', :data => {:published => clean_dribble_date(dribbble['created_at'])}}
         .post-content
@@ -46,7 +46,7 @@ per_page: 10
       %hr
       .post-container
         .post-type
-          %a{:href => 'http://twitter.com/oneiota_/',:target => '_blank',:title => '@oneiota_ on Twitter'} <i class='icon icon-twitter'></i>
+          %a{:href => 'http://twitter.com/oneiota_/',:target => '_blank',:title => '@oneiota_ on Twitter'} <i class='icon icon-twitter'></i><i class='icon icon-twitter-full icon-inverted'></i>
         .post-date.mobile
           %span{:class => 'published', :data => {:published => tweet.created_at}}
         .post-content
@@ -62,7 +62,7 @@ per_page: 10
         %hr
         .post-container
           .post-type
-            %a{:href => 'http://pinterest.com/oneiota/',:target => '_blank',:title => '@oneiota on Pintrest'} <i class='icon icon-pintrest'></i>
+            %a{:href => 'http://pinterest.com/oneiota/',:target => '_blank',:title => '@oneiota on Pintrest'} <i class='icon icon-pintrest'></i><i class='icon icon-pintrest-full icon-inverted'></i>
           .post-content
             - recent_pins['body'].first(8).each do | pin |
               .feed-img-holder
@@ -76,7 +76,7 @@ per_page: 10
     %hr
     .post-container
       .post-type
-        %i.icon.icon-post
+        %a{:href => article.url,:target => '_blank',:title => article.title} <i class='icon icon-post'></i><i class='icon icon-post-full icon-inverted'></i>
       .post-date.mobile
         %span{:class => 'published', :data => {:published => article.date}}
       .post-content

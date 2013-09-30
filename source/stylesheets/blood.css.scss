@@ -71,6 +71,9 @@ section.info-crew {
   h2 {
     margin-bottom: 1rem;
   }
+  .scaleIn {
+    visibility: visible;
+  }
   .bloodbg {
     top: 0;
     height: 100%;
@@ -131,7 +134,7 @@ section.info-team {
     a {
       position: relative;
       margin: 0;
-      top: 0.3em;
+      top: 0.2em;
       left: 0.2em;
     }
     .no-linkdin {
@@ -167,6 +170,8 @@ section.info-team {
         height: 99%;
         width: 99%;
         z-index: 0;
+      }
+      .team-pic {
         @include black-and-white($value: 100%);
       }
       .offSetInsty {
@@ -179,6 +184,7 @@ section.info-team {
       width: 100%;
       position: absolute;
       z-index: 2;
+      opacity: 0.8;
       a {
         height: 100%;
         width: 100%;
@@ -193,7 +199,10 @@ section.info-team {
       }
     }
     &:hover {
-      .instagram-pic {
+      .instagram-link span {
+        opacity: 0.4;
+      }
+      .team-pic {
         @include black-and-white(0%);
       }
     }
