@@ -1,4 +1,4 @@
-@import '_mixins';
+@import "_mixins";
 
 //Apply menu/info section stlyes to site
 
@@ -121,16 +121,16 @@ html.touch .mainmenu ul li a {
   }
 }
 
-html.no-touch .mainmenu ul li a {
-  &:hover {
-    span.meaning {
-      display: block;
-    }
-    span.helper {
-      display: none;
-    }
-  }
-}
+// html.no-touch .mainmenu ul li a {
+//   &:hover {
+//     span.meaning {
+//       display: block;
+//     }
+//     span.helper {
+//       display: none;
+//     }
+//   }
+// }
 
 .contact {
   display: block;

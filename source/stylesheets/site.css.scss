@@ -149,10 +149,10 @@ section, article {
 article {
   padding: 5rem 0 0 0;
   @include at-breakpoint($tablet)  {
-    padding: 10rem 0 5rem 0;
+    padding: 5rem 0 0rem 0;
   }
   @include at-breakpoint($bigscreen)  {
-    padding: 13rem 0 3rem 0;
+    padding: 7rem 0 1rem 0;
   }
   div.project {
     p, a {
@@ -168,10 +168,10 @@ article {
 
 article:first-child {
   @include at-breakpoint($tablet)  {
-    padding: 5rem 0 5rem 0;
+    padding: 5rem 0 0rem 0;
   }
   @include at-breakpoint($bigscreen)  {
-    padding: 5rem 0 3rem 0;
+    padding: 5rem 0 1rem 0;
   }
 }
 
@@ -181,14 +181,14 @@ article.last-article {
     padding: 5rem 0 12rem 0;
   }
   @include at-breakpoint($bigscreen)  {
-    padding: 5rem 0 15rem 0;
+    padding: 7rem 0 15rem 0;
   }
 }
 
 body.singleProject article {
   padding: 8rem 0 3rem 0;
   @include at-breakpoint($bigscreen)  {
-    padding: 9rem 0 5rem 0;
+    padding: 12rem 0 5rem 0;
   }
 }
 

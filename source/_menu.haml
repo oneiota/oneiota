@@ -14,10 +14,10 @@
       -else
         %a{:href => '/', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#EABCAD'}} <span class='helper'>work</span> <span class='meaning'>sweat</span>
     %li
-      -if current_page.path == 'tears.html'
-        %a{:href => 'tears', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>rejects</span> <span class='meaning'>tears</span>
+      -if current_page.path == 'feed.html'
+        %a{:href => '/feed', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>feed</span> <span class='meaning'>tears</span>
       -else
-        %a{:href => 'tears', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>rejects</span> <span class='meaning'>tears</span>
+        %a{:href => '/feed', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>feed</span> <span class='meaning'>tears</span>
 
 .contact
   %p.menu-title
