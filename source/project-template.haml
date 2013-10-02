@@ -6,31 +6,32 @@
 
 %article{:id => project.slug,:style => "color:#{project.colors.foreground}; background:#{project.colors.background};",:data => {:title => project.project, :foreground => project.colors.foreground, :background => project.colors.background}}
   %div.project
-    - project.images.each_with_index do |img, index|
-      - if index == 1
-        .project-details
-          %h2= project.project
-          %ul
-            - project.tags.each do |tag|
-              %li.tag= tag
-          %p.description= project.description
-          - if project.link
-            %a{:href => "http://#{project.link}",:title => "#{project.project}",:target => "_blank",:class => "webLink"}= project.link
-          %ul.social-links
-            %li
-              %a{:href=>'twitter.com/ONEIOTA_', :title => '@oneiota_'}
-                %i.icon-twitter.icon
-                %i.icon-twitter-full.icon-inverted.icon
-            %li
-              %a{:href=>'facebook.com/pages/ONE-IOTA-STUDIO/103749066322532', :title => '@oneiotastudio'}
-                %i.icon-facebook.icon
-                %i.icon-facebook-full.icon-inverted.icon
-            %li
-              %a{:href=>'pinterest.com/oneiota/', :title => '@oneiota'}
-                %i.icon-pintrest.icon
-                %i.icon-pintrest-full.icon-inverted.icon
-      - sizeArr = FastImage.size("source/images/#{project.slug}/#{img.mobile}")
-      - spanRatio = (sizeArr[1].to_f/sizeArr[0].to_f)*100
-      %div{:class => "placeholder #{img.grid}"}
-        %span.placeholder-bg{:src => "images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}
-        %span.placeholder-alt= img.alt
+    -if project.images
+      - project.images.each_with_index do |img, index|
+        - if index == 1
+          .project-details
+            %h2= project.project
+            %ul
+              - project.tags.each do |tag|
+                %li.tag= tag
+            %p.description= project.description
+            - if project.link
+              %a{:href => "http://#{project.link}",:title => "#{project.project}",:target => "_blank",:class => "webLink"}= project.link
+            %ul.social-links
+              %li
+                %a{:href=>'twitter.com/ONEIOTA_', :title => '@oneiota_'}
+                  %i.icon-twitter.icon
+                  %i.icon-twitter-full.icon-inverted.icon
+              %li
+                %a{:href=>'facebook.com/pages/ONE-IOTA-STUDIO/103749066322532', :title => '@oneiotastudio'}
+                  %i.icon-facebook.icon
+                  %i.icon-facebook-full.icon-inverted.icon
+              %li
+                %a{:href=>'pinterest.com/oneiota/', :title => '@oneiota'}
+                  %i.icon-pintrest.icon
+                  %i.icon-pintrest-full.icon-inverted.icon
+        - sizeArr = FastImage.size("source/images/#{project.slug}/#{img.mobile}")
+        - spanRatio = (sizeArr[1].to_f/sizeArr[0].to_f)*100
+        %div{:class => "placeholder #{img.grid}"}
+          %span.placeholder-bg{:src => "images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}
+          %span.placeholder-alt= img.alt
