@@ -181,3 +181,55 @@
   tags: [Website Development, Brand Development, Brand Collateral]
   digital: "true"
   branding: "true"
+
+- project: Sourced Grocer
+  slug: sourcedgrocer
+  description: >
+    Identity development for Sourced Grocer a modern take on your local neighbourhood grocer. Works include logo, business cards, promotional flyers, posters, website and more.
+  images:
+    - 
+      mobile: mobile/tomatoes.png
+      desktop: tomatoes.png
+      alt: >
+        Souced Grocer - Local is lovely handout
+    - 
+      mobile: mobile/sourcedgrocer-businesscards.png
+      desktop: sourcedgrocer-businesscards.png
+      alt: >
+        Souced Grocer breakfast setting
+    - 
+      mobile: mobile/sourcedgrocer-poster.png
+      desktop: sourcedgrocer-poster.png
+      alt: >
+        Eat Thoughtfully
+    -
+      mobile: mobile/sourcedgrocer-interior.png
+      desktop: sourcedgrocer-interior.png
+      alt: >
+        Sourced Grocer interior
+    -
+      mobile: mobile/sourcedgrocer-collateral.png
+      desktop: sourcedgrocer-collateral.png
+      alt: >
+        Sourced Grocer collateral
+    -
+      mobile: mobile/sourcedgrocer-posters.png
+      desktop: sourcedgrocer-posters.png
+      alt: >
+        Sourced Grocer posters
+    -
+      mobile: mobile/sourcedgrocer-localflyers.png
+      desktop: sourcedgrocer-localflyers.png
+      alt: >
+        Sourced Grocer local flyers
+    -
+      mobile: mobile/heroshot.png
+      desktop: heroshot.png
+      alt: >
+        Sourced Grocer coffee cup
+  colors:
+    foreground: "#A1FFB8"
+    background: "#68657C"
+  tags: [Brand Development, Brand Collateral]
+  digital: "true"
+  branding: "true"
