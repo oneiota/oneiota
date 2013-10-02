@@ -118,6 +118,8 @@ configure :build do
   # Ignores
   ignore '/feed/calendar.html'
   ignore '/feed/tag.html'
+  ignore 'oneiota.sublime-project'
+  ignore 'oneiota.sublime-workspace'
 
   # Enable cache buster
   # activate :cache_buster

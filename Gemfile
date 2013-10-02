@@ -9,6 +9,5 @@ gem 'json', '~> 1.7.7'
 gem "susy", "~>1.0.5"
 gem "redcarpet"
 gem "fastimage"
-gem "rmagick"
 gem "twitter"
 gem "unirest"
