@@ -188,10 +188,10 @@
     Identity development for Sourced Grocer a modern take on your local neighbourhood grocer. Works include logo, business cards, promotional flyers, posters, website and more.
   images:
     - 
-      mobile: mobile/tomatoes.png
-      desktop: tomatoes.png
+      mobile: mobile/pineapple.png
+      desktop: pineapple.png
       alt: >
-        Souced Grocer - Local is lovely handout
+        Souced Grocer - red pineapple
     - 
       mobile: mobile/sourcedgrocer-businesscards.png
       desktop: sourcedgrocer-businesscards.png
