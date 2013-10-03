@@ -22,7 +22,7 @@ page "/404.html", :directory_index => false
 activate :asset_hash
 
 #Serve GZIPPED FILES
-activate :gzip
+# activate :gzip
 
 ###
 # Twitter Gem configure
@@ -128,6 +128,7 @@ configure :build do
   ignore '/feed/tag.html'
   ignore 'oneiota.sublime-project'
   ignore 'oneiota.sublime-workspace'
+  ignore '.htaccess'
   
   # Compress PNGs after build
   # First: gem install middleman-smusher
