@@ -19,10 +19,10 @@ end
 activate :directory_indexes
 page "/404.html", :directory_index => false
 #cache management
-# activate :asset_hash
+activate :asset_hash
 
 #Serve GZIPPED FILES
-# activate :gzip
+activate :gzip
 
 ###
 # Twitter Gem configure
