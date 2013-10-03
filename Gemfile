@@ -12,3 +12,5 @@ gem "fastimage"
 gem "twitter"
 gem "unirest"
 gem "listen", "0.7.3"
+gem 'therubyracer'
+gem 'oj'
