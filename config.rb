@@ -17,6 +17,12 @@ end
 
 #prettyURL's
 activate :directory_indexes
+page "/404.html", :directory_index => false
+#cache management
+# activate :asset_hash
+
+#Serve GZIPPED FILES
+# activate :gzip
 
 ###
 # Twitter Gem configure
@@ -122,12 +128,6 @@ configure :build do
   ignore '/feed/tag.html'
   ignore 'oneiota.sublime-project'
   ignore 'oneiota.sublime-workspace'
-
-  # Enable cache buster
-  # activate :cache_buster
-  
-  # Use relative URLs
-  # activate :relative_assets
   
   # Compress PNGs after build
   # First: gem install middleman-smusher

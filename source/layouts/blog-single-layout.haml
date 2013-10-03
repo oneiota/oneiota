@@ -17,7 +17,9 @@
     -#Update favicon_base.png in /source and middleman-favicon-maker will generate all the versions you need on 'middleman build'
     -#OR, place favicon.ico and apple-touch-icon.png in /source and deactivate :favicon_maker in config.rb
     
-    = javascript_include_tag "vendor/modernizr-2.6.1.min"
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.1/modernizr.min.js"
+    :javascript
+      window.Modernizr || document.write('<script src="vendor/modernizr-2.6.1.min.js"><\/script>')
     = stylesheet_link_tag "site"
     
     %style{:type => "text/css"}
@@ -61,13 +63,6 @@
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
     :javascript
       window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.10.2.min.js"><\/script>')
-    = javascript_include_tag "vendor/waypoints2.0.2.min.js"
-    = javascript_include_tag "vendor/moment.js"
-    = javascript_include_tag "vendor/jquery.color-2.1.2.min.js"
     = javascript_include_tag "site"
     
-    :javascript
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
+    = partial "analytics"

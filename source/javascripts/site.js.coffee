@@ -1,3 +1,7 @@
+#= require waypoints2.0.2.min
+#= require jquery-ui-1.9.2.custom
+#= require jquery.ui.touch-punch.min
+#= require jquery.color-2.1.2.min
 #= require feed
 #= require intro
 
