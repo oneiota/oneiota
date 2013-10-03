@@ -133,7 +133,6 @@ configure :build do
   # First: gem install middleman-smusher
   # require "middleman-smusher"
   # activate :smusher
-  # Dave test
 
   # Or use a different image path
   # set :http_path, "/Content/images/"
