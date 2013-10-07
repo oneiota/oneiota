@@ -95,7 +95,7 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
 # set :build_dir, '../public_html/dev'
-set :build_dir, '../public_html'
+set :build_dir, '../transition'
 
 # Build-specific configuration
 configure :build do
