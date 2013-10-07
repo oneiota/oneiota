@@ -87,11 +87,6 @@ page "/feed/index.html", :layout => "blog-layout"
 # activate :automatic_image_sizes
 
 # Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
 
 set :css_dir, 'stylesheets'
 
@@ -108,6 +103,9 @@ configure :build do
   
   # Minify Javascript on build
   activate :minify_javascript
+
+  require 'deployscript'
+  activate :deployScript
 
   # require 'imageresizer'
   # activate :image_resizer do |i|
@@ -138,3 +136,4 @@ configure :build do
   # Or use a different image path
   # set :http_path, "/Content/images/"
 end
+
