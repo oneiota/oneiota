@@ -18,11 +18,6 @@ end
 #prettyURL's
 activate :directory_indexes
 page "/404.html", :directory_index => false
-#cache management
-# activate :asset_hash
-
-#Serve GZIPPED FILES
-# activate :gzip
 
 ###
 # Twitter Gem configure
@@ -104,6 +99,18 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
 
+  # Minify HTML
+  activate :minify_html
+
+  # Use relative URLs
+  activate :relative_assets
+
+  # Add asset fingerprinting to avoid cache issues
+  activate :asset_hash
+
+  #Serve GZIPPED FILES
+  # activate :gzip
+
   require 'deployscript'
   activate :deployScript
 
@@ -136,4 +143,3 @@ configure :build do
   # Or use a different image path
   # set :http_path, "/Content/images/"
 end
-
