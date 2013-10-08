@@ -104,8 +104,8 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
 
-  # require 'deployscript'
-  # activate :deployScript
+  require 'deployscript'
+  activate :deployScript
 
   # require 'imageresizer'
   # activate :image_resizer do |i|
