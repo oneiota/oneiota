@@ -19,7 +19,7 @@ end
 activate :directory_indexes
 page "/404.html", :directory_index => false
 #cache management
-activate :asset_hash
+# activate :asset_hash
 
 #Serve GZIPPED FILES
 # activate :gzip
@@ -94,8 +94,7 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-# set :build_dir, '../public_html/dev'
-set :build_dir, '../transition'
+set :build_dir, '../public_html/dev'
 
 # Build-specific configuration
 configure :build do
@@ -105,8 +104,8 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
 
-  require 'deployscript'
-  activate :deployScript
+  # require 'deployscript'
+  # activate :deployScript
 
   # require 'imageresizer'
   # activate :image_resizer do |i|

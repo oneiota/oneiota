@@ -101,7 +101,7 @@
   branding: "true"
 
 - project: Blackboard Coffee
-  slug: bbcoffee
+  slug: blackboard
   description: >
     The Illustration room represents a range of respected talent from across the globe.<span>They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.</span>
   link: blackboardcoffee.com
@@ -110,7 +110,7 @@
       mobile: mobile/BBheroshot.png
       desktop: BBheroshot.png
       alt: >
-        Blackboard Coffee Branding
+        Blackboard Coffee branding
     - 
       mobile: mobile/BBaftertext.png
       desktop: BBaftertext.png
@@ -143,6 +143,63 @@
   digital: "true"
   branding: "true"
 
+- project: Taste
+  slug: taste
+  description: >
+    The Illustration room represents a range of respected talent from across the globe.<span>They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.</span>
+  link: illustrationroom.com
+  images:
+    - 
+      mobile: mobile/taste_heroshot.png
+      desktop: taste_heroshot.png
+      alt: >
+        Taste identity
+    - 
+      mobile: mobile/taste_logoT.png
+      desktop: taste_logoT.png
+      alt: >
+        Taste identity big T
+    - 
+      mobile: mobile/taste_businessCards.png
+      desktop: taste_businessCards.png
+      alt: >
+        Taste business cards
+    -
+      mobile: mobile/taste_swingTags.png
+      desktop: taste_swingTags.png
+      alt: >
+        Taste swing tags
+    -
+      mobile: mobile/taste_swingTagsPots.png
+      desktop: taste_swingTagsPots.png
+      alt: >
+        Taste swing tag in store
+    -
+      mobile: mobile/taste_windowDecals.png
+      desktop: taste_windowDecals.png
+      alt: >
+        Taste window display
+    -
+      mobile: mobile/taste_brownPaperBags.png
+      desktop: taste_brownPaperBags.png
+      alt: >
+        Taste shopping bags
+    -
+      mobile: mobile/taste_cakeSalePoster.png
+      desktop: taste_cakeSalePoster.png
+      alt: >
+        Taste have your cake and eat it sale
+    -
+      mobile: mobile/taste_icecreamSkater.png
+      desktop: taste_icecreamSkater.png
+      alt: >
+        Taste icecream skater
+  colors:
+    foreground: "#FF3600"
+    background: "#FFCD5C"
+  tags: [Brand Development, Brand Collateral, Brand Environment]
+  digital:
+  branding: "true"
 
 - project: The Illustration Room
   slug: theillustrationroom
