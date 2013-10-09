@@ -669,7 +669,11 @@ if window.isBlood
       teamImg = bloodLoader.teamShotz.shift()
       img = new Image()
       teamTimer = undefined
-          
+      
+      # if !window.location.origin
+      #   window.location.origin = window.location.protocol+"//"+window.location.host;
+
+      # img.src = window.location.origin+'/'+teamImg.src
       img.src = teamImg.src
       img.title = img.alt = teamImg.title
       img.parentz = teamImg.parentz

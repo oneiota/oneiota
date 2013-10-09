@@ -30,6 +30,8 @@ Twitter.configure do |config|
   config.oauth_token_secret = 'f52WfhoYW32lgyv7ppssMd9N0gE6an944mK9DIZQ'
 end
 
+set :site_desc, 'One iota is an agency of passionate designers & developers, focused on creating both brand & digital experiences that excite, motivate and add value'
+set :base_url, '/dev/'
 ### 
 # Compass
 ###
@@ -106,10 +108,13 @@ configure :build do
   activate :relative_assets
 
   # Add asset fingerprinting to avoid cache issues
-  activate :asset_hash
+  activate :asset_hash, :ignore => [%r{^images/team/.*}, %r{^images/team-mask.svg}]
 
-  #Serve GZIPPED FILES
-  # activate :gzip
+  # Create favicon/touch icon set from source/favicon_base.png
+  # activate :favicon_maker
+
+  # Serve GZIPPED FILES
+  activate :gzip
 
   require 'deployscript'
   activate :deployScript
@@ -124,9 +129,6 @@ configure :build do
   #   i.retina = false
   #   i.styles = []
   # end
-
-  # Create favicon/touch icon set from source/favicon_base.png
-  # activate :favicon_maker
 
   # Ignores
   ignore '/feed/calendar.html'

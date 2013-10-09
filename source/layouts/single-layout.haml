@@ -11,13 +11,11 @@
 
     %title= page_title
 
-    %meta{:content => page_description, :name => "description"}
+    %meta{:name => "description", :content => project.description.split.slice(0, 20).join(" ") + "..."}
     
-    %meta{:content => "width=device-width", :name => "viewport"}
+    %meta{:name => "viewport", :content => "width=device-width"}
     
-    -#Favicon Options:
-    -#Update favicon_base.png in /source and middleman-favicon-maker will generate all the versions you need on 'middleman build'
-    -#OR, place favicon.ico and apple-touch-icon.png in /source and deactivate :favicon_maker in config.rb
+    = partial "favicon"
     
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.1/modernizr.min.js"
     :javascript

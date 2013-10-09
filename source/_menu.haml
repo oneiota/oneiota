@@ -5,23 +5,17 @@
   %ul
     %li
       -if current_page.path == 'blood.html'
-        %a{:href => '/blood', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>info</span> <span class='meaning'>blood</span>
+        %a{:href => settings.base_url+'blood', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>info</span> <span class='meaning'>blood</span>
       -else
-        %a{:href => '/blood', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>info</span> <span class='meaning'>blood</span>
+        %a{:href => settings.base_url+'blood', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#FF524A'}} <span class='helper'>info</span> <span class='meaning'>blood</span>
     %li
       -if current_page.path == 'index.html'
-        %a{:href => '/', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#EABCAD'}} <span class='helper'>work</span> <span class='meaning'>sweat</span>
+        %a{:href => settings.base_url, :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#EABCAD'}} <span class='helper'>work</span> <span class='meaning'>sweat</span>
       -else
-        %a{:href => '/', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#EABCAD'}} <span class='helper'>work</span> <span class='meaning'>sweat</span>
+        %a{:href => settings.base_url, :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#EABCAD'}} <span class='helper'>work</span> <span class='meaning'>sweat</span>
     %li
-      -if current_page.path == 'feed.html'
-        %a{:href => '/feed', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>feed</span> <span class='meaning'>tears</span>
+      -if current_page.path == 'feed/index.html'
+        %a{:href => settings.base_url+'feed', :class => 'menuItem active', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>feed</span> <span class='meaning'>tears</span>
       -else
-        %a{:href => '/feed', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>feed</span> <span class='meaning'>tears</span>
-
-.contact
-  %p.menu-title
-    %span get in touch
-  = partial "contactdetails"
-  / #map-canvas
+        %a{:href => settings.base_url+'feed', :class => 'menuItem', :data => {:foreground => '#ffffff', :background => '#92C2CB'}} <span class='helper'>feed</span> <span class='meaning'>tears</span>
 

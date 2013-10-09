@@ -4,9 +4,7 @@ per_page: 10
 ---
 
 - content_for(:title, 'Feed')
-- content_for(:description, 'We’re a digital design &amp; development shop focused on user experience. We’re a small team of designers, thinkers, strategizers, do-ers &amp; storytellers packing a lot of experience across disciplines. Staying small keeps our hands dirty, our overhead lean, our turnarounds fast, and our clients happy.')
 - content_for(:foreground, '#fff')
-/ - content_for(:background, '#222')
 
 - if behances
   - behances.each do | behance |
@@ -76,11 +74,13 @@ per_page: 10
     %hr
     .post-container
       .post-type
-        %a{:href => article.url,:target => '_blank',:title => article.title} <i class='icon icon-post'></i><i class='icon icon-post-full icon-inverted'></i>
+        -link_to article, :relative => true do
+          %i{:class=>'icon icon-post'}
+          %i{:class=>'icon icon-post-full icon-inverted'}
       .post-date.mobile
         %span{:class => 'published', :data => {:published => article.date}}
       .post-content
-        %h2= link_to article.title, article
+        %h2= link_to article.title, article, :relative => true
         - if article.data.images
           - firstImg = article.data.images.first
           - imgsrc = firstImg.keys.first

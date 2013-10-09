@@ -6,8 +6,10 @@
 
     %title= "One Iota  —  404 Erk"
 
-    %meta{:content => page_description, :name => "description"}
+    %meta{:content => settings.site_desc, :name => "description"}
     %meta{:content => "width=device-width", :name => "viewport"}
+    
+    = partial "favicon"
 
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.1/modernizr.min.js"
     :javascript
