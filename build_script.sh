@@ -1,3 +1,4 @@
 #!/bin/bash
 middleman build
-echo "script run" > itworked.txt
+now=$(date +"%I:%M:%S")
+echo "script run at $now" > itworked.log
