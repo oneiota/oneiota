@@ -102,7 +102,7 @@ configure :build do
   activate :minify_javascript
 
   # Minify HTML
-  # activate :minify_html
+  activate :minify_html
 
   # Use relative URLs
   activate :relative_assets
