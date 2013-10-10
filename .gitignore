@@ -7,3 +7,4 @@ build/
 *.sublime-project
 *.sublime-workspace
 config.rb
+build_script.sh
