@@ -29,6 +29,7 @@ Twitter.configure do |config|
   config.oauth_token = '100129471-FMQnUYD7VHNYsCd8tlpxBiXzkIpEcBYHf3k3tHKY'
   config.oauth_token_secret = 'f52WfhoYW32lgyv7ppssMd9N0gE6an944mK9DIZQ'
 end
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 set :site_desc, 'One iota is an agency of passionate designers & developers, focused on creating both brand & digital experiences that excite, motivate and add value'
 set :base_url, '/dev/'
