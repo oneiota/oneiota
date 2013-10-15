@@ -18,11 +18,13 @@ nav {
       }
     }
     li,a {
-      opacity: 0.9;
       margin: 0;
       padding: 0;
       color: inherit;
       @include font-size(1);
+    }
+    a {
+      opacity: 0.9;
     }
   }
 }
@@ -106,7 +108,7 @@ body.menu {
     span {
       display: inline-block;
       border: 0.20rem solid;
-      padding: 0.5rem 1rem 0.2rem 1rem;
+      padding: 0.5rem 1rem 0.5rem 1rem;
     }
     @include at-breakpoint($bigscreen) {
       top: 4rem;
@@ -172,7 +174,7 @@ html .arrow-tab {
   white-space: nowrap;
   .canvasArrow {
     position: absolute;
-    top: -0.8rem;
+    top: -0.7rem;
     right: 0;
     z-index: -1;
   }
@@ -244,11 +246,9 @@ html {
 // CHANGE FOR TOUCH DEBUG - DONE
 html.no-touch {
   body.index {
-    ul.filterMenu {
-      &:hover {
-        li {
-          display: block;
-        }
+    ul.filterMenu:hover {
+      li {
+        display: block;
       }
     }
   }

@@ -3,7 +3,8 @@
 
 body.feed {
   // $experimental-support-for-svg: true;
-  @include background-image(linear-gradient(#222222 5%, #2ac363, #cd8c14, #9c4cc2));
+  @include background-image(linear-gradient(#5ce6d4 5%, #C7d0bd, #ffbca7, #ff8e98, #ab87ba, #458cc7, #4f52ff));
+  //@include background-image(linear-gradient(#222222 5%, #2ac363, #cd8c14, #9c4cc2));
   article {
     hr, span.down-arrow {
       visibility: hidden
@@ -47,6 +48,10 @@ body.feed {
     @include link-style();
   }
 
+}
+
+body.singlePost .post-container .scaleIn {
+  visibility: visible;
 }
 
 body.feed article {
@@ -187,7 +192,7 @@ body.feed article.post {
       display: none;
     }
     .feed-img-holder:first-child {
-      margin-top: $verticleMargin ;
+      margin-top: 1.5rem ;
     }
   }
 }

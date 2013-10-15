@@ -19,19 +19,19 @@
               %a{:href => "http://#{project.link}",:title => "#{project.project}",:target => "_blank",:class => "webLink"}= project.link
             %ul.social-links
               %li
-                %a{:href=>'twitter.com/ONEIOTA_', :title => '@oneiota_'}
+                %a{:href=>'http://twitter.com/intent/tweet/?url=http%3A%2F%2Foneiota.com%2F'+project.slug+'&via=oneiota_', :title => 'Share on Twitter', :target=>'_blank'}
                   %i.icon-twitter.icon
                   %i.icon-twitter-full.icon-inverted.icon
               %li
-                %a{:href=>'facebook.com/pages/ONE-IOTA-STUDIO/103749066322532', :title => '@oneiotastudio'}
+                %a{:href=>'http://facebook.com/sharer.php?u=http%3A%2F%2Foneiota.com%2F'+project.slug, :title => 'Share on Facebook', :target=>'_blank'}
                   %i.icon-facebook.icon
                   %i.icon-facebook-full.icon-inverted.icon
               %li
-                %a{:href=>'pinterest.com/oneiota/', :title => '@oneiota'}
+                %a{:href=>"javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());", :title => 'Pin on Pintrest'}
                   %i.icon-pintrest.icon
                   %i.icon-pintrest-full.icon-inverted.icon
         - sizeArr = FastImage.size("source/images/#{project.slug}/#{img.mobile}")
         - spanRatio = (sizeArr[1].to_f/sizeArr[0].to_f)*100
         %div{:class => "placeholder #{img.grid}"}
-          %span.placeholder-bg{:src => "images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => "images/#{project.slug}/#{img.mobile}", :desktop => "images/#{project.slug}/#{img.desktop}"}}
+          %span.placeholder-bg.loading{:src => settings.base_url+"images/#{project.slug}/#{img.placeholder}",:alt => "#{img.alt}",:style => "padding-bottom:#{spanRatio}%;background:#{project.colors.foreground}",:data => {:mobile => settings.base_url+"images/#{project.slug}/#{img.mobile}", :desktop => settings.base_url+"images/#{project.slug}/#{img.desktop}"}}
           %span.placeholder-alt= img.alt

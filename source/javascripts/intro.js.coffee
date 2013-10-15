@@ -28,7 +28,6 @@ $ ->
   if window.isPortfolio and !window.isSingle
     introGame.gameOver = () ->
       endGame = setTimeout ->
-        #$('.intro').removeClass('fadeIn').addClass('scaleOutRotate')
         window.getItStarted()
       , 500
 

@@ -11,8 +11,7 @@ window.isIndex = if $('body').hasClass('index') then true else false
 window.isFeed = if $('body').hasClass('feed') then true else false
 window.isPortfolio = if $('body').hasClass('portfolio') then true else false
 window.isBlood = if $('body').hasClass('blood') then true else false
-window.isSingle = if $('body').hasClass('singleProject') then true else false
-window.isRetina = if window.devicePixelRatio > 1 then true else false
+window.isSingle = if $('body').hasClass('singleProject') or $('body').hasClass('singlePost') then true else false
 window.mapLoaded = false
 
 ## New Constructors
@@ -266,6 +265,20 @@ imageLoader.addImages = (articleIndex) ->
 #Index Specific
 
 if window.isIndex
+
+  FlipSquare = ->
+    @colArr = ['#d83b65','#e55d87','#e55d87','#5fc3e4','#5ec4e5','#50d97a','#edde5d','#f09819','#ff512f','#dd2476','#1b0109']
+    @sqrArr = []
+    @hozDivs = 4
+    @screenW = $(window).width()
+    @screenH = $(window).height()
+    @squareW = @screenW / @hozDivs
+    @squareH = $(window).height() / Math.floor($(window).height() / @squareW)
+    @numSq = @hozDivs * ($(window).height() / @squareH)
+    @tester = true
+    @tester2 = true
+
+  flipSquare = new FlipSquare()
 
   waypointCheck.footerWaypoint = ->
     $('body').waypoint
@@ -734,18 +747,18 @@ if window.isBlood
       cache: false
       contentType: "application/json; charset=utf-8"
       error: (err) ->
-        $('#newsletter-subscribe-email').attr("value","") 
+        $('#newsletter-subscribe-email').val('') 
         $('#newsletter-subscribe-email').attr("placeholder","*Sorry, please try again")
       success: (data) ->
         unless data.result is "success"
-          $('#newsletter-subscribe-email').attr("value","") 
+          $('#newsletter-subscribe-email').val('')
           $('#newsletter-subscribe-email').attr("placeholder",data.msg)
         else
-          $('#newsletter-subscribe-email').attr("value","") 
+          $('#newsletter-subscribe-email').val('')
           $('#newsletter-subscribe-email').attr("placeholder","Thanks, stay tuned!")
 
   bloodLoader.isValidEmailAddress = () ->
-    emailAddress = $('#newsletter-subscribe-email').attr('value')
+    emailAddress = $('#newsletter-subscribe-email').val()
     pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i)
     pattern.test emailAddress
 
@@ -804,10 +817,10 @@ if window.isBlood
 
   $("form input[type='submit']").bind('click', (event) ->
     event.preventDefault()  if event
-    if bloodLoader.isValidEmailAddress() 
+    if bloodLoader.isValidEmailAddress()
       bloodLoader.newsletterSignup()
     else
-      $('#newsletter-subscribe-email').attr("value","") 
+      $('#newsletter-subscribe-email').val('')
       $('#newsletter-subscribe-email').attr("placeholder","*Sorry, give it another go")
   )
 
@@ -902,9 +915,12 @@ objectLoader.pageLoaded = () ->
   if !window.isPortfolio or window.isSingle
     $('nav').show()
   else
-    # showMain = setTimeout ->
-    $('.intro').removeClass('fadeIn').addClass('introOut')
-    $('.main').addClass('scaleInBig')
+    showMain = setTimeout ->
+    if !window.isTouch
+      $('.intro').removeClass('fadeIn').addClass('introOut')
+      $('.main').addClass('scaleInBig')
+    else
+      $('.intro').removeClass('fadeIn').addClass('introOutTouch')
     showNav = setTimeout ->
       $('nav').show()
       $('.intro').remove()
@@ -912,6 +928,7 @@ objectLoader.pageLoaded = () ->
       $('.checkout-feed').show()
       waypointCheck.makeCanvas()
     , 1200
+
   if window.isBlood
     bloodLoader.getInsty()
     bloodLoader.getTeamShotz()

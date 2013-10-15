@@ -11,7 +11,7 @@
       
       %h2 We are one iota
 
-      %p One Iota is a Brisbane-based studio of young, passionate and experienced cross-discipline designers & developers. Specializing across branding, design and digital mediums, our skills and networks are flexible enough to take on clients of all different shapes and jobs of all different sizes. Together, we seek to create experiences that highlight, challenge and excite.
+      %p One Iota is a studio of young, passionate and experienced cross-discipline designers & developers. Specializing across branding, design and digital mediums, our skills and networks are flexible enough to take on clients of different shapes and jobs of different sizes. Together, we seek to create experiences that highlight, challenge and excite.
 
       %h2 Connect with us
 
@@ -54,7 +54,7 @@
           .team-name-holder
             .team-name
               %p David Fontain
-              %a.icon.icon-linkdin{:href=>'#',:title=>'view Linkdin profile',:target=>'_blank'}
+              %a.icon.icon-linkdin{:href=>'au.linkedin.com/pub/david-fontain/83/318/531/',:title=>'view Linkdin profile',:target=>'_blank'}
         
         .team-holder
           .team-instagram.iotaInsty2
@@ -71,18 +71,8 @@
               %p.no-linkdin David Muirhead
 
         .team-holder.smallfry
-          .team-instagram
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
-          / .instagram-link
-          /   %a{:href=>'http://instagram.com/bvreb0ne',:title=>'@bvreb0ne on instagram'}
-          /     %span.icon.icon-instagram-bare
-
-        .team-holder.smallfry
-          .team-instagram
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
-          / .instagram-link
-          /   %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram'}
-          /     %span.icon.icon-instagram-bare
+          .team-instagram.team-empty 
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-empty.svg'}
         
         .team-holder
           .team-instagram.iotaInsty3
@@ -90,6 +80,10 @@
           .instagram-link
             %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
               %span.icon.icon-instagram-bare
+        
+        .team-holder.smallfry
+          .team-instagram.team-empty 
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-empty.svg'}
 
         .team-holder.pamTeam.team-member{:data=>{:imgalt =>'Pam Rosel',:parent =>'.pamTeam',:shot1=>settings.base_url+'images/team/oneiota_pamrosel.jpg',:shot2=>settings.base_url+'images/team/oneiota_pamrosel2.jpg'}}
           .team-instagram.iotaTeam1
@@ -97,7 +91,7 @@
           .team-name-holder
             .team-name
               %p Pam Rosel
-              %a.icon.icon-linkdin{:href=>'#',:title=>'view Linkdin profile'}
+              %a.icon.icon-linkdin{:href=>'http://www.linkedin.com/pub/pamela-rosel/83/151/5aa',:title=>'view Linkdin profile'}
 
         .team-holder.smallfry
           .team-instagram.iotaInsty4
@@ -123,8 +117,7 @@
 
       .info-service-description
         %h3 Branding &amp; Design
-        %p.service-description  At the heart of our process is a determination to create solutions of real value for our clients, challenge traditional ideas and look to future technologies - asking what’s possible, without losing sight of what’s needed. Experiences with printed matter, bespoke objects or the built environment leave a deep emotional footprint in the human brain, enabling audiences to savour textures, colours and smells. Through use, recycle and display, tangible media find their way into peoples lives, aiding in the positive reinforcement and memorability of your brand. 
-
+        %p.service-description  At the heart of our process is a determination to create solutions of real value for our clients, challenge traditional ideas and look to future technologies - asking what’s possible, without losing sight of what’s needed. We believe that good branding is more than just a logo - it’s everything. It creates culture, loyalty and inspires action.
         %hr
         %ul 
           %li brand strategy
@@ -134,24 +127,23 @@
           %li print collateral
           %li packaging
           %li campaign material
-          %li editorial
+          %li editorial & copywriting
           %li signage & wayfinding
           %li built environment
 
       .info-service-description
         %h3 Apps &amp; Websites
-        %p.service-description Great ideas are adapting across a multitude of different devices, swimming through viral channels and social networks, connecting a global community of participating audiences who have the power to ultimately change the world. Our expertise in digital strategy and development sees that we are able to conceptualize, build, launch, and manage your digital venture to a standard that prizes creativity, best web practices and cutting-edge technology. 
-
+        %p.service-description Great ideas are adapting across a multitude of different devices, connecting a global community of participating audiences who have the power to ultimately change the world. Our expertise in digital strategy and development sees that we are able to conceptualize, build, launch, and manage your digital venture to a standard that prizes creativity, best web practices and cutting-edge technology.
         %hr
         %ul
-          %li user interface
-          %li user experience
+          %li user interface / UI design
+          %li user experience / UX design
           %li web development
           %li web and mobile applications
-          %li content management systems
+          %li content management systems / CMS
           %li e-commerce systems
           %li web optimization for mobile devices
-          %li social strategy
+          %li social network strategy
 
 %section.info-testimonials
   .container

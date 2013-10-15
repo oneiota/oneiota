@@ -1,5 +1,24 @@
 @import "bourbon";
 
+.scaleUpHover {
+  @include transition (all 0.1s linear);
+  &:hover {
+    @include transform(scale(1.15));
+    opacity: 1;
+  }
+}
+
+.active .scaleDownHover:hover {
+  @include transform(scale(1));
+}
+
+.scaleDownHover {
+  @include transition (all 0.2s linear);
+  &:hover {
+    @include transform(scale(0.75));
+  }
+}
+
 .delay {
   @include animation-delay(1s);
 }
@@ -18,6 +37,14 @@
 
 .twinkle {
   @include animation(twinkly 1s alternate infinite);
+}
+
+.loading {
+  @include animation(loading 2s alternate infinite);
+}
+
+body.feed .loading {
+  @include animation(loadingfeed 1.5s alternate infinite);
 }
 
 .shake {
@@ -40,6 +67,10 @@
 .introOut {
   // z-index: -1;
   @include animation(introOut 0.2s linear forwards 1);
+}
+
+.introOutTouch {
+   @include animation(introOutTouch 0.3s linear forwards 1);
 }
 
 .slideUpFooter {
@@ -146,12 +177,6 @@
 
 .scaleOutSevenFive {
   @include animation-name(scaleOutSevenFive);
-}
-
-.eyeButton {
-   .scaleInSevenFive, .scaleInSevenFive {
-    @include transform-origin(center center);
-   }
 }
 
 span.scaleInSevenFive, span.scaleOutSevenFive {
@@ -376,12 +401,6 @@ html {
     ul {
       li {
         a {
-          i.scaleOutSevenFive {
-            display: none ;
-          }
-          i.scaleInSevenFive {
-            display: inline-block;
-          }
           + span.showArrow {
             display: table !important;
           }
@@ -432,12 +451,6 @@ html.no-touch {
     ul {
       li {
         a:hover {
-          i.scaleOutSevenFive {
-            display: inline-block;
-          }
-          i.scaleInSevenFive {
-            display: none;
-          }
           + span.hideArrow {
             display: table !important;
           }
@@ -445,71 +458,9 @@ html.no-touch {
       }
       li.active {
         a:hover {
-          i.scaleOutSevenFive {
-            display: none;
-          }
-          i.scaleInSevenFive {
-            display: inline-block;
-          }
           + span.arrow-tab {
             display: none !important;
           }
-        }
-      }
-    }
-  }
-  ul.filterMenu {
-    li {
-      a {
-        span.scaleOutSevenFive {
-          display: none;
-        }
-        span.scaleInSevenFive {
-          display: block;
-        }
-      }
-      a:hover {
-        span.scaleOutSevenFive {
-          display: block;
-        }
-        span.scaleInSevenFive {
-          display: none;
-        }
-      }
-    }
-    li.active {
-      a:hover {
-        span.scaleOutSevenFive {
-          display: none;
-        }
-        span.scaleInSevenFive {
-          display: block;
-        }
-      }
-    }
-  }
-}
-
-// CHANGE FOR TOUCH DEBUG - DONE
-html.touch {
-  ul.filterMenu {
-    li {
-      a {
-        span.scaleOutSevenFive {
-          display: none;
-        }
-        span.scaleInSevenFive {
-          display: block;
-        }
-      }
-    }
-    li.active {
-      a:hover {
-        span.scaleOutSevenFive {
-          display: none;
-        }
-        span.scaleInSevenFive {
-          display: block;
         }
       }
     }
@@ -519,6 +470,16 @@ html.touch {
 @include keyframes(twinkly) {
   0%   { opacity: 0.3; }
   100% { opacity: 1; }
+}
+
+@include keyframes(loading) {
+  0%   { opacity: 0.4; }
+  100% { opacity: 0.1; }
+}
+
+@include keyframes(loadingfeed) {
+  0%   { opacity: 1; }
+  100% { opacity: 0.2; }
 }
 
 @include keyframes(shakey) {
@@ -706,6 +667,17 @@ html.touch {
   }
   100% {
     @include transform(scale(0.5));
+  }
+}
+
+@include keyframes(introOutTouch) {
+  0% {
+    @include transform(scale(1));
+    opacity: 1;
+  }
+  100% {
+    @include transform(scale(0));
+    opacity: 0;
   }
 }
 

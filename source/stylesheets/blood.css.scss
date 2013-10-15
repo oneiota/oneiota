@@ -149,7 +149,7 @@ section.info-team {
         text-align: center;
         .icon-linkdin {
           &:hover {
-            color: #4F4F4F;
+            color: #cccccc;
           }
         }
       }
@@ -157,7 +157,7 @@ section.info-team {
     .team-instagram {
       position:relative;
       overflow: hidden;
-      background:#4F4F4F;
+      background:#cccccc;
       .instagram-mask {
         position:relative;
         width: 101%;
@@ -177,6 +177,9 @@ section.info-team {
       .offSetInsty {
         left: 100%;
       }
+    }
+    .team-instagram.team-empty {
+      background:#888888;
     }
     .instagram-link {
       top: 0;

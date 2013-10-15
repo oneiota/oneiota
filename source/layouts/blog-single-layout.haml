@@ -24,7 +24,7 @@
       nav * { color:#fff;}
       body.feed { color:#fff; background:#222;}
 
-  %body.feed.singlepost
+  %body.feed.singlePost
     /[if lt IE 7] <p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
     %header
       %nav= partial "singlefeednav"
@@ -61,6 +61,9 @@
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
     :javascript
       window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.10.2.min.js"><\/script>')
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.2.1/moment.min.js"
+    :javascript
+      window.moment || document.write('<script src="javascripts/vendor/moment.js"><\/script>')
     = javascript_include_tag "site"
     
     = partial "analytics"

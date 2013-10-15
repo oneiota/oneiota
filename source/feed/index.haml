@@ -17,7 +17,7 @@ per_page: 10
           %span{:class => 'published', :data => {:published => clean_date(behance['created_on'])}}
         .post-content
           .feed-img-holder
-            %a{:class => 'feed-img', :title => behance['name'] + ' @oneiota on Behance', :href => behance['url'], :target => '_blank', :data => {:img => behance['covers']['404'], :alt => behance['name'] + ' @oneiota on Behance'}}
+            %a{:class => 'feed-img loading', :title => behance['name'] + ' @oneiota on Behance', :href => behance['url'], :target => '_blank', :data => {:img => behance['covers']['404'], :alt => behance['name'] + ' @oneiota on Behance'}}
           %p Just posted <a href='#{behance['url']}' target='_blank' title='#{behance['name']} @oneiota on Behance'>#{behance['name']}</a> on Behance
         .post-date
           %span{:class => 'published', :data => {:published => clean_date(behance['created_on'])}}
@@ -33,7 +33,7 @@ per_page: 10
           %span{:class => 'published', :data => {:published => clean_dribble_date(dribbble['created_at'])}}
         .post-content
           .feed-img-holder
-            %a{:href => dribbble['short_url'], :target => '_blank', :class => 'feed-img', :title => dribbble['title'] + ' @oneiota on Dribbble', :data => {:href => dribbble['url'], :img => dribbble['image_url'], :alt => dribbble['title'] + ' @oneiota on Dribbble'}}
+            %a{:href => dribbble['short_url'], :target => '_blank', :class => 'feed-img loading', :title => dribbble['title'] + ' @oneiota on Dribbble', :data => {:href => dribbble['url'], :img => dribbble['image_url'], :alt => dribbble['title'] + ' @oneiota on Dribbble'}}
           %p Just posted <a href='#{dribbble['short_url']}' target='_blank' title='#{dribbble['title']} @oneiota on Dribbble'>#{dribbble['title']}</a> on Dribbble
         .post-date
           %span{:class => 'published', :data => {:published => clean_dribble_date(dribbble['created_at'])}}
@@ -66,7 +66,7 @@ per_page: 10
               .feed-img-holder
                 - newURL = 'http://pinterest.com' + pin['href']
                 - newDesc = pin['desc'] ? pin['desc'] + ' @oneiota on Pintrest' : '@oneiota on Pintrest'
-                %a{:class => 'feed-img', :href => newURL, :target => '_blank', :title => newDesc, :data => {:img => pin['src'], :alt => newDesc}}
+                %a{:class => 'feed-img loading', :href => newURL, :target => '_blank', :title => newDesc, :data => {:img => pin['src'], :alt => newDesc}}
             %p some of our lastest pins
           .latest-pins
             %a{:href => 'http://pinterest.com/oneiota/pins/',:target=>'_blank',:title => '@oneiota on Pintrest'} @oneiota
@@ -74,19 +74,19 @@ per_page: 10
     %hr
     .post-container
       .post-type
-        -link_to article, :relative => true do
+        -link_to article, :relative => false do
           %i{:class=>'icon icon-post'}
           %i{:class=>'icon icon-post-full icon-inverted'}
       .post-date.mobile
         %span{:class => 'published', :data => {:published => article.date}}
       .post-content
-        %h2= link_to article.title, article, :relative => true
+        %h2= link_to article.title, article, :relative => false
         - if article.data.images
           - firstImg = article.data.images.first
           - imgsrc = firstImg.keys.first
           - imgtitle = firstImg.values.first
           .feed-img-holder.feature-image
-            %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
+            %span{:class => 'feed-img loading', :data => {:img => imgsrc, :alt => imgtitle}}
         -if article.body.scan("\n").size <= 1
           %div.article-text= article.body
         -else
@@ -108,7 +108,7 @@ per_page: 10
           - imgsrc = img.keys.first
           - imgtitle = img.values.first
           .feed-img-holder
-            %span{:class => 'feed-img', :data => {:img => imgsrc, :alt => imgtitle}}
+            %span{:class => 'feed-img loading', :data => {:img => imgsrc, :alt => imgtitle}}
 
 - if paginate
   %article.feed.paginate

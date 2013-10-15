@@ -7,6 +7,7 @@
 *= require "blood"
 *= require "feed"
 *= require "intro"
+*= require "square"
 
 //Grid
 *= require "_layout/grid"
@@ -250,6 +251,9 @@ html body {
     }
     @include at-breakpoint($bigscreen)  {
       @include font-size(3.5);
+    }
+    &:hover {
+      border-bottom: 0.1em solid;
     }
   }
   h3 {

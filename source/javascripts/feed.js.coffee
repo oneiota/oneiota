@@ -79,7 +79,8 @@ $ ->
         imgStyle = '-' + imgRatio + '%'
         $(img).addClass('portrait-image')
         $(img).css('top',imgStyle)
-      $(img).addClass('fadeIn')
+      targetPlaceholder.removeClass('loading')
+      $(img).addClass('scaleIn')
       feedImageLoader.loadImage()
 
     feedImageLoader.loadImage = ->

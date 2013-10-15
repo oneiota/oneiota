@@ -8,10 +8,14 @@
     opacity: 0.1;
   }
   .placeholder-alt {
+    display: none;
     position: absolute;
     width: 100%;
     top: 40%;
     left: 0;
+    @include at-breakpoint($tablet) {
+      display: block;
+    }
   }
 }
 .project-details {

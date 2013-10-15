@@ -1,203 +1,54 @@
 ---
-- project: Esplanade Brewers
+- project: Esplanade Coffee Brewers
   slug: espl
   description: >
-    The Illustration room represents a range of respected talent from across the globe.<span>They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.</span>
+    Esplanade Coffee Brewers fix brews for tourists and residents alike on the beach lined esplanade of Surfers Paradise. In a place known for its glitz and glam, they needed a brand that communicated a no-nonsense approach to quality<span>, accompanied with a bold aesthetic that would stand the test of time. Drawing inspiration from geometry and raw materials, One Iota was commissioned to deliver a brand name along with accompanying identity guidelines. Copper foil and textured brand materials integrate seamlessly within the stores interior, achieving a striking sense of quality and attention to detail.  Laser cutting and copper letterpress foiling are just a few of the processes we had fun working with when creating Esplanades range of bespoke brand materials.</span>
   link: esplbrewers.co
   images:
     - 
-      mobile: mobile/ESPL_heroshot.jpg
-      desktop: ESPL_heroshot.jpg
+      mobile: mobile/ESPL_businesscard.jpg
+      desktop: ESPL_businesscard.jpg
       alt: >
-        ESPL. Brewers Cooper Press Foiled Card
+        ESPL. Coffee Brewers
     - 
-      mobile: mobile/ESPL_copperstand.jpg
-      desktop: ESPL_copperstand.jpg
+      mobile: mobile/ESPL_environment.jpg
+      desktop: ESPL_environment.jpg
       alt: >
-        ESPL. Brewers copper foil sticked and business card
-    - 
-      mobile: mobile/ESPL_menuboard.png
-      desktop: ESPL_menuboard.png
-      alt: >
-        ESPL. Brewers custom fabricated display board
+        ESPL. Coffee Brewers collateral
     -
-      mobile: mobile/ESPL_iphone.png
-      desktop: ESPL_iphone.png
+      mobile: mobile/ESPL_menuholder.jpg
+      desktop: ESPL_menuholder.jpg
       alt: >
-        ESPL. Brewers simple responsive website design
+        ESPL. Coffee Brewers bespoke menu holder
     -
-      mobile: mobile/ESPL_cup.png
-      desktop: ESPL_cup.png
+      mobile: mobile/ESPL_iphone.jpg
+      desktop: ESPL_iphone.jpg
       alt: >
-        ESPL. Brewers printed coffee cup
+        ESPL. Coffee Brewers simple responsive website
     -
-      mobile: mobile/ESPL_interiorphotos.png
-      desktop: ESPL_interiorphotos.png
+      mobile: mobile/ESPL_cups.jpg
+      desktop: ESPL_cups.jpg
       alt: >
-        ESPL. Brewers sign box and team
+        ESPL. Coffee Brewers printed coffee cups
     -
-      mobile: mobile/ESPL_patternfloor.png
-      desktop: ESPL_patternfloor.png
+      mobile: mobile/ESPL_interiorphotos.jpg
+      desktop: ESPL_interiorphotos.jpg
       alt: >
-        ESPL. Brewers interior
+        ESPL. Coffee Brewers sign box and team
     -
-      mobile: mobile/ESPL_web.png
-      desktop: ESPL_web.png
+      mobile: mobile/ESPL_patternfloor.jpg
+      desktop: ESPL_patternfloor.jpg
       alt: >
-        ESPL. Brewers responsive web design
+        ESPL. Coffee Brewers interior
+    -
+      mobile: mobile/ESPL_web.jpg
+      desktop: ESPL_web.jpg
+      alt: >
+        ESPL. Coffee Brewers simple responsive website
   colors:
     foreground: "#f49a74"
     background: "#716f70"
-  tags: [Brand Development, Brand Collateral]
-  digital:
-  branding: "true"
-
-- project: Mirrool Creek Lamb
-  slug: mirroolcreeklamb
-  description: >
-    A family company known for its premium quality lamb, Mirrool Creek commissioned One Iota to develop an entire brand identity, from the logo and marketing collateral through to an exciting new website. <span>The site adopts a non-traditional web design, with all the content on a single page. Condiments such as salt, olive oil and rosemary appear to float in the background as the user travels down the site. This site also used our dynamic site design that optimises itself for a variety of screen sizes and resolutions. The client is also able to maintain the site through our streamlined content management system, which their brand manager uses regularly to provide tasty lamb recipes or manage stockists.</span>
-  link: mirroolcreeklamb.com
-  images:
-    - 
-      mobile: mobile/MiroolCreek_heroshot.png
-      desktop: MiroolCreek_heroshot.png
-      alt: >
-        Mirrool Creek Lamb meat vacuum packaging
-    - 
-      mobile: mobile/MiroolCreek_afterText.jpg
-      desktop: MiroolCreek_afterText.jpg
-      alt: >
-        Mirrool Creek Lamb promotion design
-    - 
-      mobile: mobile/MiroolCreek_iphone.png
-      desktop: MiroolCreek_iphone.png
-      alt: >
-        Mirrool Creek Lamb responsive view
-    - 
-      mobile: mobile/MiroolCreek_web.png
-      desktop: MiroolCreek_web.png
-      alt: >
-        Mirrool Creek Lamb interactive web layout
-    - 
-      mobile: mobile/MiroolCreek_businessCards.png
-      desktop: MiroolCreek_businessCards.png
-      alt: >
-        Mirrool Creek Lamb calling cards
-    - 
-      mobile: mobile/MiroolCreek_bagMeat.png
-      desktop: MiroolCreek_bagMeat.png
-      alt: >
-        Mirrool Creek Lamb packaging design
-    - 
-      mobile: mobile/MiroolCreek_collateral.png
-      desktop: MiroolCreek_collateral.png
-      alt: >
-        Mirrool Creek Lamb brand collateral
-  colors:
-    foreground: "#FF0000"
-    background: "#F2D6C7"
-  tags: [Website Development, Brand Development, Brand Collateral, Package Design, Copywriting]
-  digital: "true"
-  branding: "true"
-
-- project: Blackboard Coffee
-  slug: blackboard
-  description: >
-    The Illustration room represents a range of respected talent from across the globe.<span>They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.</span>
-  link: blackboardcoffee.com
-  images:
-    - 
-      mobile: mobile/BBheroshot.png
-      desktop: BBheroshot.png
-      alt: >
-        Blackboard Coffee branding
-    - 
-      mobile: mobile/BBaftertext.png
-      desktop: BBaftertext.png
-      alt: >
-        Blackboard Coffee letterpress business card and exterior signage
-    - 
-      mobile: mobile/BBwindowDisplay.jpg
-      desktop: BBwindowDisplay.jpg
-      alt: >
-        Blackboard Coffee window display
-    -
-      mobile: mobile/BBweb.png
-      desktop: BBweb.png
-      alt: >
-        Blackboard Coffee responsive website
-    -
-      mobile: mobile/BBicedcoffee.png
-      desktop: BBicedcoffee.png
-      alt: >
-        Blackboard Coffee iced coffee bottle design
-    -
-      mobile: mobile/BBLGimages.png
-      desktop: BBLGimages.png
-      alt: >
-        Blackboard Coffee brand collateral
-  colors:
-    foreground: "#232323"
-    background: "#F9E5DC"
-  tags: [Brand Development, Brand Collateral, Web Development, Copywriting, Built Environment]
-  digital: "true"
-  branding: "true"
-
-- project: Taste
-  slug: taste
-  description: >
-    The Illustration room represents a range of respected talent from across the globe.<span>They wanted an online environment where art directors and publishers could sample an illustrator’s style quickly and easily. We delivered a bespoke site design that enabled users to shortlist and create their own virtual light boxes while they browsed artist portfolios. These are instantly publishable as a zip, pdf or A4 print. The site design is dynamic and has a layout that adapts for optimal viewing on different screen sizes and devices. The backend is equally elegant, with a simple content management system that allows the client to fully manage and maintain the site independently.</span>
-  link: illustrationroom.com
-  images:
-    - 
-      mobile: mobile/taste_heroshot.png
-      desktop: taste_heroshot.png
-      alt: >
-        Taste identity
-    - 
-      mobile: mobile/taste_logoT.png
-      desktop: taste_logoT.png
-      alt: >
-        Taste identity big T
-    - 
-      mobile: mobile/taste_businessCards.png
-      desktop: taste_businessCards.png
-      alt: >
-        Taste business cards
-    -
-      mobile: mobile/taste_swingTags.png
-      desktop: taste_swingTags.png
-      alt: >
-        Taste swing tags
-    -
-      mobile: mobile/taste_swingTagsPots.png
-      desktop: taste_swingTagsPots.png
-      alt: >
-        Taste swing tag in store
-    -
-      mobile: mobile/taste_windowDecals.png
-      desktop: taste_windowDecals.png
-      alt: >
-        Taste window display
-    -
-      mobile: mobile/taste_brownPaperBags.png
-      desktop: taste_brownPaperBags.png
-      alt: >
-        Taste shopping bags
-    -
-      mobile: mobile/taste_cakeSalePoster.png
-      desktop: taste_cakeSalePoster.png
-      alt: >
-        Taste have your cake and eat it sale
-    -
-      mobile: mobile/taste_icecreamSkater.png
-      desktop: taste_icecreamSkater.png
-      alt: >
-        Taste icecream skater
-  colors:
-    foreground: "#FF3600"
-    background: "#FFCD5C"
-  tags: [Brand Development, Brand Collateral, Brand Environment]
+  tags: [Brand Development, Digital Development, Brand Collateral, Copywriting]
   digital:
   branding: "true"
 
@@ -208,13 +59,13 @@
   link: illustrationroom.com
   images:
     - 
-      mobile: mobile/illustrationroom_home.jpg
-      desktop: illustrationroom_home.jpg
+      mobile: mobile/illustrationroom_website.jpg
+      desktop: illustrationroom_website.jpg
       alt: >
         Ihe Illustration Room Responsive Website
     - 
-      mobile: mobile/illustrationroom_home2.jpg
-      desktop: illustrationroom_home2.jpg
+      mobile: mobile/illustrationroom_frontpage.jpg
+      desktop: illustrationroom_frontpage.jpg
       alt: >
         The Illustration Room Homepage
     - 
@@ -223,8 +74,8 @@
       alt: >
         The Illustration Room Lightbox and Blog
     -
-      mobile: mobile/illustrationroom_mobile_view.jpg
-      desktop: illustrationroom_mobile_view.jpg
+      mobile: mobile/illustrationroom_mobile.jpg
+      desktop: illustrationroom_mobile.jpg
       alt: >
         The Illustration Room Mobile Views
     -
@@ -235,58 +86,207 @@
   colors:
     foreground: "#000077"
     background: "#a3dcd3"
-  tags: [Website Development, Brand Development, Brand Collateral]
+  tags: [Digital Development, Brand Development, Brand Collateral]
   digital: "true"
   branding: "true"
 
+- project: Mirrool Creek Lamb
+  slug: mirroolcreeklamb
+  description: >
+    A family company known for its premium quality lamb, Mirrool Creek commissioned One Iota to develop an entire brand identity, from the logo and marketing collateral through to an exciting new website<span>.The site adopts a non-traditional web design, with all the content on a single page. Condiments such as salt, olive oil and rosemary appear to float in the background as the user travels down the site. This site also used our dynamic site design that optimises itself for a variety of screen sizes and resolutions. The client is also able to maintain the site through our streamlined content management system, which their brand manager uses regularly to provide tasty lamb recipes or manage stockists.</span>
+  link: mirroolcreeklamb.com
+  images:
+    - 
+      mobile: mobile/mirroolcreek_lambChops.jpg
+      desktop: mirroolcreek_lambChops.jpg
+      alt: >
+        Mirrool Creek Lamb
+    - 
+      mobile: mobile/mirroolcreek_webphotoshoot.jpg
+      desktop: mirroolcreek_webphotoshoot.jpg
+      alt: >
+        Mirrool Creek Lamb promotional photo
+    - 
+      mobile: mobile/mirroolcreek_iphone.jpg
+      desktop: mirroolcreek_iphone.jpg
+      alt: >
+        Mirrool Creek Lamb responsive website
+    - 
+      mobile: mobile/mirroolcreek_web.jpg
+      desktop: mirroolcreek_web.jpg
+      alt: >
+        Mirrool Creek Lamb website layout
+    - 
+      mobile: mobile/mirroolcreek_businessCards.jpg
+      desktop: mirroolcreek_businessCards.jpg
+      alt: >
+        Mirrool Creek Lamb business cards
+    - 
+      mobile: mobile/mirroolcreek_typography.jpg
+      desktop: mirroolcreek_typography.jpg
+      alt: >
+        Mirrool Creek Lamb copywriting
+    - 
+      mobile: mobile/mirroolcreek_paperBag.jpg
+      desktop: mirroolcreek_paperBag.jpg
+      alt: >
+        Mirrool Creek Lamb packaging design
+  colors:
+    foreground: "#FF0000"
+    background: "#F2D6C7"
+  tags: [Digital Development, Brand Development, Brand Collateral, Package Design, Copywriting]
+  digital: "true"
+  branding: "true"
+
+- project: Taste
+  slug: taste
+  description: >
+    Taste is a mecca for those who love to cook and entertain. From the beginning it was clear that the brand needed to reflect this passion<span>, but also create a retail environment that captured the imagination of shoppers and passersby. We delivered a bespoke identity that draws visual cues from 1920’s French typography, appropriating turn-of-the-century artwork from vintage fruit labels and cooking advertisements into playful collages with cheeky and nostalgic undertones.</span>
+  link: illustrationroom.com
+  images:
+    - 
+      mobile: mobile/taste_identity.jpg
+      desktop: taste_identity.jpg
+      alt: >
+        Taste identity
+    - 
+      mobile: mobile/taste_bigT.jpg
+      desktop: taste_bigT.jpg
+      alt: >
+        Taste identity big T
+    - 
+      mobile: mobile/taste_businessCards.jpg
+      desktop: taste_businessCards.jpg
+      alt: >
+        Taste business cards
+    -
+      mobile: mobile/taste_swingTags.jpg
+      desktop: taste_swingTags.jpg
+      alt: >
+        Taste swing tags
+    -
+      mobile: mobile/taste_swingTagPots.jpg
+      desktop: taste_swingTagPots.jpg
+      alt: >
+        Taste swing tag in store
+    -
+      mobile: mobile/taste_windowDecals.jpg
+      desktop: taste_windowDecals.jpg
+      alt: >
+        Taste window display
+    -
+      mobile: mobile/taste_paperBags.jpg
+      desktop: taste_paperBags.jpg
+      alt: >
+        Taste shopping bags
+    -
+      mobile: mobile/taste_cakeSalePoster.jpg
+      desktop: taste_cakeSalePoster.jpg
+      alt: >
+        Taste have your cake and eat it sale
+    -
+      mobile: mobile/taste_icecreamSkater.jpg
+      desktop: taste_icecreamSkater.jpg
+      alt: >
+        Taste icecream skater
+  colors:
+    foreground: "#FF3600"
+    background: "#FFCD5C"
+  tags: [Brand Development, Brand Collateral, Built Environment]
+  digital:
+  branding: "true"
+  
 - project: Sourced Grocer
   slug: sourcedgrocer
   description: >
-    Identity development for Sourced Grocer a modern take on your local neighbourhood grocer. Works include logo, business cards, promotional flyers, posters, website and more.
+    The guys from Sourced Grocer looked to achieve a simple goal: procure fresh quality produce first hand from local farms and offer it for sale in the local area<span>, a modern take on your local neighbourhood grocer. The identity had to be as unique as their business model, challenging people to question their shopping habits and promote awareness in the local community. One Iota developed a brand culture that inspires people to buy locally, eat thoughtfully and have pride in the produce they consume. Executed across a range of collateral, we designed posters, promotional flyers and business cards through to signage and built environment.</span>
   images:
-    - 
-      mobile: mobile/pineapple.png
-      desktop: pineapple.png
+    -
+      mobile: mobile/sourcedgrocer_flyerInside.jpg
+      desktop: sourcedgrocer_flyerInside.jpg
       alt: >
-        Souced Grocer - red pineapple
+        Sourced Grocer local is lovely
     - 
-      mobile: mobile/sourcedgrocer-businesscards.png
-      desktop: sourcedgrocer-businesscards.png
+      mobile: mobile/sourcedgrocer-breakfastsetting.jpg
+      desktop: sourcedgrocer-breakfastsetting.jpg
       alt: >
         Souced Grocer breakfast setting
     - 
-      mobile: mobile/sourcedgrocer-poster.png
-      desktop: sourcedgrocer-poster.png
+      mobile: mobile/sourcedgrocer_eatThoughtfullyPoster.jpg
+      desktop: sourcedgrocer_eatThoughtfullyPoster.jpg
       alt: >
         Eat Thoughtfully poster
     -
-      mobile: mobile/sourcedgrocer-interior.png
-      desktop: sourcedgrocer-interior.png
+      mobile: mobile/sourcedgrocer_interior.jpg
+      desktop: sourcedgrocer_interior.jpg
       alt: >
         Sourced Grocer interior
     -
-      mobile: mobile/sourcedgrocer-collateral.png
-      desktop: sourcedgrocer-collateral.png
+      mobile: mobile/sourcedgrocer_collateral.jpg
+      desktop: sourcedgrocer_collateral.jpg
       alt: >
         Sourced Grocer collateral
     -
-      mobile: mobile/sourcedgrocer-posters.png
-      desktop: sourcedgrocer-posters.png
+      mobile: mobile/sourcedgrocer_framedPosters.jpg
+      desktop: sourcedgrocer_framedPosters.jpg
       alt: >
         Sourced Grocer posters
     -
-      mobile: mobile/sourcedgrocer-localflyers.png
-      desktop: sourcedgrocer-localflyers.png
+      mobile: mobile/sourcedgrocer_flyers.jpg
+      desktop: sourcedgrocer_flyers.jpg
       alt: >
         Sourced Grocer local flyers
-    -
-      mobile: mobile/heroshot.png
-      desktop: heroshot.png
+    - 
+      mobile: mobile/sourcedgrocer_pineapple.jpg
+      desktop: sourcedgrocer_pineapple.jpg
       alt: >
-        Sourced Grocer coffee cup
+        Souced Grocer - red pineapple
   colors:
     foreground: "#A1FFB8"
     background: "#68657C"
-  tags: [Brand Development, Brand Collateral]
+  tags: [Brand Development, Brand Collateral, Copywriting, Built Environment]
+  digital:
+  branding: "true"
+
+- project: Blackboard Coffee
+  slug: blackboard
+  description: >
+    The owner of Blackboard coffee Nick Pearce is a young entrepreneur determined to change his local communities appreciation for good food and coffee.<span> Nick’s little enterprise has flourished from a humble coffee shop into a goodness institution, creating a culture that has expanded Blackboard across multiple locations and into new ventures. Getting on board from the early days allowed One Iota to design, develop and implement the Blackboard identity across a range of mediums from brand collateral and menus through to environmental graphics, food labels, signage and websites.</span>
+  link: blackboardcoffee.com
+  images:
+    - 
+      mobile: mobile/blackboard_businessCards.jpg
+      desktop: blackboard_businessCards.jpg
+      alt: >
+        Blackboard Coffee
+    - 
+      mobile: mobile/blackboard_windowDisplay.jpg
+      desktop: blackboard_windowDisplay.jpg
+      alt: >
+        Blackboard Coffee window display
+    -
+      mobile: mobile/blackboard_website.jpg
+      desktop: blackboard_website.jpg
+      alt: >
+        Blackboard Coffee responsive website
+    -
+      mobile: mobile/blackboard_icedCoffee.jpg
+      desktop: blackboard_icedCoffee.jpg
+      alt: >
+        Blackboard Coffee iced coffee label design
+    -
+      mobile: mobile/blackboard_interior.jpg
+      desktop: blackboard_interior.jpg
+      alt: >
+        Blackboard Coffee interior concept
+    -
+      mobile: mobile/blackboard_marketday.jpg
+      desktop: blackboard_marketday.jpg
+      alt: >
+        Blackboard market day
+  colors:
+    foreground: "#232323"
+    background: "#f1f1f1"
+  tags: [Brand Development, Brand Collateral, Digital Development, Copywriting, Package Design, Built Environment]
   digital: "true"
   branding: "true"

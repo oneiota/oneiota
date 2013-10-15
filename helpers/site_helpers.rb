@@ -25,7 +25,7 @@ module SiteHelpers
   end
 
   def intro_colors
-    colorArray = [['#8DF5BB','#FFEEDF'],['#000000','#FFFFFF']]
+    colorArray = [['#717FFF','#92FF97']]
     pickedColors = colorArray.sample
     pickedColors
   end
@@ -69,7 +69,7 @@ module SiteHelpers
 
   def dribbbles
     begin
-      dribbble = Faraday.get 'http://api.dribbble.com/players/yarnell/shots.json'
+      dribbble = Faraday.get 'http://api.dribbble.com/players/oneiota/shots.json'
       if dribbble
         dribbble = JSON.parse(dribbble.body)
         dribbble["shots"]
@@ -85,7 +85,7 @@ module SiteHelpers
 
   def behances
     begin
-      behance = Faraday.get 'http://www.behance.net/v2/users/jessicawalsh/projects?api_key=n8MGFFD05lRU0DK8rJ5t5fkmq57XwszW'
+      behance = Faraday.get 'http://www.behance.net/v2/users/oneiota/projects?api_key=ozONYd8dfUGe4RZof1iILLyglmviU61S'
       if behance
         behance = JSON.parse(behance.body)
         behance["projects"]

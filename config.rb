@@ -22,17 +22,19 @@ page "/404.html", :directory_index => false
 ###
 # Twitter Gem configure
 ###
-  
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 Twitter.configure do |config|
   config.consumer_key = 'LwohjV8Aui2hRqiOdGH27g'
   config.consumer_secret = 'GuGYzU47Y5ijUuulZJgYyVqQ9xbD9LAQOBQH0QxjQq4'
   config.oauth_token = '100129471-FMQnUYD7VHNYsCd8tlpxBiXzkIpEcBYHf3k3tHKY'
   config.oauth_token_secret = 'f52WfhoYW32lgyv7ppssMd9N0gE6an944mK9DIZQ'
 end
-OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 set :site_desc, 'One iota is an agency of passionate designers & developers, focused on creating both brand & digital experiences that excite, motivate and add value'
 set :base_url, '/dev/'
+#set :base_url, '/'
+
 ### 
 # Compass
 ###
@@ -81,6 +83,7 @@ page "/404.html", :layout => "404-layout"
 page "/blood.html", :layout => "blood-layout"
 page "/feed/*", :layout => "blog-single-layout"
 page "/feed/index.html", :layout => "blog-layout"
+page "/trans.html", :layout => "blank-layout"
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
@@ -109,7 +112,7 @@ configure :build do
   activate :relative_assets
 
   # Add asset fingerprinting to avoid cache issues
-  activate :asset_hash, :ignore => [%r{^images/team/.*}, %r{^images/team-mask.svg}]
+  #activate :asset_hash, :ignore => [%r{^images/team/.*}, %r{^images/team-mask.svg},%r{^images/team-empty.svg}]
 
   # Create favicon/touch icon set from source/favicon_base.png
   # activate :favicon_maker
