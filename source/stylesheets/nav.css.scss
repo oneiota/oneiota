@@ -77,7 +77,7 @@ nav .top-hud {
 }
 
 nav .bottom-hud {
-  ul li {
+  ul li, ul li a {
     display: inline-block;
   }
 }
@@ -95,8 +95,8 @@ body {
   .infoNav, .menuNav {
     display: none;
   }
-  .indexNav {
-    display: block;
+  .indexNav,  {
+    display: inline-block;
   }
   .menu-title {
     display: none;
@@ -131,7 +131,7 @@ body.menu {
       display: none;
     }
     .menuNav {
-      display: block;
+      display: inline-block;
     }
   }
 }
