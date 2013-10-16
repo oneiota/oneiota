@@ -253,21 +253,21 @@ html {
 }
 
 // CHANGE FOR TOUCH DEBUG - DONE
-// html.no-touch {
-//   body.index {
-//     ul.filterMenu:hover {
-//       li {
-//         display: block;
-//       }
-//     }
-//   }
-// }
+html.no-touch {
+  body.index {
+    ul.filterMenu:hover {
+      li {
+        display: block;
+      }
+    }
+  }
+}
 
 // // CHANGE FOR TOUCH DEBUG - DONE
-// html.touch {
-//   body.index {
-//     ul.filterMenu {
+html.touch {
+  body.index {
+    ul.filterMenu {
       
-//     }
-//   }
-// }
+    }
+  }
+}
