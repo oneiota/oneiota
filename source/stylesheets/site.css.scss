@@ -139,7 +139,7 @@ section, article {
     }
     h2 {
       @include font-size(2.5);
-      line-height: 1em;
+      line-height: 1.2em;
       @include at-breakpoint($bigscreen)  {
         @include font-size(3.5);
       }

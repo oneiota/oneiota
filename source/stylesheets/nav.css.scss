@@ -83,10 +83,19 @@ nav .bottom-hud {
 }
 
 body {
-  .infoNav li a, .menuNav li a {
+  // .infoNav li a, .menuNav li a {
+  //   display: none;
+  // }
+  // .indexNav li a {
+  //   display: block;
+  // }
+  // .menu-title {
+  //   display: none;
+  // }
+  .infoNav, .menuNav {
     display: none;
   }
-  .indexNav li a {
+  .indexNav {
     display: block;
   }
   .menu-title {
@@ -118,24 +127,24 @@ body.menu {
     display: none;
   }
   .bottom-hud {
-    .infoNav li a, .indexNav li a {
+    .infoNav, .indexNav {
       display: none;
     }
-    .menuNav li a {
+    .menuNav {
       display: block;
     }
   }
 }
 
 body.menu.opencontact {
-  .bottom-hud {
-    .menuNav li a, .indexNav li a {
-      display: none;
-    }
-    .infoNav li a {
-      display: block;
-    }
-  }
+  // .bottom-hud {
+  //   .menuNav li a, .indexNav li a {
+  //     display: none;
+  //   }
+  //   .infoNav li a {
+  //     display: block;
+  //   }
+  // }
 }
 
 body.singleProject nav .top-hud, body.feed nav .top-hud {
@@ -244,21 +253,21 @@ html {
 }
 
 // CHANGE FOR TOUCH DEBUG - DONE
-html.no-touch {
-  body.index {
-    ul.filterMenu:hover {
-      li {
-        display: block;
-      }
-    }
-  }
-}
+// html.no-touch {
+//   body.index {
+//     ul.filterMenu:hover {
+//       li {
+//         display: block;
+//       }
+//     }
+//   }
+// }
 
-// CHANGE FOR TOUCH DEBUG - DONE
-html.touch {
-  body.index {
-    ul.filterMenu {
+// // CHANGE FOR TOUCH DEBUG - DONE
+// html.touch {
+//   body.index {
+//     ul.filterMenu {
       
-    }
-  }
-}
+//     }
+//   }
+// }

@@ -24,7 +24,8 @@
 
     %style{:type => "text/css"}
       body { background:#{yield_content(:background)}; }
-      div.intro { background:#{intro_colors.first}; color:#{intro_colors.last};}
+      - gameColors = intro_colors
+      div.intro { background:#{gameColors.last}; color:#{gameColors.first};}
       nav { color:#{yield_content(:foreground)}; }
       html .mobile.project-title { background:#{yield_content(:background)}; }
       html .mobile.project-title { background:#{yield_content(:background)}; }
