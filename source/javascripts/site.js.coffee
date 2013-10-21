@@ -12,6 +12,7 @@ window.isFeed = if $('body').hasClass('feed') then true else false
 window.isPortfolio = if $('body').hasClass('portfolio') then true else false
 window.isBlood = if $('body').hasClass('blood') then true else false
 window.isSingle = if $('body').hasClass('singleProject') or $('body').hasClass('singlePost') then true else false
+window.isIE = if $('html').hasClass('lt-ie9') then true else false
 window.mapLoaded = false
 
 ## New Constructors
@@ -926,7 +927,8 @@ objectLoader.pageLoaded = () ->
       $('.intro').remove()
       $('.main').removeClass('scaleInBig')
       $('.checkout-feed').show()
-      waypointCheck.makeCanvas()
+      if !window.isIE
+        waypointCheck.makeCanvas()
     , 1200
 
   if window.isBlood
@@ -1101,5 +1103,7 @@ $ ->
     objectLoader.pageLoaded()
     historyController.bindPopstate()
 
-  if !window.isPortfolio or window.isSingle
+  if window.isPortfolio and !window.isSingle and !window.isIE
+    window.loadGame()
+  else
     window.getItStarted()

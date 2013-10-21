@@ -120,8 +120,8 @@ configure :build do
   # Serve GZIPPED FILES
   activate :gzip
 
-  require 'deployscript'
-  activate :deployScript
+  # require 'deployscript'
+  # activate :deployScript
 
   # require 'imageresizer'
   # activate :image_resizer do |i|
