@@ -23,6 +23,8 @@
       window.Modernizr.addTest("cssremunit",function(){var e=document.createElement("div");try{e.style.fontSize="3rem"}catch(t){}return/rem/.test(e.style.fontSize)})
 
     = stylesheet_link_tag "site"
+    :javascript
+      yepnope({test: Modernizr.csstransforms3d,nope: 'stylesheets/notransforms.css'})
 
     %style{:type => "text/css"}
       body { background:#{yield_content(:background)}; }
@@ -55,9 +57,6 @@
             yepnope({test: Modernizr.history,nope: 'javascripts/vendor/history.min.js'})
           })
         }
-      },{
-        test: Modernizr.cssremunit,
-        nope: 'javascripts/vendor/rem.min.js'
       },{
         load: 'javascripts/site.js'
       }])
