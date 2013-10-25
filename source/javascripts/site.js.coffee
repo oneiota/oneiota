@@ -1,7 +1,7 @@
-#= require waypoints2.0.2.min
-#= require jquery-ui-1.9.2.custom
-#= require jquery.ui.touch-punch.min
-#= require jquery.color-2.1.2.min
+#= require vendor/waypoints2.0.2.min
+#= require vendor/jquery-ui-1.9.2.custom
+#= require vendor/jquery.color-2.1.2.min.js
+#= require vendor/jquery.ui.touch-punch.min
 #= require feed
 #= require intro
 
@@ -113,15 +113,23 @@ waypointCheck.updateColors = (foreground, background) ->
     closeColor = foreground
   $('nav').stop().animate({
     color: foreground
-  }, 500 )
+  }, 500)
   $('.indexNav .icon-info').stop().animate({
     color: closeColor
-  }, 500 )
+  }, 500, () ->
+    if window.isIE
+      $('.indexNav .icon-info').trigger('focus')
+      setTimeout ->
+        $('.indexNav .icon-info').blur()
+      10
+  )
   $('.navCounters .navPanel').stop().animate({
     backgroundColor: background
   }, 500 )
   if window.isCanvas
     waypointCheck.updateCanvas()
+  else
+    $('.arrow-tab').css('color', foreground)
 
 waypointCheck.endofline = (foreground) ->
   $('.indexNav .icon-info').stop().animate({
@@ -181,7 +189,10 @@ window.initialiseMaps = () ->
 
   map = new google.maps.Map(document.getElementById("map-area"), mapOptions)
 
-  iotaImage = '../images/iotaMarker.svg';
+  if window.isCanvas
+    iotaImage = '../images/iotaMarker.svg';
+  else
+    iotaImage = '../images/iotaMarker.png';
   iotaLatLng = new google.maps.LatLng(-27.45480, 153.03905);
   iotaMarker = new google.maps.Marker(
     clickable: false
@@ -282,6 +293,7 @@ if window.isIndex
   flipSquare = new FlipSquare()
 
   waypointCheck.footerWaypoint = ->
+    # $('body').waypoint
     $('body').waypoint
       triggerOnce: false
       offset: 'bottom-in-view'
@@ -374,24 +386,7 @@ if window.isIndex
               $('.navCounters').css('visibility','visible')
             )
 
-    ## Assign Waypoints
-    waypointCheck.assignArticleWaypoints = ->
-
-      $('article:gt(0)').waypoint
-        triggerOnce: false
-        offset: '100%'
-        handler: (direction) ->
-          if !historyController.scrollingBack
-            articleIndex = ($('article').index($('#' + @id)))
-            if direction is 'down'
-              waypointCheck.updateTitle(@id)
-              imageLoader.addImages(articleIndex)
-            else
-              waypointCheck.updateTitle($('article').eq(articleIndex-1).attr('id'))
-              imageLoader.addImages(articleIndex-1)
-
     waypointCheck.updateTitle = (articleId, popped, navLiHit) -> 
-      # Update page title
       if !historyController.scrollingBack
         currentArticle = $('#'+ articleId)
         currentIndex = currentArticle.index()
@@ -401,7 +396,7 @@ if window.isIndex
         @.ogbg = waypointCheck.ogbg = currentArticle.data('background')
         waypointCheck.updateColors(@.ogfg, @.ogbg)
         newTitle = 'Iota — ' + waypointCheck.projectTitle
-        $('title').html(newTitle)
+        document.title = newTitle
         $('.navCounters ul li').removeClass('active scaleIn slideIn')
         if waypointCheck.lastIndex != currentIndex
           $('.navCounters ul li').eq(waypointCheck.lastIndex).addClass('scaleIn')
@@ -429,6 +424,21 @@ if window.isIndex
         else
           history.replaceState(null, waypointCheck.projectTitle, waypointCheck.projectSlug)
         waypointCheck.lastIndex = currentIndex
+
+    ## Assign Waypoints
+    waypointCheck.assignArticleWaypoints = ->
+      $('article:gt(0)').waypoint
+        triggerOnce: false
+        offset: '100%'
+        handler: (direction) ->
+          if !historyController.scrollingBack
+            articleIndex = ($('article').index($('#' + @id)))
+            if direction is 'down'
+              waypointCheck.updateTitle(@id)
+              imageLoader.addImages(articleIndex)
+            else
+              waypointCheck.updateTitle($('article').eq(articleIndex-1).attr('id'))
+              imageLoader.addImages(articleIndex-1)
 
   #Touch Handlers
   else
@@ -513,7 +523,7 @@ if window.isIndex
         }, 750, ->
           if this.nodeName == "BODY"
             return
-          $('title').html(newTitle)
+          document.title = newTitle
           $('.main article').eq(waypointCheck.currentProject).hide()
           $('.main article').eq(waypointCheck.nextProject).show().addClass('slideInProject')
           waypointCheck.updateCanvas()
@@ -857,7 +867,7 @@ objectLoader.assignAnimationWaypoints = () ->
       if $(this).hasClass('project-details')
         $(this).waypoint
           triggerOnce: true
-          offset: '50%'
+          offset: '90%'
           handler: (direction) ->
             $(this).addClass('loaded')
             objectLoader.loadInternals($(this).parent().parent().index())
@@ -1105,5 +1115,7 @@ $ ->
 
   if window.isPortfolio and !window.isSingle and !window.isIE
     window.loadGame()
+  else if window.isFeed
+    window.loadFeed()
   else
     window.getItStarted()

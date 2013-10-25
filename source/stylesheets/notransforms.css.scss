@@ -1,8 +1,28 @@
-html.lt-ie9 {
+html.no-csstransforms3d {
   .checkout-feed, .slideDownFooter {
     bottom: -100%;
   }
   .slideUpFooter {
     bottom: 0%;
+  }
+  .overlay.closemenu {
+    display: none;
+  }
+  .overlay.openmenu {
+    display: block;
+  }
+  .description {
+    &:after {
+      display: none;
+      content: none;
+    }
+    span {
+      line-height: 2.5em;
+      font-size: inherit; 
+      line-height:inherit;
+      &:before {
+        content: none;
+      }
+    }
   }
 }

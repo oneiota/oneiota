@@ -1,11 +1,12 @@
 @import "_mixins";
+@import "_layout/rem";
 
 .placeholder {
   position: relative;
   .placeholder-bg {
     display: block;
     width:100%;
-    opacity: 0.1;
+    @include hp-opacity(0.1);
   }
   .placeholder-alt {
     display: none;
@@ -22,14 +23,14 @@
   ul li.tag {
     list-style: none;
     display: none;
-    margin-right: 1rem;
+    @include rem(margin-right, 1rem);
     @include font-size(0.75);
     @include at-breakpoint($tablet) {
       display: inline-block;
     }
     @include at-breakpoint($bigscreen)  {
       @include font-size(1);
-      margin-right: 2rem;
+      @include rem(margin-right, 2rem);
     }
   }
   .scaleIn {
@@ -39,7 +40,7 @@
     &:after {
       display: block;
       content: "↓";
-      line-height: 2.5rem;
+      @include rem(line-height, 2.5rem);
       @include font-size(1);
     }
     span {
@@ -49,7 +50,7 @@
       display:inline;
       content: "..";
       @include font-size(1);
-      line-height:1rem;
+      @include rem(line-height, 1rem);
     }
     @include at-breakpoint($tablet) {
       &:after {

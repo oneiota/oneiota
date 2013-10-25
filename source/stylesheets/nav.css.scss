@@ -1,5 +1,6 @@
 @import "_mixins";
 @import "_layout/grid";
+@import "_layout/rem";
 
 nav {
   .hud {
@@ -24,7 +25,7 @@ nav {
       @include font-size(1);
     }
     a {
-      opacity: 0.9;
+      @include hp-opacity(0.9);
     }
   }
 }
@@ -44,15 +45,15 @@ nav .top-hud {
         margin: 1.5em 0;
         a {
           display: inline-block;
-          opacity: 0.5;
+          @include hp-opacity(0.5);
         }
         a.icon-down-arrow-bare {
           display: block;
-          margin-top: 1rem;
+          @include rem(margin-top, 1rem);
         }
         a.icon-up-arrow-bare {
           display: none;
-          margin-bottom: 1rem;
+          @include rem(margin-bottom, 1rem);
         }
         span.project-title {
           display: none;
@@ -60,7 +61,7 @@ nav .top-hud {
       }
       li.active {
         a {
-          opacity: 1;
+          @include hp-opacity(1);
           display: inline-block;
           cursor: default;
         }
@@ -109,18 +110,18 @@ body.menu {
   .menu-title {
     display: block;
     position: absolute;
-    top: 2rem;
+    @include rem(top, 2rem);
     left: 0;
     width: 100%;
     z-index: $hud;
     @include font-bold();
     span {
       display: inline-block;
-      border: 0.20rem solid;
-      padding: 0.5rem 1rem 0.5rem 1rem;
+      @include rem(border, 0.20rem solid);
+      @include rem(padding, 0.5rem 1rem 0.5rem 1rem);
     }
     @include at-breakpoint($bigscreen) {
-      top: 4rem;
+      @include rem(top, 4rem);
     }
   }
   .top-hud {
@@ -168,22 +169,22 @@ body.singleProject nav .top-hud, body.feed nav .top-hud {
 }
 
 .bottom-hud {
-  bottom: 1rem;
+  @include rem(bottom, 1rem);
   @include at-breakpoint($tablet)  {
-    bottom: 2rem;
+    @include rem(bottom, 2rem);
   }
 }
 
 html .arrow-tab {
   position: absolute;
   z-index: $hud;
-  line-height: 1rem;
-  top: 0rem;
-  right: 1.5rem;
+  @include rem(line-height, 1rem);
+  @include rem(top, 0rem);
+  @include rem(right, 1.5rem);
   white-space: nowrap;
   .canvasArrow {
     position: absolute;
-    top: -0.7rem;
+    @include rem(top, -0.7rem);
     right: 0;
     z-index: -1;
   }
@@ -204,7 +205,7 @@ html .arrow-tab {
 }
 
 html.touch .top-hud ul li:nth-child(9) .arrow-tab {
-  top: 2.2rem;
+  @include rem(top, 2.2rem);
 }
 
 html {
@@ -216,17 +217,17 @@ html {
       @include at-breakpoint($tablet) {
         display: block;
       }
-      top: 1rem;
-      right: 1rem;
+      @include rem(top, 1rem);
+      @include rem(right, 1rem);
       z-index: 1;
       li {
         display: none;
         position:relative;
-        right: 0.3rem;
-        padding: 0 0 2rem 0;
-        opacity: 0.5;
+        @include rem(right, 0.3rem);
+        @include rem(padding, 0 0 2rem 0);
+        @include hp-opacity(0.5);
         &:hover {
-          opacity: 1;
+          @include hp-opacity(1);
         }
         span {
           position: relative;
@@ -236,14 +237,14 @@ html {
         display: block;
         position:static;
         margin: 0;
-        padding: 0 0 1.2rem 0;
-        opacity: 1;
+        @include rem(padding, 0 0 1.2rem 0);
+        @include hp-opacity(1);
         a {
           cursor: default;
         }
       }
       .active {
-        opacity: 1;
+        @include hp-opacity(1);
         a {
           cursor: default;
         }

@@ -1,4 +1,5 @@
-@import "_mixins";
+@import '_mixins';
+@import '_layout/rem';
 
 //Apply menu/info section stlyes to site
 
@@ -8,7 +9,7 @@ body.menu {
     color: #fff;
   }
   .hud li, .hud a  {
-    opacity: 1;
+    @include hp-opacity(1);
   }
   .contact {
     .menu-title {
@@ -50,9 +51,9 @@ body.menu {
     display: table-cell;
     vertical-align: middle;
     li {
-      margin: 0rem;
+      margin: 0;
       @include at-breakpoint($tablet) {
-        margin: 0 0 1rem 0;
+        @include rem(margin, 0 0 1rem 0);
       }
       position: relative;
       list-style: none;
@@ -61,7 +62,7 @@ body.menu {
         margin: 0;
         @include at-breakpoint($tablet) {
           @include font-size(3.5);
-          margin: 0 0 1rem 0;
+          @include rem(margin, 0 0 1rem 0);
         }
         @include at-breakpoint($bigscreen) {
           @include font-size(5);
@@ -70,7 +71,7 @@ body.menu {
         position: relative;
         color: #ffffff;
         span {
-          opacity: 0.2;
+          @include hp-opacity(0.2);
         }
         span.meaning {
           display: none;
@@ -78,26 +79,26 @@ body.menu {
       }
       a:hover {
         span {
-          opacity: 1;
+          @include hp-opacity(1);
         }
       }
       a.active {
         pointer-events: none;
         cursor: default;
         span {
-          opacity: 1;
+          @include hp-opacity(1);
         }
       }
     }
   }
   ol {
     display: none;
-    width: 25rem;
+    @include rem(width, 25rem);
     position: absolute;
-    top: -2rem;
+    @include rem(top, -2rem);
     left: 50%;
-    margin-left: 1rem;
-    font-size: 0.7rem;
+    @include rem(margin-left, 1rem);
+    @include font-size(0.7);
     text-align: left;
     li {
       margin: 0;
@@ -142,12 +143,12 @@ html.touch .mainmenu ul li a {
     width: 100%;
     background: $infoBg;
     ul {
-      margin-top: 2rem;
+      @include rem(margin-top, 2rem);
       @include at-breakpoint($tablet) {
-        margin-top: 7rem;
+        @include rem(margin-top, 7rem);
       }
       @include at-breakpoint($bigscreen) {
-        margin-top: 9rem;
+        @include rem(margin-top, 9rem);
       }
       li {
         @include font-size(1);
@@ -182,9 +183,9 @@ html.touch .mainmenu ul li a {
         }
       }
       hr {
-        margin: 1rem 0;
+        @include rem(margin, 1rem 0);
         @include at-breakpoint($tablet) {
-          margin: 2rem 0;
+          @include rem(margin, 2rem 0);
         }
       }
     }

@@ -1,13 +1,13 @@
-@import "compass/css3/images";
-@import "_mixins";
+@import 'compass/css3/images';
+@import '_mixins';
+@import '_layout/rem';
 
 body.feed {
-  // $experimental-support-for-svg: true;
+  background: #222;
   @include background-image(linear-gradient(#5ce6d4 5%, #C7d0bd, #ffbca7, #ff8e98, #ab87ba, #458cc7, #4f52ff));
-  //@include background-image(linear-gradient(#222222 5%, #2ac363, #cd8c14, #9c4cc2));
   article {
     hr, span.down-arrow {
-      visibility: hidden
+      visibility: hidden;
     }
   }
   .post-container {
@@ -46,6 +46,10 @@ body.feed {
 
   p a {
     @include link-style();
+  }
+
+  hr {
+    border-top: 1px solid #fff;
   }
 
 }
@@ -106,7 +110,7 @@ body.feed article {
   .post-type {
     margin-bottom: $verticleMargin;
     @include at-breakpoint($bigscreen) {
-      margin-bottom: 0rem;
+      margin-bottom: 0;
     }
     a {
       .icon-inverted {
@@ -123,11 +127,11 @@ body.feed article {
     }
   }
   hr {
-    margin: 3rem 0 0 0;
-    padding: 0 0 3rem 0;
+    @include rem(margin, 3rem 0 0 0);
+    @include rem(padding, 0 0 3rem 0);
     @include at-breakpoint($bigscreen) {
-      margin: 8rem 0 0 0;
-      padding: 0 0 8rem 0;
+      @include rem(margin, 8rem 0 0 0);
+      @include rem(padding, 0 0 8rem 0);
     }
   }
   i {
@@ -139,7 +143,7 @@ body.feed article {
     float: none;
     display: block;
     cursor: pointer;
-    font-size: 1.5rem;
+    @include font-size(1.5);
     margin-top: $verticleMargin;
   }
 }
@@ -153,7 +157,7 @@ body.feed article.gallery {
     display: inline-block;
     float: left;
     line-height: 0;
-    padding: 0.25rem;
+    @include rem(padding, 0.25rem);
     box-sizing: border-box;
   }
   .latest-pins {
@@ -177,7 +181,7 @@ body.feed article.post {
     display: inline;
   }
   .feed-img {
-    margin-bottom: 0.5rem;
+    @include rem(margin-bottom, 0.5rem);
   }
   .feature-image {
     margin-bottom: $verticleMargin ;
@@ -192,7 +196,7 @@ body.feed article.post {
       display: none;
     }
     .feed-img-holder:first-child {
-      margin-top: 1.5rem ;
+      @include rem(margin-top, 1.5rem);
     }
   }
 }
@@ -204,5 +208,5 @@ body.feed article:first-child {
 }
 
 body.feed {
-  padding: 0 0 10rem 0;
+  @include rem(padding, 0 0 10rem 0);
 }

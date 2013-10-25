@@ -120,6 +120,7 @@ $ ->
     $('.bin').droppable
       activeClass: 'active'
       hoverClass: 'scaleBig'
+      tolerance: 'touch'
       drop: (event, ui) ->
         clearTimeout(trashGame.gamehelpTimer)
         $('.icon-down-arrow-bare').remove()
@@ -208,5 +209,6 @@ $ ->
     introGame.animateIn('.drag-container ul')
 
   window.loadGame = () ->
-    whichInteraction = introGame.interactionArray[Math.floor(Math.random() * introGame.interactionArray.length)]
-    whichInteraction.init()
+    # whichInteraction = introGame.interactionArray[Math.floor(Math.random() * introGame.interactionArray.length)]
+    # whichInteraction.init()
+    window.getItStarted()

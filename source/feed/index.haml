@@ -40,7 +40,7 @@ per_page: 10
 
 -if tweets
   - tweets.each do | tweet |
-    %article.feed.api
+    %article.feed.single.api
       %hr
       .post-container
         .post-type
@@ -48,6 +48,10 @@ per_page: 10
         .post-date.mobile
           %span{:class => 'published', :data => {:published => tweet.created_at}}
         .post-content
+          - tweet.media.each do | twitpic |
+            - if twitpic.media_url
+              .feed-img-holder
+                %a{:class => 'feed-img loading', :title => tweet.text, :href => twitpic.display_url, :target => '_blank', :data => {:img => twitpic.media_url, :alt => tweet.text}}
           %p=clean_tweet(tweet.text)
         .post-date
           %span{:class => 'published', :data => {:published => tweet.created_at}}

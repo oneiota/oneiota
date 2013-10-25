@@ -7,7 +7,15 @@ $overlay: 2;
 $above: 1;
 $infoBg: #222222;
 $bloodRed: #FF524A;
-$verticleMargin: 1rem;
+$verticleMargin: 16px;
+
+@mixin hp-opacity($trans) {
+  filter: alpha(opactiy=($trans * 100));
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})";
+  -moz-opacity: $trans;
+  -khtml-opacity: $trans;
+  opacity: $trans;
+}
 
 @mixin font-size( $decimal-size, $keyword: null ) {
   $base-font-multiplier: 1;

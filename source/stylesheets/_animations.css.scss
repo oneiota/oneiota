@@ -1,10 +1,11 @@
-@import "bourbon";
+@import 'bourbon';
+@import 'mixins';
 
 .scaleUpHover {
   @include transition (all 0.1s linear);
   &:hover {
     @include transform(scale(1.15));
-    opacity: 1;
+    @include hp-opacity(1);
   }
 }
 
@@ -468,18 +469,18 @@ html.no-touch {
 }
 
 @include keyframes(twinkly) {
-  0%   { opacity: 0.3; }
-  100% { opacity: 1; }
+  0%   { @include hp-opacity(0.3);}
+  100% { @include hp-opacity(1);}
 }
 
 @include keyframes(loading) {
-  0%   { opacity: 0.4; }
-  100% { opacity: 0.1; }
+  0%   { @include hp-opacity(0.4); }
+  100% { @include hp-opacity(0.1); }
 }
 
 @include keyframes(loadingfeed) {
-  0%   { opacity: 1; }
-  100% { opacity: 0.2; }
+  0%   { @include hp-opacity(1); }
+  100% { @include hp-opacity(0.2);}
 }
 
 @include keyframes(shakey) {
@@ -633,19 +634,19 @@ html.no-touch {
 
 @include keyframes(fadeIn) {
   from {
-    opacity: 0;
+    @include hp-opacity(0);
   }
   to {
-    opacity: 1;
+    @include hp-opacity(1);
   }
 }
 
 @include keyframes(fadeOut) {
   from {
-    opacity: 1;
+    @include hp-opacity(1);
   }
   to {
-    opacity: 0;
+    @include hp-opacity(0);
   }
 }
 
@@ -673,11 +674,11 @@ html.no-touch {
 @include keyframes(introOutTouch) {
   0% {
     @include transform(scale(1));
-    opacity: 1;
+    @include hp-opacity(1);
   }
   100% {
     @include transform(scale(0));
-    opacity: 0;
+    @include hp-opacity(0);
   }
 }
 
@@ -714,7 +715,6 @@ html.no-touch {
 @include keyframes(scaleInfoIn) {
   from {
     @include transform(scale(0.5));
-    // opacity: 1;
   }
   to {
     @include transform(scale(1));
@@ -724,7 +724,6 @@ html.no-touch {
 @include keyframes(scaleOutIn) {
   0% {
     @include transform(scale(0));
-    // opacity: 1;
   }
   50% {
     @include transform(scale(1.15));
@@ -745,11 +744,11 @@ html.no-touch {
 
 @include keyframes(scaleInBig) {
   0% {
-    opacity: 0;
+    @include hp-opacity(0);
     @include transform(scale(3));
   }
   100% {
-    opacity: 1;
+    @include hp-opacity(1);
     @include transform(scale(1));
   }
 }
@@ -799,44 +798,44 @@ html.no-touch {
 @include keyframes(fadeInSlide) {
   from {
      @include transform(translate3d(0px,50%,0px));
-     opacity: 0;
+     @include hp-opacity(0);
   }
   to {
      @include transform(translate3d(0px,0%,0px));
-     opacity: 1;
+     @include hp-opacity(1);
   }
 }
 
 @include keyframes(fadeInSlideR) {
   from {
      @include transform(translate3d(50%,0px,0px));
-     opacity: 0;
+     @include hp-opacity(0);
   }
   to {
      @include transform(translate3d(0%,0px,0px));
-     opacity: 1;
+     @include hp-opacity(1);
   }
 }
 
 @include keyframes(fadeInSlideL) {
   from {
      @include transform(translate3d(-50%,0px,0px));
-     opacity: 0;
+     @include hp-opacity(0);
   }
   to {
      @include transform(translate3d(0%,0px,0px));
-     opacity: 1;
+     @include hp-opacity(1);
   }
 }
 
 @include keyframes(fadeInSlideT) {
   from {
      @include transform(translate3d(0px,-50%,0px));
-     opacity: 0;
+     @include hp-opacity(0);
   }
   to {
      @include transform(translate3d(0px,0%,0px));
-     opacity: 1;
+     @include hp-opacity(1);
   }
 }
 

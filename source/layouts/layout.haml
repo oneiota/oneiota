@@ -20,7 +20,6 @@
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.1/modernizr.min.js"
     :javascript
       window.Modernizr || document.write('<script src="vendor/modernizr-2.6.1.min.js"><\/script>')
-      window.Modernizr.addTest("cssremunit",function(){var e=document.createElement("div");try{e.style.fontSize="3rem"}catch(t){}return/rem/.test(e.style.fontSize)})
 
     = stylesheet_link_tag "site"
     :javascript

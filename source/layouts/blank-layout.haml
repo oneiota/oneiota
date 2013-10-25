@@ -15,13 +15,22 @@
     :javascript
       window.Modernizr || document.write('<script src="vendor/modernizr-2.6.1.min.js"><\/script>')
     = stylesheet_link_tag "site"
+    :javascript
+      yepnope({test: Modernizr.csstransforms3d,nope: 'stylesheets/notransforms.css'})
 
   %body.blank
     %div{:role => "main", :class => "main"}= yield
 
-    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
     :javascript
-      window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.10.2.min.js"><\/script>')
-    = javascript_include_tag "trans"
+      yepnope([{
+        load: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js',
+        callback: function (url, result, key) {
+          if (!window.jQuery) {
+            yepnope('javascripts/vendor/jquery-1.10.2.min.js');
+          }
+        }
+      },{
+        load: 'javascripts/site.js'
+      }])
     
     = partial "analytics"

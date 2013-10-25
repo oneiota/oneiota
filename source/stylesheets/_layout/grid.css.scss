@@ -3,9 +3,9 @@
 @include border-box-sizing;
 
 $total-columns  : 6; //default number of columns for the smallest display in your layout
-$column-width   : 4rem;
-$gutter-width   : 1rem;
-$grid-padding   : 3rem; //padding on L/R of container grid
+$column-width   : 4em; 
+$gutter-width   : 1em;
+$grid-padding   : 3em; //padding on L/R of container grid
 $smallscreen: 6;
 $tablet : 6;
 $bigscreen : 10; //9.6 columns w/ gutters fit in 768px - ipad 1 horizontal - this is the choosen break width for 'mobile' viewing
@@ -59,21 +59,21 @@ article {
 
 article.feed {
   @include container(6);
-  padding:0 1rem !important;
+  @include rem(padding, 0 1rem);
   &:first-child {
-    padding:6rem 1rem 0 1rem !important;
+    @include rem(padding, 6rem 0 0 0);
   }
   @include at-breakpoint(8) {
-    padding:0 3rem !important;
+    @include rem(padding, 0 3rem);
     &:first-child {
-      padding:6rem 3rem 0 3rem !important;
+      @include rem(padding, 6rem 0 0 0);
     }
     @include container;
   }
   @include at-breakpoint(10) {
     @include container;
     &:first-child {
-      padding:10rem 3rem 0 3rem !important;
+      @include rem(padding, 10rem 0 0 0);
     }
     //@include susy-grid-background;  
   }
@@ -136,9 +136,9 @@ section {
   padding: 0;
   .content {
     @include container(6);
-    padding:0 1rem !important; 
+    @include rem(padding, 0 1rem);
     @include at-breakpoint(8) {
-      padding:0 3rem !important;
+      @include rem(padding, 0 3rem);
       @include container;
     }
     @include at-breakpoint(10) {

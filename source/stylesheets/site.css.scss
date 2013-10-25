@@ -17,6 +17,7 @@
 @import "_mixins";
 @import "_animations";
 @import "_layout/grid";
+@import "_layout/rem";
 
 nav {
   display: none;
@@ -54,6 +55,9 @@ html.touch {
 a {
   color: inherit;
   text-decoration: none;
+  &:focus {
+    outline: 0;
+  }
 }
 
 img {
@@ -79,7 +83,7 @@ input:focus, textarea:focus {
 }
 
 #{headings()}, p, li, a {
-  margin:0 0 1rem 0;
+  @include rem(margin, 0 0 1rem 0);
   font-weight: normal;
 }
 
@@ -132,9 +136,9 @@ section, article {
   }
   .project-details {
     h2,p,a,ul {
-      margin-bottom: 2rem;
+      @include rem(margin-bottom, 2rem);
       @include at-breakpoint($bigscreen)  {
-        margin-bottom: 3rem;
+        @include rem(margin-bottom, 3rem);
       }
     }
     h2 {
@@ -148,12 +152,9 @@ section, article {
 }
 
 article {
-  padding: 5rem 0 0 0;
-  @include at-breakpoint($tablet)  {
-    padding: 5rem 0 0rem 0;
-  }
+  @include rem(padding, 5rem 0 0 0);
   @include at-breakpoint($bigscreen)  {
-    padding: 7rem 0 1rem 0;
+    @include rem(padding, 7rem 0 1rem 0);
   }
   div.project {
     p, a {
@@ -169,34 +170,34 @@ article {
 
 article:first-child {
   @include at-breakpoint($tablet)  {
-    padding: 5rem 0 0rem 0;
+    @include rem(padding, 5rem 0 0 0);
   }
   @include at-breakpoint($bigscreen)  {
-    padding: 5rem 0 1rem 0;
+    @include rem(padding, 5rem 0 1rem 0);
   }
 }
 
 article.last-article {
-  padding: 5rem 0 6rem 0;
+  @include rem(padding, 5rem 0 6rem 0);
   @include at-breakpoint($tablet)  {
-    padding: 5rem 0 12rem 0;
+    @include rem(padding, 5rem 0 12rem 0);
   }
   @include at-breakpoint($bigscreen)  {
-    padding: 7rem 0 15rem 0;
+    @include rem(padding, 7rem 0 15rem 0);
   }
 }
 
 body.singleProject article {
-  padding: 8rem 0 3rem 0;
+  @include rem(padding, 8rem 0 3rem 0);
   @include at-breakpoint($bigscreen)  {
-    padding: 12rem 0 5rem 0;
+    @include rem(padding, 12rem 0 5rem 0);
   }
 }
 
 .project-details, .placeholder {
-  padding: 0 0 5rem 0;
+  @include rem(padding, 0 0 5rem 0);
   @include at-breakpoint($bigscreen)  {
-    padding: 0 0 10rem 0;
+    @include rem(padding, 0 0 10rem 0);
   }
 }
 
@@ -232,13 +233,13 @@ html body {
   position: fixed;
   width: 100%;
   bottom: 0px;
-  padding: 2rem 0 6rem 0;
+  @include rem(padding, 2rem 0 6rem 0);
   display: none;
   @include at-breakpoint($tablet)  {
-    padding: 3rem 0 10rem 0;
+    @include rem(padding, 3rem 0 10rem 0);
   }
   @include at-breakpoint($bigscreen)  {
-    padding: 4rem 0 11rem 0;
+    @include rem(padding, 4rem 0 11rem 0);
   }
   @include transform(translate3d(0px,100%,0px));
   z-index: 1;
