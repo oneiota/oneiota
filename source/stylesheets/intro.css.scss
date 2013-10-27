@@ -101,12 +101,19 @@
     visibility: hidden;
   }
   .bin-container{
+    position:relative;
     display: block;
     width:100%;
     position: fixed;
     @include rem(bottom, 5rem);
   }
   .bin {
+    p {
+      display: none;
+      position: absolute;
+      top: 1.6em;
+      right: -0.3em;
+    }
     position:relative;
     display: inline-block;
     i:before {
@@ -134,6 +141,9 @@
     }
   }
   .bin.active {
+    p {
+      display: block;
+    }
     .icon-down-arrow-bare {
       visibility: hidden;
     }

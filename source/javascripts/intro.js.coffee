@@ -18,7 +18,8 @@ dragGame = new DragGame()
 
 IntroGame = ->
   @oneiota = ['o','n','e','i','o','t','a']
-  @interactionArray = [trashGame,dragGame]
+  @interactionArray = ['trashGame','dragGame']
+  @playedArray = []
   @lalalala
 
 introGame = new IntroGame()
@@ -101,7 +102,7 @@ $ ->
 
 
   trashGame.init = () ->
-    $('.intro').append('<div class="trashGame"><div class="bin-container"><div class="bin"><i class="icon hide-arrow icon-down-arrow-bare"/><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
+    $('.intro').append('<div class="trashGame"><div class="bin-container"><div class="bin"><p>feed me</p><i class="icon hide-arrow icon-down-arrow-bare"/><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
     $('.trashGame').append('<ul class="hangman">')
 
     $.each introGame.oneiota, (i) ->
@@ -209,6 +210,32 @@ $ ->
     introGame.animateIn('.drag-container ul')
 
   window.loadGame = () ->
-    # whichInteraction = introGame.interactionArray[Math.floor(Math.random() * introGame.interactionArray.length)]
-    # whichInteraction.init()
-    window.getItStarted()
+    trashGame.init()
+    # i = 0
+    # lastgame = 0
+
+    # if !Modernizr.localstorage
+    #   window.getItStarted()
+    #   return false
+    # while i < introGame.interactionArray.length
+    #   if $.inArray(localStorage['games.played.' + i], introGame.interactionArray) != -1
+    #     introGame.playedArray.push(localStorage['games.played.' + i])
+    #     lastgame = i
+    #   i++
+    # if introGame.playedArray.length isnt 0
+    #   k = 0
+    #   while k < introGame.playedArray.length
+    #     if $.inArray(introGame.playedArray[k], introGame.interactionArray) != -1
+    #       introGame.interactionArray.splice($.inArray(introGame.playedArray[k], introGame.interactionArray), 1)
+    #     k++
+    # if introGame.interactionArray.length isnt 0
+    #   randomGame = Math.floor(Math.random() * introGame.interactionArray.length)
+    #   whichInteraction = introGame.interactionArray[randomGame]
+    #   if localStorage['games.played.0'] != undefined
+    #     lastgame = lastgame + 1
+    #   localStorage['games.played.' + lastgame] = whichInteraction
+    #   eval(whichInteraction).init()
+    # else
+    #   window.getItStarted()
+
+

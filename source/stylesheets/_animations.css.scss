@@ -467,6 +467,9 @@ html.no-touch {
     }
   }
 }
+.bin-container .bin p {
+  @include transform(rotate(-25deg));
+}
 
 @include keyframes(twinkly) {
   0%   { @include hp-opacity(0.3);}
