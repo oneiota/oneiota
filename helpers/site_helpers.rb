@@ -25,7 +25,7 @@ module SiteHelpers
   end
 
   def intro_colors
-    colorArray = [['#FFFF00','#FF85FC'],['#92FF97','#717FFF'],['#FFBD1A','#1010C1'],['#FF39BD','#FFAF45'],['#65EFE8','#8200BF'],['#DD8AFF','#FF4D4D']]
+    colorArray = [['#1B1464','#FFD295'],['#FFBD1A','#1010C1'], ['#FF39BD','#FFAF45']]
     pickedColors = colorArray.sample
     pickedColors
   end
