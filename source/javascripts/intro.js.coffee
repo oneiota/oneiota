@@ -210,32 +210,31 @@ $ ->
     introGame.animateIn('.drag-container ul')
 
   window.loadGame = () ->
-    trashGame.init()
-    # i = 0
-    # lastgame = 0
+    i = 0
+    lastgame = 0
 
-    # if !Modernizr.localstorage
-    #   window.getItStarted()
-    #   return false
-    # while i < introGame.interactionArray.length
-    #   if $.inArray(localStorage['games.played.' + i], introGame.interactionArray) != -1
-    #     introGame.playedArray.push(localStorage['games.played.' + i])
-    #     lastgame = i
-    #   i++
-    # if introGame.playedArray.length isnt 0
-    #   k = 0
-    #   while k < introGame.playedArray.length
-    #     if $.inArray(introGame.playedArray[k], introGame.interactionArray) != -1
-    #       introGame.interactionArray.splice($.inArray(introGame.playedArray[k], introGame.interactionArray), 1)
-    #     k++
-    # if introGame.interactionArray.length isnt 0
-    #   randomGame = Math.floor(Math.random() * introGame.interactionArray.length)
-    #   whichInteraction = introGame.interactionArray[randomGame]
-    #   if localStorage['games.played.0'] != undefined
-    #     lastgame = lastgame + 1
-    #   localStorage['games.played.' + lastgame] = whichInteraction
-    #   eval(whichInteraction).init()
-    # else
-    #   window.getItStarted()
+    if !Modernizr.localstorage
+      window.getItStarted()
+      return false
+    while i < introGame.interactionArray.length
+      if $.inArray(localStorage['games.played.' + i], introGame.interactionArray) != -1
+        introGame.playedArray.push(localStorage['games.played.' + i])
+        lastgame = i
+      i++
+    if introGame.playedArray.length isnt 0
+      k = 0
+      while k < introGame.playedArray.length
+        if $.inArray(introGame.playedArray[k], introGame.interactionArray) != -1
+          introGame.interactionArray.splice($.inArray(introGame.playedArray[k], introGame.interactionArray), 1)
+        k++
+    if introGame.interactionArray.length isnt 0
+      randomGame = Math.floor(Math.random() * introGame.interactionArray.length)
+      whichInteraction = introGame.interactionArray[randomGame]
+      if localStorage['games.played.0'] != undefined
+        lastgame = lastgame + 1
+      localStorage['games.played.' + lastgame] = whichInteraction
+      eval(whichInteraction).init()
+    else
+      window.getItStarted()
 
 

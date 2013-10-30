@@ -52,6 +52,64 @@
   digital:
   branding: "true"
 
+- project: Taste
+  slug: taste
+  description: >
+    Taste is a mecca for those who love to cook and entertain. From the beginning it was clear that the brand needed to reflect this passion<span>, but also create a retail environment that captured the imagination of shoppers and passersby. We delivered a bespoke identity that draws visual cues from 1920’s French typography, appropriating turn-of-the-century artwork from vintage fruit labels and cooking advertisements into playful collages with cheeky and nostalgic undertones.</span>
+  link: illustrationroom.com
+  images:
+    - 
+      mobile: mobile/taste_identity.jpg
+      desktop: taste_identity.jpg
+      alt: >
+        Taste identity
+    - 
+      mobile: mobile/taste_bigT.jpg
+      desktop: taste_bigT.jpg
+      alt: >
+        Taste identity big T
+    - 
+      mobile: mobile/taste_businessCards.jpg
+      desktop: taste_businessCards.jpg
+      alt: >
+        Taste business cards
+    -
+      mobile: mobile/taste_swingTags.jpg
+      desktop: taste_swingTags.jpg
+      alt: >
+        Taste swing tags
+    -
+      mobile: mobile/taste_swingTagPots.jpg
+      desktop: taste_swingTagPots.jpg
+      alt: >
+        Taste swing tag in store
+    -
+      mobile: mobile/taste_windowDecals.jpg
+      desktop: taste_windowDecals.jpg
+      alt: >
+        Taste window display
+    -
+      mobile: mobile/taste_paperBags.jpg
+      desktop: taste_paperBags.jpg
+      alt: >
+        Taste shopping bags
+    -
+      mobile: mobile/taste_cakeSalePoster.jpg
+      desktop: taste_cakeSalePoster.jpg
+      alt: >
+        Taste have your cake and eat it sale
+    -
+      mobile: mobile/taste_icecreamSkater.jpg
+      desktop: taste_icecreamSkater.jpg
+      alt: >
+        Taste icecream skater
+  colors:
+    foreground: "#FF3600"
+    background: "#FFCD5C"
+  tags: [Brand Development, Brand Collateral, Built Environment]
+  digital:
+  branding: "true"
+
 - project: The Illustration Room
   slug: theillustrationroom
   description: >
@@ -136,64 +194,6 @@
     background: "#F2D6C7"
   tags: [Digital Development, Brand Development, Brand Collateral, Package Design, Copywriting]
   digital: "true"
-  branding: "true"
-
-- project: Taste
-  slug: taste
-  description: >
-    Taste is a mecca for those who love to cook and entertain. From the beginning it was clear that the brand needed to reflect this passion<span>, but also create a retail environment that captured the imagination of shoppers and passersby. We delivered a bespoke identity that draws visual cues from 1920’s French typography, appropriating turn-of-the-century artwork from vintage fruit labels and cooking advertisements into playful collages with cheeky and nostalgic undertones.</span>
-  link: illustrationroom.com
-  images:
-    - 
-      mobile: mobile/taste_identity.jpg
-      desktop: taste_identity.jpg
-      alt: >
-        Taste identity
-    - 
-      mobile: mobile/taste_bigT.jpg
-      desktop: taste_bigT.jpg
-      alt: >
-        Taste identity big T
-    - 
-      mobile: mobile/taste_businessCards.jpg
-      desktop: taste_businessCards.jpg
-      alt: >
-        Taste business cards
-    -
-      mobile: mobile/taste_swingTags.jpg
-      desktop: taste_swingTags.jpg
-      alt: >
-        Taste swing tags
-    -
-      mobile: mobile/taste_swingTagPots.jpg
-      desktop: taste_swingTagPots.jpg
-      alt: >
-        Taste swing tag in store
-    -
-      mobile: mobile/taste_windowDecals.jpg
-      desktop: taste_windowDecals.jpg
-      alt: >
-        Taste window display
-    -
-      mobile: mobile/taste_paperBags.jpg
-      desktop: taste_paperBags.jpg
-      alt: >
-        Taste shopping bags
-    -
-      mobile: mobile/taste_cakeSalePoster.jpg
-      desktop: taste_cakeSalePoster.jpg
-      alt: >
-        Taste have your cake and eat it sale
-    -
-      mobile: mobile/taste_icecreamSkater.jpg
-      desktop: taste_icecreamSkater.jpg
-      alt: >
-        Taste icecream skater
-  colors:
-    foreground: "#FF3600"
-    background: "#FFCD5C"
-  tags: [Brand Development, Brand Collateral, Built Environment]
-  digital:
   branding: "true"
   
 - project: Sourced Grocer
