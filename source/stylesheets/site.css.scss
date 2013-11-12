@@ -46,6 +46,9 @@ body.error {
 // CHANGE FOR TOUCH DEBUG - DONE
 html.touch {
   body.index {
+    .main {
+      display: none;
+    }
     article {
       display: none;
     }
@@ -152,9 +155,24 @@ section, article, .contact-details {
 }
 
 html.touch {
-  section, article {
-    .container, .project {
-      visibility: visible;
+  body.noNav {
+    section, article {
+      .container, .project {
+        visibility: hidden;
+      }
+      .project > * {
+        visibility: hidden;
+        &:first-child {
+          visibility: visible;
+        }
+      }
+    }
+  }
+  body {
+    section, article {
+      .container, .project {
+        visibility: visible;
+      }
     }
   }
 }

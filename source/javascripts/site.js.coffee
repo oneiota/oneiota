@@ -839,7 +839,6 @@ if window.isBlood
     $('.icon-right-arrow-bare').trigger('click')
   , 6000
 
-
 #Elegant page object animation
 
 objectLoader.randomFade = () ->
@@ -853,8 +852,7 @@ objectLoader.randomFade = () ->
   getRandomFade()
 
 objectLoader.assignAnimationWaypoints = () ->
-  
-  if window.isBlood and !isTouch
+  if window.isBlood
     $(objectLoader.objectTarget).waypoint
       triggerOnce: true
       offset: '80%'
@@ -862,12 +860,12 @@ objectLoader.assignAnimationWaypoints = () ->
         $(this).find(objectLoader.objectSubTarget).addClass('loaded')
         objectLoader.loadInternals($(this).index())
 
-  else if window.isPortfolio and !isTouch
+  else if window.isPortfolio
     $(objectLoader.objectSubTarget).children().each(->
       if $(this).hasClass('project-details')
         $(this).waypoint
           triggerOnce: true
-          offset: '90%'
+          offset: '40%'
           handler: (direction) ->
             $(this).addClass('loaded')
             objectLoader.loadInternals($(this).parent().parent().index())
@@ -921,8 +919,19 @@ objectLoader.loadInternals = (targetIndex) ->
   
   animateChildren()
 
+waypointCheck.showPortBtns = () ->
+  $('.main').waypoint
+      triggerOnce: true,
+      offset: -200
+      handler: (direction) ->
+        if direction is 'down'
+          $('body').removeClass('noNav')
+          if !window.isIE
+            waypointCheck.makeCanvas()
+
 objectLoader.pageLoaded = () ->
-  objectLoader.assignAnimationWaypoints()
+  if !window.isTouch
+    objectLoader.assignAnimationWaypoints()
   if !window.isPortfolio or window.isSingle
     $('nav').show()
   else
@@ -934,6 +943,7 @@ objectLoader.pageLoaded = () ->
         $('.intro').removeClass('fadeIn').addClass('introOutTouch')
     showNav = setTimeout ->
       $('nav').show()
+      waypointCheck.showPortBtns()
       $('.intro').remove()
       $('.main').removeClass('scaleInBig')
       $('.checkout-feed').show()
@@ -1101,7 +1111,11 @@ $ ->
       $('.menuItem.active span').css('opacity','1')
 
   window.getItStarted = () ->
+    $('.main').show()
     ##Index specific startup functions
+    if window.isPortfolio
+      $('body').addClass('noNav')
+
     if window.isPortfolio and !window.isTouch and !window.isSingle
       waypointCheck.assignArticleWaypoints()
 

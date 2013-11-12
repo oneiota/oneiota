@@ -84,23 +84,33 @@ nav .bottom-hud {
 }
 
 body {
-  // .infoNav li a, .menuNav li a {
-  //   display: none;
-  // }
-  // .indexNav li a {
-  //   display: block;
-  // }
-  // .menu-title {
-  //   display: none;
-  // }
   .infoNav, .menuNav {
     display: none;
   }
-  .indexNav,  {
+  .indexNav {
     display: inline-block;
+    li.icon-down-arrow {
+      display: none;
+    }
   }
   .menu-title {
     display: none;
+  }
+}
+
+body.noNav {
+  .top-hud {
+    display: none;
+  }
+  .bottom-hud {
+    .indexNav {
+      li.info {
+        display: none;
+      }
+      li.icon-down-arrow {
+        display: block;
+      }
+    }
   }
 }
 

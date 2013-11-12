@@ -46,9 +46,10 @@ $ ->
       offset: '80%'
       handler: (direction) ->
         $(this).find('.post-container').addClass('loaded')
-        $(this).find('hr').css('visibility','visible')
-        $(this).find('span.down-arrow').css('visibility','visible')
-        feedWaypoints.loadInternals($(this).index())
+        if !window.isTouch
+          $(this).find('hr').css('visibility','visible')
+          $(this).find('span.down-arrow').css('visibility','visible')
+          feedWaypoints.loadInternals($(this).index())
 
   feedWaypoints.addImageWaypoints = ->
     $('article').waypoint
@@ -162,6 +163,8 @@ $ ->
       feedWaypoints.addImageWaypoints()
       feedWaypoints.assignAnimationWaypoints()
       feedDateKeeper.firstRun = false
+    if window.isTouch
+      $('.post-container, article hr, article span.down-arrow').css('visibility','visible')
 
   feedAPIHandler.appendArticles = () ->
     $('article').each( ->

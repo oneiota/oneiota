@@ -173,6 +173,7 @@ body.feed article.gallery {
 body.feed article.single {
   p {
     margin: $verticleMargin  0 0 0;
+    @include rem(padding, 0 0.5rem);
   }
 }
 
