@@ -61,7 +61,10 @@ body.singlePost .post-container .scaleIn {
 body.feed article {
   padding: 0;
   p {
-    @include font-regular();
+    @include font-bold();
+    @include at-breakpoint($bigscreen) {
+      @include font-regular();
+    }
     display: inline-block;
     margin: 0;
     padding: 0;
