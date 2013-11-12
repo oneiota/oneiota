@@ -108,6 +108,31 @@ body.menu {
       list-style-type: decimal;
     }
   }
+  .contact-details {
+    p {
+      position: absolute;
+      top: 50%;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+      @include font-bold();
+    }
+    p.phone {
+      @include rem(right, -3rem);
+      @include at-breakpoint($bigscreen) {
+        @include rem(right, -4rem);
+      }
+    }
+    p.email {
+      @include rem(left, -3rem);
+      @include at-breakpoint($bigscreen) {
+        @include rem(left, -4rem);
+      }
+    }
+    a {
+      @include link-style();
+    }
+  }
 }
 
 html.touch .mainmenu ul li a {
@@ -115,24 +140,12 @@ html.touch .mainmenu ul li a {
     position: relative;
     top: -0.8em;
     display: none;
-    // display: block;
     @include font-size(1);
     @include at-breakpoint($tablet) {
       @include font-size(1.5);
     }
   }
 }
-
-// html.no-touch .mainmenu ul li a {
-//   &:hover {
-//     span.meaning {
-//       display: block;
-//     }
-//     span.helper {
-//       display: none;
-//     }
-//   }
-// }
 
 .contact {
   display: block;

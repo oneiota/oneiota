@@ -309,12 +309,25 @@ section.info-testimonials {
     }
   }
 }
+
 section.info-testimonials {
   .loaded {
     .testimonial-holder {
       .testimonial {
         .current-testimonial {
           visibility: inherit;
+        }
+      }
+    }
+  }
+}
+
+html.touch {
+  section.info-testimonials {
+    .testimonial-holder {
+      .testimonial {
+        .current-testimonial {
+          visibility: visible;
         }
       }
     }

@@ -4,7 +4,7 @@
 module SiteHelpers
 
   def page_title
-    title = "Iota"
+    title = "One Iota"
     if data.page.title
       title << " — " + data.page.title
     elsif yield_content(:title)

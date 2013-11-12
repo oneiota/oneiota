@@ -1,6 +1,17 @@
 @import 'bourbon';
 @import 'mixins';
 
+.mainmenu {
+  .contact-details {
+    p.phone {
+      @include transform(rotate(90deg));
+    }
+    p.email {
+      @include transform(rotate(-90deg));
+    }
+  }
+}
+
 .scaleUpHover {
   @include transition (all 0.1s linear);
   &:hover {

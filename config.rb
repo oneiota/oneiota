@@ -33,7 +33,7 @@ end
 
 set :site_desc, 'One iota is an agency of passionate designers & developers, focused on creating both brand & digital experiences that excite, motivate and add value'
 set :base_url, '/dev/'
-#set :base_url, '/'
+# set :base_url, '/'
 
 ### 
 # Compass

@@ -102,7 +102,7 @@ $ ->
 
 
   trashGame.init = () ->
-    $('.intro').append('<div class="trashGame"><div class="bin-container"><div class="bin"><p>feed me</p><i class="icon hide-arrow icon-down-arrow-bare"/><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
+    $('.intro').show().addClass('fadeIn').append('<div class="trashGame"><div class="bin-container"><div class="bin"><p>feed me</p><i class="icon hide-arrow icon-down-arrow-bare"/><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
     $('.trashGame').append('<ul class="hangman">')
 
     $.each introGame.oneiota, (i) ->
@@ -190,7 +190,7 @@ $ ->
     $('.drag-container ul').append(emptyLetter)
 
   dragGame.init = () ->
-    $('.intro').append('<div class="dragGame"><div class="drag-container"><ul/>')
+    $('.intro').show().addClass('fadeIn').append('<div class="dragGame"><div class="drag-container"><ul/>')
     $.each introGame.oneiota, (i) ->
       if dragGame.letterCount < 2
         if i == introGame.oneiota.length
@@ -212,7 +212,6 @@ $ ->
   window.loadGame = () ->
     i = 0
     lastgame = 0
-
     if !Modernizr.localstorage
       window.getItStarted()
       return false

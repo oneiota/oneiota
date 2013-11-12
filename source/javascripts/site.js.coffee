@@ -854,7 +854,7 @@ objectLoader.randomFade = () ->
 
 objectLoader.assignAnimationWaypoints = () ->
   
-  if window.isBlood
+  if window.isBlood and !isTouch
     $(objectLoader.objectTarget).waypoint
       triggerOnce: true
       offset: '80%'
@@ -862,7 +862,7 @@ objectLoader.assignAnimationWaypoints = () ->
         $(this).find(objectLoader.objectSubTarget).addClass('loaded')
         objectLoader.loadInternals($(this).index())
 
-  else if window.isPortfolio
+  else if window.isPortfolio and !isTouch
     $(objectLoader.objectSubTarget).children().each(->
       if $(this).hasClass('project-details')
         $(this).waypoint
@@ -927,11 +927,11 @@ objectLoader.pageLoaded = () ->
     $('nav').show()
   else
     showMain = setTimeout ->
-    if !window.isTouch
-      $('.intro').removeClass('fadeIn').addClass('introOut')
-      $('.main').addClass('scaleInBig')
-    else
-      $('.intro').removeClass('fadeIn').addClass('introOutTouch')
+      if !window.isTouch
+        $('.intro').removeClass('fadeIn').addClass('introOut')
+        $('.main').addClass('scaleInBig')
+      else
+        $('.intro').removeClass('fadeIn').addClass('introOutTouch')
     showNav = setTimeout ->
       $('nav').show()
       $('.intro').remove()
