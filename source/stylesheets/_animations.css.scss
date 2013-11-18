@@ -76,6 +76,10 @@ body.feed .loading {
   @include animation(jumpy 0.5s linear alternate 3);
 }
 
+.jumpyforever {
+  @include animation(jumpy 1s linear alternate infinite);
+}
+
 .introOut {
   // z-index: -1;
   @include animation(introOut 0.2s linear forwards 1);

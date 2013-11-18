@@ -922,7 +922,7 @@ objectLoader.loadInternals = (targetIndex) ->
 waypointCheck.showPortBtns = () ->
   $('.main').waypoint
       triggerOnce: true,
-      offset: -200
+      offset: -1200
       handler: (direction) ->
         if direction is 'down'
           $('body').removeClass('noNav')
@@ -1036,7 +1036,7 @@ $ ->
         $('.arrow-tab').removeClass('showArrow').addClass('hideArrow').css('visibility','hidden')
         $('html, body').stop().animate({
           scrollTop: scrollTarget
-        }, 'slow', ->
+        }, 3000, ->
           if this.nodeName == "BODY"
             return
           historyController.scrollingBack = false
