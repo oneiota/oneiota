@@ -920,9 +920,14 @@ objectLoader.loadInternals = (targetIndex) ->
   animateChildren()
 
 waypointCheck.showPortBtns = () ->
+  if isTouch 
+    showDistance = -200
+  else
+    showDistance = -1200
+
   $('.main').waypoint
       triggerOnce: true,
-      offset: -1200
+      offset: showDistance
       handler: (direction) ->
         if direction is 'down'
           $('body').removeClass('noNav')
