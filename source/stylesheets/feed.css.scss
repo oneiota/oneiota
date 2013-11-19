@@ -4,7 +4,7 @@
 
 body.feed {
   background: #222;
-  @include background-image(linear-gradient(#5ce6d4 5%, #C7d0bd, #ffbca7, #ff8e98, #ab87ba, #458cc7, #4f52ff));
+  @include background-image(linear-gradient(#3FD1BC 5%, #6FB7CE, #FFAD9F, #ff8e98, #ab87ba, #458cc7, #4f52ff));
   article {
     hr, span.down-arrow {
       visibility: hidden;
