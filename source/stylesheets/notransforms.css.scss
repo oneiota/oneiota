@@ -1,4 +1,5 @@
 html.no-csstransforms3d {
+
   .checkout-feed, .slideDownFooter {
     bottom: -100%;
   }
@@ -24,5 +25,17 @@ html.no-csstransforms3d {
         content: none;
       }
     }
+  }
+}
+
+html.no-csstransitions {
+  .explore {
+    display: none;
+  }
+}
+
+html.no-csstransforms {
+  .contact-details {
+    display: none;
   }
 }

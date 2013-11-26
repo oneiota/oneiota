@@ -136,9 +136,10 @@ section, article, .contact-details {
   .container, .project {
     position: relative;
     overflow: hidden;
-    visibility: hidden;
+    // visibility: hidden;
   }
   .project-details {
+    visibility: hidden;
     h2,p,a,ul {
       @include rem(margin-bottom, 2rem);
       @include at-breakpoint($bigscreen)  {
@@ -159,10 +160,10 @@ html.touch {
   body.noNav {
     section, article {
       .container, .project {
-        visibility: hidden;
+        // visibility: hidden;
       }
       .project > * {
-        visibility: hidden;
+        // visibility: hidden;
         &:first-child {
           visibility: visible;
         }

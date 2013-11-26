@@ -198,7 +198,7 @@ $ ->
     $('.drag-container ul').append(emptyLetter)
 
   dragGame.init = () ->
-    $('.intro').show().addClass('fadeIn').append('<div class="dragGame"><div class="drag-container"><ul/>')
+    $('.intro').append('<div class="dragGame"><div class="drag-container"><ul/>')
     $.each introGame.oneiota, (i) ->
       if dragGame.letterCount < 2
         if i == introGame.oneiota.length
