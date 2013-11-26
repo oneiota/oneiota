@@ -1,0 +1,54 @@
+@import "_mixins";
+
+.explore {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $hud;
+  .exploreBg {
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .exploreText {
+    position: absolute;
+    display: table;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    p {
+      display: table-cell;
+      text-align: middle;
+      vertical-align: middle;
+      @include font-size(5);
+      @include at-breakpoint($tablet) {
+        @include font-size(10);
+      }
+      @include at-breakpoint($bigscreen) {
+        @include font-size(15);
+      }
+      @include at-breakpoint(15) {
+        @include font-size(20);
+      }
+      @include at-breakpoint(20) {
+        @include font-size(25);
+      }
+      i {
+        font-size: 1rem;
+        display: block;
+        &:before {
+          @include font-size(3);
+          @include at-breakpoint($tablet) {
+            @include font-size(5);
+          }
+        }
+      }
+    }
+  }
+}
