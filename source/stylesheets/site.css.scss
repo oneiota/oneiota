@@ -8,6 +8,7 @@
 *= require "feed"
 *= require "intro"
 *= require "square"
+*= require "explore"
 
 //Grid
 *= require "_layout/grid"
@@ -183,7 +184,7 @@ article {
     @include rem(padding, 7rem 0 1rem 0);
   }
   div.project {
-    p, a {
+    p, a, .tag {
      @include font-regular();
     }
     a.webLink {

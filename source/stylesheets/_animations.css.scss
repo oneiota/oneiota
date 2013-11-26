@@ -1,6 +1,8 @@
 @import 'bourbon';
 @import 'mixins';
 
+$slideDist: 35%;
+
 .mainmenu {
   .contact-details {
     p.phone {
@@ -116,6 +118,10 @@ body.feed .loading {
 
 .blowUp {
   @include animation(blowUp 0.2s ease forwards 1);
+}
+
+.fadeOutSlow {
+  @include animation(fadeOutSlow 0.7s linear forwards 1);
 }
 
 .scaleOutRotate {
@@ -486,6 +492,11 @@ html.no-touch {
   @include transform(rotate(-25deg));
 }
 
+@include keyframes(fadeOutSlow) {
+  0%   { @include hp-opacity(0.9);}
+  100% { @include hp-opacity(0); }
+}
+
 @include keyframes(twinkly) {
   0%   { @include hp-opacity(0.3);}
   100% { @include hp-opacity(1);}
@@ -815,7 +826,7 @@ html.no-touch {
 
 @include keyframes(fadeInSlide) {
   from {
-     @include transform(translate3d(0px,50%,0px));
+     @include transform(translate3d(0px,$slideDist,0px));
      @include hp-opacity(0);
   }
   to {
@@ -826,7 +837,7 @@ html.no-touch {
 
 @include keyframes(fadeInSlideR) {
   from {
-     @include transform(translate3d(50%,0px,0px));
+     @include transform(translate3d($slideDist,0px,0px));
      @include hp-opacity(0);
   }
   to {
@@ -837,7 +848,7 @@ html.no-touch {
 
 @include keyframes(fadeInSlideL) {
   from {
-     @include transform(translate3d(-50%,0px,0px));
+     @include transform(translate3d(-$slideDist,0px,0px));
      @include hp-opacity(0);
   }
   to {
@@ -848,7 +859,7 @@ html.no-touch {
 
 @include keyframes(fadeInSlideT) {
   from {
-     @include transform(translate3d(0px,-50%,0px));
+     @include transform(translate3d(0px,-$slideDist,0px));
      @include hp-opacity(0);
   }
   to {

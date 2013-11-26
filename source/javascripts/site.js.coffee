@@ -222,10 +222,15 @@ mainMenu.updateColors = (foreground, background) ->
 
 imageLoader.imageLoaded = (img) ->
   targetArticle = $('article').eq(img.imgParent)
-  $(img).addClass('fadeIn')
   targetPlaceholder = targetArticle.find('span.placeholder-bg').eq(0)
+  targetParentIndex = targetPlaceholder.parent().index()
   targetAlt = targetArticle.find('span.placeholder-alt').eq(0)
   targetPlaceholder.after($(img))
+  if targetParentIndex is 0
+    $(img).addClass('loaded fadeInSlide')
+  else
+    fadeInEffect = objectLoader.randomFade()
+    $(img).addClass('loaded ' + fadeInEffect)
   targetPlaceholder.remove()
   targetAlt.remove()
   imageLoader.loadImage()
@@ -861,24 +866,23 @@ objectLoader.assignAnimationWaypoints = () ->
         objectLoader.loadInternals($(this).index())
 
   else if window.isPortfolio
-    $(objectLoader.objectSubTarget).children().each(->
+    $(objectLoader.objectSubTarget).children().each( ->
       if $(this).hasClass('project-details')
         $(this).waypoint
           triggerOnce: true
-          offset: '40%'
+          offset: '80%'
           handler: (direction) ->
-            $(this).addClass('loaded')
             objectLoader.loadInternals($(this).parent().parent().index())
-      else
-        $(this).waypoint
-          triggerOnce: true
-          offset: '50%'
-          handler: (direction) ->
-            if $(this).index() == 0
-              $(this).addClass('loaded fadeInSlide')
-            else
-              fadeInEffect = objectLoader.randomFade()
-              $(this).addClass('loaded ' + fadeInEffect)
+      # else
+      #   $(this).waypoint
+      #     triggerOnce: true
+      #     offset: '50%'
+      #     handler: (direction) ->
+      #       if $(this).index() == 0
+      #         $(this).addClass('loaded fadeInSlide')
+      #       else
+      #         fadeInEffect = objectLoader.randomFade()
+      #         $(this).addClass('loaded ' + fadeInEffect)
     )
 
 objectLoader.loadInternals = (targetIndex) ->
@@ -907,7 +911,7 @@ objectLoader.loadInternals = (targetIndex) ->
             parentTarget.children().eq(currSubChild).addClass('scaleIn')
             animateSubChildTimer = setTimeout ->
               animateSubChildren()
-            , 150
+            , 100
           else
             animateChildren()
         animateSubChildren()
@@ -915,15 +919,12 @@ objectLoader.loadInternals = (targetIndex) ->
         targetContent.children().eq(currChild).addClass('fadeInSlide')
         animateChildTimer = setTimeout ->
           animateChildren()
-        , 150 
+        , 100 
   
   animateChildren()
 
 waypointCheck.showPortBtns = () ->
-  if isTouch 
-    showDistance = -200
-  else
-    showDistance = -1200
+  showDistance = -20
 
   $('.main').waypoint
       triggerOnce: true,
@@ -931,6 +932,10 @@ waypointCheck.showPortBtns = () ->
       handler: (direction) ->
         if direction is 'down'
           $('body').removeClass('noNav')
+          $('.explore').addClass('fadeOutSlow')
+          killExplore = setTimeout () ->
+            $('.explore').remove()
+          , 700
           if !window.isIE
             waypointCheck.makeCanvas()
 

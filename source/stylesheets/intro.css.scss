@@ -9,6 +9,22 @@
   overflow: hidden;
 }
 
+.skipBtn {
+  position: fixed;
+  width: 100%;
+  @include rem(height, 1.5rem);
+  text-align: center;
+  left:0;
+  @include rem(top, 2rem);
+  a {
+    display: inline-block;
+  }
+  .icon-door {
+    position: relative;
+    top: 0.4em;
+  }
+}
+
 .dragGame {
   position:fixed;
   top:0;

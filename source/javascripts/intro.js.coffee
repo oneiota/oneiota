@@ -26,10 +26,17 @@ introGame = new IntroGame()
 
 #Doc deady
 $ ->
+
   introGame.gameOver = () ->
     endGame = setTimeout ->
       window.getItStarted()
     , 500
+
+  introGame.skipThis = (selectedGame) ->
+    $(selectedGame).append('<div class="skipBtn"><a href="#" title="I don&#39;t like fun &#58;&#40;">skip this <span class="icon-door icon">')
+    $('.skipBtn').bind 'click', (event) ->
+      event.preventDefault()
+      introGame.gameOver()
 
   introGame.animateIn = (gameType) ->
     animationArray = []
@@ -64,6 +71,7 @@ $ ->
                 animateDrag()
               , 300
           animateDrag()
+        $('.skipBtn').addClass('scaleIn')
 
     animateChildren()
 
@@ -104,7 +112,6 @@ $ ->
   trashGame.init = () ->
     $('.intro').show().addClass('fadeIn').append('<div class="trashGame"><div class="bin-container"><div class="bin"><p>feed me</p><i class="icon hide-arrow icon-down-arrow-bare"/><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
     $('.trashGame').append('<ul class="hangman">')
-
     $.each introGame.oneiota, (i) ->
       if trashGame.hangmansList < 3
         if i == introGame.oneiota.length
@@ -134,6 +141,7 @@ $ ->
     , 10000
 
     introGame.animateIn('.trashGame')
+    introGame.skipThis('.trashGame')
 
   dragGame.randomLocation = () ->
     randomX = Math.random() < .5
@@ -208,32 +216,42 @@ $ ->
         $('.drag-container ul li').eq(i).after('<hr/>')
 
     introGame.animateIn('.drag-container ul')
+    introGame.skipThis('.dragGame')
 
   window.loadGame = () ->
-    i = 0
-    lastgame = 0
+    
     if !Modernizr.localstorage
       window.getItStarted()
       return false
-    while i < introGame.interactionArray.length
-      if $.inArray(localStorage['games.played.' + i], introGame.interactionArray) != -1
-        introGame.playedArray.push(localStorage['games.played.' + i])
-        lastgame = i
-      i++
-    if introGame.playedArray.length isnt 0
-      k = 0
-      while k < introGame.playedArray.length
-        if $.inArray(introGame.playedArray[k], introGame.interactionArray) != -1
-          introGame.interactionArray.splice($.inArray(introGame.playedArray[k], introGame.interactionArray), 1)
-        k++
-    if introGame.interactionArray.length isnt 0
-      randomGame = Math.floor(Math.random() * introGame.interactionArray.length)
-      whichInteraction = introGame.interactionArray[randomGame]
-      if localStorage['games.played.0'] != undefined
-        lastgame = lastgame + 1
-      localStorage['games.played.' + lastgame] = whichInteraction
-      eval(whichInteraction).init()
-    else
-      window.getItStarted()
+    
+    randomGame = Math.floor(Math.random() * introGame.interactionArray.length)
+    whichInteraction = introGame.interactionArray[randomGame]
+    eval(whichInteraction).init()
+
+    # i = 0
+    # lastgame = 0
+    # if !Modernizr.localstorage
+    #   window.getItStarted()
+    #   return false
+    # while i < introGame.interactionArray.length
+    #   if $.inArray(localStorage['games.played.' + i], introGame.interactionArray) != -1
+    #     introGame.playedArray.push(localStorage['games.played.' + i])
+    #     lastgame = i
+    #   i++
+    # if introGame.playedArray.length isnt 0
+    #   k = 0
+    #   while k < introGame.playedArray.length
+    #     if $.inArray(introGame.playedArray[k], introGame.interactionArray) != -1
+    #       introGame.interactionArray.splice($.inArray(introGame.playedArray[k], introGame.interactionArray), 1)
+    #     k++
+    # if introGame.interactionArray.length isnt 0
+    #   randomGame = Math.floor(Math.random() * introGame.interactionArray.length)
+    #   whichInteraction = introGame.interactionArray[randomGame]
+    #   if localStorage['games.played.0'] != undefined
+    #     lastgame = lastgame + 1
+    #   localStorage['games.played.' + lastgame] = whichInteraction
+    #   eval(whichInteraction).init()
+    # else
+    #   window.getItStarted()
 
 

@@ -312,3 +312,7 @@ $verticleMargin: 16px;
 .icon-team_empty:before {
   content: "\e025";
 }
+.icon-door:before {
+  content: "\e026";
+  @include font-size(1.3);
+}
