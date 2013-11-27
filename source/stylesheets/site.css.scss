@@ -45,11 +45,49 @@ body.error {
 }
 
 // CHANGE FOR TOUCH DEBUG - DONE
-html.touch {
+html {
   body.index {
     .main {
       display: none;
+      z-index: 0;
     }
+    .intro {
+      display: none;
+    }
+  }
+  body {
+    section, article {
+      .project-details {
+        visibility: hidden;
+      }
+    }
+  }
+}
+html.touch {
+  body.noNav {
+    section, article {
+      .container, .project {
+        visibility: hidden;
+      }
+      .project > * {
+        visibility: hidden;
+        &:first-child {
+          visibility: visible;
+        }
+      }
+    }
+  }
+  body {
+    section, article {
+      .container, .project {
+        visibility: visible;
+      }
+      .project-details {
+        visibility: visible;
+      }
+    }
+  }
+  body.index {
     article {
       display: none;
     }
@@ -96,10 +134,6 @@ menu, ol, ul {
   margin: 0;
 }
 
-.main {
-  z-index: 0;
-}
-
 h1 {
   @include font-size(6, large);
 }
@@ -138,8 +172,10 @@ section, article, .contact-details {
     overflow: hidden;
     // visibility: hidden;
   }
-  .project-details {
+  .container {
     visibility: hidden;
+  }
+  .project-details {
     h2,p,a,ul {
       @include rem(margin-bottom, 2rem);
       @include at-breakpoint($bigscreen)  {
@@ -151,29 +187,6 @@ section, article, .contact-details {
       line-height: 1.2em;
       @include at-breakpoint($bigscreen)  {
         @include font-size(3.5);
-      }
-    }
-  }
-}
-
-html.touch {
-  body.noNav {
-    section, article {
-      .container, .project {
-        // visibility: hidden;
-      }
-      .project > * {
-        // visibility: hidden;
-        &:first-child {
-          visibility: visible;
-        }
-      }
-    }
-  }
-  body {
-    section, article {
-      .container, .project {
-        visibility: visible;
       }
     }
   }

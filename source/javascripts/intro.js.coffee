@@ -30,6 +30,7 @@ $ ->
   introGame.gameOver = () ->
     endGame = setTimeout ->
       window.getItStarted()
+      sessionStorage.playedAlready = 'true'
     , 500
 
   introGame.skipThis = (selectedGame) ->
@@ -110,7 +111,7 @@ $ ->
 
 
   trashGame.init = () ->
-    $('.intro').show().addClass('fadeIn').append('<div class="trashGame"><div class="bin-container"><div class="bin"><p>feed me</p><i class="icon hide-arrow icon-down-arrow-bare"/><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
+    $('.intro').append('<div class="trashGame"><div class="bin-container"><div class="bin"><p>feed me</p><i class="icon hide-arrow icon-down-arrow-bare"/><i class="icon icon-trash"/><i class="icon icon-trash-open"/>')
     $('.trashGame').append('<ul class="hangman">')
     $.each introGame.oneiota, (i) ->
       if trashGame.hangmansList < 3
@@ -219,14 +220,15 @@ $ ->
     introGame.skipThis('.dragGame')
 
   window.loadGame = () ->
-    
-    if !Modernizr.localstorage
+
+    if !Modernizr.localstorage or sessionStorage.playedAlready == 'true'
       window.getItStarted()
       return false
-    
-    randomGame = Math.floor(Math.random() * introGame.interactionArray.length)
-    whichInteraction = introGame.interactionArray[randomGame]
-    eval(whichInteraction).init()
+    else
+      $('.intro').show().addClass('fadeIn')
+      randomGame = Math.floor(Math.random() * introGame.interactionArray.length)
+      whichInteraction = introGame.interactionArray[randomGame]
+      eval(whichInteraction).init()
 
     # i = 0
     # lastgame = 0

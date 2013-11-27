@@ -24,12 +24,8 @@ nav {
       color: inherit;
       @include font-size(1);
     }
-    a {
-      @include hp-opacity(0.9);
-    }
     a.icon-info {
       position: relative;
-      @include hp-opacity(1);
     }
   }
 }
@@ -82,6 +78,9 @@ nav .top-hud {
 }
 
 nav .bottom-hud {
+  a {
+    @include hp-opacity(1);
+  }
   ul li, ul li a {
     display: inline-block;
   }
@@ -234,9 +233,9 @@ html {
       text-align: right;
       position: fixed;
       display: none;
-      @include at-breakpoint($tablet) {
-        display: block;
-      }
+      // @include at-breakpoint($tablet) {
+      //   display: block;
+      // }
       @include rem(top, 1rem);
       @include rem(right, 1rem);
       z-index: 1;

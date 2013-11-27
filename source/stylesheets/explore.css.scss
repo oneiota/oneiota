@@ -43,9 +43,9 @@
         font-size: 1rem;
         display: block;
         &:before {
-          @include font-size(3);
+          @include font-size(6);
           @include at-breakpoint($tablet) {
-            @include font-size(5);
+            @include font-size(10);
           }
         }
       }

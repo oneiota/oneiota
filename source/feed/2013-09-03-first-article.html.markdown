@@ -1,8 +1,8 @@
 ---
-title: Website launch
+title: Choosing Middleman
 date: 2013-09-03 11:53 UTC
 author: David
 type: post
 images: 
 ---
-After months of preparation 2013 marks the year we finally managed to catalogue our work and launch this new site. 
+We've chosen to develop our new portfolio site on Middleman - a command-line tool for creating static websites using all the shortcuts and tools of the modern web development environment. Looking forward to posting more about it.

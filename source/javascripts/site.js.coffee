@@ -152,6 +152,12 @@ waypointCheck.updateCanvas = ->
   $('.canvasArrow').remove()
   waypointCheck.makeCanvas()
 
+waypointCheck.relativeSpeed = (scrollTarget) ->
+  topDistance = $(document).scrollTop()
+  scrollSpeed = Math.abs((Math.abs(scrollTarget) - $(document).scrollTop())/10)
+  scrollSpeed 
+  # console.log scrollSpeed * 100
+
 window.initialiseMaps = () ->
   
   MY_MAPTYPE_ID = 'custom_style';
@@ -945,21 +951,29 @@ objectLoader.pageLoaded = () ->
   if !window.isPortfolio or window.isSingle
     $('nav').show()
   else
-    showMain = setTimeout ->
-      if !window.isTouch
-        $('.intro').removeClass('fadeIn').addClass('introOut')
-        $('.main').addClass('scaleInBig')
-      else
-        $('.intro').removeClass('fadeIn').addClass('introOutTouch')
-    showNav = setTimeout ->
+    if sessionStorage.playedAlready == 'true'
+      $('.explore, .intro').remove()
       $('nav').show()
-      waypointCheck.showPortBtns()
-      $('.intro').remove()
-      $('.main').removeClass('scaleInBig')
       $('.checkout-feed').show()
       if !window.isIE
         waypointCheck.makeCanvas()
-    , 1200
+    else
+      $('body').addClass('noNav')
+      showMain = setTimeout ->
+        if !window.isTouch
+          $('.intro').removeClass('fadeIn').addClass('introOut')
+          $('.main').addClass('scaleInBig')
+        else
+          $('.intro').removeClass('fadeIn').addClass('introOutTouch')
+      showNav = setTimeout ->
+        $('nav').show()
+        waypointCheck.showPortBtns()
+        $('.intro').remove()
+        $('.main').removeClass('scaleInBig')
+        $('.checkout-feed').show()
+        if !window.isIE
+          waypointCheck.makeCanvas()
+      , 1200
 
   if window.isBlood
     bloodLoader.getInsty()
@@ -1041,12 +1055,13 @@ $ ->
         thisSlug = $(this).attr('href').slice(1)
         targetIndex = $(this).parent().index()
         scrollTarget = $('#' + thisSlug).position().top
+        scrollSpeed = waypointCheck.relativeSpeed(scrollTarget)
         articleID = $('article').eq(targetIndex).attr('id')
         historyController.scrollingBack = true
         $('.arrow-tab').removeClass('showArrow').addClass('hideArrow').css('visibility','hidden')
         $('html, body').stop().animate({
           scrollTop: scrollTarget
-        }, 3000, ->
+        }, scrollSpeed, ->
           if this.nodeName == "BODY"
             return
           historyController.scrollingBack = false
@@ -1123,8 +1138,6 @@ $ ->
   window.getItStarted = () ->
     $('.main').show()
     ##Index specific startup functions
-    if window.isPortfolio
-      $('body').addClass('noNav')
 
     if window.isPortfolio and !window.isTouch and !window.isSingle
       waypointCheck.assignArticleWaypoints()

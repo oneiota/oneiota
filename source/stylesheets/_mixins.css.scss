@@ -169,10 +169,10 @@ $verticleMargin: 16px;
   }
 }
 .icon-left-arrow:before {
-  content: "\e001";
+  content: "\e023";
 }
 .icon-right-arrow:before {
-  content: "\e002";
+  content: "\e012";
 }
 .icon-down-arrow:before {
   content: "\e005";
@@ -188,18 +188,18 @@ $verticleMargin: 16px;
   content: "\e000";
 }
 .icon-close:before {
-  content: "\e003";
+  content: "\e027";
 }
 .icon-contact:before {
   content: "\e004";
 }
 .icon-down-arrow-bare:before {
   @include font-size(2);
-  content: "\e005";
+  content: "\e011";
 }
 .icon-up-arrow-bare:before {
   @include font-size(2);
-  content: "\e006";
+  content: "\e005";
 }
 .icon-diamond:before {
   @include font-size(5);
@@ -234,10 +234,10 @@ $verticleMargin: 16px;
   content: "\e010";
 }
 .icon-right-arrow-bare:before {
-  content: "\e011";
+  content: "\e001";
 }
 .icon-left-arrow-bare:before {
-  content: "\e012";
+  content: "\e002";
 }
 .icon-team:before {
   content: "\e013";
@@ -316,3 +316,7 @@ $verticleMargin: 16px;
   content: "\e026";
   @include font-size(1.3);
 }
+.icon-thick-down-arrow:before {
+  content: "\e006";
+}
+
