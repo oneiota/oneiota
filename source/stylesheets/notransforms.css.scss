@@ -27,14 +27,29 @@ html.no-csstransforms3d {
   }
 }
 
-html.no-csstransitions {
-  .explore {
+html.no-csstransforms {
+  .contact-details {
     display: none;
   }
 }
 
-html.no-csstransforms {
-  .contact-details {
+html.no-cssanimations {
+  .fadeIn, .fadeInSlide, .fadeInSlideT, .fadeInSlideR, .fadeInSlideL {
+    opacity: 1;
+  }
+  .explore {
     display: none;
+  }
+  body {
+    section, article {
+      .container, .project-details {
+        visibility: visible;
+      }
+    }
+  }
+  body.feed {
+    .post-container {
+      visibility: visible;
+    }
   }
 }

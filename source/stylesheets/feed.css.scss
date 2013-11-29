@@ -214,3 +214,11 @@ body.feed article:first-child {
 body.feed {
   @include rem(padding, 0 0 10rem 0);
 }
+
+html.lt-ie9 {
+  body.feed {
+    .post-date {
+      display: none !important;
+    }
+  }
+}

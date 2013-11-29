@@ -283,6 +283,10 @@ section.info-testimonials {
     display: table;
     float:left;
     width: 100%;
+    min-height: 300px;
+     @include at-breakpoint($tablet) {
+      min-height: 250px;
+    }
     > div {
       display: table-cell;
       vertical-align: middle;
@@ -296,6 +300,7 @@ section.info-testimonials {
         top: 0;
         left: 100%;
         p {
+          @include rem(margin-bottom, 3rem);
           @include at-breakpoint($smallscreen) {
             @include rem(padding, 0 2rem);
           }

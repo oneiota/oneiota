@@ -14,6 +14,7 @@ window.isBlood = if $('body').hasClass('blood') then true else false
 window.isSingle = if $('body').hasClass('singleProject') or $('body').hasClass('singlePost') then true else false
 window.isIE = if $('html').hasClass('lt-ie9') then true else false
 window.mapLoaded = false
+window.cantanimate = if $('html').hasClass('no-cssanimations') then true else false
 
 ## New Constructors
 

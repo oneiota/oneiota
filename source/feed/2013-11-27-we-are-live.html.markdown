@@ -1,6 +1,6 @@
 ---
 title: We are live!
-date: 2013-11-27 11:53 UTC
+date: 2013-11-27 11:53 +10:00
 author: David
 type: post
 images: 

@@ -29,6 +29,7 @@ body {
   font-size: 100%;
   text-align: center;
   height: 100%;
+  text-rendering:optimizelegibility;
 }
 
 body.error {
@@ -53,13 +54,6 @@ html {
     }
     .intro {
       display: none;
-    }
-  }
-  body {
-    section, article {
-      .project-details {
-        visibility: hidden;
-      }
     }
   }
 }
@@ -170,12 +164,12 @@ section, article, .contact-details {
   .container, .project {
     position: relative;
     overflow: hidden;
-    // visibility: hidden;
   }
   .container {
     visibility: hidden;
   }
   .project-details {
+    visibility: hidden;
     h2,p,a,ul {
       @include rem(margin-bottom, 2rem);
       @include at-breakpoint($bigscreen)  {

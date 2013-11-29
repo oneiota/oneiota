@@ -44,7 +44,7 @@
     %div{:role => "main", :class => "main"}= yield
     %footer.checkout-feed{:style => "color:#{yield_content(:lastbg)}; background:#{yield_content(:lastfg)};",:data => {:fgColor => yield_content(:lastbg), :bgColor => yield_content(:lastfg)}}
       %h3
-        %a{:href=>settings.base_url+'feed'}Check out our feed
+        %a{:href=>settings.base_url+'feed', :title=>'Check out our feed'}Check out our feed
     
     :javascript
       yepnope([{

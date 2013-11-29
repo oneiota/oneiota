@@ -221,7 +221,7 @@ $ ->
 
   window.loadGame = () ->
 
-    if !Modernizr.localstorage or sessionStorage.playedAlready == 'true'
+    if !Modernizr.localstorage or sessionStorage.playedAlready == 'true' or window.cantanimate
       window.getItStarted()
       return false
     else
