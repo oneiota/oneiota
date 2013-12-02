@@ -38,7 +38,7 @@ module SiteHelpers
 
   def recent_pins
     begin
-      getpins = Unirest::get("https://ismaelc-pinterest.p.mashape.com/oneiota/pins", 
+      getpins = Unirest::get("https://ismaelc-pinterest.p.mashape.com/oneiota/pins?page=1", 
         {
           "X-Mashape-Authorization" => "jGAjGHCTdlhTdzTM8COm8BQ1ButErG0b"
         }
