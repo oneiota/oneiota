@@ -407,7 +407,7 @@ if window.isIndex
         @.ogfg = waypointCheck.ogfg = currentArticle.data('foreground')
         @.ogbg = waypointCheck.ogbg = currentArticle.data('background')
         waypointCheck.updateColors(@.ogfg, @.ogbg)
-        newTitle = 'Iota — ' + waypointCheck.projectTitle
+        newTitle = 'One Iota — ' + waypointCheck.projectTitle
         document.title = newTitle
         $('.navCounters ul li').removeClass('active scaleIn slideIn')
         if waypointCheck.lastIndex != currentIndex
@@ -513,7 +513,7 @@ if window.isIndex
       waypointCheck.projectTitle = $('.main article').eq(@.nextProject).data('title')
       waypointCheck.ogfg = $('.main article').eq(@.nextProject).data('foreground')
       waypointCheck.ogbg = $('.main article').eq(@.nextProject).data('background')
-      newTitle = 'Iota — ' + waypointCheck.projectTitle
+      newTitle = 'One Iota — ' + waypointCheck.projectTitle
       if filterHit
         $('.main article').removeClass()
         $('.main article').eq(waypointCheck.currentProject).addClass('fadeOut')
