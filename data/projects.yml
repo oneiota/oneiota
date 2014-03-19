@@ -2,7 +2,7 @@
 - project: Heirloom
   slug: heirloom
   description: >
-    Heirloom chocolate is made from 100% organic and ethically traded single-origin cacao. Straight from bean to bar, years have gone into refining the process to its purest and most efficient form<span>. Our task was to craft a brand identity that reflected the simplicity in this process and the quality of the chocolate used. Brewed hot or cold, we designed packaging in both bottled and bagged forms using colour and basic line work to differentiate between flavours white, milk, dark and dark mocha.</span>
+    Heirloom chocolate is made from 100% organic and ethically traded single-origin cacao. Straight from bean to bar, years have gone into refining this process to its purest and most efficient form<span>. Our task was to craft a brand identity that reflected the simplicity in this process and the quality of the chocolate used. Brewed hot or cold, we designed packaging in both bottled and bagged forms using colour and basic line work to differentiate between flavours white, milk, dark and dark mocha.</span>
   images:
     - 
       mobile: mobile/heirloom_heroshot.jpg
@@ -35,20 +35,15 @@
       alt: >
         Heirloom drinking chocolate bag
     -
-      mobile: mobile/heirloom_bag_bottle.jpg
-      desktop: heirloom_bag_bottle.jpg
+      mobile: mobile/heirloom_brandPatterns.jpg
+      desktop: heirloom_brandPatterns.jpg
       alt: >
-        Heirloom bag and bottle
+        Heirloom brand patterns
     -
       mobile: mobile/heirloom_chocMilkType.jpg
       desktop: heirloom_chocMilkType.jpg
       alt: >
         Heirloom choc milk
-    -
-      mobile: mobile/heirloom_brandPatterns.jpg
-      desktop: heirloom_brandPatterns.jpg
-      alt: >
-        Heirloom brand patterns
   colors:
     foreground: "#222222"
     background: "#E6E6E6"
