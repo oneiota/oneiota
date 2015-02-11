@@ -4,6 +4,13 @@ sass-cache/
 
 build/
 
+vendor/
+
 *.sublime-project
 *.sublime-workspace
 config.rb
+
+amazonec2.pem
+
+.bundle/config
+
