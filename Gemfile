@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem "middleman", "~>3.0.5"
+gem "middleman", "3.0.9"
+gem "middleman-core", "3.0.9"
 # gem "middleman-favicon-maker", "~> 3.2"
-gem "compass"
 gem "middleman-livereload"
 gem "middleman-bourbon"
 gem "middleman-blog"
@@ -13,6 +13,6 @@ gem "redcarpet"
 gem "fastimage"
 gem "twitter"
 gem "unirest"
-gem "listen", "0.7.3"
+gem "listen", "0.5.2"
 gem 'therubyracer'
 gem 'oj'

@@ -13,4 +13,3 @@ config.rb
 amazonec2.pem
 
 .bundle/config
-
