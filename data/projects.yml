@@ -1,4 +1,51 @@
 ---
+- project: Greenhills Wagyu
+  slug: greenhillswagyu
+  description: >
+    Greenhills Wagyu have been a full blood wagyu operation known for owning elite wagyu genetics and consistently delivering a premium product since 1997<span>. With increasing demand for a healthier and ethical meat alternative, an MSA graded grass-fed range was recently introduced. Our task was to rebrand the company focusing on their Grass-Fed Wagyu range and its many benefits to the animal and consumer. In doing so, the identity we developed strongly diverges from traditional meat branding. The typography is light, elegant and refined, associating with a leaner, carefully bred product. As the wagyu live their entire lives in paddocks and never in feedlots, the identity relies on different natural tones of green across all collateral to mirror the variety found in nature.</span>
+  images:
+    - 
+      mobile: mobile/GreenhillsWagyu_Logo.jpg
+      desktop: GreenhillsWagyu_Logo.jpg
+      alt: >
+        Greenhills Wagyu Identity
+    - 
+      mobile: mobile/GreenhillsWagyu_MeatStickerButcherPaper.jpg
+      desktop: GreenhillsWagyu_MeatStickerButcherPaper.jpg
+      alt: >
+        Greenhills Wagyu Packaging
+    -
+      mobile: mobile/GreenhillsWagyu_TradeHandout.jpg
+      desktop: GreenhillsWagyu_TradeHandout.jpg
+      alt: >
+        Greenhills Wagyu Trade Handout
+    -
+      mobile: mobile/GreenhillsWagyu_GWlogomarks.jpg
+      desktop: GreenhillsWagyu_GWlogomarks.jpg
+      alt: >
+        Greenhills Wagyu Logomarks
+    -
+      mobile: mobile/GreenhillsWagyu_Poster.jpg
+      desktop: GreenhillsWagyu_Poster.jpg
+      alt: >
+        Greenhills Wagyu In Shop Poster
+    -
+      mobile: mobile/GreenhillsWagyu_DLHolder.jpg
+      desktop: GreenhillsWagyu_DLHolder.jpg
+      alt: >
+        Greenhills Wagyu DL Holder
+    -
+      mobile: mobile/GreenhillsWagyu_typographicwork.jpg
+      desktop: GreenhillsWagyu_typographicwork.jpg
+      alt: >
+        Greenhills Wagyu Logotype
+  colors:
+    foreground: "#FFFFFF"
+    background: "#BCC1A8"
+  tags: [Brand Development, Brand Collateral, Copywriting]
+  digital:
+  branding: "true"
+
 - project: Heirloom
   slug: heirloom
   description: >
