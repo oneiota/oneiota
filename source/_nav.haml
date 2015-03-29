@@ -30,14 +30,14 @@
           %li.scaleIn
             %a.scaleDownHover.nav-item{:href => '/'+project.slug}
               %i.icon-circle.icon
-              %a{:href => '#', :title => 'More Projects'}
+              %a.up-nav-arrow{:href => '#', :title => 'More Projects'}
                 %i.icon-down-arrow-bare.icon
               %span.arrow-tab.hideArrow.scaleIn{:style => "color:#{textColor};"}
                 %span.arrow-title
                   =project.project
         -elsif index == 8
           %li.mobile-hide.scaleIn
-            %a{:href => '#', :title => 'Back'}
+            %a.down-nav-arrow{:href => '#', :title => 'Back'}
               %i.icon-up-arrow-bare.icon
               %a.scaleDownHover.nav-item{:href => '/'+project.slug}
                 %i.icon-circle.icon

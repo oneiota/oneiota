@@ -1,4 +1,71 @@
 ---
+- project: Urban Art Projects
+  slug: uap
+  description: >
+    Urban Art Projects approached us to design them a website that would revolutionise their brand and catalogue their extensive and diverse portfolio of works<span>. In line with the company rebrand, the site relies on a simple, streamlined black and white UI design to best communicate the unique properties of each project and particularly highlight the photography. The site infrastructure simplifies the delivery of a complex range of projects through a smart filtering system, backed by the speed and security served by the latest in cloud computing technology across all devices. Furthering UAP's international growth, with offices in New York and Shanghai, the site can be viewed in Mandarin as a bi-lingual option alongside English.</span>
+  images:
+    - 
+      mobile: mobile/UAP_desktopFactoryHero.jpg
+      desktop: UAP_desktopFactoryHero.jpg
+      alt: >
+        Urban Art Projects
+    - 
+      mobile: mobile/UAP_loadAnimation.gif
+      desktop: UAP_loadAnimation.gif
+      alt: >
+        UAP Loader
+    - 
+      mobile: mobile/UAP_homeHover2-compressor.gif
+      desktop: UAP_homeHover2-compressor.gif
+      alt: >
+        UAP Home
+    - 
+      mobile: mobile/UAP_studioPortfolio.jpg
+      desktop: UAP_studioPortfolio.jpg
+      alt: >
+        UAP Studio Portfolio 
+    - 
+      mobile: mobile/UAP_laptopFilters.gif
+      desktop: UAP_laptopFilters.gif
+      alt: >
+        UAP Latop Filters
+    - 
+      mobile: mobile/UAP_mobileFactory.jpg
+      desktop: UAP_mobileFactory.jpg
+      alt: >
+        UAP Mobile Factory
+    - 
+      mobile: mobile/UAP_mobileFilters.jpg
+      desktop: UAP_mobileFilters.jpg
+      alt: >
+        UAP Mobile Filters
+    - 
+      mobile: mobile/UAP_singleAnimation-compressor.gif
+      desktop: UAP_singleAnimation-compressor.gif
+      alt: >
+        UAP Tablet Layout
+    - 
+      mobile: mobile/UAP_quoteRequestFunction.jpg
+      desktop: UAP_quoteRequestFunction.jpg
+      alt: >
+        UAP Quote Request
+    - 
+      mobile: mobile/UAP_chineseTranslation.jpg
+      desktop: UAP_chineseTranslation.jpg
+      alt: >
+        UAP Multilingual
+    - 
+      mobile: mobile/UAP_newsScreen.jpg
+      desktop: UAP_newsScreen.jpg
+      alt: >
+        UAP News screen
+  colors:
+    foreground: "#141100"
+    background: "#f7f7f7"
+  tags: [Digital Development, Brand Development]
+  digital: "true"
+  branding: "true"
+
 - project: Greenhills Wagyu
   slug: greenhillswagyu
   description: >
@@ -346,45 +413,45 @@
   digital:
   branding: "true"
 
-- project: Blackboard Coffee
-  slug: blackboard
-  description: >
-    The owner of Blackboard coffee Nick Pearce is a young entrepreneur determined to change his local community’s appreciation for good food and coffee.<span> Nick’s little enterprise has flourished from a humble coffee shop into a goodness institution, creating a culture that has expanded Blackboard across multiple locations and into new ventures. Getting on board from the early days allowed One Iota to design, develop and implement the Blackboard identity across a range of mediums from brand collateral and menus through to environmental graphics, food labels, signage and websites.</span>
-  link: blackboardcoffee.com
-  images:
-    - 
-      mobile: mobile/blackboard_businessCards.jpg
-      desktop: blackboard_businessCards.jpg
-      alt: >
-        Blackboard Coffee
-    - 
-      mobile: mobile/blackboard_windowDisplay.jpg
-      desktop: blackboard_windowDisplay.jpg
-      alt: >
-        Blackboard Coffee window display
-    -
-      mobile: mobile/blackboard_website.jpg
-      desktop: blackboard_website.jpg
-      alt: >
-        Blackboard Coffee responsive website
-    -
-      mobile: mobile/blackboard_icedCoffee.jpg
-      desktop: blackboard_icedCoffee.jpg
-      alt: >
-        Blackboard Coffee iced coffee label design
-    -
-      mobile: mobile/blackboard_interior.jpg
-      desktop: blackboard_interior.jpg
-      alt: >
-        Blackboard Coffee interior concept
-    -
-      mobile: mobile/blackboard_marketday.jpg
-      desktop: blackboard_marketday.jpg
-      alt: >
-        Blackboard market day
-  colors:
-    foreground: "#232323"
-    background: "#f1f1f1"
-  tags: [Brand Development, Brand Collateral, Digital Development, Copywriting, Package Design, Built Environment]
-  digital: "true"
-  branding: "true"
+# - project: Blackboard Coffee
+#   slug: blackboard
+#   description: >
+#     The owner of Blackboard coffee Nick Pearce is a young entrepreneur determined to change his local community’s appreciation for good food and coffee.<span> Nick’s little enterprise has flourished from a humble coffee shop into a goodness institution, creating a culture that has expanded Blackboard across multiple locations and into new ventures. Getting on board from the early days allowed One Iota to design, develop and implement the Blackboard identity across a range of mediums from brand collateral and menus through to environmental graphics, food labels, signage and websites.</span>
+#   link: blackboardcoffee.com
+#   images:
+#     - 
+#       mobile: mobile/blackboard_businessCards.jpg
+#       desktop: blackboard_businessCards.jpg
+#       alt: >
+#         Blackboard Coffee
+#     - 
+#       mobile: mobile/blackboard_windowDisplay.jpg
+#       desktop: blackboard_windowDisplay.jpg
+#       alt: >
+#         Blackboard Coffee window display
+#     -
+#       mobile: mobile/blackboard_website.jpg
+#       desktop: blackboard_website.jpg
+#       alt: >
+#         Blackboard Coffee responsive website
+#     -
+#       mobile: mobile/blackboard_icedCoffee.jpg
+#       desktop: blackboard_icedCoffee.jpg
+#       alt: >
+#         Blackboard Coffee iced coffee label design
+#     -
+#       mobile: mobile/blackboard_interior.jpg
+#       desktop: blackboard_interior.jpg
+#       alt: >
+#         Blackboard Coffee interior concept
+#     -
+#       mobile: mobile/blackboard_marketday.jpg
+#       desktop: blackboard_marketday.jpg
+#       alt: >
+#         Blackboard market day
+#   colors:
+#     foreground: "#232323"
+#     background: "#f1f1f1"
+#   tags: [Brand Development, Brand Collateral, Digital Development, Copywriting, Package Design, Built Environment]
+#   digital: "true"
+#   branding: "true"

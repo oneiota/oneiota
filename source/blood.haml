@@ -11,7 +11,7 @@
       
       %h2 We are one iota
 
-      %p One Iota is a team of young, passionate and experienced cross-discipline designers & developers. Specializing across branding, design and digital mediums, our skills and networks are flexible enough to take on clients of different shapes and jobs of different sizes. Together, we seek to create experiences that highlight, challenge and excite.
+      %p A team of passionate and experienced cross-discipline designers & developers. Specializing across branding, design and digital mediums, our skills and networks are flexible enough to take on clients of different shapes and jobs of different sizes. Together, we seek to create experiences that highlight, challenge and excite.
 
       %h2 Connect with us
 
@@ -26,86 +26,28 @@
         %ul
           %li
             %h2 &nbsp;<a href='mailTo:hello@oneiota.com' title='Get in touch'>hello@oneiota.com</a>
-          %br
-          %li
-            %h2 &nbsp;<i class="icon icon-phone"></i> +61 (0)7 3191 9816
-          %br
-          %li
-            %h2 &nbsp;<i class="icon icon-pin"></i> 6/887 Ann St<br/>Fortitude Valley Q 4006</br>Brisbane Australia
 
-%section.info-map
-  #map-area
-
-%section.info-team
-  .container
-    .content.delay
-      %p.section-title
-        %span= 'team'
-        .team-holder
-          .team-instagram.iotaInsty1
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
-          .instagram-link
-            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
-              %span.icon.icon-instagram-bare
-        
-        .team-holder.davefTeam.team-member{:data=>{:imgalt =>'David Fontain',:parent =>'.davefTeam',:shot1=>settings.base_url+'images/team/oneiota_davidfontain2.jpg',:shot2=>settings.base_url+'images/team/oneiota_davidfontain.jpg'}}
-          .team-instagram.iotaTeam1
-            %img.instagram-mask{:src=>settings.base_url+'images/team-mask.svg'}
-          .team-name-holder
-            .team-name
-              %p David Fontain
-              %a.icon.icon-linkdin{:href=>'http://au.linkedin.com/pub/david-fontain/83/318/531/',:title=>'view Linkdin profile',:target=>'_blank'}
-        
-        .team-holder
-          .team-instagram.iotaInsty2
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
-          .instagram-link
-            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
-              %span.icon.icon-instagram-bare
-
-        .team-holder.davemTeam.team-member{:data=>{:imgalt =>'David Muirhead',:parent =>'.davemTeam',:shot1=>settings.base_url+'images/team/oneiota_davidmuirhead.jpg',:shot2=>settings.base_url+'images/team/oneiota_davidmuirhead2.jpg'}}
-          .team-instagram.iotaTeam2
-            %img.instagram-mask{:src=>settings.base_url+'images/team-mask.svg'}
-          .team-name-holder
-            .team-name
-              %p.no-linkdin David Muirhead
-
-        .team-holder.smallfry
-          .team-instagram.team-empty 
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-empty.svg'}
-        
-        .team-holder
-          .team-instagram.iotaInsty3
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
-          .instagram-link
-            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
-              %span.icon.icon-instagram-bare
-        
-        .team-holder.smallfry
-          .team-instagram.team-empty 
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-empty.svg'}
-
-        .team-holder.pamTeam.team-member{:data=>{:imgalt =>'Pam Rosel',:parent =>'.pamTeam',:shot1=>settings.base_url+'images/team/oneiota_pamrosel.jpg',:shot2=>settings.base_url+'images/team/oneiota_pamrosel2.jpg'}}
-          .team-instagram.iotaTeam1
-            %img.instagram-mask{:src=>settings.base_url+'images/team-mask.svg'}
-          .team-name-holder
-            .team-name
-              %p Pam Rosel
-              %a.icon.icon-linkdin{:href=>'http://www.linkedin.com/pub/pamela-rosel/83/151/5aa',:title=>'view Linkdin profile'}
-
-        .team-holder.smallfry
-          .team-instagram.iotaInsty4
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
-          .instagram-link
-            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
-              %span.icon.icon-instagram-bare
-
-        .team-holder.smallfry
-          .team-instagram.iotaInsty5
-            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
-          .instagram-link
-            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
-              %span.icon.icon-instagram-bare
+%section.info-address
+  .brisbane
+    .container
+      .content
+        %h2 Brisbane
+        %br
+        %h3 <i class="icon icon-phone"></i> +61 (0)7 3191 9816
+        %br
+        %h3 <i class="icon icon-pin"></i> Suite 6, Level 1<br/>887 Ann St<br/>Fortitude Valley QLD 4006</br>Brisbane Australia
+    .map-container
+      #brismap
+  .sydney
+    .container
+      .content
+        %h2 Sydney
+        %br
+        %h3 <i class="icon icon-phone"></i> +61 (0)2 8540 2165
+        %br
+        %h3 <i class="icon icon-pin"></i> Suite 202, Level 2<br/>1 Alfred Street<br/>Circular Quay NSW 2000</br>Sydney Australia
+    .map-container
+      #sydmap
 
 %section.info-service-details
   .container
@@ -144,6 +86,77 @@
           %li e-commerce systems
           %li web optimization for mobile devices
           %li social network strategy
+
+%section.info-team
+  .container
+    .content.delay
+      %p.section-title
+        %span= 'social'
+        .team-holder
+          .team-instagram.iotaInsty1
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
+              %span.icon.icon-instagram-bare
+        
+        / .team-holder.davefTeam.team-member{:data=>{:imgalt =>'David Fontain',:parent =>'.davefTeam',:shot1=>settings.base_url+'images/team/oneiota_davidfontain2.jpg',:shot2=>settings.base_url+'images/team/oneiota_davidfontain.jpg'}}
+        /   .team-instagram.iotaTeam1
+        /     %img.instagram-mask{:src=>settings.base_url+'images/team-mask.svg'}
+        /   .team-name-holder
+        /     .team-name
+        /       %p David Fontain
+        /       %a.icon.icon-linkdin{:href=>'http://au.linkedin.com/pub/david-fontain/83/318/531/',:title=>'view Linkdin profile',:target=>'_blank'}
+        
+        .team-holder
+          .team-instagram.iotaInsty2
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
+              %span.icon.icon-instagram-bare
+
+        / .team-holder.davemTeam.team-member{:data=>{:imgalt =>'David Muirhead',:parent =>'.davemTeam',:shot1=>settings.base_url+'images/team/oneiota_davidmuirhead.jpg',:shot2=>settings.base_url+'images/team/oneiota_davidmuirhead2.jpg'}}
+        /   .team-instagram.iotaTeam2
+        /     %img.instagram-mask{:src=>settings.base_url+'images/team-mask.svg'}
+        /   .team-name-holder
+        /     .team-name
+        /       %p.no-linkdin David Muirhead
+
+        .team-holder.smallfry
+          .team-instagram.team-empty 
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-empty.svg'}
+        
+        .team-holder
+          .team-instagram.iotaInsty3
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
+              %span.icon.icon-instagram-bare
+        
+        .team-holder.smallfry
+          .team-instagram.team-empty 
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-empty.svg'}
+
+        / .team-holder.pamTeam.team-member{:data=>{:imgalt =>'Pam Rosel',:parent =>'.pamTeam',:shot1=>settings.base_url+'images/team/oneiota_pamrosel.jpg',:shot2=>settings.base_url+'images/team/oneiota_pamrosel2.jpg'}}
+        /   .team-instagram.iotaTeam1
+        /     %img.instagram-mask{:src=>settings.base_url+'images/team-mask.svg'}
+        /   .team-name-holder
+        /     .team-name
+        /       %p Pam Rosel
+        /       %a.icon.icon-linkdin{:href=>'http://www.linkedin.com/pub/pamela-rosel/83/151/5aa',:title=>'view Linkdin profile'}
+
+        .team-holder.smallfry
+          .team-instagram.iotaInsty4
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
+              %span.icon.icon-instagram-bare
+
+        .team-holder.smallfry
+          .team-instagram.iotaInsty5
+            %img.instagram-mask.insty{:src=>settings.base_url+'images/team-mask.svg'}
+          .instagram-link
+            %a{:href=>'http://instagram.com/oneiota_',:title=>'@oneiota_ on instagram',:target=>'_blank'}
+              %span.icon.icon-instagram-bare
 
 %section.info-testimonials
   .container

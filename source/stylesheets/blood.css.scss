@@ -236,6 +236,9 @@ section.info-services {
 
 section.info-service-details {
   background: #303030;
+  float: left;
+  display: block;
+  width: 100%;
   h2 {
     @include rem(margin-bottom, 4rem);
   }
@@ -403,11 +406,47 @@ section.info-contact {
   }
 }  
 
-section.info-map {
-  background: #000;
-  overflow: hidden;
-  #map-area {
-    height: 380px;
+section.info-address {
+  color: #fff;
+  float: left;
+  display: block;
+  width: 100%;
+  @include at-breakpoint($smallscreen) {
     margin-bottom: -25px;
   }
+  .brisbane, .sydney {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    float: left;
+    display: inline-block;
+    @include at-breakpoint($smallscreen) {
+      width: 50%;
+    }
+  }
+  .brisbane, .brisbane .map-container {
+    background: #3a3a3c;
+  }
+  .sydney, .sydney .map-container {
+    background: #58585a;
+  }
+  .map-container {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    display: none;
+    @include at-breakpoint($smallscreen) {
+      display: block;
+    }
+    div {
+      height: 100%;
+      top: -25px;
+    }
+  }
 }
+
+// section.info-map {
+//   background: #000;
+//   overflow: hidden;
+  
+// }

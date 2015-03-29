@@ -55,6 +55,16 @@ nav .top-hud {
           display: none;
           @include rem(margin-bottom, 1rem);
         }
+        a.up-nav-arrow {
+          position: absolute;
+          left: -0.5em;
+          bottom: -3em;
+        }
+        a.down-nav-arrow {
+          position: absolute;
+          left: -0.5em;
+          top: -3em;
+        }
         span.project-title {
           display: none;
         }

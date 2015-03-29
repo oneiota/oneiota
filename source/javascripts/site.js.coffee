@@ -161,9 +161,11 @@ waypointCheck.relativeSpeed = (scrollTarget) ->
 
 window.initialiseMaps = () ->
   
+  # Bris Map
+
   MY_MAPTYPE_ID = 'custom_style';
 
-  mapOptions =
+  brisMapOptions =
     zoom: 16
     center: new google.maps.LatLng(-27.45480, 153.03905)
     disableDefaultUI: true
@@ -194,7 +196,7 @@ window.initialiseMaps = () ->
     ]
   ]
 
-  map = new google.maps.Map(document.getElementById("map-area"), mapOptions)
+  brismap = new google.maps.Map(document.getElementById("brismap"), brisMapOptions)
 
   if window.isCanvas
     iotaImage = '../images/iotaMarker.svg';
@@ -204,9 +206,9 @@ window.initialiseMaps = () ->
   iotaMarker = new google.maps.Marker(
     clickable: false
     position: iotaLatLng
-    map: map
+    map: brismap
     icon: iotaImage
-    title: 'iota studio'
+    title: 'One Iota Brisbane'
   )
 
   styledMapOptions =
@@ -214,7 +216,56 @@ window.initialiseMaps = () ->
 
   customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions)
 
-  map.mapTypes.set(MY_MAPTYPE_ID, customMapType)
+  brismap.mapTypes.set(MY_MAPTYPE_ID, customMapType)
+
+  # Syd Map
+
+  SYD_MAPTYPE_ID = 'sydney_custom_style';
+
+  sydMapOptions =
+    zoom: 16
+    center: new google.maps.LatLng(-33.861468, 151.209180)
+    disableDefaultUI: true
+    zoomControl: false
+    scrollwheel: false
+    navigationControl: false
+    mapTypeControl: false
+    scaleControl: false
+    draggable: if window.isTouch and imageLoader.screenSize is 'mobile' then false else true
+    backgroundColor: '#58585a'
+    zoomControlOptions:
+      style: google.maps.ZoomControlStyle.SMALL
+      position: google.maps.ControlPosition.TOP_RIGHT
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, SYD_MAPTYPE_ID]
+    },
+    mapTypeId: SYD_MAPTYPE_ID
+
+  sydFeatureOpts = [
+    {"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#58585a"},{"lightness":-25},{"saturation":-97}]}
+  ]
+
+  sydmap = new google.maps.Map(document.getElementById("sydmap"), sydMapOptions)
+
+  if window.isCanvas
+    sydIotaImage = '../images/iotaMarkerSyd.svg';
+  else
+    sydIotaImage = '../images/iotaMarkerSyd.png';
+  iotaLatLng = new google.maps.LatLng(-33.861468, 151.209180);
+  iotaMarker = new google.maps.Marker(
+    clickable: false
+    position: iotaLatLng
+    map: sydmap
+    icon: sydIotaImage
+    title: 'One Iota Sydney'
+  )
+
+  sydStyledMapOptions =
+    name: 'Custom Style'
+
+  sydCustomMapType = new google.maps.StyledMapType(sydFeatureOpts, sydStyledMapOptions)
+
+  sydmap.mapTypes.set(SYD_MAPTYPE_ID, sydCustomMapType)
 
 loadGoogleMaps = () ->
   googleMaps = document.createElement("script")
@@ -952,13 +1003,13 @@ objectLoader.pageLoaded = () ->
   if !window.isPortfolio or window.isSingle
     $('nav').show()
   else
-    if sessionStorage.playedAlready == 'true'
-      $('.explore, .intro').remove()
-      $('nav').show()
-      $('.checkout-feed').show()
-      if !window.isIE
-        waypointCheck.makeCanvas()
-    else
+    # if sessionStorage.playedAlready == 'true'
+    #   $('.explore, .intro').remove()
+    #   $('nav').show()
+    #   $('.checkout-feed').show()
+    #   if !window.isIE
+    #     waypointCheck.makeCanvas()
+    # else
       $('body').addClass('noNav')
       showMain = setTimeout ->
         if !window.isTouch
