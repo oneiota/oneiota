@@ -28,7 +28,7 @@
       display: table-cell;
       text-align: center;
       vertical-align: middle;
-      @include font-size(3);
+      @include font-size(2);
       @include at-breakpoint($tablet) {
         @include font-size(4);
       }
@@ -44,7 +44,10 @@
     }
   }
   .exploreArrow {
-    @include font-size(3);
+    @include font-size(1.5);
+    @include at-breakpoint($tablet) {
+        @include font-size(3);
+    }
     position: absolute;
     width: 100%;
     bottom: 0;
